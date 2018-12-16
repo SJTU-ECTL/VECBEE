@@ -1,19 +1,36 @@
 #include <bits/stdc++.h>
 #include "cktNtk.h"
+#include "cmdline.h"
 
 
 using namespace std;
 using namespace abc;
+using namespace cmdline;
+
+
+parser Ckt_Cmdline_Parser(int argc, char * argv[])
+{
+    parser option;
+    option.add <string> ("file",   'f', "Circuit file",       false, "data/blif/c432.blif");
+    option.add <string> ("genlib", 'g', "Map libarary file",  false, "data/genlib/mcnc.genlib");
+    // option.add <string> ("input",  'i', "Input pattern file", false, "");
+    option.add <float>  ("error",  'e', "Error rate",         false, 0.05, range(0, 1));
+    option.parse_check(argc, argv);
+    return option;
+}
 
 
 int main(int argc, char * argv[])
 {
-    string fileName = "data/blif/c432.blif";
+    parser option = Ckt_Cmdline_Parser(argc, argv);
+
+    string file = option.get <string> ("file");
+    string genlib = option.get <string> ("genlib");
     Abc_Start();
     Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
-    string command = "read data/genlib/mcnc.genlib";
+    string command = "read " + genlib;
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
-    command = "read " + fileName;
+    command = "read " + file;
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
     // command = "print_gates";
     // assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
@@ -21,7 +38,8 @@ int main(int argc, char * argv[])
     // assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
 
     Ckt_Ntk_t ckt(Abc_FrameReadNtk(pAbc));
-    ckt.PrintInfo();
+    // ckt.PrintInfo();
+    ckt.GenerateInputDistribution();
 
     Abc_Stop();
     return 0;
