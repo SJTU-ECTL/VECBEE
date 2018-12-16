@@ -1,9 +1,9 @@
 #definitions
-DIR_INC = inc/
-DIR_ABC_LIB = abc/
-DIR_ABC_INC = abc/src
-DIR_SRC = src/
-DIR_OBJ = obj/
+DIR_INC = ./inc
+DIR_ABC_LIB = ./abc
+DIR_ABC_INC = ./abc/src
+DIR_SRC = ./src
+DIR_OBJ = ./obj
 SOURCE  := $(wildcard ${DIR_SRC}/*.c) $(wildcard ${DIR_SRC}/*.cpp)
 OBJS    := $(patsubst ${DIR_SRC}/%.c,${DIR_OBJ}/%.o,$(patsubst ${DIR_SRC}/%.cpp,${DIR_OBJ}/%.o,$(SOURCE)))
 TARGET  := main
@@ -19,7 +19,7 @@ CXXFLAGS:= $(CFLAGS)
 
 #commands
 .PHONY : all objs rebuild clean init ctags
-all : init $(TARGET)
+all : ctags init $(TARGET)
 
 objs : init $(OBJS)
 
