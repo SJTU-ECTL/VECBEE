@@ -39,7 +39,6 @@ int main(int argc, char * argv[])
 
     Ckt_Ntk_t ckt(Abc_FrameReadNtk(pAbc));
     // ckt.PrintInfo();
-    ckt.GenerateInputDistribution();
 
     Abc_Stop();
     return 0;

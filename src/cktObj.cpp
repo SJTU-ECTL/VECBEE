@@ -16,7 +16,7 @@ Ckt_Obj_t::Ckt_Obj_t(Abc_Obj_t * p_abc_obj)
 Ckt_Obj_t::Ckt_Obj_t(const Ckt_Obj_t & other)
     : pAbcObj (other.pAbcObj)
 {
-    type = other.GetObjType();
+    type = other.GetType();
     vector <uint64_t> ().swap(valueClusters);
 }
 

@@ -27,9 +27,12 @@ public:
     explicit Ckt_Obj_t(abc::Abc_Obj_t * p_abc_obj);
     Ckt_Obj_t(const Ckt_Obj_t & other);
     ~Ckt_Obj_t(void);
-    inline Ckt_Obj_Type_t GetObjType(void) const { return type; }
+    inline Ckt_Obj_Type_t GetType(void) const { return type; }
     inline float GetArrivalTime(void) const { return ((abc::Abc_Time_t *)pAbcObj->pNtk->pManTime->vArrs->pArray[pAbcObj->Id])->Rise; }
     inline std::string GetName(void) const { return std::string(Abc_ObjName(pAbcObj)); }
+    inline int GetClustersCap(void) const { return static_cast <int> (valueClusters.capacity()); }
+    inline void ClustersPreAlloc(int len) { valueClusters.reserve(len); }
+    inline void AddCluster(uint64_t value) { valueClusters.emplace_back(value); }
 };
 
 
@@ -50,5 +53,8 @@ bool Ckt_SopIsAOI22Gate( char * pSop );
 bool Ckt_SopIsOAI21Gate( char * pSop );
 bool Ckt_SopIsOAI22Gate( char * pSop );
 
+static inline void SetBit(uint64_t & x, uint64_t f) { x |= ((uint64_t)1 << (f & (uint64_t)63)); }
+static inline void ClearBit(uint64_t & x, uint64_t f) { x &= ~((uint64_t)1 << (f & (uint64_t)63)); }
+static inline bool GetBit(uint64_t x, uint64_t f) { return (bool)((x >> f) & (uint64_t)1); }
 
 #endif

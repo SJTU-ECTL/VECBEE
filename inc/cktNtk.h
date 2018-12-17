@@ -10,19 +10,20 @@
 class Ckt_Ntk_t
 {
 private:
-    abc::Abc_Ntk_t *        pAbcNtk;    // the corresponding ABC network
-    std::list <Ckt_Obj_t>   cktObjs;    // a list of circuit objects
-    std::list <Ckt_Obj_t>   cktPis;     // a list of primary inputs
-    std::list <Ckt_Obj_t>   cktPos;     // a list of primary outputs
+    abc::Abc_Ntk_t *        pAbcNtk;        // the corresponding ABC network
+    int                     nValueClusters; // nValueClusters = # frame / 64, discard remaining frames
+    std::list <Ckt_Obj_t>   cktObjs;        // circuit objects
+    std::list <Ckt_Obj_t *> pCktPis;         // primary inputs pointers
+    std::list <Ckt_Obj_t *> pCktPos;         // primary outputs pointers
 
     Ckt_Ntk_t(const Ckt_Ntk_t & other);
     Ckt_Ntk_t & operator = (const Ckt_Ntk_t & other);
 
 public:
-    explicit Ckt_Ntk_t(abc::Abc_Ntk_t * p_abc_ntk);
+    explicit Ckt_Ntk_t(abc::Abc_Ntk_t * p_abc_ntk, int nFrames = 1024);
     ~Ckt_Ntk_t(void);
     void PrintInfo(void) const;
-    void GenerateInputDistribution(void);
+    void GenerateInputDistribution(unsigned seed = 314);
 };
 
 
