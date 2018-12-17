@@ -6,23 +6,125 @@ using namespace abc;
 
 
 Ckt_Obj_t::Ckt_Obj_t(Abc_Obj_t * p_abc_obj)
-    : pAbcObj(p_abc_obj)
+    : pAbcObj(p_abc_obj), type(Ckt_GetObjType(p_abc_obj)), isVisited(false)
 {
-    type = Ckt_GetObjType(p_abc_obj);
-    vector <uint64_t> ().swap(valueClusters);
 }
 
 
 Ckt_Obj_t::Ckt_Obj_t(const Ckt_Obj_t & other)
-    : pAbcObj (other.pAbcObj)
+    : pAbcObj(other.pAbcObj), type(other.GetType()), isVisited(other.isVisited)
 {
-    type = other.GetType();
-    vector <uint64_t> ().swap(valueClusters);
+    // shallow copy
 }
 
 
 Ckt_Obj_t::~Ckt_Obj_t(void)
 {
+}
+
+
+void Ckt_Obj_t::PrintFanios(void) const
+{
+    string temp = "";
+    for (auto & pCktFanin : pCktFanins) {
+        temp += pCktFanin->GetName();
+        temp += ", ";
+    }
+    cout << setw(30) << setiosflags(ios::left) << temp;
+    temp = "";
+    for (auto & pCktFanout : pCktFanouts) {
+        temp += pCktFanout->GetName();
+        temp += ", ";
+    }
+    cout << setw(30) << setiosflags(ios::left) << temp;
+}
+
+
+void Ckt_Obj_t::PrintClusters(void) const
+{
+    for (auto & cluster : valueClusters) {
+        for (int i = 0; i < 64; ++i) {
+            cout << GetBit(cluster, static_cast <uint64_t> (i));
+        }
+    }
+}
+
+
+void Ckt_Obj_t::UpdateClusters(void)
+{
+    switch ( type ) {
+        case Ckt_Obj_Type_t::PI:
+        case Ckt_Obj_Type_t::CONST0:
+        case Ckt_Obj_Type_t::CONST1:
+        break;
+        case Ckt_Obj_Type_t::PO:
+        case Ckt_Obj_Type_t::BUF:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = pCktFanins[0]->valueClusters[i];
+        break;
+        case Ckt_Obj_Type_t::INV:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = ~pCktFanins[0]->valueClusters[i];
+        break;
+        case Ckt_Obj_Type_t::XOR:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = pCktFanins[0]->valueClusters[i] ^ pCktFanins[1]->valueClusters[i];
+        break;
+        case Ckt_Obj_Type_t::XNOR:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] ^ pCktFanins[1]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::AND2:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i];
+        break;
+        case Ckt_Obj_Type_t::OR2:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i];
+        break;
+        case Ckt_Obj_Type_t::NAND2:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::NAND3:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i] & pCktFanins[2]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::NAND4:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i] & pCktFanins[2]->valueClusters[i] & pCktFanins[3]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::NOR2:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::NOR3:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i] | pCktFanins[2]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::NOR4:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i] | pCktFanins[2]->valueClusters[i] | pCktFanins[3]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::AOI21:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i]) | pCktFanins[2]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::AOI22:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i]) | (pCktFanins[2]->valueClusters[i] & pCktFanins[3]->valueClusters[i]));
+        break;
+        case Ckt_Obj_Type_t::OAI21:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i]) & pCktFanins[2]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::OAI22:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i]) & (pCktFanins[2]->valueClusters[i] | pCktFanins[3]->valueClusters[i]));
+        break;
+        default:
+            assert(0);
+    }
 }
 
 

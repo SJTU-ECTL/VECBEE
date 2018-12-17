@@ -15,6 +15,7 @@ parser Ckt_Cmdline_Parser(int argc, char * argv[])
     option.add <string> ("genlib", 'g', "Map libarary file",  false, "data/genlib/mcnc.genlib");
     // option.add <string> ("input",  'i', "Input pattern file", false, "");
     option.add <float>  ("error",  'e', "Error rate",         false, 0.05, range(0, 1));
+    option.add <int>    ("number",  'n', "Frame number",      false, 1024, range(1, INT_MAX));
     option.parse_check(argc, argv);
     return option;
 }
@@ -26,19 +27,26 @@ int main(int argc, char * argv[])
 
     string file = option.get <string> ("file");
     string genlib = option.get <string> ("genlib");
+    int number = option.get <int> ("number");
     Abc_Start();
     Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
     string command = "read " + genlib;
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
     command = "read " + file;
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
+
+    Ckt_Ntk_t ckt(Abc_FrameReadNtk(pAbc), number);
+    clock_t st = clock();
+    // ckt.SimulatorChecker();
+    ckt.FeedForward();
+    cout << clock() - st << endl;
+    // ckt.PrintInfo();
+    // ckt.PrintInputDistribution();
+    // ckt.PrintTopologicalOrder();
     // command = "print_gates";
     // assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
     // command = "print_delay";
     // assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
-
-    Ckt_Ntk_t ckt(Abc_FrameReadNtk(pAbc));
-    // ckt.PrintInfo();
 
     Abc_Stop();
     return 0;

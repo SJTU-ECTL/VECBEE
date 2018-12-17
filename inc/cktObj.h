@@ -17,9 +17,12 @@ enum class Ckt_Obj_Type_t
 class Ckt_Obj_t
 {
 private:
-    abc::Abc_Obj_t *       pAbcObj;       // the corresponding ABC object
-    Ckt_Obj_Type_t         type;          // object type
-    std::vector <uint64_t> valueClusters; // temporary simluation value clusters
+    abc::Abc_Obj_t *          pAbcObj;       // the corresponding ABC object
+    Ckt_Obj_Type_t            type;          // object type
+    bool                      isVisited;     // whether the object is visited
+    std::vector <uint64_t>    valueClusters; // simluation value clusters
+    std::vector <Ckt_Obj_t *> pCktFanins;    // fanin pointers
+    std::vector <Ckt_Obj_t *> pCktFanouts;   // fanout pointers
 
     Ckt_Obj_t & operator = (const Ckt_Obj_t & other);
 
@@ -27,12 +30,27 @@ public:
     explicit Ckt_Obj_t(abc::Abc_Obj_t * p_abc_obj);
     Ckt_Obj_t(const Ckt_Obj_t & other);
     ~Ckt_Obj_t(void);
-    inline Ckt_Obj_Type_t GetType(void) const { return type; }
-    inline float GetArrivalTime(void) const { return ((abc::Abc_Time_t *)pAbcObj->pNtk->pManTime->vArrs->pArray[pAbcObj->Id])->Rise; }
-    inline std::string GetName(void) const { return std::string(Abc_ObjName(pAbcObj)); }
-    inline int GetClustersCap(void) const { return static_cast <int> (valueClusters.capacity()); }
-    inline void ClustersPreAlloc(int len) { valueClusters.reserve(len); }
-    inline void AddCluster(uint64_t value) { valueClusters.emplace_back(value); }
+    void PrintFanios(void) const;
+    void PrintClusters(void) const;
+    void UpdateClusters(void);
+
+    inline abc::Abc_Obj_t * GetAbcObj(void) const             { return pAbcObj; }
+    inline Ckt_Obj_Type_t   GetType(void) const               { return type; }
+    inline bool             GetVisited(void) const            { return isVisited; }
+    inline void             SetVisited(void)                  { isVisited = true; }
+    inline void             ResetVisited(void)                { isVisited = false; }
+    inline int              GetClustersSize(void) const       { return static_cast <int> (valueClusters.size()); }
+    inline void             ResizeClusters(int len)           { valueClusters.resize(len); }
+    inline void             SetCluster(int i, uint64_t value) { valueClusters[i] = value; }
+    inline uint64_t         GetCluster(int i) const           { return valueClusters[i]; }
+    inline void             AddFanin(Ckt_Obj_t * pCktFanin)   { pCktFanins.emplace_back(pCktFanin); }
+    inline Ckt_Obj_t *      GetFanin(int i = 0) const         { return pCktFanins[i]; }
+    inline int              GetFaninNum(void) const           { return static_cast <int> (pCktFanins.size()); }
+    inline void             AddFanout(Ckt_Obj_t * pCktFanout) { pCktFanouts.emplace_back(pCktFanout); }
+    inline Ckt_Obj_t *      GetFanout(int i = 0) const        { return pCktFanouts[i]; }
+    inline int              GetFanoutNum(void) const          { return static_cast <int> (pCktFanouts.size()); }
+    inline std::string      GetName(void) const               { return std::string(Abc_ObjName(pAbcObj)); }
+    inline float            GetArrivalTime(void) const        { return (static_cast<abc::Abc_Time_t *>(pAbcObj->pNtk->pManTime->vArrs->pArray[pAbcObj->Id]))->Rise; }
 };
 
 
@@ -54,7 +72,7 @@ bool Ckt_SopIsOAI21Gate( char * pSop );
 bool Ckt_SopIsOAI22Gate( char * pSop );
 
 static inline void SetBit(uint64_t & x, uint64_t f) { x |= ((uint64_t)1 << (f & (uint64_t)63)); }
-static inline void ClearBit(uint64_t & x, uint64_t f) { x &= ~((uint64_t)1 << (f & (uint64_t)63)); }
+static inline void ResetBit(uint64_t & x, uint64_t f) { x &= ~((uint64_t)1 << (f & (uint64_t)63)); }
 static inline bool GetBit(uint64_t x, uint64_t f) { return (bool)((x >> f) & (uint64_t)1); }
 
 #endif
