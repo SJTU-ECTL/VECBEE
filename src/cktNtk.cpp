@@ -6,6 +6,24 @@ using namespace abc;
 using namespace boost;
 
 
+Ckt_Bit_Cnt_t::Ckt_Bit_Cnt_t(void)
+{
+    for (int i = 0; i < 65536; ++i) {
+        int x = i;
+        table[i] = 0;
+        while (x) {
+            x = x & (x - 1);
+            table[i]++;
+        }
+    }
+}
+
+
+Ckt_Bit_Cnt_t::~Ckt_Bit_Cnt_t(void)
+{
+}
+
+
 Ckt_Ntk_t::Ckt_Ntk_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
     : nValueClusters(nFrames / 64)
 {
@@ -53,9 +71,6 @@ Ckt_Ntk_t::Ckt_Ntk_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
         Abc_ObjForEachFanout(obj.GetAbcObj(), pFanout, i)
             obj.AddFanout(static_cast <Ckt_Obj_t *> (pFanout->pTemp));
     }
-
-    // generate input distribution
-    GenerateInputDistribution();
 }
 
 
@@ -98,7 +113,7 @@ void Ckt_Ntk_t::PrintTopologicalOrder(void)
 }
 
 
-void Ckt_Ntk_t::GenerateInputDistribution(unsigned seed)
+void Ckt_Ntk_t::GenInputDist(unsigned seed)
 {
     uniform_int <> distribution(0, 1);
     boost::random::mt19937 engine(seed);
@@ -109,7 +124,7 @@ void Ckt_Ntk_t::GenerateInputDistribution(unsigned seed)
             uint64_t value = 0;
             for (int j = 0; j < 64; ++j) {
                 if (randomPI())
-                    SetBit(value, static_cast <uint64_t> (j));
+                    Ckt_SetBit(value, static_cast <uint64_t> (j));
             }
             pCktPi->SetCluster(i, value);
         }
@@ -177,25 +192,44 @@ void Ckt_Ntk_t::SimulatorChecker(void)
         for (int j = 0; j < 64; ++j) {
             uint64_t f1 = 0;
             for (int k = 15; k >= 0; --k) {
-                if (GetBit(pCktPis[k]->GetCluster(i), static_cast <uint64_t> (j)))
-                    SetBit(f1, static_cast <uint64_t> (k));
+                if (Ckt_GetBit(pCktPis[k]->GetCluster(i), static_cast <uint64_t> (j)))
+                    Ckt_SetBit(f1, static_cast <uint64_t> (k));
             }
             uint64_t f2 = 0;
             for (int k = 31; k >= 16; --k) {
-                if (GetBit(pCktPis[k]->GetCluster(i), static_cast <uint64_t> (j)))
-                    SetBit(f2, static_cast <uint64_t> (k - 16));
+                if (Ckt_GetBit(pCktPis[k]->GetCluster(i), static_cast <uint64_t> (j)))
+                    Ckt_SetBit(f2, static_cast <uint64_t> (k - 16));
             }
             uint64_t res = 0;
             for (int k = 29; k >= 0; --k) {
-                if (GetBit(pCktPos[k]->GetCluster(i), static_cast <uint64_t> (j)))
-                    SetBit(res, static_cast <uint64_t> (k));
+                if (Ckt_GetBit(pCktPos[k]->GetCluster(i), static_cast <uint64_t> (j)))
+                    Ckt_SetBit(res, static_cast <uint64_t> (k));
             }
-            if (GetBit(pCktPos[30]->GetCluster(i), static_cast <uint64_t> (j)))
-                SetBit(res, static_cast <uint64_t> (31));
-            if (GetBit(pCktPos[31]->GetCluster(i), static_cast <uint64_t> (j)))
-                SetBit(res, static_cast <uint64_t> (30));
-            cout << f1 << "\t" << f2 << "\t" << res << endl;
+            if (Ckt_GetBit(pCktPos[30]->GetCluster(i), static_cast <uint64_t> (j)))
+                Ckt_SetBit(res, static_cast <uint64_t> (31));
+            if (Ckt_GetBit(pCktPos[31]->GetCluster(i), static_cast <uint64_t> (j)))
+                Ckt_SetBit(res, static_cast <uint64_t> (30));
+            cout << f1 << "*" << f2 << "=" << res << endl;
             assert(f1 * f2 == res);
         }
     }
+}
+
+
+float Ckt_Ntk_t::GetErrorRate(Ckt_Ntk_t & refNtk, Ckt_Bit_Cnt_t & table)
+{
+    // make sure POs are same
+    assert(pCktPos.size() == refNtk.pCktPos.size());
+    int poNum = static_cast <int> (pCktPos.size());
+    for (int i = 0; i < poNum; ++i)
+        assert(pCktPos[i]->GetName() == refNtk.pCktPos[i]->GetName());
+    // compare value cluster of POs
+    int ret = 0;
+    for (int k = 0; k < nValueClusters; ++k) {
+        uint64_t temp = 0;
+        for (int i = 0; i < poNum; ++i)
+            temp |= pCktPos[i]->GetCluster(k) ^ refNtk.pCktPos[i]->GetCluster(k);
+        ret += table.GetOneNum(temp);
+    }
+    return static_cast <float> (ret) / static_cast <float> (nValueClusters << 6);
 }

@@ -71,8 +71,8 @@ bool Ckt_SopIsAOI22Gate( char * pSop );
 bool Ckt_SopIsOAI21Gate( char * pSop );
 bool Ckt_SopIsOAI22Gate( char * pSop );
 
-static inline void SetBit(uint64_t & x, uint64_t f) { x |= ((uint64_t)1 << (f & (uint64_t)63)); }
-static inline void ResetBit(uint64_t & x, uint64_t f) { x &= ~((uint64_t)1 << (f & (uint64_t)63)); }
-static inline bool GetBit(uint64_t x, uint64_t f) { return (bool)((x >> f) & (uint64_t)1); }
+static inline void Ckt_SetBit(uint64_t & x, uint64_t f) { x |= ((uint64_t)1 << (f & (uint64_t)63)); }
+static inline void Ckt_ResetBit(uint64_t & x, uint64_t f) { x &= ~((uint64_t)1 << (f & (uint64_t)63)); }
+static inline bool Ckt_GetBit(uint64_t x, uint64_t f) { return (bool)((x >> f) & (uint64_t)1); }
 
 #endif

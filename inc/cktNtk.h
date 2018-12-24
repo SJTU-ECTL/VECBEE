@@ -7,6 +7,19 @@
 #include "cktObj.h"
 
 
+class Ckt_Bit_Cnt_t
+{
+private:
+    int table[65536];
+
+public:
+    explicit Ckt_Bit_Cnt_t(void);
+    ~Ckt_Bit_Cnt_t(void);
+
+    inline int GetOneNum(uint64_t n) { return table[n >> 48] + table[(n >> 32) & 0xffff] + table[(n >> 16) & 0xffff] +table[n & 0xffff]; }
+};
+
+
 class Ckt_Ntk_t
 {
 private:
@@ -26,12 +39,13 @@ public:
     ~Ckt_Ntk_t(void);
     void PrintInfo(void) const;
     void PrintTopologicalOrder(void);
-    void GenerateInputDistribution(unsigned seed = 314);
+    void GenInputDist(unsigned seed = 314);
     void PrintInputDistribution(void) const;
     void DFS(Ckt_Obj_t * pCktObj, std::vector <Ckt_Obj_t *> & pOrderedObjs);
     void SortObjects(std::vector <Ckt_Obj_t *> & pOrderedObjs);
     void FeedForward(void);
     void SimulatorChecker(void);
+    float GetErrorRate(Ckt_Ntk_t & refNtk, Ckt_Bit_Cnt_t & table);
 
     inline int GetObjNum(void) const { return cktObjs.size(); }
 };

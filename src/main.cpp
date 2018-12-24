@@ -35,18 +35,19 @@ int main(int argc, char * argv[])
     command = "read " + file;
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
 
-    Ckt_Ntk_t ckt(Abc_FrameReadNtk(pAbc), number);
-    clock_t st = clock();
+    Ckt_Bit_Cnt_t table;
+
+    Ckt_Ntk_t cktRef(Abc_FrameReadNtk(pAbc), number);
+    cktRef.GenInputDist(314);
+    cktRef.FeedForward();
+
+    Ckt_Ntk_t cktApp(Abc_FrameReadNtk(pAbc), number);
+    cktApp.GenInputDist(314);
+    cktApp.FeedForward();
+    cout << cktApp.GetErrorRate(cktRef, table) << endl;
+    // clock_t st = clock();
+    // cout << clock() - st << endl;
     // ckt.SimulatorChecker();
-    ckt.FeedForward();
-    cout << clock() - st << endl;
-    // ckt.PrintInfo();
-    // ckt.PrintInputDistribution();
-    // ckt.PrintTopologicalOrder();
-    // command = "print_gates";
-    // assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
-    // command = "print_delay";
-    // assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
 
     Abc_Stop();
     return 0;

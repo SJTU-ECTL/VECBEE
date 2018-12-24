@@ -44,7 +44,7 @@ void Ckt_Obj_t::PrintClusters(void) const
 {
     for (auto & cluster : valueClusters) {
         for (int i = 0; i < 64; ++i) {
-            cout << GetBit(cluster, static_cast <uint64_t> (i));
+            cout << Ckt_GetBit(cluster, static_cast <uint64_t> (i));
         }
     }
 }
