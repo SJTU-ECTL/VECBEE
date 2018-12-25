@@ -24,33 +24,34 @@ private:
     std::vector <Ckt_Obj_t *> pCktFanins;    // fanin pointers
     std::vector <Ckt_Obj_t *> pCktFanouts;   // fanout pointers
 
-    Ckt_Obj_t & operator = (const Ckt_Obj_t & other);
+    Ckt_Obj_t &               operator = (const Ckt_Obj_t & other);
 
 public:
-    explicit Ckt_Obj_t(abc::Abc_Obj_t * p_abc_obj);
-    Ckt_Obj_t(const Ckt_Obj_t & other);
-    ~Ckt_Obj_t(void);
-    void PrintFanios(void) const;
-    void PrintClusters(void) const;
-    void UpdateClusters(void);
+    explicit                  Ckt_Obj_t(abc::Abc_Obj_t * p_abc_obj);
+                              Ckt_Obj_t(const Ckt_Obj_t & other);
+                              ~Ckt_Obj_t(void);
+    void                      PrintFanios(void) const;
+    void                      PrintClusters(void) const;
+    void                      UpdateClusters(void);
+    Ckt_Obj_t *               AddInverter(void);
 
-    inline abc::Abc_Obj_t * GetAbcObj(void) const             { return pAbcObj; }
-    inline Ckt_Obj_Type_t   GetType(void) const               { return type; }
-    inline bool             GetVisited(void) const            { return isVisited; }
-    inline void             SetVisited(void)                  { isVisited = true; }
-    inline void             ResetVisited(void)                { isVisited = false; }
-    inline int              GetClustersSize(void) const       { return static_cast <int> (valueClusters.size()); }
-    inline void             ResizeClusters(int len)           { valueClusters.resize(len); }
-    inline void             SetCluster(int i, uint64_t value) { valueClusters[i] = value; }
-    inline uint64_t         GetCluster(int i) const           { return valueClusters[i]; }
-    inline void             AddFanin(Ckt_Obj_t * pCktFanin)   { pCktFanins.emplace_back(pCktFanin); }
-    inline Ckt_Obj_t *      GetFanin(int i = 0) const         { return pCktFanins[i]; }
-    inline int              GetFaninNum(void) const           { return static_cast <int> (pCktFanins.size()); }
-    inline void             AddFanout(Ckt_Obj_t * pCktFanout) { pCktFanouts.emplace_back(pCktFanout); }
-    inline Ckt_Obj_t *      GetFanout(int i = 0) const        { return pCktFanouts[i]; }
-    inline int              GetFanoutNum(void) const          { return static_cast <int> (pCktFanouts.size()); }
-    inline std::string      GetName(void) const               { return std::string(Abc_ObjName(pAbcObj)); }
-    inline float            GetArrivalTime(void) const        { return (static_cast<abc::Abc_Time_t *>(pAbcObj->pNtk->pManTime->vArrs->pArray[pAbcObj->Id]))->Rise; }
+    inline abc::Abc_Obj_t *   GetAbcObj(void) const             { return pAbcObj; }
+    inline Ckt_Obj_Type_t     GetType(void) const               { return type; }
+    inline bool               GetVisited(void) const            { return isVisited; }
+    inline void               SetVisited(void)                  { isVisited = true; }
+    inline void               ResetVisited(void)                { isVisited = false; }
+    inline int                GetClustersSize(void) const       { return static_cast <int> (valueClusters.size()); }
+    inline void               ResizeClusters(int len)           { valueClusters.resize(len); }
+    inline void               SetCluster(int i, uint64_t value) { valueClusters[i] = value; }
+    inline uint64_t           GetCluster(int i) const           { return valueClusters[i]; }
+    inline void               AddFanin(Ckt_Obj_t * pCktFanin)   { pCktFanins.emplace_back(pCktFanin); pCktFanin->pCktFanouts.emplace_back(this); }
+    inline Ckt_Obj_t *        GetFanin(int i = 0) const         { return pCktFanins[i]; }
+    inline int                GetFaninNum(void) const           { return static_cast <int> (pCktFanins.size()); }
+    // inline void            AddFanout(Ckt_Obj_t * pCktFanout) { pCktFanouts.emplace_back(pCktFanout); }
+    inline Ckt_Obj_t *        GetFanout(int i = 0) const        { return pCktFanouts[i]; }
+    inline int                GetFanoutNum(void) const          { return static_cast <int> (pCktFanouts.size()); }
+    inline std::string        GetName(void) const               { return std::string(Abc_ObjName(pAbcObj)); }
+    inline float              GetArrivalTime(void) const        { return (static_cast<abc::Abc_Time_t *>(pAbcObj->pNtk->pManTime->vArrs->pArray[pAbcObj->Id]))->Rise; }
 };
 
 

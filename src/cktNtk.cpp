@@ -64,12 +64,10 @@ Ckt_Ntk_t::Ckt_Ntk_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
     for (auto & obj : cktObjs)
         obj.ResizeClusters(nValueClusters);
 
-    // add fanin/fanout information, use pTemp to recover
+    // add fanin/fanout information, use information saved in pTemp
     for (auto & obj : cktObjs) {
         Abc_ObjForEachFanin(obj.GetAbcObj(), pFanin, i)
             obj.AddFanin(static_cast <Ckt_Obj_t *> (pFanin->pTemp));
-        Abc_ObjForEachFanout(obj.GetAbcObj(), pFanout, i)
-            obj.AddFanout(static_cast <Ckt_Obj_t *> (pFanout->pTemp));
     }
 }
 
@@ -233,3 +231,23 @@ float Ckt_Ntk_t::GetErrorRate(Ckt_Ntk_t & refNtk, Ckt_Bit_Cnt_t & table)
     }
     return static_cast <float> (ret) / static_cast <float> (nValueClusters << 6);
 }
+
+
+Ckt_Obj_t * Ckt_Ntk_t::AddInverter(Ckt_Obj_t & cktObj)
+{
+    Ckt_Obj_Type_t type = cktObj.GetType();
+    assert(type != Ckt_Obj_Type_t::PO     && type != Ckt_Obj_Type_t::INV &&
+           type != Ckt_Obj_Type_t::CONST0 && type != Ckt_Obj_Type_t::CONST1);
+    assert(pAbcNtk == cktObj.GetAbcObj()->pNtk);
+
+    Abc_Obj_t * pAbcObjNew = Abc_NtkCreateNodeInv(pAbcNtk, cktObj.GetAbcObj());
+
+    cktObjs.emplace_back(Ckt_Obj_t(pAbcObjNew));
+    Ckt_Obj_t * pCktObjNew = &(cktObjs.back());
+    pCktObjNew->AddFanin(&cktObj);
+
+    return pCktObjNew;
+}
+
+
+

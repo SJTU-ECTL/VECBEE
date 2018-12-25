@@ -46,6 +46,7 @@ public:
     void FeedForward(void);
     void SimulatorChecker(void);
     float GetErrorRate(Ckt_Ntk_t & refNtk, Ckt_Bit_Cnt_t & table);
+    Ckt_Obj_t * AddInverter(Ckt_Obj_t & cktObj);
 
     inline int GetObjNum(void) const { return cktObjs.size(); }
 };

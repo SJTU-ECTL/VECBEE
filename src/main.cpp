@@ -47,7 +47,7 @@ int main(int argc, char * argv[])
     cout << cktApp.GetErrorRate(cktRef, table) << endl;
     // clock_t st = clock();
     // cout << clock() - st << endl;
-    // ckt.SimulatorChecker();
+    // cktRef.SimulatorChecker();
 
     Abc_Stop();
     return 0;
