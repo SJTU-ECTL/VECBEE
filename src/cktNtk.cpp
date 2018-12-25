@@ -27,7 +27,7 @@ Ckt_Bit_Cnt_t::~Ckt_Bit_Cnt_t(void)
 Ckt_Ntk_t::Ckt_Ntk_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
     : nValueClusters(nFrames / 64)
 {
-    Abc_Obj_t * pAbcObj, * pFanin, * pFanout;
+    Abc_Obj_t * pAbcObj, * pFanin;
     int i;
 
     // duplicate network
@@ -248,6 +248,3 @@ Ckt_Obj_t * Ckt_Ntk_t::AddInverter(Ckt_Obj_t & cktObj)
 
     return pCktObjNew;
 }
-
-
-
