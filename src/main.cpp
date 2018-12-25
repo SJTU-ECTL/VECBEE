@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include "cktNtk.h"
+#include "cktVisual.h"
 #include "cmdline.h"
 
 
@@ -40,11 +41,12 @@ int main(int argc, char * argv[])
     Ckt_Ntk_t cktRef(Abc_FrameReadNtk(pAbc), number);
     cktRef.GenInputDist(314);
     cktRef.FeedForward();
+    Visualize(cktRef.GetAbcNtk(), "test.dot");
 
-    Ckt_Ntk_t cktApp(Abc_FrameReadNtk(pAbc), number);
-    cktApp.GenInputDist(314);
-    cktApp.FeedForward();
-    cout << cktApp.GetErrorRate(cktRef, table) << endl;
+    // Ckt_Ntk_t cktApp(Abc_FrameReadNtk(pAbc), number);
+    // cktApp.GenInputDist(314);
+    // cktApp.FeedForward();
+    // cout << cktApp.GetErrorRate(cktRef, table) << endl;
     // clock_t st = clock();
     // cout << clock() - st << endl;
     // cktRef.SimulatorChecker();

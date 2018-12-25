@@ -128,6 +128,17 @@ void Ckt_Obj_t::UpdateClusters(void)
 }
 
 
+void Ckt_Obj_t::ReplaceBy(Ckt_Obj_t & cktNewObj)
+{
+    assert(pAbcObj->pNtk == cktNewObj.pAbcObj->pNtk);
+}
+
+
+void Ckt_Obj_t::Recover(void)
+{
+}
+
+
 ostream & operator << (ostream & os, const Ckt_Obj_Type_t & type)
 {
     switch ( type ) {

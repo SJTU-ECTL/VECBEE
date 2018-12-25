@@ -23,8 +23,6 @@ private:
     std::vector <uint64_t>    valueClusters;                    // simluation value clusters
     std::vector <Ckt_Obj_t *> pCktFanins;                       // fanin pointers
     std::vector <Ckt_Obj_t *> pCktFanouts;                      // fanout pointers
-    std::vector <Ckt_Obj_t *> pCktOldFanins;                    // old fanin pointers, used for recovery from substitution
-    std::vector <Ckt_Obj_t *> pCktOldFanouts;                   // old fanout pointers, used for recovery from substitution
 
     Ckt_Obj_t &               operator =        (const Ckt_Obj_t & other);
 
@@ -35,6 +33,9 @@ public:
     void                      PrintFanios       (void) const;
     void                      PrintClusters     (void) const;
     void                      UpdateClusters    (void);
+    void                      ReplaceBy         (Ckt_Obj_t & cktNewObj);
+    void                      Recover           (void);
+
 
     inline abc::Abc_Obj_t *   GetAbcObj         (void) const           { return pAbcObj; }
     inline Ckt_Obj_Type_t     GetType           (void) const           { return type; }

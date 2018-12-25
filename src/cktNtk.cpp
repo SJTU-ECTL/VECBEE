@@ -180,7 +180,7 @@ void Ckt_Ntk_t::FeedForward(void)
 }
 
 
-void Ckt_Ntk_t::SimulatorChecker(void)
+void Ckt_Ntk_t::CheckSimulator(void)
 {
     // only for c6288
     assert(string(pAbcNtk->pName) == "c6288");
