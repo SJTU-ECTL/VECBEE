@@ -48,7 +48,9 @@ public:
     float                     GetErrorRate          (Ckt_Ntk_t & refNtk, Ckt_Bit_Cnt_t & table);
     Ckt_Obj_t *               AddInverter           (Ckt_Obj_t & cktObj);
     void                      Replace               (Ckt_Obj_t & cktOldObj, Ckt_Obj_t & cktNewObj, std::vector <Ckt_Rpl_Info_t> & info);
+    void                      ReplaceWithName       (std::string oldName, std::string newName, std::vector <Ckt_Rpl_Info_t> & info);
     void                      RecoverFromRpl        (std::vector <Ckt_Rpl_Info_t> & info);
+    void                      CheckFanio            (void) const;
 
     inline int                GetObjNum             (void) const { return cktObjs.size(); }
     inline abc::Abc_Ntk_t *   GetAbcNtk             (void) const { return pAbcNtk; }

@@ -34,7 +34,7 @@ Ckt_Ntk_t::Ckt_Ntk_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
     pAbcNtk = Abc_NtkDup(p_abc_ntk);
 
     // init circuit objects, use pTemp to temporarily store the reflection
-    Abc_NtkForEachObj(p_abc_ntk, pAbcObj, i) {
+    Abc_NtkForEachObj(pAbcNtk, pAbcObj, i) {
         cktObjs.emplace_back(Ckt_Obj_t(pAbcObj));
         pAbcObj->pTemp = static_cast <void *> (&(cktObjs.back()));
     }
@@ -256,22 +256,52 @@ void Ckt_Ntk_t::Replace(Ckt_Obj_t & cktOldObj, Ckt_Obj_t & cktNewObj, vector <Ck
 }
 
 
+void Ckt_Ntk_t::ReplaceWithName(string oldName, string newName, vector <Ckt_Rpl_Info_t> & info)
+{
+    auto itCktOldObj = find_if(cktObjs.begin(), cktObjs.end(),
+                [&oldName](Ckt_Obj_t & obj) {
+                    return obj.GetName() == oldName;
+                }
+            );
+    assert(itCktOldObj != cktObjs.end());
+
+    auto itCktNewObj = find_if(cktObjs.begin(), cktObjs.end(),
+                [&newName](Ckt_Obj_t & obj) {
+                    return obj.GetName() == newName;
+                }
+            );
+    assert(itCktNewObj != cktObjs.end());
+
+    assert(itCktOldObj->GetAbcObj()->pNtk == pAbcNtk);
+    itCktOldObj->ReplaceBy(*itCktNewObj, info);
+}
+
+
 void Ckt_Ntk_t::RecoverFromRpl(vector <Ckt_Rpl_Info_t> & info)
 {
     for (auto it = info.rbegin(); it != info.rend(); ++it) {
         // recover ABC
-        Vec_IntWriteEntry(
-                &(it->pCktObjTo->GetAbcObj())->vFanins,
-                it->iCktFanin,
-                it->pCktObjFrom->GetAbcObj()->Id
-        );
+        Vec_IntPop(&(it->pCktObjTo->GetFanin(it->iCktFanin)->GetAbcObj())->vFanouts);
         Vec_IntInsert(
                 &(it->pCktObjFrom->GetAbcObj())->vFanouts,
                 it->iCktFanout,
                 it->pCktObjTo->GetAbcObj()->Id
         );
+        Vec_IntWriteEntry(
+                &(it->pCktObjTo->GetAbcObj())->vFanins,
+                it->iCktFanin,
+                it->pCktObjFrom->GetAbcObj()->Id
+        );
         // recover circuit
-        it->pCktObjTo->WriteFanin(it->iCktFanin, it->pCktObjFrom);
+        it->pCktObjTo->GetFanin(it->iCktFanin)->PopBackFanout();
         it->pCktObjFrom->InsertFanout(it->iCktFanout, it->pCktObjTo);
+        it->pCktObjTo->WriteFanin(it->iCktFanin, it->pCktObjFrom);
     }
+}
+
+
+void Ckt_Ntk_t::CheckFanio(void) const
+{
+    for (auto & cktObj : cktObjs)
+        cktObj.CheckFanio();
 }

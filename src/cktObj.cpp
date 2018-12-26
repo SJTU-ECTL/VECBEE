@@ -136,17 +136,38 @@ void Ckt_Obj_t::ReplaceBy(Ckt_Obj_t & cktNewObj, vector <Ckt_Rpl_Info_t> & info)
     vector <Ckt_Obj_t *> pCktOldFanouts(pCktFanouts);
     // patch fanin
     for (auto & pCktOldFanout : pCktOldFanouts) {
+        // replace fanin
         auto itCktFanin = find( pCktOldFanout->pCktFanins.begin(),
                                 pCktOldFanout->pCktFanins.end(), this );
         assert(itCktFanin != pCktOldFanout->pCktFanins.end());
         *itCktFanin = &cktNewObj;
+
+        // remove fanout
         auto itCktFanout = find( pCktFanouts.begin(),
                                  pCktFanouts.end(), pCktOldFanout );
         assert(itCktFanout != pCktFanouts.end());
         pCktFanouts.erase(itCktFanout);
+
+        // add fanout
+        cktNewObj.pCktFanouts.emplace_back(pCktOldFanout);
+
+        // record history
         info.emplace_back(Ckt_Rpl_Info_t(this,          itCktFanin - pCktOldFanout->pCktFanins.begin(),
                                          pCktOldFanout, itCktFanout - pCktFanouts.begin()));
     }
+}
+
+
+void Ckt_Obj_t::CheckFanio(void) const
+{
+    Abc_Obj_t * pObj;
+    int i;
+    assert(Abc_ObjFaninNum(pAbcObj) == static_cast <int> (pCktFanins.size()));
+    assert(Abc_ObjFanoutNum(pAbcObj) == static_cast <int> (pCktFanouts.size()));
+    Abc_ObjForEachFanout(pAbcObj, pObj, i)
+        assert(static_cast <string> (Abc_ObjName(pObj)) == pCktFanouts[i]->GetName());
+    Abc_ObjForEachFanin(pAbcObj, pObj, i)
+        assert(static_cast <string> (Abc_ObjName(pObj)) == pCktFanins[i]->GetName());
 }
 
 
@@ -227,6 +248,16 @@ ostream & operator << (ostream & os, const Ckt_Obj_Type_t & type)
         default:
             assert(0);
     }
+    return os;
+}
+
+
+ostream & operator << (ostream & os, const Ckt_Rpl_Info_t & info)
+{
+    cout << info.pCktObjFrom->GetName() << "\t";
+    cout << info.pCktObjTo->GetName() << "\t";
+    cout << info.iCktFanin << "\t";
+    cout << info.iCktFanout;
     return os;
 }
 

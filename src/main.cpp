@@ -35,14 +35,17 @@ int main(int argc, char * argv[])
     command = "read " + file;
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
 
-    Ckt_Bit_Cnt_t table;
-
     Ckt_Ntk_t cktRef(Abc_FrameReadNtk(pAbc), number);
+    Ckt_Ntk_t cktApp(Abc_FrameReadNtk(pAbc), number);
+
+    vector <Ckt_Rpl_Info_t> info;
+    // cktApp.ReplaceWithName("n9", "n8", info);
+    // cktApp.RecoverFromRpl(info);
+    cktApp.CheckFanio();
+
+    // Ckt_Bit_Cnt_t table;
     // cktRef.GenInputDist(314);
     // cktRef.FeedForward();
-    Visualize(cktRef.GetAbcNtk(), "test.dot");
-
-    // Ckt_Ntk_t cktApp(Abc_FrameReadNtk(pAbc), number);
     // cktApp.GenInputDist(314);
     // cktApp.FeedForward();
     // cout << cktApp.GetErrorRate(cktRef, table) << endl;

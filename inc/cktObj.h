@@ -37,6 +37,7 @@ public:
     void                      PrintClusters     (void) const;
     void                      UpdateClusters    (void);
     void                      ReplaceBy         (Ckt_Obj_t & cktNewObj, std::vector <Ckt_Rpl_Info_t> & info);
+    void                      CheckFanio        (void) const;
 
     inline abc::Abc_Obj_t *   GetAbcObj         (void) const                    { return pAbcObj; }
     inline Ckt_Obj_Type_t     GetType           (void) const                    { return type; }
@@ -54,6 +55,7 @@ public:
     inline Ckt_Obj_t *        GetFanout         (int i = 0) const               { return pCktFanouts[i]; }
     inline int                GetFanoutNum      (void) const                    { return static_cast <int> (pCktFanouts.size()); }
     inline void               InsertFanout      (int i, Ckt_Obj_t * pCktFanout) { pCktFanouts.insert(pCktFanouts.begin() + i, pCktFanout); }
+    inline void               PopBackFanout     (void)                          { pCktFanouts.pop_back(); }
     inline std::string        GetName           (void) const                    { return std::string(Abc_ObjName(pAbcObj)); }
     inline float              GetArrivalTime    (void) const                    { return (static_cast<abc::Abc_Time_t *>(pAbcObj->pNtk->pManTime->vArrs->pArray[pAbcObj->Id]))->Rise; }
 };
@@ -73,6 +75,7 @@ public:
 
 
 std::ostream &                operator <<       (std::ostream & os, const Ckt_Obj_Type_t & type);
+std::ostream &                operator <<       (std::ostream & os, const Ckt_Rpl_Info_t & info);
 Ckt_Obj_Type_t                Ckt_GetObjType    (abc::Abc_Obj_t * pAbcObj);
 bool                          Ckt_SopIsConst0   (char * pSop);
 bool                          Ckt_SopIsConst1   (char * pSop);
