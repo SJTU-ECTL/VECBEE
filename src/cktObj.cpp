@@ -128,13 +128,35 @@ void Ckt_Obj_t::UpdateClusters(void)
 }
 
 
-void Ckt_Obj_t::ReplaceBy(Ckt_Obj_t & cktNewObj)
+void Ckt_Obj_t::ReplaceBy(Ckt_Obj_t & cktNewObj, vector <Ckt_Rpl_Info_t> & info)
 {
-    assert(pAbcObj->pNtk == cktNewObj.pAbcObj->pNtk);
+    Abc_ObjTransferFanout(pAbcObj, cktNewObj.pAbcObj);
+
+    // clone fanouts
+    vector <Ckt_Obj_t *> pCktOldFanouts(pCktFanouts);
+    // patch fanin
+    for (auto & pCktOldFanout : pCktOldFanouts) {
+        auto itCktFanin = find( pCktOldFanout->pCktFanins.begin(),
+                                pCktOldFanout->pCktFanins.end(), this );
+        assert(itCktFanin != pCktOldFanout->pCktFanins.end());
+        *itCktFanin = &cktNewObj;
+        auto itCktFanout = find( pCktFanouts.begin(),
+                                 pCktFanouts.end(), pCktOldFanout );
+        assert(itCktFanout != pCktFanouts.end());
+        pCktFanouts.erase(itCktFanout);
+        info.emplace_back(Ckt_Rpl_Info_t(this,          itCktFanin - pCktOldFanout->pCktFanins.begin(),
+                                         pCktOldFanout, itCktFanout - pCktFanouts.begin()));
+    }
 }
 
 
-void Ckt_Obj_t::Recover(void)
+Ckt_Rpl_Info_t::Ckt_Rpl_Info_t(Ckt_Obj_t * pObj1, int iFanin, Ckt_Obj_t * pObj2, int iFanout)
+    : pCktObjFrom(pObj1), iCktFanin(iFanin), pCktObjTo(pObj2), iCktFanout(iFanout)
+{
+}
+
+
+Ckt_Rpl_Info_t::~Ckt_Rpl_Info_t(void)
 {
 }
 

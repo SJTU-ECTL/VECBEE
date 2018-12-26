@@ -248,3 +248,30 @@ Ckt_Obj_t * Ckt_Ntk_t::AddInverter(Ckt_Obj_t & cktObj)
 
     return pCktObjNew;
 }
+
+
+void Ckt_Ntk_t::Replace(Ckt_Obj_t & cktOldObj, Ckt_Obj_t & cktNewObj, vector <Ckt_Rpl_Info_t> & info)
+{
+    cktOldObj.ReplaceBy(cktNewObj, info);
+}
+
+
+void Ckt_Ntk_t::RecoverFromRpl(vector <Ckt_Rpl_Info_t> & info)
+{
+    for (auto it = info.rbegin(); it != info.rend(); ++it) {
+        // recover ABC
+        Vec_IntWriteEntry(
+                &(it->pCktObjTo->GetAbcObj())->vFanins,
+                it->iCktFanin,
+                it->pCktObjFrom->GetAbcObj()->Id
+        );
+        Vec_IntInsert(
+                &(it->pCktObjFrom->GetAbcObj())->vFanouts,
+                it->iCktFanout,
+                it->pCktObjTo->GetAbcObj()->Id
+        );
+        // recover circuit
+        it->pCktObjTo->WriteFanin(it->iCktFanin, it->pCktObjFrom);
+        it->pCktObjFrom->InsertFanout(it->iCktFanout, it->pCktObjTo);
+    }
+}
