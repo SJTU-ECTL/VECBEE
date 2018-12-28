@@ -7,6 +7,7 @@
 #include "cktObj.h"
 #include "cktCec.h"
 #include "cktVisual.h"
+#include "cktTiming.h"
 
 
 class Ckt_Bit_Cnt_t

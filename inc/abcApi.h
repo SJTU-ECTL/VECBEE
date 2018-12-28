@@ -35,6 +35,7 @@ struct Abc_ManTime_t_
     Abc_Time_t *   tInDrive;
     Abc_Time_t *   tOutLoad;
 };
+typedef struct Abc_ManTime_t_ Abc_ManTime_t;
 
 
 }

@@ -31,7 +31,7 @@ int main(int argc, char * argv[])
     int number = option.get <int> ("number");
     Abc_Start();
     Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
-    string command = "read " + genlib;
+    string command = "read_genlib -v " + genlib;
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
     command = "read " + file;
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
