@@ -23,7 +23,9 @@ private:
     abc::Abc_Obj_t *          pAbcObj;          // the corresponding ABC object
     Ckt_Obj_Type_t            type;             // object type
     bool                      isVisited;        // whether the object is visited
+    bool                      isNewInv;         // whether the object is a new added inverter
     std::vector <uint64_t>    valueClusters;    // simluation value clusters
+    Ckt_Obj_t *               pCktInv;          // pointer to its inverter
     std::vector <Ckt_Obj_t *> pCktFanins;       // fanin pointers
     std::vector <Ckt_Obj_t *> pCktFanouts;      // fanout pointers
 
@@ -61,6 +63,12 @@ public:
     inline bool               IsPI              (void) const                    { return type == Ckt_Obj_Type_t::PI; }
     inline bool               IsPO              (void) const                    { return type == Ckt_Obj_Type_t::PO; }
     inline bool               IsConst           (void) const                    { return type == Ckt_Obj_Type_t::CONST0 || type == Ckt_Obj_Type_t:: CONST1; }
+    inline bool               IsInv             (void) const                    { return type == Ckt_Obj_Type_t::INV; }
+    inline bool               IsDanggling       (void) const                    { return pCktFanouts.empty(); }
+    inline bool               IsAddedInv        (void) const                    { return isNewInv; }
+    inline bool               HasAddedInv       (void) const                    { return pCktInv != nullptr; }
+    inline Ckt_Obj_t *        GetAddedInv       (void) const                    { return pCktInv; }
+    inline void               SetAddedInv       (Ckt_Obj_t & cktObjInv)         { pCktInv = &cktObjInv; cktObjInv.isNewInv = true; }
 };
 
 

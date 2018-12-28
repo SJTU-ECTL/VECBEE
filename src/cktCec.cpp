@@ -7,7 +7,11 @@ using namespace abc;
 
 void Ckt_Cec(Ckt_Ntk_t & ckt1, Ckt_Ntk_t & ckt2)
 {
-    Abc_NtkCecFraig(ckt1.GetAbcNtk(), ckt2.GetAbcNtk(), 20, 1);
+    Abc_Ntk_t * pNtk1 = Abc_NtkDup(ckt1.GetAbcNtk());
+    Abc_Ntk_t * pNtk2 = Abc_NtkDup(ckt2.GetAbcNtk());
+    Abc_NtkCecFraig(pNtk1, pNtk2, 20, 1);
+    Abc_NtkDelete(pNtk1);
+    Abc_NtkDelete(pNtk2);
 }
 
 

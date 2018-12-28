@@ -235,9 +235,7 @@ float Ckt_Ntk_t::GetErrorRate(Ckt_Ntk_t & refNtk, Ckt_Bit_Cnt_t & table)
 
 Ckt_Obj_t * Ckt_Ntk_t::AddInverter(Ckt_Obj_t & cktObj)
 {
-    Ckt_Obj_Type_t type = cktObj.GetType();
-    assert(type != Ckt_Obj_Type_t::PO     && type != Ckt_Obj_Type_t::INV &&
-           type != Ckt_Obj_Type_t::CONST0 && type != Ckt_Obj_Type_t::CONST1);
+    assert(!cktObj.IsPO() && !cktObj.IsInv() && !cktObj.IsConst());
     assert(pAbcNtk == cktObj.GetAbcObj()->pNtk);
 
     Abc_Obj_t * pAbcObjNew = Abc_NtkCreateNodeInv(pAbcNtk, cktObj.GetAbcObj());
@@ -245,18 +243,37 @@ Ckt_Obj_t * Ckt_Ntk_t::AddInverter(Ckt_Obj_t & cktObj)
     cktObjs.emplace_back(Ckt_Obj_t(pAbcObjNew));
     Ckt_Obj_t * pCktObjNew = &(cktObjs.back());
     pCktObjNew->AddFanin(&cktObj);
+    cktObj.SetAddedInv(*pCktObjNew);
 
     return pCktObjNew;
 }
 
 
-void Ckt_Ntk_t::Replace(Ckt_Obj_t & cktOldObj, Ckt_Obj_t & cktNewObj, vector <Ckt_Rpl_Info_t> & info)
+Ckt_Obj_t * Ckt_Ntk_t::GetInverter(Ckt_Obj_t & cktObj)
 {
-    cktOldObj.ReplaceBy(cktNewObj, info);
+    if (cktObj.HasAddedInv())
+        return cktObj.GetAddedInv();
+    else
+        return AddInverter(cktObj);
 }
 
 
-void Ckt_Ntk_t::ReplaceWithName(string oldName, string newName, vector <Ckt_Rpl_Info_t> & info)
+void Ckt_Ntk_t::Replace(Ckt_Obj_t & cktOldObj, Ckt_Obj_t & cktNewObj, vector <Ckt_Rpl_Info_t> & info, bool isInv)
+{
+    assert(cktOldObj.GetAbcObj()->pNtk == GetAbcNtk());
+    assert(cktNewObj.GetAbcObj()->pNtk == GetAbcNtk());
+    if (!isInv)
+        cktOldObj.ReplaceBy(cktNewObj, info);
+    else {
+        assert(!cktOldObj.IsInv() && !cktNewObj.IsInv());
+        assert(!cktNewObj.IsConst());
+        Ckt_Obj_t * pCktNewInv = GetInverter(cktNewObj);
+        cktOldObj.ReplaceBy(*pCktNewInv, info);
+    }
+}
+
+
+void Ckt_Ntk_t::ReplaceByName(string oldName, string newName, vector <Ckt_Rpl_Info_t> & info)
 {
     auto itCktOldObj = find_if(cktObjs.begin(), cktObjs.end(),
                 [&oldName](Ckt_Obj_t & obj) {
@@ -312,13 +329,20 @@ void Ckt_Ntk_t::ReplaceTest(void)
     Ckt_Ntk_t cktRef(pAbcNtk);
     vector <Ckt_Rpl_Info_t> info;
     for (auto & cktTS : cktObjs) {
-        if (cktTS.IsPI() || cktTS.IsPO() || cktTS.IsConst())
+        if (cktTS.IsDanggling() || cktTS.IsPI() || cktTS.IsPO() || cktTS.IsConst())
             continue;
         for (auto & cktSS : cktObjs) {
-            if (cktSS.IsPO() || &cktTS == &cktSS)
+            if (cktSS.IsAddedInv() || cktSS.IsPO() || &cktTS == &cktSS)
                 continue;
             cout << cktTS.GetName() << " is replaced by " << cktSS.GetName() << endl;
             Replace(cktTS, cktSS, info);
+            RecoverFromRpl(info);
+            Ckt_Cec(cktRef, *this);
+
+            if (cktTS.IsInv() || cktSS.IsInv() || cktSS.IsConst())
+                continue;
+            cout << cktTS.GetName() << " is replaced by NEG " << cktSS.GetName() << endl;
+            Replace(cktTS, cktSS, info, true);
             RecoverFromRpl(info);
             Ckt_Cec(cktRef, *this);
         }

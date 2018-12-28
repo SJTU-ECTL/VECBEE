@@ -6,13 +6,13 @@ using namespace abc;
 
 
 Ckt_Obj_t::Ckt_Obj_t(Abc_Obj_t * p_abc_obj)
-    : pAbcObj(p_abc_obj), type(Ckt_GetObjType(p_abc_obj)), isVisited(false)
+    : pAbcObj(p_abc_obj), type(Ckt_GetObjType(p_abc_obj)), isVisited(false), pCktInv(nullptr)
 {
 }
 
 
 Ckt_Obj_t::Ckt_Obj_t(const Ckt_Obj_t & other)
-    : pAbcObj(other.pAbcObj), type(other.GetType()), isVisited(other.isVisited)
+    : pAbcObj(other.pAbcObj), type(other.GetType()), isVisited(other.isVisited), pCktInv(nullptr)
 {
     // shallow copy
 }
