@@ -94,7 +94,7 @@ void Ckt_Ntk_t::PrintInfo(void) const
 }
 
 
-void Ckt_Ntk_t::PrintTopologicalOrder(void)
+void Ckt_Ntk_t::PrintTopoOrder(void)
 {
     cout << "---------------- Topological order   ----------------" << endl;
     vector <Ckt_Obj_t *> pOrderedObjs;
@@ -134,10 +134,23 @@ void Ckt_Ntk_t::GenInputDist(unsigned seed)
 }
 
 
-void Ckt_Ntk_t::PrintInputDistribution(void) const
+void Ckt_Ntk_t::PrintInput(void) const
 {
-    for (auto & pCktPi : pCktPis)
+    for (auto & pCktPi : pCktPis) {
+        cout << pCktPi->GetName() << endl;
         pCktPi->PrintClusters();
+        cout << endl;
+    }
+}
+
+
+void Ckt_Ntk_t::PrintOutput(void) const
+{
+    for (auto & pCktPo : pCktPos) {
+        cout << pCktPo->GetName() << endl;
+        pCktPo->PrintClusters();
+        cout << endl;
+    }
 }
 
 
@@ -214,8 +227,13 @@ void Ckt_Ntk_t::CheckSimulator(void)
 }
 
 
-float Ckt_Ntk_t::GetErrorRate(Ckt_Ntk_t & refNtk, Ckt_Bit_Cnt_t & table)
+float Ckt_Ntk_t::GetErrorRate(Ckt_Ntk_t & refNtk, Ckt_Bit_Cnt_t * pTable)
 {
+    bool isDelete = false;
+    if (pTable == nullptr) {
+        pTable = new Ckt_Bit_Cnt_t;
+        isDelete = true;
+    }
     // make sure POs are same
     assert(pCktPos.size() == refNtk.pCktPos.size());
     int poNum = static_cast <int> (pCktPos.size());
@@ -227,7 +245,11 @@ float Ckt_Ntk_t::GetErrorRate(Ckt_Ntk_t & refNtk, Ckt_Bit_Cnt_t & table)
         uint64_t temp = 0;
         for (int i = 0; i < poNum; ++i)
             temp |= pCktPos[i]->GetCluster(k) ^ refNtk.pCktPos[i]->GetCluster(k);
-        ret += table.GetOneNum(temp);
+        ret += pTable->GetOneNum(temp);
+    }
+    if (isDelete) {
+        delete pTable;
+        pTable = nullptr;
     }
     return static_cast <float> (ret) / static_cast <float> (nValueClusters << 6);
 }
@@ -243,6 +265,7 @@ Ckt_Obj_t * Ckt_Ntk_t::AddInverter(Ckt_Obj_t & cktObj)
     cktObjs.emplace_back(Ckt_Obj_t(pAbcObjNew));
     Ckt_Obj_t * pCktObjNew = &(cktObjs.back());
     pCktObjNew->AddFanin(&cktObj);
+    pCktObjNew->ResizeClusters(nValueClusters);
     cktObj.SetAddedInv(*pCktObjNew);
 
     return pCktObjNew;
@@ -326,25 +349,31 @@ void Ckt_Ntk_t::CheckFanio(void) const
 
 void Ckt_Ntk_t::ReplaceTest(void)
 {
-    Ckt_Ntk_t cktRef(pAbcNtk);
+    Ckt_Ntk_t cktRef(pAbcNtk, nValueClusters * 64);
+    GenInputDist(314);
+    cktRef.GenInputDist(314);
+    cktRef.FeedForward();
     vector <Ckt_Rpl_Info_t> info;
+    Ckt_Bit_Cnt_t table;
     for (auto & cktTS : cktObjs) {
         if (cktTS.IsDanggling() || cktTS.IsPI() || cktTS.IsPO() || cktTS.IsConst())
             continue;
         for (auto & cktSS : cktObjs) {
             if (cktSS.IsAddedInv() || cktSS.IsPO() || &cktTS == &cktSS)
                 continue;
-            cout << cktTS.GetName() << " is replaced by " << cktSS.GetName() << endl;
-            Replace(cktTS, cktSS, info);
+            Replace(cktTS, cktSS, info, false);
+            FeedForward();
+            cout << cktTS.GetName() << "\t(CON)" << cktSS.GetName() << "\t" << GetErrorRate(cktRef, &table) << endl;
             RecoverFromRpl(info);
-            Ckt_Cec(cktRef, *this);
+            // Ckt_Cec(cktRef, *this);
 
             if (cktTS.IsInv() || cktSS.IsInv() || cktSS.IsConst())
                 continue;
-            cout << cktTS.GetName() << " is replaced by NEG " << cktSS.GetName() << endl;
             Replace(cktTS, cktSS, info, true);
+            FeedForward();
+            cout << cktTS.GetName() << "\t(INV)" << cktSS.GetName() << "\t" << GetErrorRate(cktRef, &table) << endl;
             RecoverFromRpl(info);
-            Ckt_Cec(cktRef, *this);
+            // Ckt_Cec(cktRef, *this);
         }
     }
 }

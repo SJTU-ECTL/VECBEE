@@ -36,27 +36,10 @@ int main(int argc, char * argv[])
     command = "read " + file;
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
 
-    Ckt_Ntk_t cktRef(Abc_FrameReadNtk(pAbc), number);
-    Ckt_Ntk_t cktApp(Abc_FrameReadNtk(pAbc), number);
+    Ckt_Ntk_t ckt(Abc_FrameReadNtk(pAbc), number);
 
-    cktRef.ReplaceTest();
-
-    // vector <Ckt_Rpl_Info_t> info;
-    // cktApp.ReplaceWithName("n9", "n8", info);
-    // Ckt_Cec(cktRef, cktApp);
-    // cktApp.RecoverFromRpl(info);
-    // Ckt_Cec(cktRef, cktApp);
-    // cktApp.CheckFanio();
-
-    // Ckt_Bit_Cnt_t table;
-    // cktRef.GenInputDist(314);
-    // cktRef.FeedForward();
-    // cktApp.GenInputDist(314);
-    // cktApp.FeedForward();
-    // cout << cktApp.GetErrorRate(cktRef, table) << endl;
-    // clock_t st = clock();
-    // cout << clock() - st << endl;
-    // cktRef.SimulatorChecker();
+    ckt.ReplaceTest();
+    // ckt.PrintInfo();
 
     Abc_Stop();
     return 0;

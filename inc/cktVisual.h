@@ -1,8 +1,10 @@
 #ifndef CKT_VISUAL_H
 #define CKT_VISUAL_H
 
+
 #include <bits/stdc++.h>
 #include "abcApi.h"
+
 
 void            WriteDotNtk           (abc::Abc_Ntk_t * pNtk, abc::Vec_Ptr_t * vNodes, abc::Vec_Ptr_t * vNodesShow, char * pFileName, int fGateNames, int fUseReverse);
 char *          NtkPrintSop           (char * pSop);
