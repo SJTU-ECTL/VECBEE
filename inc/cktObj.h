@@ -58,6 +58,9 @@ public:
     inline void               PopBackFanout     (void)                          { pCktFanouts.pop_back(); }
     inline std::string        GetName           (void) const                    { return std::string(Abc_ObjName(pAbcObj)); }
     inline float              GetArrivalTime    (void) const                    { return (static_cast<abc::Abc_Time_t *>(pAbcObj->pNtk->pManTime->vArrs->pArray[pAbcObj->Id]))->Rise; }
+    inline bool               IsPI              (void) const                    { return type == Ckt_Obj_Type_t::PI; }
+    inline bool               IsPO              (void) const                    { return type == Ckt_Obj_Type_t::PO; }
+    inline bool               IsConst           (void) const                    { return type == Ckt_Obj_Type_t::CONST0 || type == Ckt_Obj_Type_t:: CONST1; }
 };
 
 

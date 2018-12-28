@@ -305,3 +305,22 @@ void Ckt_Ntk_t::CheckFanio(void) const
     for (auto & cktObj : cktObjs)
         cktObj.CheckFanio();
 }
+
+
+void Ckt_Ntk_t::ReplaceTest(void)
+{
+    Ckt_Ntk_t cktRef(pAbcNtk);
+    vector <Ckt_Rpl_Info_t> info;
+    for (auto & cktTS : cktObjs) {
+        if (cktTS.IsPI() || cktTS.IsPO() || cktTS.IsConst())
+            continue;
+        for (auto & cktSS : cktObjs) {
+            if (cktSS.IsPO() || &cktTS == &cktSS)
+                continue;
+            cout << cktTS.GetName() << " is replaced by " << cktSS.GetName() << endl;
+            Replace(cktTS, cktSS, info);
+            RecoverFromRpl(info);
+            Ckt_Cec(cktRef, *this);
+        }
+    }
+}

@@ -5,6 +5,7 @@
 #include <bits/stdc++.h>
 #include <boost/random.hpp>
 #include "cktObj.h"
+#include "cktCec.h"
 
 
 class Ckt_Bit_Cnt_t
@@ -51,6 +52,7 @@ public:
     void                      ReplaceWithName       (std::string oldName, std::string newName, std::vector <Ckt_Rpl_Info_t> & info);
     void                      RecoverFromRpl        (std::vector <Ckt_Rpl_Info_t> & info);
     void                      CheckFanio            (void) const;
+    void                      ReplaceTest           (void);
 
     inline int                GetObjNum             (void) const { return cktObjs.size(); }
     inline abc::Abc_Ntk_t *   GetAbcNtk             (void) const { return pAbcNtk; }

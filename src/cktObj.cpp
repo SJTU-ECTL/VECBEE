@@ -130,6 +130,9 @@ void Ckt_Obj_t::UpdateClusters(void)
 
 void Ckt_Obj_t::ReplaceBy(Ckt_Obj_t & cktNewObj, vector <Ckt_Rpl_Info_t> & info)
 {
+    info.clear();
+    assert(!IsPO() && !IsPI() && !IsConst() && !cktNewObj.IsPO() && this != &cktNewObj);
+
     Abc_ObjTransferFanout(pAbcObj, cktNewObj.pAbcObj);
 
     // clone fanouts

@@ -39,6 +39,8 @@ int main(int argc, char * argv[])
     Ckt_Ntk_t cktRef(Abc_FrameReadNtk(pAbc), number);
     Ckt_Ntk_t cktApp(Abc_FrameReadNtk(pAbc), number);
 
+    cktRef.ReplaceTest();
+
     // vector <Ckt_Rpl_Info_t> info;
     // cktApp.ReplaceWithName("n9", "n8", info);
     // Ckt_Cec(cktRef, cktApp);
