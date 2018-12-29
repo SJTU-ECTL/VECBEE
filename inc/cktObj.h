@@ -4,6 +4,7 @@
 
 #include <bits/stdc++.h>
 #include "abcApi.h"
+#include "cktNtk.h"
 
 
 enum class Ckt_Obj_Type_t
@@ -15,16 +16,19 @@ enum class Ckt_Obj_Type_t
 
 
 class Ckt_Rpl_Info_t;
+class Ckt_Ntk_t;
 
 
 class Ckt_Obj_t
 {
 private:
     abc::Abc_Obj_t *          pAbcObj;          // the corresponding ABC object
+    Ckt_Ntk_t *               pCktNtk;          // the corresponding CKT network
     Ckt_Obj_Type_t            type;             // object type
     bool                      isVisited;        // whether the object is visited
     bool                      isNewInv;         // whether the object is a new added inverter
     std::vector <uint64_t>    valueClusters;    // simluation value clusters
+    std::vector <uint64_t>    foConeClusters;   // mark whether POs are in the objects' fanout cone, each bit corresponds a PO
     Ckt_Obj_t *               pCktInv;          // pointer to its inverter
     std::vector <Ckt_Obj_t *> pCktFanins;       // fanin pointers
     std::vector <Ckt_Obj_t *> pCktFanouts;      // fanout pointers
@@ -32,7 +36,7 @@ private:
     Ckt_Obj_t &               operator =        (const Ckt_Obj_t & other);
 
 public:
-    explicit                  Ckt_Obj_t         (abc::Abc_Obj_t * p_abc_obj);
+    explicit                  Ckt_Obj_t         (abc::Abc_Obj_t * p_abc_obj, Ckt_Ntk_t * p_ckt_ntk);
                               Ckt_Obj_t         (const Ckt_Obj_t & other);
                               ~Ckt_Obj_t        (void);
     void                      PrintFanios       (void) const;

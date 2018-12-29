@@ -5,9 +5,10 @@ using namespace std;
 using namespace abc;
 
 
-Ckt_Obj_t::Ckt_Obj_t(Abc_Obj_t * p_abc_obj)
-    : pAbcObj(p_abc_obj), type(Ckt_GetObjType(p_abc_obj)), isVisited(false), isNewInv(false), pCktInv(nullptr)
+Ckt_Obj_t::Ckt_Obj_t(Abc_Obj_t * p_abc_obj, Ckt_Ntk_t * p_ckt_ntk)
+    : pAbcObj(p_abc_obj), pCktNtk(p_ckt_ntk), type(Ckt_GetObjType(p_abc_obj)), isVisited(false), isNewInv(false), pCktInv(nullptr)
 {
+    valueClusters.resize(pCktNtk->GetValClustersNum());
 }
 
 
@@ -15,6 +16,7 @@ Ckt_Obj_t::Ckt_Obj_t(const Ckt_Obj_t & other)
     : pAbcObj(other.pAbcObj), type(other.GetType()), isVisited(other.isVisited), isNewInv(false), pCktInv(nullptr)
 {
     // shallow copy
+    valueClusters.resize(other.pCktNtk->GetValClustersNum());
 }
 
 

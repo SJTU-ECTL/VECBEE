@@ -3,6 +3,8 @@
 
 namespace abc
 {
+
+
 #include "aig/aig/aig.h"
 #include "aig/saig/saig.h"
 #include "aig/gia/gia.h"
@@ -11,8 +13,6 @@ namespace abc
 #include "base/cmd/cmd.h"
 #include "base/io/ioAbc.h"
 #include "base/abc/abc.h"
-#include "bdd/extrab/extraBdd.h"
-#include "bdd/cudd/cuddInt.h"
 #include "misc/util/abc_global.h"
 #include "misc/util/util_hack.h"
 #include "map/mio/mio.h"

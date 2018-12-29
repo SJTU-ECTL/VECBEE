@@ -2,12 +2,15 @@
 #define CKT_NTK_H
 
 
-#include <bits/stdc++.h>
 #include <boost/random.hpp>
 #include "cktObj.h"
 #include "cktCec.h"
 #include "cktVisual.h"
 #include "cktTiming.h"
+
+
+class Ckt_Obj_t;
+class Ckt_Rpl_Info_t;
 
 
 class Ckt_Bit_Cnt_t
@@ -59,6 +62,7 @@ public:
     void                      ReplaceTest      (void);
 
     inline int                GetObjNum        (void) const { return cktObjs.size(); }
+    inline int                GetValClustersNum(void) const { return nValueClusters; }
     inline abc::Abc_Ntk_t *   GetAbcNtk        (void) const { return pAbcNtk; }
 };
 

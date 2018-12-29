@@ -38,8 +38,8 @@ int main(int argc, char * argv[])
 
     Ckt_Ntk_t ckt(Abc_FrameReadNtk(pAbc), number);
 
-    ckt.ReplaceTest();
-    // ckt.PrintInfo();
+    // ckt.ReplaceTest();
+    ckt.CheckSimulator();
 
     Abc_Stop();
     return 0;

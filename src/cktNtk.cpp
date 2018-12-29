@@ -35,7 +35,7 @@ Ckt_Ntk_t::Ckt_Ntk_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
 
     // init circuit objects, use pTemp to temporarily store the reflection
     Abc_NtkForEachObj(pAbcNtk, pAbcObj, i) {
-        cktObjs.emplace_back(Ckt_Obj_t(pAbcObj));
+        cktObjs.emplace_back(Ckt_Obj_t(pAbcObj, this));
         pAbcObj->pTemp = static_cast <void *> (&(cktObjs.back()));
     }
 
@@ -52,17 +52,13 @@ Ckt_Ntk_t::Ckt_Ntk_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
             pCktConst1 = &obj;
     }
     if (pCktConst0 == nullptr) {
-        cktObjs.emplace_back(Ckt_Obj_t(Abc_NtkCreateNodeConst0(pAbcNtk)));
+        cktObjs.emplace_back(Ckt_Obj_t(Abc_NtkCreateNodeConst0(pAbcNtk), this));
         pCktConst0 = &(cktObjs.back());
     }
     if (pCktConst1 == nullptr) {
-        cktObjs.emplace_back(Ckt_Obj_t(Abc_NtkCreateNodeConst1(pAbcNtk)));
+        cktObjs.emplace_back(Ckt_Obj_t(Abc_NtkCreateNodeConst1(pAbcNtk), this));
         pCktConst1 = &(cktObjs.back());
     }
-
-    // resize value clusters
-    for (auto & obj : cktObjs)
-        obj.ResizeClusters(nValueClusters);
 
     // add fanin/fanout information, use information saved in pTemp
     for (auto & obj : cktObjs) {
@@ -198,6 +194,7 @@ void Ckt_Ntk_t::CheckSimulator(void)
     // only for c6288
     assert(string(pAbcNtk->pName) == "c6288");
     assert(pCktPis.size() == 32 && pCktPos.size() == 32);
+    GenInputDist();
     FeedForward();
     for (int i = 0; i < nValueClusters; ++i) {
         for (int j = 0; j < 64; ++j) {
@@ -262,10 +259,9 @@ Ckt_Obj_t * Ckt_Ntk_t::AddInverter(Ckt_Obj_t & cktObj)
 
     Abc_Obj_t * pAbcObjNew = Abc_NtkCreateNodeInv(pAbcNtk, cktObj.GetAbcObj());
 
-    cktObjs.emplace_back(Ckt_Obj_t(pAbcObjNew));
+    cktObjs.emplace_back(Ckt_Obj_t(pAbcObjNew, this));
     Ckt_Obj_t * pCktObjNew = &(cktObjs.back());
     pCktObjNew->AddFanin(&cktObj);
-    pCktObjNew->ResizeClusters(nValueClusters);
     cktObj.SetAddedInv(*pCktObjNew);
 
     return pCktObjNew;
@@ -356,6 +352,7 @@ void Ckt_Ntk_t::ReplaceTest(void)
     vector <Ckt_Rpl_Info_t> info;
     Ckt_Bit_Cnt_t table;
     Abc_GetArrivalTime(GetAbcNtk());
+    Visualize(GetAbcNtk(), "before.dot");
     for (auto & cktTS : cktObjs) {
         if (cktTS.IsDanggling() || cktTS.IsPI() || cktTS.IsPO() || cktTS.IsConst())
             continue;
@@ -365,9 +362,9 @@ void Ckt_Ntk_t::ReplaceTest(void)
             if (cktTS.GetArrivalTime() >= cktSS.GetArrivalTime()) {
                 Replace(cktTS, cktSS, info, false);
                 FeedForward();
-                // cout << cktTS.GetName() << "\t(CON)" << cktSS.GetName() << "\t" << GetErrorRate(cktRef, &table) << endl;
+                cout << cktTS.GetName() << "\t(CON)" << cktSS.GetName() << "\t" << GetErrorRate(cktRef, &table) << endl;
                 RecoverFromRpl(info);
-                // Ckt_Cec(cktRef, *this);
+                Ckt_Cec(cktRef, *this);
             }
 
             if (cktTS.IsInv() || cktSS.IsInv() || cktSS.IsConst())
@@ -375,10 +372,11 @@ void Ckt_Ntk_t::ReplaceTest(void)
             if (cktTS.GetArrivalTime() >= cktSS.GetArrivalTime() + 0.9) {
                 Replace(cktTS, cktSS, info, true);
                 FeedForward();
-                // cout << cktTS.GetName() << "\t(INV)" << cktSS.GetName() << "\t" << GetErrorRate(cktRef, &table) << endl;
+                cout << cktTS.GetName() << "\t(INV)" << cktSS.GetName() << "\t" << GetErrorRate(cktRef, &table) << endl;
                 RecoverFromRpl(info);
-                // Ckt_Cec(cktRef, *this);
+                Ckt_Cec(cktRef, *this);
             }
         }
     }
+    Visualize(GetAbcNtk(), "after.dot");
 }

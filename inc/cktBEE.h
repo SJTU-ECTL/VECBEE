@@ -5,4 +5,7 @@
 #include "cktNtk.h"
 
 
+void BatchErrorEstimation(Ckt_Ntk_t & ckt, Ckt_Ntk_t * cktRef);
+
+
 #endif
