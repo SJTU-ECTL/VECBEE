@@ -32,6 +32,7 @@ private:
     Ckt_Obj_Type_t            type;             // object type
     bool                      isVisited;        // whether the object is visited
     bool                      isNewInv;         // whether the object is a new added inverter
+    int                       topoId;           // mark the index in the topological sequence
     std::vector <uint64_t>    valueClusters;    // simluation value clusters
     std::vector <uint64_t>    foConeInfo;       // mark whether POs are in the objects' fanout cone, each bit corresponds a PO
     Ckt_Obj_t *               pCktInv;          // pointer to its inverter
@@ -54,7 +55,8 @@ public:
     inline Ckt_Obj_Type_t     GetType           (void) const                    { return type; }
     inline bool               GetVisited        (void) const                    { return isVisited; }
     inline void               SetVisited        (void)                          { isVisited = true; }
-    inline void               ResetVisited      (void)                          { isVisited = false; }
+    inline void               ResetVisited      (void)                          { isVisited = false; topoId = 0; }
+    inline void               SetTopoId         (int i)                         { topoId = i; }
     inline int                GetClustersSize   (void) const                    { return static_cast <int> (valueClusters.size()); }
     inline void               ResizeClusters    (int len)                       { valueClusters.resize(len); }
     inline void               SetCluster        (int i, uint64_t value)         { valueClusters[i] = value; }

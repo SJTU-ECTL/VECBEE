@@ -6,7 +6,7 @@ using namespace abc;
 
 
 Ckt_Obj_t::Ckt_Obj_t(Abc_Obj_t * p_abc_obj, Ckt_Ntk_t * p_ckt_ntk)
-    : pAbcObj(p_abc_obj), pCktNtk(p_ckt_ntk), type(Ckt_GetObjType(p_abc_obj)), isVisited(false), isNewInv(false), pCktInv(nullptr)
+    : pAbcObj(p_abc_obj), pCktNtk(p_ckt_ntk), type(Ckt_GetObjType(p_abc_obj)), isVisited(false), isNewInv(false), topoId(0), pCktInv(nullptr)
 {
     valueClusters.resize(pCktNtk->GetValClustersNum());
     foConeInfo.resize((pCktNtk->GetPoNum() >> 6) + 1);
@@ -14,7 +14,7 @@ Ckt_Obj_t::Ckt_Obj_t(Abc_Obj_t * p_abc_obj, Ckt_Ntk_t * p_ckt_ntk)
 
 
 Ckt_Obj_t::Ckt_Obj_t(const Ckt_Obj_t & other)
-    : pAbcObj(other.pAbcObj), type(other.GetType()), isVisited(other.isVisited), isNewInv(false), pCktInv(nullptr)
+    : pAbcObj(other.pAbcObj), type(other.GetType()), isVisited(other.isVisited), isNewInv(false), topoId(other.topoId), pCktInv(nullptr)
 {
     // shallow copy
     valueClusters.resize(other.pCktNtk->GetValClustersNum());

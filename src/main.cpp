@@ -39,8 +39,8 @@ int main(int argc, char * argv[])
     Ckt_Ntk_t ckt(Abc_FrameReadNtk(pAbc), number);
 
     // ckt.ReplaceTest();
-    // ckt.CheckSimulator();
-    ckt.UpdateFoCone();
+    ckt.CheckSimulator();
+    // ckt.UpdateFoCone();
 
     Abc_Stop();
     return 0;

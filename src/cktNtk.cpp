@@ -162,6 +162,7 @@ void Ckt_Ntk_t::DFS(Ckt_Obj_t * pCktObj, vector <Ckt_Obj_t *> & pOrderedObjs)
         DFS(pCktObj->GetFanin(i), pOrderedObjs);
     // add the node after the fanins have been added
     pOrderedObjs.emplace_back(pCktObj);
+    pCktObj->SetTopoId(static_cast <int> (pOrderedObjs.size()));
 }
 
 
