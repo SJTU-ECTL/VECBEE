@@ -60,8 +60,10 @@ public:
     void                      RecoverFromRpl   (std::vector <Ckt_Rpl_Info_t> & info);
     void                      CheckFanio       (void) const;
     void                      ReplaceTest      (void);
+    void                      UpdateFoCone     (void);
 
-    inline int                GetObjNum        (void) const { return cktObjs.size(); }
+    inline int                GetObjNum        (void) const { return static_cast <int> (cktObjs.size()); }
+    inline int                GetPoNum         (void) const { return static_cast <int> (pCktPos.size()); }
     inline int                GetValClustersNum(void) const { return nValueClusters; }
     inline abc::Abc_Ntk_t *   GetAbcNtk        (void) const { return pAbcNtk; }
 };

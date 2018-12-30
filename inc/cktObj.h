@@ -7,16 +7,21 @@
 #include "cktNtk.h"
 
 
+class Ckt_Rpl_Info_t;
+class Ckt_Ntk_t;
+
+
+static inline void            Ckt_SetBit        (uint64_t & x, uint64_t f) { x |= ((uint64_t)1 << (f & (uint64_t)63)); }
+static inline void            Ckt_ResetBit      (uint64_t & x, uint64_t f) { x &= ~((uint64_t)1 << (f & (uint64_t)63)); }
+static inline bool            Ckt_GetBit        (uint64_t x, uint64_t f) { return (bool)((x >> f) & (uint64_t)1); }
+
+
 enum class Ckt_Obj_Type_t
 {
     PI,   PO,   CONST0, CONST1, BUF,   INV,   XOR,
     XNOR, AND2, OR2,    NAND2,  NAND3, NAND4, NOR2,
     NOR3, NOR4, AOI21,  AOI22,  OAI21, OAI22
 };
-
-
-class Ckt_Rpl_Info_t;
-class Ckt_Ntk_t;
 
 
 class Ckt_Obj_t
@@ -28,7 +33,7 @@ private:
     bool                      isVisited;        // whether the object is visited
     bool                      isNewInv;         // whether the object is a new added inverter
     std::vector <uint64_t>    valueClusters;    // simluation value clusters
-    std::vector <uint64_t>    foConeClusters;   // mark whether POs are in the objects' fanout cone, each bit corresponds a PO
+    std::vector <uint64_t>    foConeInfo;       // mark whether POs are in the objects' fanout cone, each bit corresponds a PO
     Ckt_Obj_t *               pCktInv;          // pointer to its inverter
     std::vector <Ckt_Obj_t *> pCktFanins;       // fanin pointers
     std::vector <Ckt_Obj_t *> pCktFanouts;      // fanout pointers
@@ -54,6 +59,10 @@ public:
     inline void               ResizeClusters    (int len)                       { valueClusters.resize(len); }
     inline void               SetCluster        (int i, uint64_t value)         { valueClusters[i] = value; }
     inline uint64_t           GetCluster        (int i) const                   { return valueClusters[i]; }
+    inline void               InitFoCone        (int f)                         { foConeInfo.resize((f >> 6) + 1, 0); }
+    inline int                GetFoConeSize     (void) const                    { return static_cast <int> (foConeInfo.size()); }
+    inline void               SetFoCone         (int f)                         { Ckt_SetBit(foConeInfo[f >> 6], f); }
+    inline void               SelfOrFoCone      (Ckt_Obj_t * pCktObj)           { for (int i = 0; i < GetFoConeSize(); ++i) foConeInfo[i] |= pCktObj->foConeInfo[i]; }
     inline void               AddFanin          (Ckt_Obj_t * pCktFanin)         { pCktFanins.emplace_back(pCktFanin); pCktFanin->pCktFanouts.emplace_back(this); }
     inline Ckt_Obj_t *        GetFanin          (int i = 0) const               { return pCktFanins[i]; }
     inline int                GetFaninNum       (void) const                    { return static_cast <int> (pCktFanins.size()); }
@@ -107,8 +116,5 @@ bool                          Ckt_SopIsAOI22Gate(char * pSop);
 bool                          Ckt_SopIsOAI21Gate(char * pSop);
 bool                          Ckt_SopIsOAI22Gate(char * pSop);
 
-static inline void            Ckt_SetBit        (uint64_t & x, uint64_t f) { x |= ((uint64_t)1 << (f & (uint64_t)63)); }
-static inline void            Ckt_ResetBit      (uint64_t & x, uint64_t f) { x &= ~((uint64_t)1 << (f & (uint64_t)63)); }
-static inline bool            Ckt_GetBit        (uint64_t x, uint64_t f) { return (bool)((x >> f) & (uint64_t)1); }
 
 #endif

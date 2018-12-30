@@ -167,6 +167,7 @@ void Ckt_Ntk_t::DFS(Ckt_Obj_t * pCktObj, vector <Ckt_Obj_t *> & pOrderedObjs)
 
 void Ckt_Ntk_t::SortObjects(vector <Ckt_Obj_t *> & pOrderedObjs)
 {
+    pOrderedObjs.clear();
     // reset traversal flag
     for (auto & pCktObj : cktObjs)
         pCktObj.ResetVisited();
@@ -379,4 +380,22 @@ void Ckt_Ntk_t::ReplaceTest(void)
         }
     }
     Visualize(GetAbcNtk(), "after.dot");
+}
+
+
+void Ckt_Ntk_t::UpdateFoCone(void)
+{
+    vector <Ckt_Obj_t *> pOrdObjs;
+    SortObjects(pOrdObjs);
+    for (auto & cktObj : cktObjs)
+        cktObj.InitFoCone(GetPoNum());
+    for (int i = 0; i < GetPoNum(); ++i)
+        pCktPos[i]->SetFoCone(i);
+    for (auto it = pOrdObjs.rbegin(); it != pOrdObjs.rend(); ++it) {
+        for (int i = 0; i < (*it)->GetFanoutNum(); ++i) {
+            Ckt_Obj_t * pCktFo = (*it)->GetFanout(i);
+            assert((*it)->GetFoConeSize() == pCktFo->GetFoConeSize());
+            (*it)->SelfOrFoCone(pCktFo);
+        }
+    }
 }
