@@ -212,6 +212,20 @@ void Ckt_Ntk_t::FeedForward(vector <Ckt_Obj_t *> & pOrderedObjs)
 }
 
 
+void Ckt_Ntk_t::FeedForward(list <Ckt_Obj_t *> & subNtk, int i)
+{
+    for (auto & pCktObj : subNtk)
+        pCktObj->UpdateCluster(i);
+}
+
+
+void Ckt_Ntk_t::BackupSimRes(void)
+{
+    for (auto & cktObj : cktObjs)
+        cktObj.BackupClusters();
+}
+
+
 void Ckt_Ntk_t::CheckSimulator(void)
 {
     // only for c6288

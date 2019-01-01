@@ -9,7 +9,8 @@ Ckt_Obj_t::Ckt_Obj_t(Abc_Obj_t * p_abc_obj, Ckt_Ntk_t * p_ckt_ntk)
     : pAbcObj(p_abc_obj), pCktNtk(p_ckt_ntk), type(Ckt_GetObjType(p_abc_obj)), isVisited(false), isNewInv(false), topoId(0), pCktInv(nullptr)
 {
     valueClusters.resize(pCktNtk->GetValClustersNum());
-    foConeInfo.resize((pCktNtk->GetPoNum() >> 6) + 1);
+    foConeInfo.resize((Abc_NtkPoNum(pCktNtk->GetAbcNtk()) >> 6) + 1);
+    BD.resize(Abc_NtkPoNum(pCktNtk->GetAbcNtk()));
 }
 
 
@@ -19,6 +20,7 @@ Ckt_Obj_t::Ckt_Obj_t(const Ckt_Obj_t & other)
     // shallow copy
     valueClusters.resize(other.pCktNtk->GetValClustersNum());
     foConeInfo.resize(other.foConeInfo.size());
+    BD.resize(other.BD.size());
 }
 
 
@@ -125,6 +127,68 @@ void Ckt_Obj_t::UpdateClusters(void)
         case Ckt_Obj_Type_t::OAI22:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i]) & (pCktFanins[2]->valueClusters[i] | pCktFanins[3]->valueClusters[i]));
+        break;
+        default:
+            assert(0);
+    }
+}
+
+
+void Ckt_Obj_t::UpdateCluster(int i)
+{
+    switch ( type ) {
+        case Ckt_Obj_Type_t::PI:
+        case Ckt_Obj_Type_t::CONST0:
+        case Ckt_Obj_Type_t::CONST1:
+        break;
+        case Ckt_Obj_Type_t::PO:
+        case Ckt_Obj_Type_t::BUF:
+            valueClusters[i] = pCktFanins[0]->valueClusters[i];
+        break;
+        case Ckt_Obj_Type_t::INV:
+            valueClusters[i] = ~pCktFanins[0]->valueClusters[i];
+        break;
+        case Ckt_Obj_Type_t::XOR:
+            valueClusters[i] = pCktFanins[0]->valueClusters[i] ^ pCktFanins[1]->valueClusters[i];
+        break;
+        case Ckt_Obj_Type_t::XNOR:
+            valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] ^ pCktFanins[1]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::AND2:
+            valueClusters[i] = pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i];
+        break;
+        case Ckt_Obj_Type_t::OR2:
+            valueClusters[i] = pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i];
+        break;
+        case Ckt_Obj_Type_t::NAND2:
+            valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::NAND3:
+            valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i] & pCktFanins[2]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::NAND4:
+            valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i] & pCktFanins[2]->valueClusters[i] & pCktFanins[3]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::NOR2:
+            valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::NOR3:
+            valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i] | pCktFanins[2]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::NOR4:
+            valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i] | pCktFanins[2]->valueClusters[i] | pCktFanins[3]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::AOI21:
+            valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i]) | pCktFanins[2]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::AOI22:
+            valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i]) | (pCktFanins[2]->valueClusters[i] & pCktFanins[3]->valueClusters[i]));
+        break;
+        case Ckt_Obj_Type_t::OAI21:
+            valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i]) & pCktFanins[2]->valueClusters[i]);
+        break;
+        case Ckt_Obj_Type_t::OAI22:
+            valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i]) & (pCktFanins[2]->valueClusters[i] | pCktFanins[3]->valueClusters[i]));
         break;
         default:
             assert(0);

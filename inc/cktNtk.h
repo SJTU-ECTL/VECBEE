@@ -54,6 +54,8 @@ public:
     void                      SortObjects      (std::vector <Ckt_Obj_t *> & pOrderedObjs);
     void                      FeedForward      (void);
     void                      FeedForward      (std::vector <Ckt_Obj_t *> & pOrderedObjs);
+    void                      FeedForward      (std::list <Ckt_Obj_t *> & pOrderedObjs, int i);
+    void                      BackupSimRes     (void);
     void                      CheckSimulator   (void);
     float                     GetErrorRate     (Ckt_Ntk_t & refNtk, Ckt_Bit_Cnt_t * pTable = nullptr);
     Ckt_Obj_t *               AddInverter      (Ckt_Obj_t & cktObj);
@@ -65,11 +67,12 @@ public:
     void                      ReplaceTest      (void);
     void                      UpdateFoCone     (void);
 
-    inline int                GetObjNum        (void) const { return static_cast <int> (cktObjs.size()); }
-    inline int                GetPoNum         (void) const { return static_cast <int> (pCktPos.size()); }
-    inline int                GetValClustersNum(void) const { return nValueClusters; }
-    inline abc::Abc_Ntk_t *   GetAbcNtk        (void) const { return pAbcNtk; }
-    inline void               GetArrivalTime   (void) const { Abc_GetArrivalTime(GetAbcNtk()); }
+    inline int                GetObjNum        (void) const      { return static_cast <int> (cktObjs.size()); }
+    inline int                GetPoNum         (void) const      { return static_cast <int> (pCktPos.size()); }
+    inline Ckt_Obj_t *        GetPo            (int i = 0) const { return pCktPos[i]; }
+    inline int                GetValClustersNum(void) const      { return nValueClusters; }
+    inline abc::Abc_Ntk_t *   GetAbcNtk        (void) const      { return pAbcNtk; }
+    inline void               GetArrivalTime   (void) const      { Abc_GetArrivalTime(GetAbcNtk()); }
 };
 
 
