@@ -49,6 +49,8 @@ public:
     void                      PrintInput       (void) const;
     void                      PrintOutput      (void) const;
     void                      DFS              (Ckt_Obj_t * pCktObj, std::vector <Ckt_Obj_t *> & pOrderedObjs);
+    void                      SetAllUnvisited  (void);
+    void                      SetAllUnvisited2 (void);
     void                      SortObjects      (std::vector <Ckt_Obj_t *> & pOrderedObjs);
     void                      FeedForward      (void);
     void                      CheckSimulator   (void);

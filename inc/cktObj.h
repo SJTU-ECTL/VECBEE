@@ -56,13 +56,16 @@ public:
     inline bool               GetVisited        (void) const                    { return isVisited; }
     inline void               SetVisited        (void)                          { isVisited = true; }
     inline void               ResetVisited      (void)                          { isVisited = false; topoId = 0; }
+    inline void               ResetVisited2     (void)                          { isVisited = false; }
     inline void               SetTopoId         (int i)                         { topoId = i; }
+    inline int                GetTopoId         (void) const                    { return topoId; }
     inline int                GetClustersSize   (void) const                    { return static_cast <int> (valueClusters.size()); }
     inline void               ResizeClusters    (int len)                       { valueClusters.resize(len); }
     inline void               SetCluster        (int i, uint64_t value)         { valueClusters[i] = value; }
     inline uint64_t           GetCluster        (int i) const                   { return valueClusters[i]; }
     inline void               InitFoCone        (int f)                         { foConeInfo.resize((f >> 6) + 1, 0); }
     inline int                GetFoConeSize     (void) const                    { return static_cast <int> (foConeInfo.size()); }
+    inline uint64_t           GetFoCone         (int i) const                   { return foConeInfo[i]; }
     inline void               SetFoCone         (int f)                         { Ckt_SetBit(foConeInfo[f >> 6], f); }
     inline void               SelfOrFoCone      (Ckt_Obj_t * pCktObj)           { for (int i = 0; i < GetFoConeSize(); ++i) foConeInfo[i] |= pCktObj->foConeInfo[i]; }
     inline void               AddFanin          (Ckt_Obj_t * pCktFanin)         { pCktFanins.emplace_back(pCktFanin); pCktFanin->pCktFanouts.emplace_back(this); }
@@ -77,9 +80,9 @@ public:
     inline float              GetArrivalTime    (void) const                    { return (static_cast<abc::Abc_Time_t *>(pAbcObj->pNtk->pManTime->vArrs->pArray[pAbcObj->Id]))->Rise; }
     inline bool               IsPI              (void) const                    { return type == Ckt_Obj_Type_t::PI; }
     inline bool               IsPO              (void) const                    { return type == Ckt_Obj_Type_t::PO; }
-    inline bool               IsConst           (void) const                    { return type == Ckt_Obj_Type_t::CONST0 || type == Ckt_Obj_Type_t:: CONST1; }
+    inline bool               IsConst           (void) const                    { return type == Ckt_Obj_Type_t::CONST0 || type == Ckt_Obj_Type_t::CONST1; }
     inline bool               IsInv             (void) const                    { return type == Ckt_Obj_Type_t::INV; }
-    inline bool               IsDanggling       (void) const                    { return pCktFanouts.empty(); }
+    inline bool               IsDanggling       (void) const                    { return pCktFanouts.empty() && type != Ckt_Obj_Type_t::PO; }
     inline bool               IsAddedInv        (void) const                    { return isNewInv; }
     inline bool               HasAddedInv       (void) const                    { return pCktInv != nullptr; }
     inline Ckt_Obj_t *        GetAddedInv       (void) const                    { return pCktInv; }

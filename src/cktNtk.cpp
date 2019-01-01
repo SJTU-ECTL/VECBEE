@@ -166,12 +166,25 @@ void Ckt_Ntk_t::DFS(Ckt_Obj_t * pCktObj, vector <Ckt_Obj_t *> & pOrderedObjs)
 }
 
 
+void Ckt_Ntk_t::SetAllUnvisited(void)
+{
+    for (auto & pCktObj : cktObjs)
+        pCktObj.ResetVisited();
+}
+
+
+void Ckt_Ntk_t::SetAllUnvisited2(void)
+{
+    for (auto & pCktObj : cktObjs)
+        pCktObj.ResetVisited2();
+}
+
+
 void Ckt_Ntk_t::SortObjects(vector <Ckt_Obj_t *> & pOrderedObjs)
 {
     pOrderedObjs.clear();
     // reset traversal flag
-    for (auto & pCktObj : cktObjs)
-        pCktObj.ResetVisited();
+    SetAllUnvisited();
     // start a vector of nodes
     pOrderedObjs.reserve(GetObjNum());
     // topological sort

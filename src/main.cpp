@@ -1,7 +1,5 @@
 #include <bits/stdc++.h>
-#include "cktNtk.h"
-#include "cktVisual.h"
-#include "cktCec.h"
+#include "cktBEE.h"
 #include "cmdline.h"
 
 
@@ -37,10 +35,11 @@ int main(int argc, char * argv[])
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
 
     Ckt_Ntk_t ckt(Abc_FrameReadNtk(pAbc), number);
+    Ckt_Ntk_t cktRef(Abc_FrameReadNtk(pAbc), number);
 
     // ckt.ReplaceTest();
-    ckt.CheckSimulator();
-    // ckt.UpdateFoCone();
+    // ckt.CheckSimulator();
+    BatchErrorEstimation(ckt, cktRef);
 
     Abc_Stop();
     return 0;
