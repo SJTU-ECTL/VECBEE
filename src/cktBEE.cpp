@@ -2,6 +2,24 @@
 
 
 using namespace std;
+using namespace abc;
+
+
+Ckt_Rpl_Pair_t::Ckt_Rpl_Pair_t(Ckt_Obj_t * p_ts, Ckt_Obj_t * p_ss)
+    : pTS(p_ts), pSS(p_ss), addedER(0)
+{
+}
+
+
+Ckt_Rpl_Pair_t::Ckt_Rpl_Pair_t(const Ckt_Rpl_Pair_t & other)
+    : pTS(other.pTS), pSS(other.pSS), addedER(0)
+{
+}
+
+
+Ckt_Rpl_Pair_t::~Ckt_Rpl_Pair_t(void)
+{
+}
 
 
 void BatchErrorEstimation(Ckt_Ntk_t & ckt, Ckt_Ntk_t & cktRef)
@@ -31,6 +49,8 @@ void BatchErrorEstimation(Ckt_Ntk_t & ckt, Ckt_Ntk_t & cktRef)
         ckt.GetPo(i)->SetBD(i, static_cast <uint64_t> (ULLONG_MAX));
     // get arrival time
     ckt.GetArrivalTime();
+    vector <Ckt_Rpl_Pair_t> pairs;
+    GetValidPair(ckt, pOrderedObjs, pairs);
     // batch
     vector <uint64_t> isPoICorrect(ckt.GetPoNum(), 0);
     for (int fb = 0; fb < ckt.GetValClustersNum(); ++fb) {
@@ -40,10 +60,10 @@ void BatchErrorEstimation(Ckt_Ntk_t & ckt, Ckt_Ntk_t & cktRef)
             isPoICorrect[i] = ~(ckt.GetPo(i)->GetCluster(fb) ^ cktRef.GetPo(i)->GetCluster(fb));
             isCorrect &= isPoICorrect[i];
         }
-        uint64_t isWrong = ~isCorrect;
         // get partial boolean difference
         GetBooleanDifference(ckt, pOrderedObjs, isPoICorrect, fb);
         // update added error rate
+        GetAddedErrorRate(ckt, pairs, isPoICorrect, fb, isCorrect);
     }
 }
 
@@ -150,5 +170,39 @@ void GetBooleanDifference(Ckt_Ntk_t & ckt, vector <Ckt_Obj_t *> & pOrdObjs, vect
         // recover
         for (auto & pCktObj : (*ppCktObj)->cutNtk)
             pCktObj->RecoverCluster(fb);
+    }
+}
+
+
+void GetAddedErrorRate(Ckt_Ntk_t & ckt, vector <Ckt_Rpl_Pair_t> & pairs, vector <uint64_t> & isPoICorrect, int fb, uint64_t isCorrect)
+{
+    for (auto & pr : pairs) {
+        uint64_t isDiff = pr.pTS->XorClusterBak(fb);
+        pr.addedER += CountOneNum(isCorrect & pr.pTS->BDPlus & isDiff);
+        pr.addedER -= CountOneNum(~isCorrect & pr.pTS->BDMinus & isDiff);
+    }
+}
+
+
+void GetValidPair(Ckt_Ntk_t & ckt, vector <Ckt_Obj_t *> & pOrdObjs, std::vector <Ckt_Rpl_Pair_t> & pairs)
+{
+    pairs.clear();
+    float invDelay = Mio_LibraryReadDelayInvRise(static_cast<Mio_Library_t *> (Abc_FrameReadLibGen()));
+    for (auto & pCktTS : pOrdObjs) {
+        if (pCktTS->IsDanggling() || pCktTS->IsPI() || pCktTS->IsPO() || pCktTS->IsConst())
+            continue;
+        for (auto & pCktSS : pOrdObjs) {
+            if (pCktSS->IsAddedInv() || pCktSS->IsPO() || pCktTS == pCktSS)
+                continue;
+            if (pCktTS->GetArrivalTime() >= pCktSS->GetArrivalTime())
+                pairs.emplace_back(Ckt_Rpl_Pair_t(pCktTS, pCktSS));
+
+            if (pCktTS->IsInv() || pCktSS->IsInv() || pCktSS->IsConst())
+                continue;
+            if (pCktTS->GetArrivalTime() >= pCktSS->GetArrivalTime() + invDelay) {
+                Ckt_Obj_t * pCktInv = ckt.GetInverter2(*pCktSS);
+                pairs.emplace_back(Ckt_Rpl_Pair_t(pCktTS, pCktInv));
+            }
+        }
     }
 }

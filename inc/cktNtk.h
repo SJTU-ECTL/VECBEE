@@ -57,9 +57,10 @@ public:
     void                      FeedForward      (std::list <Ckt_Obj_t *> & pOrderedObjs, int i);
     void                      BackupSimRes     (void);
     void                      CheckSimulator   (void);
-    float                     GetErrorRate     (Ckt_Ntk_t & refNtk, Ckt_Bit_Cnt_t * pTable = nullptr);
+    float                     GetErrorRate     (Ckt_Ntk_t & refNtk);
     Ckt_Obj_t *               AddInverter      (Ckt_Obj_t & cktObj);
     Ckt_Obj_t *               GetInverter      (Ckt_Obj_t & cktObj);
+    Ckt_Obj_t *               GetInverter2     (Ckt_Obj_t & cktObj);
     void                      Replace          (Ckt_Obj_t & cktOldObj, Ckt_Obj_t & cktNewObj, std::vector <Ckt_Rpl_Info_t> & info, bool isInv = false);
     void                      ReplaceByName    (std::string oldName, std::string newName, std::vector <Ckt_Rpl_Info_t> & info);
     void                      RecoverFromRpl   (std::vector <Ckt_Rpl_Info_t> & info);
@@ -74,6 +75,9 @@ public:
     inline abc::Abc_Ntk_t *   GetAbcNtk        (void) const      { return pAbcNtk; }
     inline void               GetArrivalTime   (void) const      { Abc_GetArrivalTime(GetAbcNtk()); }
 };
+
+
+static inline int             CountOneNum      (uint64_t n)      { static Ckt_Bit_Cnt_t table; return table.GetOneNum(n); }
 
 
 #endif

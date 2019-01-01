@@ -261,13 +261,8 @@ void Ckt_Ntk_t::CheckSimulator(void)
 }
 
 
-float Ckt_Ntk_t::GetErrorRate(Ckt_Ntk_t & refNtk, Ckt_Bit_Cnt_t * pTable)
+float Ckt_Ntk_t::GetErrorRate(Ckt_Ntk_t & refNtk)
 {
-    bool isDelete = false;
-    if (pTable == nullptr) {
-        pTable = new Ckt_Bit_Cnt_t;
-        isDelete = true;
-    }
     // make sure POs are same
     assert(pCktPos.size() == refNtk.pCktPos.size());
     int poNum = static_cast <int> (pCktPos.size());
@@ -279,11 +274,7 @@ float Ckt_Ntk_t::GetErrorRate(Ckt_Ntk_t & refNtk, Ckt_Bit_Cnt_t * pTable)
         uint64_t temp = 0;
         for (int i = 0; i < poNum; ++i)
             temp |= pCktPos[i]->GetCluster(k) ^ refNtk.pCktPos[i]->GetCluster(k);
-        ret += pTable->GetOneNum(temp);
-    }
-    if (isDelete) {
-        delete pTable;
-        pTable = nullptr;
+        ret += CountOneNum(temp);
     }
     return static_cast <float> (ret) / static_cast <float> (nValueClusters << 6);
 }
@@ -311,6 +302,19 @@ Ckt_Obj_t * Ckt_Ntk_t::GetInverter(Ckt_Obj_t & cktObj)
         return cktObj.GetAddedInv();
     else
         return AddInverter(cktObj);
+}
+
+
+Ckt_Obj_t * Ckt_Ntk_t::GetInverter2(Ckt_Obj_t & cktObj)
+{
+    Ckt_Obj_t * pRet = nullptr;
+    if (cktObj.HasAddedInv())
+        pRet = cktObj.GetAddedInv();
+    else {
+        pRet = AddInverter(cktObj);
+        pRet->UpdateClusters();
+    }
+    return pRet;
 }
 
 
@@ -387,7 +391,6 @@ void Ckt_Ntk_t::ReplaceTest(void)
     cktRef.GenInputDist(314);
     cktRef.FeedForward();
     vector <Ckt_Rpl_Info_t> info;
-    Ckt_Bit_Cnt_t table;
     Abc_GetArrivalTime(GetAbcNtk());
     Visualize(GetAbcNtk(), "before.dot");
     for (auto & cktTS : cktObjs) {
@@ -399,9 +402,9 @@ void Ckt_Ntk_t::ReplaceTest(void)
             if (cktTS.GetArrivalTime() >= cktSS.GetArrivalTime()) {
                 Replace(cktTS, cktSS, info, false);
                 FeedForward();
-                cout << cktTS.GetName() << "\t(CON)" << cktSS.GetName() << "\t" << GetErrorRate(cktRef, &table) << endl;
+                cout << cktTS.GetName() << "\t(CON)" << cktSS.GetName() << "\t" << GetErrorRate(cktRef) << endl;
                 RecoverFromRpl(info);
-                Ckt_Cec(cktRef, *this);
+                // Ckt_Cec(cktRef, *this);
             }
 
             if (cktTS.IsInv() || cktSS.IsInv() || cktSS.IsConst())
@@ -409,9 +412,9 @@ void Ckt_Ntk_t::ReplaceTest(void)
             if (cktTS.GetArrivalTime() >= cktSS.GetArrivalTime() + 0.9) {
                 Replace(cktTS, cktSS, info, true);
                 FeedForward();
-                cout << cktTS.GetName() << "\t(INV)" << cktSS.GetName() << "\t" << GetErrorRate(cktRef, &table) << endl;
+                cout << cktTS.GetName() << "\t(INV)" << cktSS.GetName() << "\t" << GetErrorRate(cktRef) << endl;
                 RecoverFromRpl(info);
-                Ckt_Cec(cktRef, *this);
+                // Ckt_Cec(cktRef, *this);
             }
         }
     }
