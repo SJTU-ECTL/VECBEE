@@ -204,6 +204,14 @@ void Ckt_Ntk_t::FeedForward(void)
 }
 
 
+void Ckt_Ntk_t::FeedForward(vector <Ckt_Obj_t *> & pOrderedObjs)
+{
+    // update
+    for (auto & pCktObj : pOrderedObjs)
+        pCktObj->UpdateClusters();
+}
+
+
 void Ckt_Ntk_t::CheckSimulator(void)
 {
     // only for c6288

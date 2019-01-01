@@ -42,6 +42,9 @@ private:
     Ckt_Obj_t &               operator =        (const Ckt_Obj_t & other);
 
 public:
+    std::list <Ckt_Obj_t *>   cut;              // the minimum cut in which objects' fanout cone are disjoint
+    std::list <Ckt_Obj_t *>   cutNtk;           // nodes among itself and its cut arranged in topological order
+
     explicit                  Ckt_Obj_t         (abc::Abc_Obj_t * p_abc_obj, Ckt_Ntk_t * p_ckt_ntk);
                               Ckt_Obj_t         (const Ckt_Obj_t & other);
                               ~Ckt_Obj_t        (void);

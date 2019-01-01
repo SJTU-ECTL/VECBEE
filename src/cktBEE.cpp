@@ -13,13 +13,19 @@ void BatchErrorEstimation(Ckt_Ntk_t & ckt, Ckt_Ntk_t & cktRef)
     ckt.SortObjects(pOrderedObjs);
     // update fanout cone information
     ckt.UpdateFoCone();
-    list <Ckt_Obj_t *> cut;
-    list <Ckt_Obj_t *> subNtk;
+    // find cuts and sub-networks
     for (auto & pCktObj : pOrderedObjs) {
-        // find minimum cut in which objects' fanout cone are disjoint
-        FindCut(ckt, cut, subNtk, *pCktObj);
-        // logic simulation
+        FindCut(ckt, pCktObj->cut, *pCktObj);
+        BuildSubNtk(pOrderedObjs, pCktObj->cutNtk);
     }
+    // get base error rate
+    cktRef.GenInputDist(314);
+    ckt.GenInputDist(314);
+    cktRef.FeedForward();
+    ckt.FeedForward(pOrderedObjs);
+    float baseError = ckt.GetErrorRate(cktRef);
+    // get arrival time
+    ckt.GetArrivalTime();
 }
 
 
@@ -51,29 +57,36 @@ Ckt_Obj_t * CheckExpansion(list <Ckt_Obj_t *> & cut)
 }
 
 
-void Expand(Ckt_Obj_t & cktObj, list <Ckt_Obj_t *> & cut, list <Ckt_Obj_t *> & subNtk)
+void Expand(Ckt_Obj_t & cktObj, list <Ckt_Obj_t *> & cut)
 {
     for (int i = 0; i < cktObj.GetFanoutNum(); ++i) {
         Ckt_Obj_t * pCktFo = cktObj.GetFanout(i);
         if (!pCktFo->GetVisited() && !pCktFo->IsDanggling()) {
             cut.emplace_back(pCktFo);
-            subNtk.emplace_back(pCktFo);
             pCktFo->SetVisited();
         }
     }
 }
 
 
-void FindCut(Ckt_Ntk_t & ckt, list <Ckt_Obj_t *> & cut, list <Ckt_Obj_t *> & subNtk, Ckt_Obj_t & cktSrcObj)
+void FindCut(Ckt_Ntk_t & ckt, list <Ckt_Obj_t *> & cut, Ckt_Obj_t & cktSrcObj)
 {
     // init
     cut.clear();
-    subNtk.clear();
     ckt.SetAllUnvisited2();
     // expand the source object
-    Expand(cktSrcObj, cut, subNtk);
+    Expand(cktSrcObj, cut);
     // expand until all objects in the cut are disjoint
     Ckt_Obj_t * pCktExpd = nullptr;
     while ((pCktExpd = CheckExpansion(cut)) != nullptr)
-        Expand(*pCktExpd, cut, subNtk);
+        Expand(*pCktExpd, cut);
+}
+
+
+void BuildSubNtk(vector <Ckt_Obj_t *> & pOrdObjs, list <Ckt_Obj_t *> & subNtk)
+{
+    subNtk.clear();
+    for (auto & pCktObj : pOrdObjs)
+        if (pCktObj->GetVisited())
+            subNtk.emplace_back(pCktObj);
 }
