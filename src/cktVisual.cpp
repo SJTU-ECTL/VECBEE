@@ -434,3 +434,9 @@ void Visualize(Abc_Ntk_t * pAbcNtk, string fileName)
 
     abc::Abc_NtkDelete( pNtk );
 }
+
+
+void Visualize(Ckt_Ntk_t & ckt, string fileName)
+{
+    Visualize(ckt.GetAbcNtk(), fileName);
+}

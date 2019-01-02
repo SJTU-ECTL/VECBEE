@@ -22,6 +22,13 @@ Ckt_Rpl_Pair_t::~Ckt_Rpl_Pair_t(void)
 }
 
 
+std::ostream & operator << (ostream & os, const Ckt_Rpl_Pair_t & pr)
+{
+    cout << pr.pTS->GetName() << "\t" << pr.pSS->GetName() << "\t" << pr.addedER;
+    return os;
+}
+
+
 void BatchErrorEstimation(Ckt_Ntk_t & ckt, Ckt_Ntk_t & cktRef)
 {
     assert(&ckt != &cktRef);
@@ -63,8 +70,13 @@ void BatchErrorEstimation(Ckt_Ntk_t & ckt, Ckt_Ntk_t & cktRef)
         // get partial boolean difference
         GetBooleanDifference(ckt, pOrderedObjs, isPoICorrect, fb);
         // update added error rate
-        GetAddedErrorRate(ckt, pairs, isPoICorrect, fb, isCorrect);
+        GetAddedErrorRate(ckt, pairs, fb, isCorrect);
     }
+    // Visualize(ckt, "test.dot");
+    // for (auto & pr : pairs)
+    //     cout << pr << endl;
+    // ckt.PrintCut();
+    // ckt.PrintCutNtk();
 }
 
 
@@ -145,6 +157,8 @@ bool HasSamePo(Ckt_Ntk_t & ckt1, Ckt_Ntk_t & ckt2)
 void GetBooleanDifference(Ckt_Ntk_t & ckt, vector <Ckt_Obj_t *> & pOrdObjs, vector <uint64_t> & isPoICorrect, int fb)
 {
     for (auto ppCktObj = pOrdObjs.rbegin(); ppCktObj != pOrdObjs.rend(); ++ppCktObj) {
+        if ((*ppCktObj)->cut.empty())
+            continue;
         // init
         (*ppCktObj)->BDPlus = 0;
         (*ppCktObj)->BDMinus = static_cast <uint64_t> (ULLONG_MAX);
@@ -170,16 +184,18 @@ void GetBooleanDifference(Ckt_Ntk_t & ckt, vector <Ckt_Obj_t *> & pOrdObjs, vect
         // recover
         for (auto & pCktObj : (*ppCktObj)->cutNtk)
             pCktObj->RecoverCluster(fb);
+        (*ppCktObj)->FlipCluster(fb);
     }
 }
 
 
-void GetAddedErrorRate(Ckt_Ntk_t & ckt, vector <Ckt_Rpl_Pair_t> & pairs, vector <uint64_t> & isPoICorrect, int fb, uint64_t isCorrect)
+void GetAddedErrorRate(Ckt_Ntk_t & ckt, vector <Ckt_Rpl_Pair_t> & pairs, int fb, uint64_t isCorrect)
 {
     for (auto & pr : pairs) {
-        uint64_t isDiff = pr.pTS->XorClusterBak(fb);
+        uint64_t isDiff = pr.pTS->GetCluster(fb) ^ pr.pSS->GetCluster(fb);
         pr.addedER += CountOneNum(isCorrect & pr.pTS->BDPlus & isDiff);
         pr.addedER -= CountOneNum(~isCorrect & pr.pTS->BDMinus & isDiff);
+        // cout << isCorrect << "\t" << pr.pTS->BDPlus << "\t" << pr.pTS->BDMinus << "\t" << isDiff << endl;
     }
 }
 

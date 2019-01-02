@@ -438,3 +438,44 @@ void Ckt_Ntk_t::UpdateFoCone(void)
         }
     }
 }
+
+
+void Ckt_Ntk_t::PrintCut(void) const
+{
+    for (auto & cktObj : cktObjs) {
+        cout << cktObj.GetName() << ":";
+        for (auto & pCktFg : cktObj.cut) {
+            cout << pCktFg->GetName() << "\t";
+        }
+        cout << endl;
+    }
+}
+
+
+void Ckt_Ntk_t::PrintCutNtk(void) const
+{
+    for (auto & cktObj : cktObjs) {
+        cout << cktObj.GetName() << ":";
+        for (auto & pCktObj: cktObj.cutNtk) {
+            cout << pCktObj->GetName() << "\t";
+        }
+        cout << endl;
+    }
+}
+
+
+void Ckt_Ntk_t::PrintSimRes(void) const
+{
+    for (auto & cktObj : cktObjs) {
+        cout << cktObj.GetName() << ":";
+        cktObj.PrintClusters();
+        cout << endl;
+    }
+}
+
+
+void Ckt_Ntk_t::PrintBD(void) const
+{
+    for (auto & cktObj : cktObjs)
+        cktObj.PrintBD();
+}

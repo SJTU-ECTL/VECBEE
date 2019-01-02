@@ -15,7 +15,7 @@ Ckt_Obj_t::Ckt_Obj_t(Abc_Obj_t * p_abc_obj, Ckt_Ntk_t * p_ckt_ntk)
 
 
 Ckt_Obj_t::Ckt_Obj_t(const Ckt_Obj_t & other)
-    : pAbcObj(other.pAbcObj), type(other.GetType()), isVisited(other.isVisited), isNewInv(false), topoId(other.topoId), pCktInv(nullptr)
+    : pAbcObj(other.pAbcObj), pCktNtk(other.pCktNtk), type(other.GetType()), isVisited(other.isVisited), isNewInv(false), topoId(other.topoId), pCktInv(nullptr)
 {
     // shallow copy
     valueClusters.resize(other.pCktNtk->GetValClustersNum());
@@ -239,6 +239,18 @@ void Ckt_Obj_t::CheckFanio(void) const
         assert(static_cast <string> (Abc_ObjName(pObj)) == pCktFanouts[i]->GetName());
     Abc_ObjForEachFanin(pAbcObj, pObj, i)
         assert(static_cast <string> (Abc_ObjName(pObj)) == pCktFanins[i]->GetName());
+}
+
+
+void Ckt_Obj_t::PrintBD(void) const
+{
+    cout << GetName() << ":" << endl;
+    for (int i = 0; i < pCktNtk->GetPoNum(); ++i) {
+        cout << pCktNtk->GetPo(i)->GetName() << ",";
+        for (int j = 0; j < 64; ++j)
+            cout << Ckt_GetBit(BD[i], static_cast <uint64_t> (j));
+        cout << endl;
+    }
 }
 
 
