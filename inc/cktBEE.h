@@ -28,6 +28,8 @@ bool            HasSamePo           (Ckt_Ntk_t & ckt1, Ckt_Ntk_t & ckt2);
 void            GetBooleanDifference(Ckt_Ntk_t & ckt, std::vector <Ckt_Obj_t *> & pOrdObjs, std::vector <uint64_t> & isPoICorrect, int fb);
 void            GetAddedErrorRate   (Ckt_Ntk_t & ckt, std::vector <Ckt_Rpl_Pair_t> & pairs, int fb, uint64_t isCorrect);
 void            GetValidPair        (Ckt_Ntk_t & ckt, std::vector <Ckt_Obj_t *> & pOrdObjs, std::vector < Ckt_Rpl_Pair_t > & pairs);
+void            ReplaceTest         (Ckt_Ntk_t & ckt);
+
 
 
 #endif

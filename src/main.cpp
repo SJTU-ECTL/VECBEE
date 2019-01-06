@@ -37,8 +37,10 @@ int main(int argc, char * argv[])
     Ckt_Ntk_t ckt(Abc_FrameReadNtk(pAbc), number);
     Ckt_Ntk_t cktRef(Abc_FrameReadNtk(pAbc), number);
 
-    // ckt.ReplaceTest();
+    cout << "brute" << endl;
+    ReplaceTest(ckt);
     // ckt.CheckSimulator();
+    cout << "batch" << endl;
     BatchErrorEstimation(ckt, cktRef);
 
     Abc_Stop();

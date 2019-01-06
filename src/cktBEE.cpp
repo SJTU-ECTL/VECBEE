@@ -49,13 +49,14 @@ void BatchErrorEstimation(Ckt_Ntk_t & ckt, Ckt_Ntk_t & cktRef)
     ckt.GenInputDist(314);
     cktRef.FeedForward();
     ckt.FeedForward(pOrderedObjs);
-    float baseError = ckt.GetErrorRate(cktRef);
+    int baseError = ckt.GetErrorRate(cktRef);
     ckt.BackupSimRes();
     // init parital difference
     for (int i = 0; i < ckt.GetPoNum(); ++i)
         ckt.GetPo(i)->SetBD(i, static_cast <uint64_t> (ULLONG_MAX));
     // get arrival time
     ckt.GetArrivalTime();
+    // get candidiate pairs
     vector <Ckt_Rpl_Pair_t> pairs;
     GetValidPair(ckt, pOrderedObjs, pairs);
     // batch
@@ -73,8 +74,8 @@ void BatchErrorEstimation(Ckt_Ntk_t & ckt, Ckt_Ntk_t & cktRef)
         GetAddedErrorRate(ckt, pairs, fb, isCorrect);
     }
     // Visualize(ckt, "test.dot");
-    // for (auto & pr : pairs)
-    //     cout << pr << endl;
+    for (auto & pr : pairs)
+        cout << pr << endl;
     // ckt.PrintCut();
     // ckt.PrintCutNtk();
 }
@@ -195,7 +196,6 @@ void GetAddedErrorRate(Ckt_Ntk_t & ckt, vector <Ckt_Rpl_Pair_t> & pairs, int fb,
         uint64_t isDiff = pr.pTS->GetCluster(fb) ^ pr.pSS->GetCluster(fb);
         pr.addedER += CountOneNum(isCorrect & pr.pTS->BDPlus & isDiff);
         pr.addedER -= CountOneNum(~isCorrect & pr.pTS->BDMinus & isDiff);
-        // cout << isCorrect << "\t" << pr.pTS->BDPlus << "\t" << pr.pTS->BDMinus << "\t" << isDiff << endl;
     }
 }
 
@@ -222,3 +222,35 @@ void GetValidPair(Ckt_Ntk_t & ckt, vector <Ckt_Obj_t *> & pOrdObjs, std::vector 
         }
     }
 }
+
+
+void ReplaceTest(Ckt_Ntk_t & ckt)
+{
+    Ckt_Ntk_t cktRef(ckt.GetAbcNtk(), ckt.GetValClustersNum() * 64);
+    assert(HasSamePo(ckt, cktRef));
+    // get topological sequence
+    vector <Ckt_Obj_t *> pOrderedObjs;
+    ckt.SortObjects(pOrderedObjs);
+    // get base error rate & backup
+    cktRef.GenInputDist(314);
+    ckt.GenInputDist(314);
+    cktRef.FeedForward();
+    ckt.FeedForward(pOrderedObjs);
+    // get arrival time
+    ckt.GetArrivalTime();
+    // get candidate pairs
+    vector <Ckt_Rpl_Pair_t> pairs;
+    GetValidPair(ckt, pOrderedObjs, pairs);
+    // replace and recover
+    vector <Ckt_Rpl_Info_t> info;
+    for (auto & pr : pairs) {
+        ckt.Replace(*pr.pTS, *pr.pSS, info);
+        ckt.FeedForward();
+        cout << pr.pTS->GetName() << "\t" << pr.pSS->GetName() << "\t" << ckt.GetErrorRate(cktRef) << endl;
+        ckt.RecoverFromRpl(info);
+        // Ckt_Cec(cktRef, ckt);
+    }
+}
+
+
+

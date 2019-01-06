@@ -261,7 +261,7 @@ void Ckt_Ntk_t::CheckSimulator(void)
 }
 
 
-float Ckt_Ntk_t::GetErrorRate(Ckt_Ntk_t & refNtk)
+int Ckt_Ntk_t::GetErrorRate(Ckt_Ntk_t & refNtk)
 {
     // make sure POs are same
     assert(pCktPos.size() == refNtk.pCktPos.size());
@@ -276,7 +276,7 @@ float Ckt_Ntk_t::GetErrorRate(Ckt_Ntk_t & refNtk)
             temp |= pCktPos[i]->GetCluster(k) ^ refNtk.pCktPos[i]->GetCluster(k);
         ret += CountOneNum(temp);
     }
-    return static_cast <float> (ret) / static_cast <float> (nValueClusters << 6);
+    return ret;
 }
 
 
@@ -381,44 +381,6 @@ void Ckt_Ntk_t::CheckFanio(void) const
 {
     for (auto & cktObj : cktObjs)
         cktObj.CheckFanio();
-}
-
-
-void Ckt_Ntk_t::ReplaceTest(void)
-{
-    Ckt_Ntk_t cktRef(pAbcNtk, nValueClusters * 64);
-    GenInputDist(314);
-    cktRef.GenInputDist(314);
-    cktRef.FeedForward();
-    vector <Ckt_Rpl_Info_t> info;
-    Abc_GetArrivalTime(GetAbcNtk());
-    Visualize(GetAbcNtk(), "before.dot");
-    for (auto & cktTS : cktObjs) {
-        if (cktTS.IsDanggling() || cktTS.IsPI() || cktTS.IsPO() || cktTS.IsConst())
-            continue;
-        for (auto & cktSS : cktObjs) {
-            if (cktSS.IsAddedInv() || cktSS.IsPO() || &cktTS == &cktSS)
-                continue;
-            if (cktTS.GetArrivalTime() >= cktSS.GetArrivalTime()) {
-                Replace(cktTS, cktSS, info, false);
-                FeedForward();
-                cout << cktTS.GetName() << "\t(CON)" << cktSS.GetName() << "\t" << GetErrorRate(cktRef) << endl;
-                RecoverFromRpl(info);
-                // Ckt_Cec(cktRef, *this);
-            }
-
-            if (cktTS.IsInv() || cktSS.IsInv() || cktSS.IsConst())
-                continue;
-            if (cktTS.GetArrivalTime() >= cktSS.GetArrivalTime() + 0.9) {
-                Replace(cktTS, cktSS, info, true);
-                FeedForward();
-                cout << cktTS.GetName() << "\t(INV)" << cktSS.GetName() << "\t" << GetErrorRate(cktRef) << endl;
-                RecoverFromRpl(info);
-                // Ckt_Cec(cktRef, *this);
-            }
-        }
-    }
-    Visualize(GetAbcNtk(), "after.dot");
 }
 
 

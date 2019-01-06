@@ -57,7 +57,7 @@ public:
     void                        FeedForward         (std::list <Ckt_Obj_t *> & pOrderedObjs, int i);
     void                        BackupSimRes        (void);
     void                        CheckSimulator      (void);
-    float                       GetErrorRate        (Ckt_Ntk_t & refNtk);
+    int                         GetErrorRate        (Ckt_Ntk_t & refNtk);
     Ckt_Obj_t *                 AddInverter         (Ckt_Obj_t & cktObj);
     Ckt_Obj_t *                 GetInverter         (Ckt_Obj_t & cktObj);
     Ckt_Obj_t *                 GetInverter2        (Ckt_Obj_t & cktObj);
@@ -65,7 +65,6 @@ public:
     void                        ReplaceByName       (std::string oldName, std::string newName, std::vector <Ckt_Rpl_Info_t> & info);
     void                        RecoverFromRpl      (std::vector <Ckt_Rpl_Info_t> & info);
     void                        CheckFanio          (void) const;
-    void                        ReplaceTest         (void);
     void                        UpdateFoCone        (void);
     void                        PrintCut            (void) const;
     void                        PrintCutNtk         (void) const;
