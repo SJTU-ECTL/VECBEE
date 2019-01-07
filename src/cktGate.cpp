@@ -6,9 +6,10 @@ using namespace abc;
 
 
 Ckt_Gate_t::Ckt_Gate_t(Abc_Obj_t * p_abc_obj, Ckt_Gate_Net_t * p_ckt_ntk)
-    : pAbcObj(p_abc_obj), pCktNtk(p_ckt_ntk), type(Ckt_GetObjType(p_abc_obj)), isVisited(false), isNewInv(false), topoId(0), pCktInv(nullptr)
+    : pAbcObj(p_abc_obj), pCktNtk(p_ckt_ntk), type(Abc_GetGateType(p_abc_obj)), isVisited(false), isNewInv(false), topoId(0), pCktInv(nullptr)
 {
     valueClusters.resize(pCktNtk->GetValClustersNum());
+    valueClustersBak.resize(pCktNtk->GetValClustersNum());
     foConeInfo.resize((Abc_NtkPoNum(pCktNtk->GetAbcNtk()) >> 6) + 1);
     BD.resize(Abc_NtkPoNum(pCktNtk->GetAbcNtk()));
 }
@@ -19,6 +20,7 @@ Ckt_Gate_t::Ckt_Gate_t(const Ckt_Gate_t & other)
 {
     // shallow copy
     valueClusters.resize(other.pCktNtk->GetValClustersNum());
+    valueClustersBak.resize(other.pCktNtk->GetValClustersNum());
     foConeInfo.resize(other.foConeInfo.size());
     BD.resize(other.BD.size());
 }
@@ -345,81 +347,85 @@ ostream & operator << (ostream & os, const Ckt_Rpl_Info_t & info)
 }
 
 
-Ckt_Gate_Cat_t Ckt_GetObjType( Abc_Obj_t * pObj )
+Ckt_Gate_Cat_t Abc_GetGateType( Abc_Obj_t * pObj )
 {
     if (Abc_ObjIsPi(pObj))
         return Ckt_Gate_Cat_t::PI;
     if (Abc_ObjIsPo(pObj))
         return Ckt_Gate_Cat_t::PO;
     assert(Abc_ObjIsNode(pObj));
-    char * pSop  = Mio_GateReadSop( (Mio_Gate_t *)pObj->pData );
-    if ( Ckt_SopIsConst0(pSop) )
+    if ( Abc_GateIsConst0(pObj) )
         return Ckt_Gate_Cat_t::CONST0;
-    else if ( Ckt_SopIsConst1(pSop) )
+    else if ( Abc_GateIsConst1(pObj) )
         return Ckt_Gate_Cat_t::CONST1;
-    else if ( Ckt_SopIsBuf(pSop) )
+    else if ( Abc_GateIsBuf(pObj) )
         return Ckt_Gate_Cat_t::BUF;
-    else if ( Ckt_SopIsInvGate(pSop) )
+    else if ( Abc_GateIsInv(pObj) )
         return Ckt_Gate_Cat_t::INV;
-    else if ( Ckt_SopIsXorGate(pSop) )
+    else if ( Abc_GateIsXor(pObj) )
         return Ckt_Gate_Cat_t::XOR;
-    else if ( Ckt_SopIsXnorGate(pSop) )
+    else if ( Abc_GateIsXnor(pObj) )
         return Ckt_Gate_Cat_t::XNOR;
-    else if ( Ckt_SopIsAndGate(pSop) ) {
-        assert( Abc_SopGetVarNum( pSop ) == 2 );
+    else if ( Abc_GateIsAnd(pObj) ) {
+        assert( Abc_ObjFaninNum(pObj) == 2 );
         return Ckt_Gate_Cat_t::AND2;
     }
-    else if ( Ckt_SopIsOrGate(pSop) ) {
-        assert( Abc_SopGetVarNum( pSop ) == 2 );
+    else if ( Abc_GateIsOr(pObj) ) {
+        assert( Abc_ObjFaninNum(pObj) == 2 );
         return Ckt_Gate_Cat_t::OR2;
     }
-    else if ( Ckt_SopIsNandGate(pSop) ) {
-        assert( Abc_SopGetVarNum( pSop ) <= 4 );
-        return (Ckt_Gate_Cat_t)( (int)Ckt_Gate_Cat_t::NAND2 + Abc_SopGetVarNum( pSop ) - 2 );
+    else if ( Abc_GateIsNand(pObj) ) {
+        assert( Abc_ObjFaninNum(pObj) <= 4 );
+        return (Ckt_Gate_Cat_t)( (int)Ckt_Gate_Cat_t::NAND2 + Abc_ObjFaninNum(pObj) - 2 );
     }
-    else if ( Ckt_SopIsNorGate(pSop) ) {
-        assert( Abc_SopGetVarNum( pSop ) <= 4 );
-        return (Ckt_Gate_Cat_t)( (int)Ckt_Gate_Cat_t::NOR2 + Abc_SopGetVarNum( pSop ) - 2 );
+    else if ( Abc_GateIsNor(pObj) ) {
+        assert( Abc_ObjFaninNum( pObj ) <= 4 );
+        return (Ckt_Gate_Cat_t)( (int)Ckt_Gate_Cat_t::NOR2 + Abc_ObjFaninNum( pObj ) - 2 );
     }
-    else if ( Ckt_SopIsAOI21Gate(pSop) )
+    else if ( Abc_GateIsAOI21(pObj) )
         return Ckt_Gate_Cat_t::AOI21;
-    else if ( Ckt_SopIsAOI22Gate(pSop) )
+    else if ( Abc_GateIsAOI22(pObj) )
         return Ckt_Gate_Cat_t::AOI22;
-    else if ( Ckt_SopIsOAI21Gate(pSop) )
+    else if ( Abc_GateIsOAI21(pObj) )
         return Ckt_Gate_Cat_t::OAI21;
-    else if ( Ckt_SopIsOAI22Gate(pSop) )
+    else if ( Abc_GateIsOAI22(pObj) )
         return Ckt_Gate_Cat_t::OAI22;
     else
         assert( 0 );
 }
 
 
-bool Ckt_SopIsConst0( char * pSop )
+bool Abc_GateIsConst0(  Abc_Obj_t * pObj )
 {
+    char * pSop  = Mio_GateReadSop( (Mio_Gate_t *)pObj->pData );
     return Abc_SopIsConst0(pSop);
 }
 
 
-bool Ckt_SopIsConst1( char * pSop )
+bool Abc_GateIsConst1(  Abc_Obj_t * pObj )
 {
+    char * pSop  = Mio_GateReadSop( (Mio_Gate_t *)pObj->pData );
     return Abc_SopIsConst1(pSop);
 }
 
 
-bool Ckt_SopIsBuf( char * pSop )
+bool Abc_GateIsBuf(  Abc_Obj_t * pObj )
 {
+    char * pSop  = Mio_GateReadSop( (Mio_Gate_t *)pObj->pData );
     return Abc_SopIsBuf(pSop);
 }
 
 
-bool Ckt_SopIsInvGate( char * pSop )
+bool Abc_GateIsInv(  Abc_Obj_t * pObj )
 {
+    char * pSop  = Mio_GateReadSop( (Mio_Gate_t *)pObj->pData );
     return Abc_SopIsInv(pSop);
 }
 
 
-bool Ckt_SopIsAndGate( char * pSop )
+bool Abc_GateIsAnd(  Abc_Obj_t * pObj )
 {
+    char * pSop  = Mio_GateReadSop( (Mio_Gate_t *)pObj->pData );
     if ( !Abc_SopIsComplement(pSop) ) {    //111 1
         char * pCur;
         if ( Abc_SopGetCubeNum(pSop) != 1 )
@@ -453,8 +459,9 @@ bool Ckt_SopIsAndGate( char * pSop )
 }
 
 
-bool Ckt_SopIsOrGate( char * pSop )
+bool Abc_GateIsOr(  Abc_Obj_t * pObj )
 {
+    char * pSop  = Mio_GateReadSop( (Mio_Gate_t *)pObj->pData );
     if ( Abc_SopIsComplement(pSop) ) {    //000 0
         char * pCur;
         if ( Abc_SopGetCubeNum(pSop) != 1 )
@@ -488,8 +495,9 @@ bool Ckt_SopIsOrGate( char * pSop )
 }
 
 
-bool Ckt_SopIsNandGate( char * pSop )
+bool Abc_GateIsNand(  Abc_Obj_t * pObj )
 {
+    char * pSop  = Mio_GateReadSop( (Mio_Gate_t *)pObj->pData );
     if ( Abc_SopIsComplement(pSop) ) {    //111 0
         char * pCur;
         if ( Abc_SopGetCubeNum(pSop) != 1 )
@@ -523,8 +531,9 @@ bool Ckt_SopIsNandGate( char * pSop )
 }
 
 
-bool Ckt_SopIsNorGate( char * pSop )
+bool Abc_GateIsNor(  Abc_Obj_t * pObj )
 {
+    char * pSop  = Mio_GateReadSop( (Mio_Gate_t *)pObj->pData );
     if ( !Abc_SopIsComplement(pSop) ) {    //000 1
         char * pCur;
         if ( Abc_SopGetCubeNum(pSop) != 1 )
@@ -558,8 +567,9 @@ bool Ckt_SopIsNorGate( char * pSop )
 }
 
 
-bool Ckt_SopIsXorGate( char * pSop )
+bool Abc_GateIsXor(  Abc_Obj_t * pObj )
 {
+    char * pSop  = Mio_GateReadSop( (Mio_Gate_t *)pObj->pData );
     if ( !Abc_SopIsComplement(pSop) ) {    //01 1\n10 1\n
         char * pCube, * pCur;
         int nVars, nLits;
@@ -585,8 +595,9 @@ bool Ckt_SopIsXorGate( char * pSop )
 }
 
 
-bool Ckt_SopIsXnorGate( char * pSop )
+bool Abc_GateIsXnor(  Abc_Obj_t * pObj )
 {
+    char * pSop  = Mio_GateReadSop( (Mio_Gate_t *)pObj->pData );
     if ( strcmp( pSop, "00 1\n11 1\n" ) == 0 )
         return 1;
     else if ( strcmp( pSop, "11 1\n00 1\n" ) == 0 )
@@ -596,8 +607,9 @@ bool Ckt_SopIsXnorGate( char * pSop )
 }
 
 
-bool Ckt_SopIsAOI21Gate( char * pSop )
+bool Abc_GateIsAOI21(  Abc_Obj_t * pObj )
 {
+    char * pSop  = Mio_GateReadSop( (Mio_Gate_t *)pObj->pData );
     if ( strcmp( pSop, "-00 1\n0-0 1\n" ) == 0 )
         return 1;
     else
@@ -605,8 +617,9 @@ bool Ckt_SopIsAOI21Gate( char * pSop )
 }
 
 
-bool Ckt_SopIsAOI22Gate( char * pSop )
+bool Abc_GateIsAOI22(  Abc_Obj_t * pObj )
 {
+    char * pSop  = Mio_GateReadSop( (Mio_Gate_t *)pObj->pData );
     if ( strcmp( pSop, "--11 0\n11-- 0\n" ) == 0 )
         return 1;
     else
@@ -614,8 +627,9 @@ bool Ckt_SopIsAOI22Gate( char * pSop )
 }
 
 
-bool Ckt_SopIsOAI21Gate( char * pSop )
+bool Abc_GateIsOAI21(  Abc_Obj_t * pObj )
 {
+    char * pSop  = Mio_GateReadSop( (Mio_Gate_t *)pObj->pData );
     if ( strcmp( pSop, "--0 1\n00- 1\n" ) == 0 )
         return 1;
     else
@@ -623,8 +637,9 @@ bool Ckt_SopIsOAI21Gate( char * pSop )
 }
 
 
-bool Ckt_SopIsOAI22Gate( char * pSop )
+bool Abc_GateIsOAI22(  Abc_Obj_t * pObj )
 {
+    char * pSop  = Mio_GateReadSop( (Mio_Gate_t *)pObj->pData );
     if ( strcmp( pSop, "--00 1\n00-- 1\n" ) == 0 )
         return 1;
     else

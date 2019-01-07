@@ -21,7 +21,7 @@ public:
 
 std::ostream &  operator <<         (std::ostream & os, const Ckt_Rpl_Pair_t & pr);
 void            BatchErrorEstimation(Ckt_Gate_Net_t & ckt, Ckt_Gate_Net_t & cktRef);
-Ckt_Gate_t *     CheckExpansion     (std::list <Ckt_Gate_t *> & cut);
+Ckt_Gate_t *    CheckExpansion      (std::list <Ckt_Gate_t *> & cut);
 void            Expand              (Ckt_Gate_t & cktObj, std::list <Ckt_Gate_t *> & cut);
 void            FindCut             (Ckt_Gate_Net_t & ckt, std::list <Ckt_Gate_t *> & cut, Ckt_Gate_t & cktSrcObj);
 void            BuildSubNtk         (std::vector <Ckt_Gate_t *> & pOrdObjs, std::list <Ckt_Gate_t *> & subNtk);

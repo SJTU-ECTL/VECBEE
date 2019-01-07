@@ -118,21 +118,21 @@ public:
 
 std::ostream &                  operator <<         (std::ostream & os, const Ckt_Gate_Cat_t & type);
 std::ostream &                  operator <<         (std::ostream & os, const Ckt_Rpl_Info_t & info);
-Ckt_Gate_Cat_t                  Ckt_GetObjType      (abc::Abc_Obj_t * pAbcObj);
-bool                            Ckt_SopIsConst0     (char * pSop);
-bool                            Ckt_SopIsConst1     (char * pSop);
-bool                            Ckt_SopIsBuf        (char * pSop);
-bool                            Ckt_SopIsInvGate    (char * pSop);
-bool                            Ckt_SopIsAndGate    (char * pSop);
-bool                            Ckt_SopIsOrGate     (char * pSop);
-bool                            Ckt_SopIsNandGate   (char * pSop);
-bool                            Ckt_SopIsNorGate    (char * pSop);
-bool                            Ckt_SopIsXorGate    (char * pSop);
-bool                            Ckt_SopIsXnorGate   (char * pSop);
-bool                            Ckt_SopIsAOI21Gate  (char * pSop);
-bool                            Ckt_SopIsAOI22Gate  (char * pSop);
-bool                            Ckt_SopIsOAI21Gate  (char * pSop);
-bool                            Ckt_SopIsOAI22Gate  (char * pSop);
+Ckt_Gate_Cat_t                  Abc_GetGateType     (abc::Abc_Obj_t * pObj);
+bool                            Abc_GateIsConst0    (abc::Abc_Obj_t * pObj);
+bool                            Abc_GateIsConst1    (abc::Abc_Obj_t * pObj);
+bool                            Abc_GateIsBuf       (abc::Abc_Obj_t * pObj);
+bool                            Abc_GateIsInv       (abc::Abc_Obj_t * pObj);
+bool                            Abc_GateIsAnd       (abc::Abc_Obj_t * pObj);
+bool                            Abc_GateIsOr        (abc::Abc_Obj_t * pObj);
+bool                            Abc_GateIsNand      (abc::Abc_Obj_t * pObj);
+bool                            Abc_GateIsNor       (abc::Abc_Obj_t * pObj);
+bool                            Abc_GateIsXor       (abc::Abc_Obj_t * pObj);
+bool                            Abc_GateIsXnor      (abc::Abc_Obj_t * pObj);
+bool                            Abc_GateIsAOI21     (abc::Abc_Obj_t * pObj);
+bool                            Abc_GateIsAOI22     (abc::Abc_Obj_t * pObj);
+bool                            Abc_GateIsOAI21     (abc::Abc_Obj_t * pObj);
+bool                            Abc_GateIsOAI22     (abc::Abc_Obj_t * pObj);
 
 
 #endif
