@@ -72,8 +72,8 @@ void Execute_Sop_Net(parser & option)
 int main(int argc, char * argv[])
 {
     parser option = Cmdline_Parser(argc, argv);
-    Execute_Gate_Net(option);
-    // Execute_Sop_Net(option);
+    // Execute_Gate_Net(option);
+    Execute_Sop_Net(option);
 
     return 0;
 }

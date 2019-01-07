@@ -6,7 +6,7 @@ using namespace abc;
 
 
 Ckt_Sop_t::Ckt_Sop_t(Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk)
-    : pAbcObj(p_abc_obj), pCktNtk(p_ckt_ntk), isVisited(false), topoId(0)
+    : pAbcObj(p_abc_obj), pCktNtk(p_ckt_ntk), type(Abc_GetSopType(p_abc_obj)), isVisited(false), topoId(0)
 {
     valueClusters.resize(pCktNtk->GetValClustersNum());
     foConeInfo.resize((Abc_NtkPoNum(pCktNtk->GetAbcNtk()) >> 6) + 1);
@@ -15,7 +15,7 @@ Ckt_Sop_t::Ckt_Sop_t(Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk)
 
 
 Ckt_Sop_t::Ckt_Sop_t(const Ckt_Sop_t & other)
-    : pAbcObj(other.pAbcObj), pCktNtk(other.pCktNtk), isVisited(other.isVisited), topoId(other.topoId)
+    : pAbcObj(other.pAbcObj), pCktNtk(other.pCktNtk), type(other.GetType()), isVisited(other.isVisited), topoId(other.topoId)
 {
     // shallow copy
     valueClusters.resize(other.pCktNtk->GetValClustersNum());
@@ -78,9 +78,25 @@ ostream & operator << (ostream & os, const Ckt_Sop_Cat_t & type)
         break;
         case Ckt_Sop_Cat_t::INTER:
             cout << "INTER";
+        break;
         default:
             assert(0);
     }
     return os;
 }
 
+
+Ckt_Sop_Cat_t Abc_GetSopType( Abc_Obj_t * pObj )
+{
+    if (Abc_ObjIsPi(pObj))
+        return Ckt_Sop_Cat_t::PI;
+    if (Abc_ObjIsPo(pObj))
+        return Ckt_Sop_Cat_t::PO;
+    assert(Abc_ObjIsNode(pObj));
+    if ( Abc_NodeIsConst0(pObj) )
+        return Ckt_Sop_Cat_t::CONST0;
+    else if ( Abc_NodeIsConst1(pObj) )
+        return Ckt_Sop_Cat_t::CONST1;
+    else
+        return Ckt_Sop_Cat_t::INTER;
+}
