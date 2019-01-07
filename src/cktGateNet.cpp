@@ -42,13 +42,57 @@ Ckt_Gate_Net_t::Ckt_Gate_Net_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
     // get pointers of PI/PO/CONST0/CONST1
     pCktConst0 = pCktConst1 = nullptr;
     for (auto & obj : cktObjs) {
-        if (obj.GetType() == Ckt_Obj_Type_t::PI)
+        if (obj.IsPI())
             pCktPis.emplace_back(&obj);
-        else if (obj.GetType() == Ckt_Obj_Type_t::PO)
+        else if (obj.IsPO())
             pCktPos.emplace_back(&obj);
-        else if (obj.GetType() == Ckt_Obj_Type_t::CONST0)
+        else if (obj.IsConst0())
             pCktConst0 = &obj;
-        else if (obj.GetType() == Ckt_Obj_Type_t::CONST1)
+        else if (obj.IsConst1())
+            pCktConst1 = &obj;
+    }
+    if (pCktConst0 == nullptr) {
+        cktObjs.emplace_back(Ckt_Gate_t(Abc_NtkCreateNodeConst0(pAbcNtk), this));
+        pCktConst0 = &(cktObjs.back());
+    }
+    if (pCktConst1 == nullptr) {
+        cktObjs.emplace_back(Ckt_Gate_t(Abc_NtkCreateNodeConst1(pAbcNtk), this));
+        pCktConst1 = &(cktObjs.back());
+    }
+
+    // add fanin/fanout information, use information saved in pTemp
+    for (auto & obj : cktObjs) {
+        Abc_ObjForEachFanin(obj.GetAbcObj(), pFanin, i)
+            obj.AddFanin(static_cast <Ckt_Gate_t *> (pFanin->pTemp));
+    }
+}
+
+
+Ckt_Gate_Net_t::Ckt_Gate_Net_t(const Ckt_Gate_Net_t & other)
+    : nValueClusters(other.nValueClusters)
+{
+    Abc_Obj_t * pAbcObj, * pFanin;
+    int i;
+
+    // deep copy
+    pAbcNtk = Abc_NtkDup(other.pAbcNtk);
+
+    // init circuit objects, use pTemp to temporarily store the reflection
+    Abc_NtkForEachObj(pAbcNtk, pAbcObj, i) {
+        cktObjs.emplace_back(Ckt_Gate_t(pAbcObj, this));
+        pAbcObj->pTemp = static_cast <void *> (&(cktObjs.back()));
+    }
+
+    // get pointers of PI/PO/CONST0/CONST1
+    pCktConst0 = pCktConst1 = nullptr;
+    for (auto & obj : cktObjs) {
+        if (obj.IsPI())
+            pCktPis.emplace_back(&obj);
+        else if (obj.IsPO())
+            pCktPos.emplace_back(&obj);
+        else if (obj.IsConst0())
+            pCktConst0 = &obj;
+        else if (obj.IsConst1())
             pCktConst1 = &obj;
     }
     if (pCktConst0 == nullptr) {
@@ -274,7 +318,7 @@ int Ckt_Gate_Net_t::GetErrorRate(Ckt_Gate_Net_t & refNtk)
         uint64_t temp = 0;
         for (int i = 0; i < poNum; ++i)
             temp |= pCktPos[i]->GetCluster(k) ^ refNtk.pCktPos[i]->GetCluster(k);
-        ret += CountOneNum(temp);
+        ret += Ckt_CountOneNum(temp);
     }
     return ret;
 }

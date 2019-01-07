@@ -59,72 +59,72 @@ void Ckt_Gate_t::PrintClusters(void) const
 void Ckt_Gate_t::UpdateClusters(void)
 {
     switch ( type ) {
-        case Ckt_Obj_Type_t::PI:
-        case Ckt_Obj_Type_t::CONST0:
-        case Ckt_Obj_Type_t::CONST1:
+        case Ckt_Gate_Cat_t::PI:
+        case Ckt_Gate_Cat_t::CONST0:
+        case Ckt_Gate_Cat_t::CONST1:
         break;
-        case Ckt_Obj_Type_t::PO:
-        case Ckt_Obj_Type_t::BUF:
+        case Ckt_Gate_Cat_t::PO:
+        case Ckt_Gate_Cat_t::BUF:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = pCktFanins[0]->valueClusters[i];
         break;
-        case Ckt_Obj_Type_t::INV:
+        case Ckt_Gate_Cat_t::INV:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = ~pCktFanins[0]->valueClusters[i];
         break;
-        case Ckt_Obj_Type_t::XOR:
+        case Ckt_Gate_Cat_t::XOR:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = pCktFanins[0]->valueClusters[i] ^ pCktFanins[1]->valueClusters[i];
         break;
-        case Ckt_Obj_Type_t::XNOR:
+        case Ckt_Gate_Cat_t::XNOR:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] ^ pCktFanins[1]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::AND2:
+        case Ckt_Gate_Cat_t::AND2:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i];
         break;
-        case Ckt_Obj_Type_t::OR2:
+        case Ckt_Gate_Cat_t::OR2:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i];
         break;
-        case Ckt_Obj_Type_t::NAND2:
+        case Ckt_Gate_Cat_t::NAND2:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::NAND3:
+        case Ckt_Gate_Cat_t::NAND3:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i] & pCktFanins[2]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::NAND4:
+        case Ckt_Gate_Cat_t::NAND4:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i] & pCktFanins[2]->valueClusters[i] & pCktFanins[3]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::NOR2:
+        case Ckt_Gate_Cat_t::NOR2:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::NOR3:
+        case Ckt_Gate_Cat_t::NOR3:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i] | pCktFanins[2]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::NOR4:
+        case Ckt_Gate_Cat_t::NOR4:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i] | pCktFanins[2]->valueClusters[i] | pCktFanins[3]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::AOI21:
+        case Ckt_Gate_Cat_t::AOI21:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i]) | pCktFanins[2]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::AOI22:
+        case Ckt_Gate_Cat_t::AOI22:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i]) | (pCktFanins[2]->valueClusters[i] & pCktFanins[3]->valueClusters[i]));
         break;
-        case Ckt_Obj_Type_t::OAI21:
+        case Ckt_Gate_Cat_t::OAI21:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i]) & pCktFanins[2]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::OAI22:
+        case Ckt_Gate_Cat_t::OAI22:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
                 valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i]) & (pCktFanins[2]->valueClusters[i] | pCktFanins[3]->valueClusters[i]));
         break;
@@ -137,57 +137,57 @@ void Ckt_Gate_t::UpdateClusters(void)
 void Ckt_Gate_t::UpdateCluster(int i)
 {
     switch ( type ) {
-        case Ckt_Obj_Type_t::PI:
-        case Ckt_Obj_Type_t::CONST0:
-        case Ckt_Obj_Type_t::CONST1:
+        case Ckt_Gate_Cat_t::PI:
+        case Ckt_Gate_Cat_t::CONST0:
+        case Ckt_Gate_Cat_t::CONST1:
         break;
-        case Ckt_Obj_Type_t::PO:
-        case Ckt_Obj_Type_t::BUF:
+        case Ckt_Gate_Cat_t::PO:
+        case Ckt_Gate_Cat_t::BUF:
             valueClusters[i] = pCktFanins[0]->valueClusters[i];
         break;
-        case Ckt_Obj_Type_t::INV:
+        case Ckt_Gate_Cat_t::INV:
             valueClusters[i] = ~pCktFanins[0]->valueClusters[i];
         break;
-        case Ckt_Obj_Type_t::XOR:
+        case Ckt_Gate_Cat_t::XOR:
             valueClusters[i] = pCktFanins[0]->valueClusters[i] ^ pCktFanins[1]->valueClusters[i];
         break;
-        case Ckt_Obj_Type_t::XNOR:
+        case Ckt_Gate_Cat_t::XNOR:
             valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] ^ pCktFanins[1]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::AND2:
+        case Ckt_Gate_Cat_t::AND2:
             valueClusters[i] = pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i];
         break;
-        case Ckt_Obj_Type_t::OR2:
+        case Ckt_Gate_Cat_t::OR2:
             valueClusters[i] = pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i];
         break;
-        case Ckt_Obj_Type_t::NAND2:
+        case Ckt_Gate_Cat_t::NAND2:
             valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::NAND3:
+        case Ckt_Gate_Cat_t::NAND3:
             valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i] & pCktFanins[2]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::NAND4:
+        case Ckt_Gate_Cat_t::NAND4:
             valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i] & pCktFanins[2]->valueClusters[i] & pCktFanins[3]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::NOR2:
+        case Ckt_Gate_Cat_t::NOR2:
             valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::NOR3:
+        case Ckt_Gate_Cat_t::NOR3:
             valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i] | pCktFanins[2]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::NOR4:
+        case Ckt_Gate_Cat_t::NOR4:
             valueClusters[i] = ~(pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i] | pCktFanins[2]->valueClusters[i] | pCktFanins[3]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::AOI21:
+        case Ckt_Gate_Cat_t::AOI21:
             valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i]) | pCktFanins[2]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::AOI22:
+        case Ckt_Gate_Cat_t::AOI22:
             valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] & pCktFanins[1]->valueClusters[i]) | (pCktFanins[2]->valueClusters[i] & pCktFanins[3]->valueClusters[i]));
         break;
-        case Ckt_Obj_Type_t::OAI21:
+        case Ckt_Gate_Cat_t::OAI21:
             valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i]) & pCktFanins[2]->valueClusters[i]);
         break;
-        case Ckt_Obj_Type_t::OAI22:
+        case Ckt_Gate_Cat_t::OAI22:
             valueClusters[i] = ~((pCktFanins[0]->valueClusters[i] | pCktFanins[1]->valueClusters[i]) & (pCktFanins[2]->valueClusters[i] | pCktFanins[3]->valueClusters[i]));
         break;
         default:
@@ -265,67 +265,67 @@ Ckt_Rpl_Info_t::~Ckt_Rpl_Info_t(void)
 }
 
 
-ostream & operator << (ostream & os, const Ckt_Obj_Type_t & type)
+ostream & operator << (ostream & os, const Ckt_Gate_Cat_t & type)
 {
     switch ( type ) {
-        case Ckt_Obj_Type_t::PI:
+        case Ckt_Gate_Cat_t::PI:
             cout << "PI";
         break;
-        case Ckt_Obj_Type_t::PO:
+        case Ckt_Gate_Cat_t::PO:
             cout << "PO";
         break;
-        case Ckt_Obj_Type_t::CONST0:
+        case Ckt_Gate_Cat_t::CONST0:
             cout << "CONST0";
         break;
-        case Ckt_Obj_Type_t::CONST1:
+        case Ckt_Gate_Cat_t::CONST1:
             cout << "CONST1";
         break;
-        case Ckt_Obj_Type_t::BUF:
+        case Ckt_Gate_Cat_t::BUF:
             cout << "BUF";
         break;
-        case Ckt_Obj_Type_t::INV:
+        case Ckt_Gate_Cat_t::INV:
             cout << "INV";
         break;
-        case Ckt_Obj_Type_t::XOR:
+        case Ckt_Gate_Cat_t::XOR:
             cout << "XOR2";
         break;
-        case Ckt_Obj_Type_t::XNOR:
+        case Ckt_Gate_Cat_t::XNOR:
             cout << "XNOR2";
         break;
-        case Ckt_Obj_Type_t::AND2:
+        case Ckt_Gate_Cat_t::AND2:
             cout << "AND2";
         break;
-        case Ckt_Obj_Type_t::OR2:
+        case Ckt_Gate_Cat_t::OR2:
             cout << "OR2";
         break;
-        case Ckt_Obj_Type_t::NAND2:
+        case Ckt_Gate_Cat_t::NAND2:
             cout << "NAND2";
         break;
-        case Ckt_Obj_Type_t::NAND3:
+        case Ckt_Gate_Cat_t::NAND3:
             cout << "NAND3";
         break;
-        case Ckt_Obj_Type_t::NAND4:
+        case Ckt_Gate_Cat_t::NAND4:
             cout << "NAND4";
         break;
-        case Ckt_Obj_Type_t::NOR2:
+        case Ckt_Gate_Cat_t::NOR2:
             cout << "NOR2";
         break;
-        case Ckt_Obj_Type_t::NOR3:
+        case Ckt_Gate_Cat_t::NOR3:
             cout << "NOR3";
         break;
-        case Ckt_Obj_Type_t::NOR4:
+        case Ckt_Gate_Cat_t::NOR4:
             cout << "NOR4";
         break;
-        case Ckt_Obj_Type_t::AOI21:
+        case Ckt_Gate_Cat_t::AOI21:
             cout << "AOI21";
         break;
-        case Ckt_Obj_Type_t::AOI22:
+        case Ckt_Gate_Cat_t::AOI22:
             cout << "AOI22";
         break;
-        case Ckt_Obj_Type_t::OAI21:
+        case Ckt_Gate_Cat_t::OAI21:
             cout << "OAI21";
         break;
-        case Ckt_Obj_Type_t::OAI22:
+        case Ckt_Gate_Cat_t::OAI22:
             cout << "OAI22";
         break;
         default:
@@ -345,50 +345,50 @@ ostream & operator << (ostream & os, const Ckt_Rpl_Info_t & info)
 }
 
 
-Ckt_Obj_Type_t Ckt_GetObjType( Abc_Obj_t * pObj )
+Ckt_Gate_Cat_t Ckt_GetObjType( Abc_Obj_t * pObj )
 {
     if (Abc_ObjIsPi(pObj))
-        return Ckt_Obj_Type_t::PI;
+        return Ckt_Gate_Cat_t::PI;
     if (Abc_ObjIsPo(pObj))
-        return Ckt_Obj_Type_t::PO;
+        return Ckt_Gate_Cat_t::PO;
     assert(Abc_ObjIsNode(pObj));
     char * pSop  = Mio_GateReadSop( (Mio_Gate_t *)pObj->pData );
     if ( Ckt_SopIsConst0(pSop) )
-        return Ckt_Obj_Type_t::CONST0;
+        return Ckt_Gate_Cat_t::CONST0;
     else if ( Ckt_SopIsConst1(pSop) )
-        return Ckt_Obj_Type_t::CONST1;
+        return Ckt_Gate_Cat_t::CONST1;
     else if ( Ckt_SopIsBuf(pSop) )
-        return Ckt_Obj_Type_t::BUF;
+        return Ckt_Gate_Cat_t::BUF;
     else if ( Ckt_SopIsInvGate(pSop) )
-        return Ckt_Obj_Type_t::INV;
+        return Ckt_Gate_Cat_t::INV;
     else if ( Ckt_SopIsXorGate(pSop) )
-        return Ckt_Obj_Type_t::XOR;
+        return Ckt_Gate_Cat_t::XOR;
     else if ( Ckt_SopIsXnorGate(pSop) )
-        return Ckt_Obj_Type_t::XNOR;
+        return Ckt_Gate_Cat_t::XNOR;
     else if ( Ckt_SopIsAndGate(pSop) ) {
         assert( Abc_SopGetVarNum( pSop ) == 2 );
-        return Ckt_Obj_Type_t::AND2;
+        return Ckt_Gate_Cat_t::AND2;
     }
     else if ( Ckt_SopIsOrGate(pSop) ) {
         assert( Abc_SopGetVarNum( pSop ) == 2 );
-        return Ckt_Obj_Type_t::OR2;
+        return Ckt_Gate_Cat_t::OR2;
     }
     else if ( Ckt_SopIsNandGate(pSop) ) {
         assert( Abc_SopGetVarNum( pSop ) <= 4 );
-        return (Ckt_Obj_Type_t)( (int)Ckt_Obj_Type_t::NAND2 + Abc_SopGetVarNum( pSop ) - 2 );
+        return (Ckt_Gate_Cat_t)( (int)Ckt_Gate_Cat_t::NAND2 + Abc_SopGetVarNum( pSop ) - 2 );
     }
     else if ( Ckt_SopIsNorGate(pSop) ) {
         assert( Abc_SopGetVarNum( pSop ) <= 4 );
-        return (Ckt_Obj_Type_t)( (int)Ckt_Obj_Type_t::NOR2 + Abc_SopGetVarNum( pSop ) - 2 );
+        return (Ckt_Gate_Cat_t)( (int)Ckt_Gate_Cat_t::NOR2 + Abc_SopGetVarNum( pSop ) - 2 );
     }
     else if ( Ckt_SopIsAOI21Gate(pSop) )
-        return Ckt_Obj_Type_t::AOI21;
+        return Ckt_Gate_Cat_t::AOI21;
     else if ( Ckt_SopIsAOI22Gate(pSop) )
-        return Ckt_Obj_Type_t::AOI22;
+        return Ckt_Gate_Cat_t::AOI22;
     else if ( Ckt_SopIsOAI21Gate(pSop) )
-        return Ckt_Obj_Type_t::OAI21;
+        return Ckt_Gate_Cat_t::OAI21;
     else if ( Ckt_SopIsOAI22Gate(pSop) )
-        return Ckt_Obj_Type_t::OAI22;
+        return Ckt_Gate_Cat_t::OAI22;
     else
         assert( 0 );
 }

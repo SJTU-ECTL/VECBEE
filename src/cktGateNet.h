@@ -13,19 +13,6 @@ class Ckt_Gate_t;
 class Ckt_Rpl_Info_t;
 
 
-class Ckt_Bit_Cnt_t
-{
-private:
-    int table[65536];
-
-public:
-    explicit                    Ckt_Bit_Cnt_t       (void);
-                                ~Ckt_Bit_Cnt_t      (void);
-
-    inline int                  GetOneNum           (uint64_t n) { return table[n >> 48] + table[(n >> 32) & 0xffff] + table[(n >> 16) & 0xffff] +table[n & 0xffff]; }
-};
-
-
 class Ckt_Gate_Net_t
 {
 private:
@@ -37,11 +24,11 @@ private:
     Ckt_Gate_t *                pCktConst0;         // const 0 pointer
     Ckt_Gate_t *                pCktConst1;         // const 1 pointer
 
-                                Ckt_Gate_Net_t      (const Ckt_Gate_Net_t & other);
     Ckt_Gate_Net_t &            operator =          (const Ckt_Gate_Net_t & other);
 
 public:
     explicit                    Ckt_Gate_Net_t      (abc::Abc_Ntk_t * p_abc_ntk, int nFrames = 1024);
+                                Ckt_Gate_Net_t      (const Ckt_Gate_Net_t & other);
                                 ~Ckt_Gate_Net_t     (void);
     void                        PrintInfo           (void) const;
     void                        PrintTopoOrder      (void);
@@ -78,9 +65,6 @@ public:
     inline abc::Abc_Ntk_t *     GetAbcNtk           (void) const      { return pAbcNtk; }
     inline void                 GetArrivalTime      (void) const      { Abc_GetArrivalTime(GetAbcNtk()); }
 };
-
-
-static inline int               CountOneNum         (uint64_t n)      { static Ckt_Bit_Cnt_t table; return table.GetOneNum(n); }
 
 
 #endif

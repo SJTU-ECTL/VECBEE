@@ -35,7 +35,7 @@ int main(int argc, char * argv[])
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
 
     Ckt_Gate_Net_t ckt(Abc_FrameReadNtk(pAbc), number);
-    Ckt_Gate_Net_t cktRef(Abc_FrameReadNtk(pAbc), number);
+    Ckt_Gate_Net_t cktRef(ckt);
 
     cout << "brute" << endl;
     ReplaceTest(ckt);

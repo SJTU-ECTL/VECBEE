@@ -194,8 +194,8 @@ void GetAddedErrorRate(Ckt_Gate_Net_t & ckt, vector <Ckt_Rpl_Pair_t> & pairs, in
 {
     for (auto & pr : pairs) {
         uint64_t isDiff = pr.pTS->GetCluster(fb) ^ pr.pSS->GetCluster(fb);
-        pr.addedER += CountOneNum(isCorrect & pr.pTS->BDPlus & isDiff);
-        pr.addedER -= CountOneNum(~isCorrect & pr.pTS->BDMinus & isDiff);
+        pr.addedER += Ckt_CountOneNum(isCorrect & pr.pTS->BDPlus & isDiff);
+        pr.addedER -= Ckt_CountOneNum(~isCorrect & pr.pTS->BDMinus & isDiff);
     }
 }
 
@@ -226,7 +226,7 @@ void GetValidPair(Ckt_Gate_Net_t & ckt, vector <Ckt_Gate_t *> & pOrdObjs, std::v
 
 void ReplaceTest(Ckt_Gate_Net_t & ckt)
 {
-    Ckt_Gate_Net_t cktRef(ckt.GetAbcNtk(), ckt.GetValClustersNum() * 64);
+    Ckt_Gate_Net_t cktRef(ckt);
     assert(HasSamePo(ckt, cktRef));
     // get topological sequence
     vector <Ckt_Gate_t *> pOrderedObjs;
