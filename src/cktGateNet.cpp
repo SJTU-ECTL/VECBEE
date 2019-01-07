@@ -1,4 +1,4 @@
-#include "cktNtk.h"
+#include "cktGateNet.h"
 
 
 using namespace std;
@@ -24,7 +24,7 @@ Ckt_Bit_Cnt_t::~Ckt_Bit_Cnt_t(void)
 }
 
 
-Ckt_Ntk_t::Ckt_Ntk_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
+Ckt_Gate_Net_t::Ckt_Gate_Net_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
     : nValueClusters(nFrames / 64)
 {
     Abc_Obj_t * pAbcObj, * pFanin;
@@ -35,7 +35,7 @@ Ckt_Ntk_t::Ckt_Ntk_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
 
     // init circuit objects, use pTemp to temporarily store the reflection
     Abc_NtkForEachObj(pAbcNtk, pAbcObj, i) {
-        cktObjs.emplace_back(Ckt_Obj_t(pAbcObj, this));
+        cktObjs.emplace_back(Ckt_Gate_t(pAbcObj, this));
         pAbcObj->pTemp = static_cast <void *> (&(cktObjs.back()));
     }
 
@@ -52,30 +52,30 @@ Ckt_Ntk_t::Ckt_Ntk_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
             pCktConst1 = &obj;
     }
     if (pCktConst0 == nullptr) {
-        cktObjs.emplace_back(Ckt_Obj_t(Abc_NtkCreateNodeConst0(pAbcNtk), this));
+        cktObjs.emplace_back(Ckt_Gate_t(Abc_NtkCreateNodeConst0(pAbcNtk), this));
         pCktConst0 = &(cktObjs.back());
     }
     if (pCktConst1 == nullptr) {
-        cktObjs.emplace_back(Ckt_Obj_t(Abc_NtkCreateNodeConst1(pAbcNtk), this));
+        cktObjs.emplace_back(Ckt_Gate_t(Abc_NtkCreateNodeConst1(pAbcNtk), this));
         pCktConst1 = &(cktObjs.back());
     }
 
     // add fanin/fanout information, use information saved in pTemp
     for (auto & obj : cktObjs) {
         Abc_ObjForEachFanin(obj.GetAbcObj(), pFanin, i)
-            obj.AddFanin(static_cast <Ckt_Obj_t *> (pFanin->pTemp));
+            obj.AddFanin(static_cast <Ckt_Gate_t *> (pFanin->pTemp));
     }
 }
 
 
-Ckt_Ntk_t::~Ckt_Ntk_t(void)
+Ckt_Gate_Net_t::~Ckt_Gate_Net_t(void)
 {
     // free network (includes ABC objects added by user)
     Abc_NtkDelete(pAbcNtk);
 }
 
 
-void Ckt_Ntk_t::PrintInfo(void) const
+void Ckt_Gate_Net_t::PrintInfo(void) const
 {
     cout << "---------------- Network information ----------------" << endl;
     cout << "Name\t\tType\t";
@@ -90,10 +90,10 @@ void Ckt_Ntk_t::PrintInfo(void) const
 }
 
 
-void Ckt_Ntk_t::PrintTopoOrder(void)
+void Ckt_Gate_Net_t::PrintTopoOrder(void)
 {
     cout << "---------------- Topological order   ----------------" << endl;
-    vector <Ckt_Obj_t *> pOrderedObjs;
+    vector <Ckt_Gate_t *> pOrderedObjs;
     SortObjects(pOrderedObjs);
     cout << "Name\t\tType\t";
     cout << setw(30) << setiosflags(ios::left) << "Fanin";
@@ -107,7 +107,7 @@ void Ckt_Ntk_t::PrintTopoOrder(void)
 }
 
 
-void Ckt_Ntk_t::GenInputDist(unsigned seed)
+void Ckt_Gate_Net_t::GenInputDist(unsigned seed)
 {
     uniform_int <> distribution(0, 1);
     boost::random::mt19937 engine(seed);
@@ -130,7 +130,7 @@ void Ckt_Ntk_t::GenInputDist(unsigned seed)
 }
 
 
-void Ckt_Ntk_t::PrintInput(void) const
+void Ckt_Gate_Net_t::PrintInput(void) const
 {
     for (auto & pCktPi : pCktPis) {
         cout << pCktPi->GetName() << endl;
@@ -140,7 +140,7 @@ void Ckt_Ntk_t::PrintInput(void) const
 }
 
 
-void Ckt_Ntk_t::PrintOutput(void) const
+void Ckt_Gate_Net_t::PrintOutput(void) const
 {
     for (auto & pCktPo : pCktPos) {
         cout << pCktPo->GetName() << endl;
@@ -150,7 +150,7 @@ void Ckt_Ntk_t::PrintOutput(void) const
 }
 
 
-void Ckt_Ntk_t::DFS(Ckt_Obj_t * pCktObj, vector <Ckt_Obj_t *> & pOrderedObjs)
+void Ckt_Gate_Net_t::DFS(Ckt_Gate_t * pCktObj, vector <Ckt_Gate_t *> & pOrderedObjs)
 {
     // if this node is already visited, skip
     if (pCktObj->GetVisited())
@@ -166,21 +166,21 @@ void Ckt_Ntk_t::DFS(Ckt_Obj_t * pCktObj, vector <Ckt_Obj_t *> & pOrderedObjs)
 }
 
 
-void Ckt_Ntk_t::SetAllUnvisited(void)
+void Ckt_Gate_Net_t::SetAllUnvisited(void)
 {
     for (auto & pCktObj : cktObjs)
         pCktObj.ResetVisited();
 }
 
 
-void Ckt_Ntk_t::SetAllUnvisited2(void)
+void Ckt_Gate_Net_t::SetAllUnvisited2(void)
 {
     for (auto & pCktObj : cktObjs)
         pCktObj.ResetVisited2();
 }
 
 
-void Ckt_Ntk_t::SortObjects(vector <Ckt_Obj_t *> & pOrderedObjs)
+void Ckt_Gate_Net_t::SortObjects(vector <Ckt_Gate_t *> & pOrderedObjs)
 {
     pOrderedObjs.clear();
     // reset traversal flag
@@ -193,10 +193,10 @@ void Ckt_Ntk_t::SortObjects(vector <Ckt_Obj_t *> & pOrderedObjs)
 }
 
 
-void Ckt_Ntk_t::FeedForward(void)
+void Ckt_Gate_Net_t::FeedForward(void)
 {
     // get topological order
-    vector <Ckt_Obj_t *> pOrderedObjs;
+    vector <Ckt_Gate_t *> pOrderedObjs;
     SortObjects(pOrderedObjs);
     // update
     for (auto & pCktObj : pOrderedObjs)
@@ -204,7 +204,7 @@ void Ckt_Ntk_t::FeedForward(void)
 }
 
 
-void Ckt_Ntk_t::FeedForward(vector <Ckt_Obj_t *> & pOrderedObjs)
+void Ckt_Gate_Net_t::FeedForward(vector <Ckt_Gate_t *> & pOrderedObjs)
 {
     // update
     for (auto & pCktObj : pOrderedObjs)
@@ -212,21 +212,21 @@ void Ckt_Ntk_t::FeedForward(vector <Ckt_Obj_t *> & pOrderedObjs)
 }
 
 
-void Ckt_Ntk_t::FeedForward(list <Ckt_Obj_t *> & subNtk, int i)
+void Ckt_Gate_Net_t::FeedForward(list <Ckt_Gate_t *> & subNtk, int i)
 {
     for (auto & pCktObj : subNtk)
         pCktObj->UpdateCluster(i);
 }
 
 
-void Ckt_Ntk_t::BackupSimRes(void)
+void Ckt_Gate_Net_t::BackupSimRes(void)
 {
     for (auto & cktObj : cktObjs)
         cktObj.BackupClusters();
 }
 
 
-void Ckt_Ntk_t::CheckSimulator(void)
+void Ckt_Gate_Net_t::CheckSimulator(void)
 {
     // only for c6288
     assert(string(pAbcNtk->pName) == "c6288");
@@ -261,7 +261,7 @@ void Ckt_Ntk_t::CheckSimulator(void)
 }
 
 
-int Ckt_Ntk_t::GetErrorRate(Ckt_Ntk_t & refNtk)
+int Ckt_Gate_Net_t::GetErrorRate(Ckt_Gate_Net_t & refNtk)
 {
     // make sure POs are same
     assert(pCktPos.size() == refNtk.pCktPos.size());
@@ -280,15 +280,15 @@ int Ckt_Ntk_t::GetErrorRate(Ckt_Ntk_t & refNtk)
 }
 
 
-Ckt_Obj_t * Ckt_Ntk_t::AddInverter(Ckt_Obj_t & cktObj)
+Ckt_Gate_t * Ckt_Gate_Net_t::AddInverter(Ckt_Gate_t & cktObj)
 {
     assert(!cktObj.IsPO() && !cktObj.IsInv() && !cktObj.IsConst());
     assert(pAbcNtk == cktObj.GetAbcObj()->pNtk);
 
     Abc_Obj_t * pAbcObjNew = Abc_NtkCreateNodeInv(pAbcNtk, cktObj.GetAbcObj());
 
-    cktObjs.emplace_back(Ckt_Obj_t(pAbcObjNew, this));
-    Ckt_Obj_t * pCktObjNew = &(cktObjs.back());
+    cktObjs.emplace_back(Ckt_Gate_t(pAbcObjNew, this));
+    Ckt_Gate_t * pCktObjNew = &(cktObjs.back());
     pCktObjNew->AddFanin(&cktObj);
     cktObj.SetAddedInv(*pCktObjNew);
 
@@ -296,7 +296,7 @@ Ckt_Obj_t * Ckt_Ntk_t::AddInverter(Ckt_Obj_t & cktObj)
 }
 
 
-Ckt_Obj_t * Ckt_Ntk_t::GetInverter(Ckt_Obj_t & cktObj)
+Ckt_Gate_t * Ckt_Gate_Net_t::GetInverter(Ckt_Gate_t & cktObj)
 {
     if (cktObj.HasAddedInv())
         return cktObj.GetAddedInv();
@@ -305,9 +305,9 @@ Ckt_Obj_t * Ckt_Ntk_t::GetInverter(Ckt_Obj_t & cktObj)
 }
 
 
-Ckt_Obj_t * Ckt_Ntk_t::GetInverter2(Ckt_Obj_t & cktObj)
+Ckt_Gate_t * Ckt_Gate_Net_t::GetInverter2(Ckt_Gate_t & cktObj)
 {
-    Ckt_Obj_t * pRet = nullptr;
+    Ckt_Gate_t * pRet = nullptr;
     if (cktObj.HasAddedInv())
         pRet = cktObj.GetAddedInv();
     else {
@@ -318,7 +318,7 @@ Ckt_Obj_t * Ckt_Ntk_t::GetInverter2(Ckt_Obj_t & cktObj)
 }
 
 
-void Ckt_Ntk_t::Replace(Ckt_Obj_t & cktOldObj, Ckt_Obj_t & cktNewObj, vector <Ckt_Rpl_Info_t> & info, bool isInv)
+void Ckt_Gate_Net_t::Replace(Ckt_Gate_t & cktOldObj, Ckt_Gate_t & cktNewObj, vector <Ckt_Rpl_Info_t> & info, bool isInv)
 {
     assert(cktOldObj.GetAbcObj()->pNtk == GetAbcNtk());
     assert(cktNewObj.GetAbcObj()->pNtk == GetAbcNtk());
@@ -327,23 +327,23 @@ void Ckt_Ntk_t::Replace(Ckt_Obj_t & cktOldObj, Ckt_Obj_t & cktNewObj, vector <Ck
     else {
         assert(!cktOldObj.IsInv() && !cktNewObj.IsInv());
         assert(!cktNewObj.IsConst());
-        Ckt_Obj_t * pCktNewInv = GetInverter(cktNewObj);
+        Ckt_Gate_t * pCktNewInv = GetInverter(cktNewObj);
         cktOldObj.ReplaceBy(*pCktNewInv, info);
     }
 }
 
 
-void Ckt_Ntk_t::ReplaceByName(string oldName, string newName, vector <Ckt_Rpl_Info_t> & info)
+void Ckt_Gate_Net_t::ReplaceByName(string oldName, string newName, vector <Ckt_Rpl_Info_t> & info)
 {
     auto itCktOldObj = find_if(cktObjs.begin(), cktObjs.end(),
-                [&oldName](Ckt_Obj_t & obj) {
+                [&oldName](Ckt_Gate_t & obj) {
                     return obj.GetName() == oldName;
                 }
             );
     assert(itCktOldObj != cktObjs.end());
 
     auto itCktNewObj = find_if(cktObjs.begin(), cktObjs.end(),
-                [&newName](Ckt_Obj_t & obj) {
+                [&newName](Ckt_Gate_t & obj) {
                     return obj.GetName() == newName;
                 }
             );
@@ -354,7 +354,7 @@ void Ckt_Ntk_t::ReplaceByName(string oldName, string newName, vector <Ckt_Rpl_In
 }
 
 
-void Ckt_Ntk_t::RecoverFromRpl(vector <Ckt_Rpl_Info_t> & info)
+void Ckt_Gate_Net_t::RecoverFromRpl(vector <Ckt_Rpl_Info_t> & info)
 {
     for (auto it = info.rbegin(); it != info.rend(); ++it) {
         // recover ABC
@@ -377,16 +377,16 @@ void Ckt_Ntk_t::RecoverFromRpl(vector <Ckt_Rpl_Info_t> & info)
 }
 
 
-void Ckt_Ntk_t::CheckFanio(void) const
+void Ckt_Gate_Net_t::CheckFanio(void) const
 {
     for (auto & cktObj : cktObjs)
         cktObj.CheckFanio();
 }
 
 
-void Ckt_Ntk_t::UpdateFoCone(void)
+void Ckt_Gate_Net_t::UpdateFoCone(void)
 {
-    vector <Ckt_Obj_t *> pOrdObjs;
+    vector <Ckt_Gate_t *> pOrdObjs;
     SortObjects(pOrdObjs);
     for (auto & cktObj : cktObjs)
         cktObj.InitFoCone(GetPoNum());
@@ -394,7 +394,7 @@ void Ckt_Ntk_t::UpdateFoCone(void)
         pCktPos[i]->SetFoCone(i);
     for (auto it = pOrdObjs.rbegin(); it != pOrdObjs.rend(); ++it) {
         for (int i = 0; i < (*it)->GetFanoutNum(); ++i) {
-            Ckt_Obj_t * pCktFo = (*it)->GetFanout(i);
+            Ckt_Gate_t * pCktFo = (*it)->GetFanout(i);
             assert((*it)->GetFoConeSize() == pCktFo->GetFoConeSize());
             (*it)->SelfOrFoCone(pCktFo);
         }
@@ -402,7 +402,7 @@ void Ckt_Ntk_t::UpdateFoCone(void)
 }
 
 
-void Ckt_Ntk_t::PrintCut(void) const
+void Ckt_Gate_Net_t::PrintCut(void) const
 {
     for (auto & cktObj : cktObjs) {
         cout << cktObj.GetName() << ":";
@@ -414,7 +414,7 @@ void Ckt_Ntk_t::PrintCut(void) const
 }
 
 
-void Ckt_Ntk_t::PrintCutNtk(void) const
+void Ckt_Gate_Net_t::PrintCutNtk(void) const
 {
     for (auto & cktObj : cktObjs) {
         cout << cktObj.GetName() << ":";
@@ -426,7 +426,7 @@ void Ckt_Ntk_t::PrintCutNtk(void) const
 }
 
 
-void Ckt_Ntk_t::PrintSimRes(void) const
+void Ckt_Gate_Net_t::PrintSimRes(void) const
 {
     for (auto & cktObj : cktObjs) {
         cout << cktObj.GetName() << ":";
@@ -436,7 +436,7 @@ void Ckt_Ntk_t::PrintSimRes(void) const
 }
 
 
-void Ckt_Ntk_t::PrintBD(void) const
+void Ckt_Gate_Net_t::PrintBD(void) const
 {
     for (auto & cktObj : cktObjs)
         cktObj.PrintBD();

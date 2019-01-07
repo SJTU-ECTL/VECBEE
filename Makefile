@@ -1,5 +1,5 @@
 #definitions
-DIR_INC = ./inc
+DIR_INC = ./src
 DIR_ABC_LIB = ./abc
 DIR_ABC_INC = ./abc/src
 DIR_SRC = ./src

@@ -5,7 +5,7 @@ using namespace std;
 using namespace abc;
 
 
-void Ckt_Cec(Ckt_Ntk_t & ckt1, Ckt_Ntk_t & ckt2)
+void Ckt_Cec(Ckt_Gate_Net_t & ckt1, Ckt_Gate_Net_t & ckt2)
 {
     Abc_Ntk_t * pNtk1 = Abc_NtkDup(ckt1.GetAbcNtk());
     Abc_Ntk_t * pNtk2 = Abc_NtkDup(ckt2.GetAbcNtk());

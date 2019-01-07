@@ -1,11 +1,11 @@
-#include "cktObj.h"
+#include "cktGate.h"
 
 
 using namespace std;
 using namespace abc;
 
 
-Ckt_Obj_t::Ckt_Obj_t(Abc_Obj_t * p_abc_obj, Ckt_Ntk_t * p_ckt_ntk)
+Ckt_Gate_t::Ckt_Gate_t(Abc_Obj_t * p_abc_obj, Ckt_Gate_Net_t * p_ckt_ntk)
     : pAbcObj(p_abc_obj), pCktNtk(p_ckt_ntk), type(Ckt_GetObjType(p_abc_obj)), isVisited(false), isNewInv(false), topoId(0), pCktInv(nullptr)
 {
     valueClusters.resize(pCktNtk->GetValClustersNum());
@@ -14,7 +14,7 @@ Ckt_Obj_t::Ckt_Obj_t(Abc_Obj_t * p_abc_obj, Ckt_Ntk_t * p_ckt_ntk)
 }
 
 
-Ckt_Obj_t::Ckt_Obj_t(const Ckt_Obj_t & other)
+Ckt_Gate_t::Ckt_Gate_t(const Ckt_Gate_t & other)
     : pAbcObj(other.pAbcObj), pCktNtk(other.pCktNtk), type(other.GetType()), isVisited(other.isVisited), isNewInv(false), topoId(other.topoId), pCktInv(nullptr)
 {
     // shallow copy
@@ -24,12 +24,12 @@ Ckt_Obj_t::Ckt_Obj_t(const Ckt_Obj_t & other)
 }
 
 
-Ckt_Obj_t::~Ckt_Obj_t(void)
+Ckt_Gate_t::~Ckt_Gate_t(void)
 {
 }
 
 
-void Ckt_Obj_t::PrintFanios(void) const
+void Ckt_Gate_t::PrintFanios(void) const
 {
     string temp = "";
     for (auto & pCktFanin : pCktFanins) {
@@ -46,7 +46,7 @@ void Ckt_Obj_t::PrintFanios(void) const
 }
 
 
-void Ckt_Obj_t::PrintClusters(void) const
+void Ckt_Gate_t::PrintClusters(void) const
 {
     for (auto & cluster : valueClusters) {
         for (int i = 0; i < 64; ++i) {
@@ -56,7 +56,7 @@ void Ckt_Obj_t::PrintClusters(void) const
 }
 
 
-void Ckt_Obj_t::UpdateClusters(void)
+void Ckt_Gate_t::UpdateClusters(void)
 {
     switch ( type ) {
         case Ckt_Obj_Type_t::PI:
@@ -134,7 +134,7 @@ void Ckt_Obj_t::UpdateClusters(void)
 }
 
 
-void Ckt_Obj_t::UpdateCluster(int i)
+void Ckt_Gate_t::UpdateCluster(int i)
 {
     switch ( type ) {
         case Ckt_Obj_Type_t::PI:
@@ -196,7 +196,7 @@ void Ckt_Obj_t::UpdateCluster(int i)
 }
 
 
-void Ckt_Obj_t::ReplaceBy(Ckt_Obj_t & cktNewObj, vector <Ckt_Rpl_Info_t> & info)
+void Ckt_Gate_t::ReplaceBy(Ckt_Gate_t & cktNewObj, vector <Ckt_Rpl_Info_t> & info)
 {
     info.clear();
     assert(!IsPO() && !IsPI() && !IsConst() && !cktNewObj.IsPO() && this != &cktNewObj);
@@ -204,7 +204,7 @@ void Ckt_Obj_t::ReplaceBy(Ckt_Obj_t & cktNewObj, vector <Ckt_Rpl_Info_t> & info)
     Abc_ObjTransferFanout(pAbcObj, cktNewObj.pAbcObj);
 
     // clone fanouts
-    vector <Ckt_Obj_t *> pCktOldFanouts(pCktFanouts);
+    vector <Ckt_Gate_t *> pCktOldFanouts(pCktFanouts);
     // patch fanin
     for (auto & pCktOldFanout : pCktOldFanouts) {
         // replace fanin
@@ -229,7 +229,7 @@ void Ckt_Obj_t::ReplaceBy(Ckt_Obj_t & cktNewObj, vector <Ckt_Rpl_Info_t> & info)
 }
 
 
-void Ckt_Obj_t::CheckFanio(void) const
+void Ckt_Gate_t::CheckFanio(void) const
 {
     Abc_Obj_t * pObj;
     int i;
@@ -242,7 +242,7 @@ void Ckt_Obj_t::CheckFanio(void) const
 }
 
 
-void Ckt_Obj_t::PrintBD(void) const
+void Ckt_Gate_t::PrintBD(void) const
 {
     cout << GetName() << ":" << endl;
     for (int i = 0; i < pCktNtk->GetPoNum(); ++i) {
@@ -254,7 +254,7 @@ void Ckt_Obj_t::PrintBD(void) const
 }
 
 
-Ckt_Rpl_Info_t::Ckt_Rpl_Info_t(Ckt_Obj_t * pObj1, int iFanin, Ckt_Obj_t * pObj2, int iFanout)
+Ckt_Rpl_Info_t::Ckt_Rpl_Info_t(Ckt_Gate_t * pObj1, int iFanin, Ckt_Gate_t * pObj2, int iFanout)
     : pCktObjFrom(pObj1), iCktFanin(iFanin), pCktObjTo(pObj2), iCktFanout(iFanout)
 {
 }

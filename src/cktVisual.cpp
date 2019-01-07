@@ -436,7 +436,7 @@ void Visualize(Abc_Ntk_t * pAbcNtk, string fileName)
 }
 
 
-void Visualize(Ckt_Ntk_t & ckt, string fileName)
+void Visualize(Ckt_Gate_Net_t & ckt, string fileName)
 {
     Visualize(ckt.GetAbcNtk(), fileName);
 }
