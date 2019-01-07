@@ -55,7 +55,7 @@ void BatchErrorEstimation(Ckt_Gate_Net_t & ckt, Ckt_Gate_Net_t & cktRef)
     for (int i = 0; i < ckt.GetPoNum(); ++i)
         ckt.GetPo(i)->SetBD(i, static_cast <uint64_t> (ULLONG_MAX));
     // get arrival time
-    ckt.GetArrivalTime();
+    Ckt_GetArrivalTime(ckt);
     // get candidiate pairs
     vector <Ckt_Rpl_Pair_t> pairs;
     GetValidPair(ckt, pOrderedObjs, pairs);
@@ -71,7 +71,7 @@ void BatchErrorEstimation(Ckt_Gate_Net_t & ckt, Ckt_Gate_Net_t & cktRef)
         // get partial boolean difference
         GetBooleanDifference(ckt, pOrderedObjs, isPoICorrect, fb);
         // update added error rate
-        GetAddedErrorRate(ckt, pairs, fb, isCorrect);
+        GetAddedErrorRate(pairs, fb, isCorrect);
     }
     // Visualize(ckt, "test.dot");
     for (auto & pr : pairs)
@@ -190,7 +190,7 @@ void GetBooleanDifference(Ckt_Gate_Net_t & ckt, vector <Ckt_Gate_t *> & pOrdObjs
 }
 
 
-void GetAddedErrorRate(Ckt_Gate_Net_t & ckt, vector <Ckt_Rpl_Pair_t> & pairs, int fb, uint64_t isCorrect)
+void GetAddedErrorRate(vector <Ckt_Rpl_Pair_t> & pairs, int fb, uint64_t isCorrect)
 {
     for (auto & pr : pairs) {
         uint64_t isDiff = pr.pTS->GetCluster(fb) ^ pr.pSS->GetCluster(fb);
@@ -210,12 +210,12 @@ void GetValidPair(Ckt_Gate_Net_t & ckt, vector <Ckt_Gate_t *> & pOrdObjs, std::v
         for (auto & pCktSS : pOrdObjs) {
             if (pCktSS->IsAddedInv() || pCktSS->IsPO() || pCktTS == pCktSS)
                 continue;
-            if (pCktTS->GetArrivalTime() >= pCktSS->GetArrivalTime())
+            if (Ckt_GetArrivalTime(*pCktTS) >= Ckt_GetArrivalTime(*pCktSS))
                 pairs.emplace_back(Ckt_Rpl_Pair_t(pCktTS, pCktSS));
 
             if (pCktTS->IsInv() || pCktSS->IsInv() || pCktSS->IsConst())
                 continue;
-            if (pCktTS->GetArrivalTime() >= pCktSS->GetArrivalTime() + invDelay) {
+            if (Ckt_GetArrivalTime(*pCktTS) >= Ckt_GetArrivalTime(*pCktSS) + invDelay) {
                 Ckt_Gate_t * pCktInv = ckt.GetInverter2(*pCktSS);
                 pairs.emplace_back(Ckt_Rpl_Pair_t(pCktTS, pCktInv));
             }
@@ -237,7 +237,7 @@ void ReplaceTest(Ckt_Gate_Net_t & ckt)
     cktRef.FeedForward();
     ckt.FeedForward(pOrderedObjs);
     // get arrival time
-    ckt.GetArrivalTime();
+    Ckt_GetArrivalTime(ckt);
     // get candidate pairs
     vector <Ckt_Rpl_Pair_t> pairs;
     GetValidPair(ckt, pOrderedObjs, pairs);

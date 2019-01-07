@@ -4,7 +4,7 @@
 using namespace abc;
 
 
-float Abc_GetArrivalTime( Abc_Ntk_t * pNtk )
+float Abc_GetArrivalTime(Abc_Ntk_t * pNtk)
 {
     Vec_Ptr_t * vNodes;
     Abc_Obj_t * pNode, * pDriver;
@@ -33,7 +33,7 @@ float Abc_GetArrivalTime( Abc_Ntk_t * pNtk )
 }
 
 
-void Abc_NtkTimePrepare( Abc_Ntk_t * pNtk )
+void Abc_NtkTimePrepare(Abc_Ntk_t * pNtk)
 {
     Abc_Obj_t * pObj;
     Abc_Time_t ** ppTimes, * pTime;
@@ -74,7 +74,7 @@ void Abc_NtkTimePrepare( Abc_Ntk_t * pNtk )
 }
 
 
-void Abc_ManTimeExpand( Abc_ManTime_t * p, int nSize, int fProgressive )
+void Abc_ManTimeExpand(Abc_ManTime_t * p, int nSize, int fProgressive)
 {
     Vec_Ptr_t * vTimes;
     Abc_Time_t * ppTimes, * ppTimesOld, * pTime;
@@ -117,7 +117,7 @@ void Abc_ManTimeExpand( Abc_ManTime_t * p, int nSize, int fProgressive )
 }
 
 
-Abc_ManTime_t * Abc_ManTimeStart( Abc_Ntk_t * pNtk )
+Abc_ManTime_t * Abc_ManTimeStart(Abc_Ntk_t * pNtk)
 {
     int fUseZeroDefaultOutputRequired = 1;
     Abc_ManTime_t * p;
@@ -142,7 +142,7 @@ Abc_ManTime_t * Abc_ManTimeStart( Abc_Ntk_t * pNtk )
 }
 
 
-void Abc_NodeDelayTraceArrival( Abc_Obj_t * pNode, Vec_Int_t * vSlacks )
+void Abc_NodeDelayTraceArrival(Abc_Obj_t * pNode, Vec_Int_t * vSlacks)
 {
     Abc_Obj_t * pFanin;
     Abc_Time_t * pTimeIn, * pTimeOut;

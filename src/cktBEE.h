@@ -3,6 +3,7 @@
 
 
 #include "cktGateNet.h"
+#include "cktTiming.h"
 
 
 class Ckt_Rpl_Pair_t
@@ -26,7 +27,7 @@ void            FindCut             (Ckt_Gate_Net_t & ckt, std::list <Ckt_Gate_t
 void            BuildSubNtk         (std::vector <Ckt_Gate_t *> & pOrdObjs, std::list <Ckt_Gate_t *> & subNtk);
 bool            HasSamePo           (Ckt_Gate_Net_t & ckt1, Ckt_Gate_Net_t & ckt2);
 void            GetBooleanDifference(Ckt_Gate_Net_t & ckt, std::vector <Ckt_Gate_t *> & pOrdObjs, std::vector <uint64_t> & isPoICorrect, int fb);
-void            GetAddedErrorRate   (Ckt_Gate_Net_t & ckt, std::vector <Ckt_Rpl_Pair_t> & pairs, int fb, uint64_t isCorrect);
+void            GetAddedErrorRate   (std::vector <Ckt_Rpl_Pair_t> & pairs, int fb, uint64_t isCorrect);
 void            GetValidPair        (Ckt_Gate_Net_t & ckt, std::vector <Ckt_Gate_t *> & pOrdObjs, std::vector < Ckt_Rpl_Pair_t > & pairs);
 void            ReplaceTest         (Ckt_Gate_Net_t & ckt);
 

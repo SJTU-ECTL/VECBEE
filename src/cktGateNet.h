@@ -6,7 +6,6 @@
 #include "cktGate.h"
 #include "cktCec.h"
 #include "cktVisual.h"
-#include "cktTiming.h"
 
 
 class Ckt_Gate_t;
@@ -63,7 +62,6 @@ public:
     inline Ckt_Gate_t *         GetPo               (int i = 0) const { return pCktPos[i]; }
     inline int                  GetValClustersNum   (void) const      { return nValueClusters; }
     inline abc::Abc_Ntk_t *     GetAbcNtk           (void) const      { return pAbcNtk; }
-    inline void                 GetArrivalTime      (void) const      { Abc_GetArrivalTime(GetAbcNtk()); }
 };
 
 

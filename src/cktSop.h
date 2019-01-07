@@ -15,7 +15,7 @@ class Ckt_Sop_t
 {
 private:
     abc::Abc_Obj_t *            pAbcObj;            // the corresponding ABC object
-    Ckt_Gate_Net_t *            pCktNtk;            // the corresponding CKT network
+    // Ckt_Gate_Net_t *            pCktNtk;            // the corresponding CKT network
     // Ckt_Obj_Type_t              type;               // object type
     bool                        isVisited;          // whether the object is visited
     bool                        isNewInv;           // whether the object is a new added inverter
@@ -24,21 +24,20 @@ private:
     std::vector <uint64_t>      valueClustersBak;   // simluation value clusters backup
     std::vector <uint64_t>      foConeInfo;         // mark whether POs are in the objects' fanout cone, each bit corresponds a PO
     std::vector <uint64_t>      BD;                 // partial boolean difference
-    Ckt_Sop_t *                pCktInv;            // pointer to its inverter
-    std::vector <Ckt_Sop_t *>  pCktFanins;         // fanin pointers
-    std::vector <Ckt_Sop_t *>  pCktFanouts;        // fanout pointers
+    std::vector <Ckt_Sop_t *>   pCktFanins;         // fanin pointers
+    std::vector <Ckt_Sop_t *>   pCktFanouts;        // fanout pointers
 
-    Ckt_Sop_t &                operator =          (const Ckt_Sop_t & other);
+    Ckt_Sop_t &                 operator =          (const Ckt_Sop_t &);
 
 public:
-    std::list <Ckt_Sop_t *>    cut;                // the minimum cut in which objects' fanout cone are disjoint
-    std::list <Ckt_Sop_t *>    cutNtk;             // nodes among itself and its cut arranged in topological order
+    std::list <Ckt_Sop_t *>     cut;                // the minimum cut in which objects' fanout cone are disjoint
+    std::list <Ckt_Sop_t *>     cutNtk;             // nodes among itself and its cut arranged in topological order
     uint64_t                    BDPlus;             // temporary
     uint64_t                    BDMinus;            // temporary
 
-    explicit                    Ckt_Sop_t          (abc::Abc_Obj_t * p_abc_obj, Ckt_Gate_Net_t * p_ckt_ntk);
-                                Ckt_Sop_t          (const Ckt_Sop_t & other);
-                                ~Ckt_Sop_t         (void);
+    explicit                    Ckt_Sop_t           (abc::Abc_Obj_t * p_abc_obj, Ckt_Gate_Net_t * p_ckt_ntk);
+                                Ckt_Sop_t           (const Ckt_Sop_t & other);
+                                ~Ckt_Sop_t          (void);
     void                        PrintFanios         (void) const;
     void                        PrintClusters       (void) const;
     void                        UpdateClusters      (void);
@@ -72,10 +71,10 @@ public:
     inline uint64_t             GetBD               (int i) const                   { return BD[i]; }
     inline void                 SelfOrBD            (int i, uint64_t value)         { BD[i] |= value; }
     inline void                 AddFanin            (Ckt_Sop_t * pCktFanin)         { pCktFanins.emplace_back(pCktFanin); pCktFanin->pCktFanouts.emplace_back(this); }
-    inline Ckt_Sop_t *          GetFanin           (int i = 0) const               { return pCktFanins[i]; }
+    inline Ckt_Sop_t *          GetFanin            (int i = 0) const               { return pCktFanins[i]; }
     inline int                  GetFaninNum         (void) const                    { return static_cast <int> (pCktFanins.size()); }
     inline void                 WriteFanin          (int i, Ckt_Sop_t * pCktFanin)  { pCktFanins[i] = pCktFanin; }
-    inline Ckt_Sop_t *          GetFanout          (int i = 0) const               { return pCktFanouts[i]; }
+    inline Ckt_Sop_t *          GetFanout           (int i = 0) const               { return pCktFanouts[i]; }
     inline int                  GetFanoutNum        (void) const                    { return static_cast <int> (pCktFanouts.size()); }
     inline void                 InsertFanout        (int i, Ckt_Sop_t * pCktFanout) { pCktFanouts.insert(pCktFanouts.begin() + i, pCktFanout); }
     inline void                 PopBackFanout       (void)                          { pCktFanouts.pop_back(); }

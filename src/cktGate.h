@@ -37,7 +37,7 @@ private:
     std::vector <Ckt_Gate_t *>  pCktFanins;         // fanin pointers
     std::vector <Ckt_Gate_t *>  pCktFanouts;        // fanout pointers
 
-    Ckt_Gate_t &                operator =          (const Ckt_Gate_t & other);
+    Ckt_Gate_t &                operator =          (const Ckt_Gate_t &);
 
 public:
     std::list <Ckt_Gate_t *>    cut;                // the minimum cut in which objects' fanout cone are disjoint
@@ -89,7 +89,6 @@ public:
     inline void                 InsertFanout        (int i, Ckt_Gate_t * pCktFanout){ pCktFanouts.insert(pCktFanouts.begin() + i, pCktFanout); }
     inline void                 PopBackFanout       (void)                          { pCktFanouts.pop_back(); }
     inline std::string          GetName             (void) const                    { return std::string(Abc_ObjName(pAbcObj)); }
-    inline float                GetArrivalTime      (void) const                    { return (static_cast<abc::Abc_Time_t *>(pAbcObj->pNtk->pManTime->vArrs->pArray[pAbcObj->Id]))->Rise; }
     inline bool                 IsPI                (void) const                    { return type == Ckt_Gate_Cat_t::PI; }
     inline bool                 IsPO                (void) const                    { return type == Ckt_Gate_Cat_t::PO; }
     inline bool                 IsConst             (void) const                    { return type == Ckt_Gate_Cat_t::CONST0 || type == Ckt_Gate_Cat_t::CONST1; }
