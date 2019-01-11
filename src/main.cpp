@@ -2,6 +2,8 @@
 #include "cktBEE.h"
 #include "cmdline.h"
 #include "cktSop.h"
+#include "cktGate.h"
+#include "cktBlif.h"
 
 
 using namespace std;
