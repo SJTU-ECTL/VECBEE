@@ -43,6 +43,7 @@ public:
     void                        FeedForward         (std::list <Ckt_Gate_t *> & pOrderedObjs, int i);
     void                        BackupSimRes        (void);
     void                        CheckSimulator      (void);
+    void                        TestSimulatorSpeed  (void);
     int                         GetErrorRate        (Ckt_Gate_Net_t & refNtk);
     Ckt_Gate_t *                AddInverter         (Ckt_Gate_t & cktObj);
     Ckt_Gate_t *                GetInverter         (Ckt_Gate_t & cktObj);
@@ -57,11 +58,12 @@ public:
     void                        PrintSimRes         (void) const;
     void                        PrintBD             (void) const;
 
-    inline int                  GetObjNum           (void) const      { return static_cast <int> (cktObjs.size()); }
-    inline int                  GetPoNum            (void) const      { return static_cast <int> (pCktPos.size()); }
-    inline Ckt_Gate_t *         GetPo               (int i = 0) const { return pCktPos[i]; }
-    inline int                  GetValClustersNum   (void) const      { return nValueClusters; }
-    inline abc::Abc_Ntk_t *     GetAbcNtk           (void) const      { return pAbcNtk; }
+    inline int                  GetObjNum           (void) const        { return static_cast <int> (cktObjs.size()); }
+    inline int                  GetPoNum            (void) const        { return static_cast <int> (pCktPos.size()); }
+    inline Ckt_Gate_t *         GetPo               (int i = 0) const   { return pCktPos[i]; }
+    inline int                  GetValClustersNum   (void) const        { return nValueClusters; }
+    inline abc::Abc_Ntk_t *     GetAbcNtk           (void) const        { return pAbcNtk; }
+    inline std::string          GetName             (void) const        { return std::string(pAbcNtk->pName); }
 };
 
 

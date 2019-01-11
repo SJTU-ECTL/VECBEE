@@ -26,19 +26,22 @@ parser Cmdline_Parser(int argc, char * argv[])
 void Execute_Gate_Net(Abc_Ntk_t * pAbcNtk, int number)
 {
     Ckt_Gate_Net_t ckt(pAbcNtk, number);
-    Ckt_Gate_Net_t cktRef(ckt);
+    // Ckt_Gate_Net_t cktRef(ckt);
 
-    cout << "brute" << endl;
-    Ckt_ReplaceTest(ckt);
-    cout << "batch" << endl;
-    Ckt_BatchErrorEstimation(ckt, cktRef);
+    // cout << "brute" << endl;
+    // Ckt_ReplaceTest(ckt);
+    // cout << "batch" << endl;
+    // Ckt_BatchErrorEstimation(ckt, cktRef);
+    ckt.TestSimulatorSpeed();
 }
 
 
 void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number)
 {
     Ckt_Sop_Net_t ckt(pAbcNtk, number);
-    ckt.PrintInfo();
+    // ckt.PrintInfo();
+    // ckt.CheckSimulator();
+    ckt.TestSimulatorSpeed();
 }
 
 

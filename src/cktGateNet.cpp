@@ -307,6 +307,20 @@ void Ckt_Gate_Net_t::CheckSimulator(void)
 }
 
 
+void Ckt_Gate_Net_t::TestSimulatorSpeed(void)
+{
+    GenInputDist();
+    vector <Ckt_Gate_t *> pOrderedObjs;
+    SortObjects(pOrderedObjs);
+    clock_t st = clock();
+    FeedForward(pOrderedObjs);
+    clock_t ed = clock();
+    cout << "circuit = " << GetName() << endl;
+    cout << "frame number = " << nValueClusters * 64 << endl;
+    cout << "time = " << ed - st << " us" << endl;
+}
+
+
 int Ckt_Gate_Net_t::GetErrorRate(Ckt_Gate_Net_t & refNtk)
 {
     // make sure POs are same

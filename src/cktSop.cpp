@@ -10,8 +10,8 @@ Ckt_Sop_t::Ckt_Sop_t(Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk)
 {
     valueClusters.resize(pCktNtk->GetValClustersNum());
     valueClustersBak.resize(pCktNtk->GetValClustersNum());
-    foConeInfo.resize((Abc_NtkPoNum(pCktNtk->GetAbcNtk()) >> 6) + 1);
     CollectPCN();
+    foConeInfo.resize((Abc_NtkPoNum(pCktNtk->GetAbcNtk()) >> 6) + 1);
     BD.resize(Abc_NtkPoNum(pCktNtk->GetAbcNtk()));
 }
 
@@ -22,8 +22,8 @@ Ckt_Sop_t::Ckt_Sop_t(const Ckt_Sop_t & other)
     // shallow copy
     valueClusters.resize(other.pCktNtk->GetValClustersNum());
     valueClustersBak.resize(other.pCktNtk->GetValClustersNum());
-    foConeInfo.resize(other.foConeInfo.size());
     PCN.assign(other.PCN.begin(), other.PCN.end());
+    foConeInfo.resize(other.foConeInfo.size());
     BD.resize(other.BD.size());
 }
 
@@ -90,6 +90,83 @@ void Ckt_Sop_t::PrintClusters(void) const
 
 void Ckt_Sop_t::UpdateClusters(void)
 {
+    switch (type) {
+        case Ckt_Sop_Cat_t::PI:
+        case Ckt_Sop_Cat_t::CONST0:
+        case Ckt_Sop_Cat_t::CONST1:
+        break;
+        case Ckt_Sop_Cat_t::PO:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = pCktFanins[0]->valueClusters[i];
+        break;
+        case Ckt_Sop_Cat_t::INTER:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i) {
+                valueClusters[i] = 0;
+                for (auto & cube : PCN) {
+                    uint64_t product = static_cast <uint64_t> (ULLONG_MAX);
+                    for (int j = 0; j < static_cast <int> (cube.length()); ++j) {
+                        if (cube[j] == '0')
+                            product &= ~(pCktFanins[j]->valueClusters[i]);
+                        else if (cube[j] == '1')
+                            product &= pCktFanins[j]->valueClusters[i];
+                    }
+                    valueClusters[i] |= product;
+                }
+            }
+        break;
+    }
+}
+
+
+void Ckt_Sop_t::UpdateCluster(int i)
+{
+    switch (type) {
+        case Ckt_Sop_Cat_t::PI:
+        case Ckt_Sop_Cat_t::CONST0:
+        case Ckt_Sop_Cat_t::CONST1:
+        break;
+        case Ckt_Sop_Cat_t::PO:
+            valueClusters[i] = pCktFanins[0]->valueClusters[i];
+        break;
+        case Ckt_Sop_Cat_t::INTER:
+            valueClusters[i] = 0;
+            for (auto & cube : PCN) {
+                uint64_t product = static_cast <uint64_t> (ULLONG_MAX);
+                for (int j = 0; j < static_cast <int> (cube.length()); ++j) {
+                    if (cube[j] == '0')
+                        product &= ~(pCktFanins[j]->valueClusters[i]);
+                    else if (cube[j] == '1')
+                        product &= pCktFanins[j]->valueClusters[i];
+                }
+                valueClusters[i] |= product;
+            }
+        break;
+    }
+}
+
+
+void Ckt_Sop_t::CheckFanio(void) const
+{
+    Abc_Obj_t * pObj;
+    int i;
+    assert(Abc_ObjFaninNum(pAbcObj) == static_cast <int> (pCktFanins.size()));
+    assert(Abc_ObjFanoutNum(pAbcObj) == static_cast <int> (pCktFanouts.size()));
+    Abc_ObjForEachFanout(pAbcObj, pObj, i)
+        assert(static_cast <string> (Abc_ObjName(pObj)) == pCktFanouts[i]->GetName());
+    Abc_ObjForEachFanin(pAbcObj, pObj, i)
+        assert(static_cast <string> (Abc_ObjName(pObj)) == pCktFanins[i]->GetName());
+}
+
+
+void Ckt_Sop_t::PrintBD(void) const
+{
+    cout << GetName() << ":" << endl;
+    for (int i = 0; i < pCktNtk->GetPoNum(); ++i) {
+        cout << pCktNtk->GetPo(i)->GetName() << ",";
+        for (int j = 0; j < 64; ++j)
+            cout << Ckt_GetBit(BD[i], static_cast <uint64_t> (j));
+        cout << endl;
+    }
 }
 
 

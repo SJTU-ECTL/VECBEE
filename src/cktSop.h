@@ -28,7 +28,6 @@ private:
     std::vector <uint64_t>                  valueClusters;      // simluation value clusters
     std::vector <uint64_t>                  valueClustersBak;   // simluation value clusters backup
     std::vector < std::string >             PCN;                // positional cube notation
-    std::vector < std::vector <uint64_t> >  productsClusters;   // save temporary products
     std::vector <uint64_t>                  foConeInfo;         // mark whether POs are in the objects' fanout cone, each bit corresponds a PO
     std::vector <uint64_t>                  BD;                 // partial boolean difference
     std::vector <Ckt_Sop_t *>               pCktFanins;         // fanin pointers
@@ -56,7 +55,6 @@ public:
 
     inline abc::Abc_Obj_t *                 GetAbcObj           (void) const                    { return pAbcObj; }
     inline Ckt_Sop_Cat_t                    GetType             (void) const                    { return type; }
-    inline std::string                      GetSumOfProduct     (void) const                    { return std::string(static_cast <char *>(pAbcObj->pData)); }
     inline bool                             GetVisited          (void) const                    { return isVisited; }
     inline void                             SetVisited          (void)                          { isVisited = true; }
     inline void                             ResetVisited        (void)                          { isVisited = false; topoId = 0; }
