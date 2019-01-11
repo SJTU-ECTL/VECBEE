@@ -27,6 +27,7 @@ private:
     int                                     topoId;             // mark the index in the topological sequence
     std::vector <uint64_t>                  valueClusters;      // simluation value clusters
     std::vector <uint64_t>                  valueClustersBak;   // simluation value clusters backup
+    std::vector < std::string >             PCN;                // positional cube notation
     std::vector < std::vector <uint64_t> >  productsClusters;   // save temporary products
     std::vector <uint64_t>                  foConeInfo;         // mark whether POs are in the objects' fanout cone, each bit corresponds a PO
     std::vector <uint64_t>                  BD;                 // partial boolean difference
@@ -45,6 +46,8 @@ public:
                                             Ckt_Sop_t           (const Ckt_Sop_t & other);
                                             ~Ckt_Sop_t          (void);
     void                                    PrintFanios         (void) const;
+    void                                    PrintPCN            (void) const;
+    void                                    CollectPCN          (void);
     void                                    PrintClusters       (void) const;
     void                                    UpdateClusters      (void);
     void                                    UpdateCluster       (int i);

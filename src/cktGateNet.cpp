@@ -30,6 +30,8 @@ Ckt_Gate_Net_t::Ckt_Gate_Net_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
     Abc_Obj_t * pAbcObj, * pFanin;
     int i;
 
+    assert(Abc_NtkIsMappedLogic(p_abc_ntk));
+
     // duplicate network
     pAbcNtk = Abc_NtkDup(p_abc_ntk);
 

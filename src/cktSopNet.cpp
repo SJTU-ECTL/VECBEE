@@ -12,6 +12,8 @@ Ckt_Sop_Net_t::Ckt_Sop_Net_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
     Abc_Obj_t * pAbcObj, * pFanin;
     int i;
 
+    assert(Abc_NtkIsSopLogic(p_abc_ntk));
+
     // duplicate network
     pAbcNtk = Abc_NtkDup(p_abc_ntk);
 
@@ -104,13 +106,10 @@ Ckt_Sop_Net_t::~Ckt_Sop_Net_t(void)
 void Ckt_Sop_Net_t::PrintInfo(void) const
 {
     cout << "---------------- Network information ----------------" << endl;
-    cout << "Name\t\tSOP\t";
-    cout << setw(30) << setiosflags(ios::left) << "Fanin";
-    cout << setw(30) << setiosflags(ios::left) << "Fanout";
-    cout << endl;
+    cout << "Name\tType\tSOP" << endl;
     for (auto & obj : cktObjs) {
-        cout << obj.GetName() << "\t\t" << obj.GetType() << "\t";
-        obj.PrintFanios();
+        cout << obj.GetName() << "\t" << obj.GetType() << "\t";
+        obj.PrintPCN();
         cout << endl;
     }
 }

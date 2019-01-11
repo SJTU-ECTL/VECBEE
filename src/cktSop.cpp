@@ -9,7 +9,9 @@ Ckt_Sop_t::Ckt_Sop_t(Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk)
     : pAbcObj(p_abc_obj), pCktNtk(p_ckt_ntk), type(Abc_GetSopType(p_abc_obj)), isVisited(false), topoId(0)
 {
     valueClusters.resize(pCktNtk->GetValClustersNum());
+    valueClustersBak.resize(pCktNtk->GetValClustersNum());
     foConeInfo.resize((Abc_NtkPoNum(pCktNtk->GetAbcNtk()) >> 6) + 1);
+    CollectPCN();
     BD.resize(Abc_NtkPoNum(pCktNtk->GetAbcNtk()));
 }
 
@@ -19,7 +21,9 @@ Ckt_Sop_t::Ckt_Sop_t(const Ckt_Sop_t & other)
 {
     // shallow copy
     valueClusters.resize(other.pCktNtk->GetValClustersNum());
+    valueClustersBak.resize(other.pCktNtk->GetValClustersNum());
     foConeInfo.resize(other.foConeInfo.size());
+    PCN.assign(other.PCN.begin(), other.PCN.end());
     BD.resize(other.BD.size());
 }
 
@@ -43,6 +47,34 @@ void Ckt_Sop_t::PrintFanios(void) const
         temp += ", ";
     }
     cout << setw(30) << setiosflags(ios::left) << temp;
+}
+
+
+void Ckt_Sop_t::PrintPCN(void) const
+{
+    for (auto s : PCN)
+        cout << s << " ";
+}
+
+
+void Ckt_Sop_t::CollectPCN(void)
+{
+    if (IsPI() || IsPO() || IsConst())
+        return;
+    char * pCube, * pSop = (char *)pAbcObj->pData;
+    int Value, v;
+    assert(pSop && !Abc_SopIsExorType(pSop));
+    int nVars = Abc_SopGetVarNum(pSop);
+    PCN.clear();
+    Abc_SopForEachCube(pSop, nVars, pCube) {
+        string s = "";
+        Abc_CubeForEachVar(pCube, Value, v)
+            if (Value == '0' || Value == '1' || Value == '-')
+                s += static_cast<char>(Value);
+            else
+                continue;
+        PCN.emplace_back(s);
+    }
 }
 
 
