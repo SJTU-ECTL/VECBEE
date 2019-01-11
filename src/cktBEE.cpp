@@ -29,11 +29,11 @@ std::ostream & operator << (ostream & os, const Ckt_Rpl_Pair_t & pr)
 }
 
 
-void BatchErrorEstimation(Ckt_Gate_Net_t & ckt, Ckt_Gate_Net_t & cktRef)
+void Ckt_BatchErrorEstimation(Ckt_Gate_Net_t & ckt, Ckt_Gate_Net_t & cktRef)
 {
     assert(&ckt != &cktRef);
     assert(ckt.GetAbcNtk() != cktRef.GetAbcNtk());
-    assert(HasSamePo(ckt, cktRef));
+    assert(Ckt_HasSamePo(ckt, cktRef));
     // get topological sequence
     vector <Ckt_Gate_t *> pOrderedObjs;
     ckt.SortObjects(pOrderedObjs);
@@ -41,8 +41,8 @@ void BatchErrorEstimation(Ckt_Gate_Net_t & ckt, Ckt_Gate_Net_t & cktRef)
     ckt.UpdateFoCone();
     // find cuts and sub-networks
     for (auto & pCktObj : pOrderedObjs) {
-        FindCut(ckt, pCktObj->cut, *pCktObj);
-        BuildSubNtk(pOrderedObjs, pCktObj->cutNtk);
+        Ckt_FindCut(ckt, pCktObj->cut, *pCktObj);
+        Ckt_BuildSubNtk(pOrderedObjs, pCktObj->cutNtk);
     }
     // get base error rate & backup
     cktRef.GenInputDist(314);
@@ -58,7 +58,7 @@ void BatchErrorEstimation(Ckt_Gate_Net_t & ckt, Ckt_Gate_Net_t & cktRef)
     Ckt_GetArrivalTime(ckt);
     // get candidiate pairs
     vector <Ckt_Rpl_Pair_t> pairs;
-    GetValidPair(ckt, pOrderedObjs, pairs);
+    Ckt_GetValidPair(ckt, pOrderedObjs, pairs);
     // batch
     vector <uint64_t> isPoICorrect(ckt.GetPoNum(), 0);
     for (int fb = 0; fb < ckt.GetValClustersNum(); ++fb) {
@@ -69,9 +69,9 @@ void BatchErrorEstimation(Ckt_Gate_Net_t & ckt, Ckt_Gate_Net_t & cktRef)
             isCorrect &= isPoICorrect[i];
         }
         // get partial boolean difference
-        GetBooleanDifference(ckt, pOrderedObjs, isPoICorrect, fb);
+        Ckt_GetBooleanDifference(ckt, pOrderedObjs, isPoICorrect, fb);
         // update added error rate
-        GetAddedErrorRate(pairs, fb, isCorrect);
+        Ckt_GetAddedErrorRate(pairs, fb, isCorrect);
     }
     // Visualize(ckt, "test.dot");
     for (auto & pr : pairs)
@@ -81,7 +81,7 @@ void BatchErrorEstimation(Ckt_Gate_Net_t & ckt, Ckt_Gate_Net_t & cktRef)
 }
 
 
-Ckt_Gate_t * CheckExpansion(list <Ckt_Gate_t *> & cut)
+Ckt_Gate_t * Ckt_CheckExpansion(list <Ckt_Gate_t *> & cut)
 {
     for (auto ppCktObj1 = cut.begin(); ppCktObj1 != cut.end(); ++ppCktObj1) {
         auto ppCktObj2 = ppCktObj1;
@@ -109,7 +109,7 @@ Ckt_Gate_t * CheckExpansion(list <Ckt_Gate_t *> & cut)
 }
 
 
-void Expand(Ckt_Gate_t & cktObj, list <Ckt_Gate_t *> & cut)
+void Ckt_Expand(Ckt_Gate_t & cktObj, list <Ckt_Gate_t *> & cut)
 {
     for (int i = 0; i < cktObj.GetFanoutNum(); ++i) {
         Ckt_Gate_t * pCktFo = cktObj.GetFanout(i);
@@ -121,21 +121,21 @@ void Expand(Ckt_Gate_t & cktObj, list <Ckt_Gate_t *> & cut)
 }
 
 
-void FindCut(Ckt_Gate_Net_t & ckt, list <Ckt_Gate_t *> & cut, Ckt_Gate_t & cktSrcObj)
+void Ckt_FindCut(Ckt_Gate_Net_t & ckt, list <Ckt_Gate_t *> & cut, Ckt_Gate_t & cktSrcObj)
 {
     // init
     cut.clear();
     ckt.SetAllUnvisited2();
     // expand the source object
-    Expand(cktSrcObj, cut);
+    Ckt_Expand(cktSrcObj, cut);
     // expand until all objects in the cut are disjoint
     Ckt_Gate_t * pCktExpd = nullptr;
-    while ((pCktExpd = CheckExpansion(cut)) != nullptr)
-        Expand(*pCktExpd, cut);
+    while ((pCktExpd = Ckt_CheckExpansion(cut)) != nullptr)
+        Ckt_Expand(*pCktExpd, cut);
 }
 
 
-void BuildSubNtk(vector <Ckt_Gate_t *> & pOrdObjs, list <Ckt_Gate_t *> & subNtk)
+void Ckt_BuildSubNtk(vector <Ckt_Gate_t *> & pOrdObjs, list <Ckt_Gate_t *> & subNtk)
 {
     subNtk.clear();
     for (auto & pCktObj : pOrdObjs)
@@ -144,7 +144,7 @@ void BuildSubNtk(vector <Ckt_Gate_t *> & pOrdObjs, list <Ckt_Gate_t *> & subNtk)
 }
 
 
-bool HasSamePo(Ckt_Gate_Net_t & ckt1, Ckt_Gate_Net_t & ckt2)
+bool Ckt_HasSamePo(Ckt_Gate_Net_t & ckt1, Ckt_Gate_Net_t & ckt2)
 {
     if (ckt1.GetPoNum() != ckt2.GetPoNum())
         return false;
@@ -155,7 +155,7 @@ bool HasSamePo(Ckt_Gate_Net_t & ckt1, Ckt_Gate_Net_t & ckt2)
 }
 
 
-void GetBooleanDifference(Ckt_Gate_Net_t & ckt, vector <Ckt_Gate_t *> & pOrdObjs, vector <uint64_t> & isPoICorrect, int fb)
+void Ckt_GetBooleanDifference(Ckt_Gate_Net_t & ckt, vector <Ckt_Gate_t *> & pOrdObjs, vector <uint64_t> & isPoICorrect, int fb)
 {
     for (auto ppCktObj = pOrdObjs.rbegin(); ppCktObj != pOrdObjs.rend(); ++ppCktObj) {
         if ((*ppCktObj)->cut.empty())
@@ -190,7 +190,7 @@ void GetBooleanDifference(Ckt_Gate_Net_t & ckt, vector <Ckt_Gate_t *> & pOrdObjs
 }
 
 
-void GetAddedErrorRate(vector <Ckt_Rpl_Pair_t> & pairs, int fb, uint64_t isCorrect)
+void Ckt_GetAddedErrorRate(vector <Ckt_Rpl_Pair_t> & pairs, int fb, uint64_t isCorrect)
 {
     for (auto & pr : pairs) {
         uint64_t isDiff = pr.pTS->GetCluster(fb) ^ pr.pSS->GetCluster(fb);
@@ -200,7 +200,7 @@ void GetAddedErrorRate(vector <Ckt_Rpl_Pair_t> & pairs, int fb, uint64_t isCorre
 }
 
 
-void GetValidPair(Ckt_Gate_Net_t & ckt, vector <Ckt_Gate_t *> & pOrdObjs, std::vector <Ckt_Rpl_Pair_t> & pairs)
+void Ckt_GetValidPair(Ckt_Gate_Net_t & ckt, vector <Ckt_Gate_t *> & pOrdObjs, std::vector <Ckt_Rpl_Pair_t> & pairs)
 {
     pairs.clear();
     float invDelay = Mio_LibraryReadDelayInvRise(static_cast<Mio_Library_t *> (Abc_FrameReadLibGen()));
@@ -224,10 +224,10 @@ void GetValidPair(Ckt_Gate_Net_t & ckt, vector <Ckt_Gate_t *> & pOrdObjs, std::v
 }
 
 
-void ReplaceTest(Ckt_Gate_Net_t & ckt)
+void Ckt_ReplaceTest(Ckt_Gate_Net_t & ckt)
 {
     Ckt_Gate_Net_t cktRef(ckt);
-    assert(HasSamePo(ckt, cktRef));
+    assert(Ckt_HasSamePo(ckt, cktRef));
     // get topological sequence
     vector <Ckt_Gate_t *> pOrderedObjs;
     ckt.SortObjects(pOrderedObjs);
@@ -240,7 +240,7 @@ void ReplaceTest(Ckt_Gate_Net_t & ckt)
     Ckt_GetArrivalTime(ckt);
     // get candidate pairs
     vector <Ckt_Rpl_Pair_t> pairs;
-    GetValidPair(ckt, pOrderedObjs, pairs);
+    Ckt_GetValidPair(ckt, pOrderedObjs, pairs);
     // replace and recover
     vector <Ckt_Rpl_Info_t> info;
     for (auto & pr : pairs) {

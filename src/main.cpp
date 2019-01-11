@@ -29,9 +29,9 @@ void Execute_Gate_Net(Abc_Ntk_t * pAbcNtk, int number)
     Ckt_Gate_Net_t cktRef(ckt);
 
     cout << "brute" << endl;
-    ReplaceTest(ckt);
+    Ckt_ReplaceTest(ckt);
     cout << "batch" << endl;
-    BatchErrorEstimation(ckt, cktRef);
+    Ckt_BatchErrorEstimation(ckt, cktRef);
 }
 
 
@@ -53,7 +53,7 @@ int main(int argc, char * argv[])
     Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
     string command = "read_genlib -v " + genlib;
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
-    command = "read " + file;
+    command = "read_blif " + file;
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
 
     Abc_Ntk_t * pAbcNtk = Abc_FrameReadNtk(pAbc);
