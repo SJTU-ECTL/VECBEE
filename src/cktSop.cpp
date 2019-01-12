@@ -78,6 +78,17 @@ void Ckt_Sop_t::CollectPCN(void)
 }
 
 
+int Ckt_Sop_t::GetLiterals(void) const
+{
+    int nLiterals = 0;
+    for (auto & s : PCN)
+        for (auto & ch : s)
+            if (ch != '-')
+                ++nLiterals;
+    return nLiterals;
+}
+
+
 void Ckt_Sop_t::PrintClusters(void) const
 {
     for (auto & cluster : valueClusters) {

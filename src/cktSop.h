@@ -47,6 +47,7 @@ public:
     void                                    PrintFanios         (void) const;
     void                                    PrintPCN            (void) const;
     void                                    CollectPCN          (void);
+    int                                     GetLiterals         (void) const;
     void                                    PrintClusters       (void) const;
     void                                    UpdateClusters      (void);
     void                                    UpdateCluster       (int i);

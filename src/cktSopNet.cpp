@@ -105,13 +105,16 @@ Ckt_Sop_Net_t::~Ckt_Sop_Net_t(void)
 
 void Ckt_Sop_Net_t::PrintInfo(void) const
 {
+    int maxNLiterals = -INT_MAX;
     cout << "---------------- Network information ----------------" << endl;
-    cout << "Name\tType\tSOP" << endl;
+    cout << "Name\tType\tSOP\t#literals" << endl;
     for (auto & obj : cktObjs) {
         cout << obj.GetName() << "\t" << obj.GetType() << "\t";
         obj.PrintPCN();
-        cout << endl;
+        cout << "\t" << obj.GetLiterals() << endl;
+        maxNLiterals = max(maxNLiterals, obj.GetLiterals());
     }
+    cout << "Max #literals = " << maxNLiterals << endl;
 }
 
 

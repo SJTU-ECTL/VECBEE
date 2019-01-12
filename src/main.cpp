@@ -39,9 +39,9 @@ void Execute_Gate_Net(Abc_Ntk_t * pAbcNtk, int number)
 void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number)
 {
     Ckt_Sop_Net_t ckt(pAbcNtk, number);
-    // ckt.PrintInfo();
+    ckt.PrintInfo();
     // ckt.CheckSimulator();
-    ckt.TestSimulatorSpeed();
+    // ckt.TestSimulatorSpeed();
 }
 
 
