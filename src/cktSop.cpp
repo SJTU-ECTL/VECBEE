@@ -10,7 +10,9 @@ Ckt_Sop_t::Ckt_Sop_t(Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk)
 {
     valueClusters.resize(pCktNtk->GetValClustersNum());
     valueClustersBak.resize(pCktNtk->GetValClustersNum());
-    CollectPCN();
+    CollectSOP();
+    GetLiteralsNum();
+    GenerateALCs();
     foConeInfo.resize((Abc_NtkPoNum(pCktNtk->GetAbcNtk()) >> 6) + 1);
     BD.resize(Abc_NtkPoNum(pCktNtk->GetAbcNtk()));
 }
@@ -19,10 +21,11 @@ Ckt_Sop_t::Ckt_Sop_t(Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk)
 Ckt_Sop_t::Ckt_Sop_t(const Ckt_Sop_t & other)
     : pAbcObj(other.pAbcObj), pCktNtk(other.pCktNtk), type(other.GetType()), isVisited(other.isVisited), topoId(other.topoId)
 {
-    // shallow copy
     valueClusters.resize(other.pCktNtk->GetValClustersNum());
     valueClustersBak.resize(other.pCktNtk->GetValClustersNum());
-    PCN.assign(other.PCN.begin(), other.PCN.end());
+    SOP.assign(other.SOP.begin(), other.SOP.end());
+    nLiterals = other.nLiterals;
+    ALCs.assign(other.ALCs.begin(), other.ALCs.end());
     foConeInfo.resize(other.foConeInfo.size());
     BD.resize(other.BD.size());
 }
@@ -50,14 +53,21 @@ void Ckt_Sop_t::PrintFanios(void) const
 }
 
 
-void Ckt_Sop_t::PrintPCN(void) const
+void Ckt_Sop_t::PrintSOP(void) const
 {
-    for (auto s : PCN)
+    for (auto & s : SOP)
         cout << s << " ";
 }
 
 
-void Ckt_Sop_t::CollectPCN(void)
+void Ckt_Sop_t::PrintSOP(vector <string> & strs) const
+{
+    for (auto & s : strs)
+        cout << s << " ";
+}
+
+
+void Ckt_Sop_t::CollectSOP(void)
 {
     if (IsPI() || IsPO() || IsConst())
         return;
@@ -65,7 +75,7 @@ void Ckt_Sop_t::CollectPCN(void)
     int Value, v;
     assert(pSop && !Abc_SopIsExorType(pSop));
     int nVars = Abc_SopGetVarNum(pSop);
-    PCN.clear();
+    SOP.clear();
     Abc_SopForEachCube(pSop, nVars, pCube) {
         string s = "";
         Abc_CubeForEachVar(pCube, Value, v)
@@ -73,19 +83,78 @@ void Ckt_Sop_t::CollectPCN(void)
                 s += static_cast<char>(Value);
             else
                 continue;
-        PCN.emplace_back(s);
+        SOP.emplace_back(s);
     }
 }
 
 
-int Ckt_Sop_t::GetLiterals(void) const
+void Ckt_Sop_t::GenerateALCs(int maxNLiterals)
 {
-    int nLiterals = 0;
-    for (auto & s : PCN)
+    ALCs.clear();
+    GenerateALCsRecur(0, 0, 0, maxNLiterals);
+}
+
+
+void Ckt_Sop_t::GenerateALCsRecur(int i, int j, int n, int maxNLiterals)
+{
+    cout << i << "\t" << j << "\t" << n << endl;
+    PrintSOP();
+    cout << endl;
+    if (n > maxNLiterals)
+        return;
+    else if (i >= static_cast<int>(SOP.size())) {
+        vector <string> ALC(SOP);
+        for (auto it = ALC.begin(); it != ALC.end(); ++it) {
+            bool isAllDC = true;
+            for (auto & ch : *it) {
+                if (ch != '-') {
+                    isAllDC = false;
+                    break;
+                }
+            }
+            if (isAllDC) {
+                ALC.erase(it);
+                --it;
+            }
+        }
+        if (!ALC.empty() && n)
+            ALCs.emplace_back(ALC);
+        return;
+    }
+    else if (j >= static_cast<int>(SOP[i].size()))
+        GenerateALCsRecur(i + 1, 0, n);
+    else {
+        // do not change
+        GenerateALCsRecur(i, j + 1, n);
+        // change
+        if (SOP[i][j] != '-') {
+            char bak = SOP[i][j];
+            SOP[i][j] = '-';
+            GenerateALCsRecur(i, j + 1, n + 1);
+            SOP[i][j] = bak;
+        }
+    }
+}
+
+
+void Ckt_Sop_t::PrintALCs(void) const
+{
+    for (auto ALC : ALCs) {
+        PrintSOP(ALC);
+        cout << ";";
+    }
+}
+
+
+int Ckt_Sop_t::GetLiteralsNum(void)
+{
+    int ret = 0;
+    for (auto & s : SOP)
         for (auto & ch : s)
             if (ch != '-')
-                ++nLiterals;
-    return nLiterals;
+                ++ret;
+    nLiterals = ret;
+    return ret;
 }
 
 
@@ -113,7 +182,7 @@ void Ckt_Sop_t::UpdateClusters(void)
         case Ckt_Sop_Cat_t::INTER:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i) {
                 valueClusters[i] = 0;
-                for (auto & cube : PCN) {
+                for (auto & cube : SOP) {
                     uint64_t product = static_cast <uint64_t> (ULLONG_MAX);
                     for (int j = 0; j < static_cast <int> (cube.length()); ++j) {
                         if (cube[j] == '0')
@@ -141,7 +210,7 @@ void Ckt_Sop_t::UpdateCluster(int i)
         break;
         case Ckt_Sop_Cat_t::INTER:
             valueClusters[i] = 0;
-            for (auto & cube : PCN) {
+            for (auto & cube : SOP) {
                 uint64_t product = static_cast <uint64_t> (ULLONG_MAX);
                 for (int j = 0; j < static_cast <int> (cube.length()); ++j) {
                     if (cube[j] == '0')

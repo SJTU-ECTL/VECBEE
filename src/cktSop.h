@@ -25,9 +25,11 @@ private:
     Ckt_Sop_Cat_t                           type;               // object type
     bool                                    isVisited;          // whether the object is visited
     int                                     topoId;             // mark the index in the topological sequence
+    int                                     nLiterals;          // # literals
     std::vector <uint64_t>                  valueClusters;      // simluation value clusters
     std::vector <uint64_t>                  valueClustersBak;   // simluation value clusters backup
-    std::vector < std::string >             PCN;                // positional cube notation
+    std::vector <std::string>               SOP;                // positional cube notation
+    std::vector < std::vector<std::string> >ALCs;               // approximate local changes (exclude 0/1)
     std::vector <uint64_t>                  foConeInfo;         // mark whether POs are in the objects' fanout cone, each bit corresponds a PO
     std::vector <uint64_t>                  BD;                 // partial boolean difference
     std::vector <Ckt_Sop_t *>               pCktFanins;         // fanin pointers
@@ -45,9 +47,13 @@ public:
                                             Ckt_Sop_t           (const Ckt_Sop_t & other);
                                             ~Ckt_Sop_t          (void);
     void                                    PrintFanios         (void) const;
-    void                                    PrintPCN            (void) const;
-    void                                    CollectPCN          (void);
-    int                                     GetLiterals         (void) const;
+    void                                    PrintSOP            (void) const;
+    void                                    PrintSOP            (std::vector <std::string> & strs) const;
+    void                                    CollectSOP          (void);
+    void                                    GenerateALCs        (int maxNLiterals = 5);
+    void                                    GenerateALCsRecur   (int i, int j, int n, int maxNLiterals = 5);
+    void                                    PrintALCs           (void) const;
+    int                                     GetLiteralsNum      (void);
     void                                    PrintClusters       (void) const;
     void                                    UpdateClusters      (void);
     void                                    UpdateCluster       (int i);
@@ -62,6 +68,8 @@ public:
     inline void                             ResetVisited2       (void)                          { isVisited = false; }
     inline void                             SetTopoId           (int i)                         { topoId = i; }
     inline int                              GetTopoId           (void) const                    { return topoId; }
+    inline int                              GetNLiterals        (void) const                    { return nLiterals; }
+    inline int                              GetALCsNum          (void) const                    { return static_cast <int> (ALCs.size()); }
     inline int                              GetClustersSize     (void) const                    { return static_cast <int> (valueClusters.size()); }
     inline void                             ResizeClusters      (int len)                       { valueClusters.resize(len); }
     inline void                             BackupClusters      (void)                          { valueClustersBak.assign(valueClusters.begin(), valueClusters.end()); }
