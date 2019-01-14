@@ -25,7 +25,7 @@ Ckt_Sop_t::Ckt_Sop_t(const Ckt_Sop_t & other)
     valueClustersBak.resize(other.pCktNtk->GetValClustersNum());
     SOP.assign(other.SOP.begin(), other.SOP.end());
     nLiterals = other.nLiterals;
-    ALCs.assign(other.ALCs.begin(), other.ALCs.end());
+    nonConstALCs.assign(other.nonConstALCs.begin(), other.nonConstALCs.end());
     foConeInfo.resize(other.foConeInfo.size());
     BD.resize(other.BD.size());
 }
@@ -90,16 +90,13 @@ void Ckt_Sop_t::CollectSOP(void)
 
 void Ckt_Sop_t::GenerateALCs(int maxNLiterals)
 {
-    ALCs.clear();
+    nonConstALCs.clear();
     GenerateALCsRecur(0, 0, 0, maxNLiterals);
 }
 
 
 void Ckt_Sop_t::GenerateALCsRecur(int i, int j, int n, int maxNLiterals)
 {
-    cout << i << "\t" << j << "\t" << n << endl;
-    PrintSOP();
-    cout << endl;
     if (n > maxNLiterals)
         return;
     else if (i >= static_cast<int>(SOP.size())) {
@@ -118,7 +115,7 @@ void Ckt_Sop_t::GenerateALCsRecur(int i, int j, int n, int maxNLiterals)
             }
         }
         if (!ALC.empty() && n)
-            ALCs.emplace_back(ALC);
+            nonConstALCs.emplace_back(ALC);
         return;
     }
     else if (j >= static_cast<int>(SOP[i].size()))
@@ -139,10 +136,11 @@ void Ckt_Sop_t::GenerateALCsRecur(int i, int j, int n, int maxNLiterals)
 
 void Ckt_Sop_t::PrintALCs(void) const
 {
-    for (auto ALC : ALCs) {
+    for (auto ALC : nonConstALCs) {
         PrintSOP(ALC);
         cout << ";";
     }
+    cout << "CONST0 ; CONST1 ;";
 }
 
 
