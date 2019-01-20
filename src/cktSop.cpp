@@ -12,7 +12,6 @@ Ckt_Sop_t::Ckt_Sop_t(Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk)
     valueClustersBak.resize(pCktNtk->GetValClustersNum());
     CollectSOP();
     GetLiteralsNum();
-    GenerateALCs();
     foConeInfo.resize((Abc_NtkPoNum(pCktNtk->GetAbcNtk()) >> 6) + 1);
     BD.resize(Abc_NtkPoNum(pCktNtk->GetAbcNtk()));
 }
@@ -25,7 +24,6 @@ Ckt_Sop_t::Ckt_Sop_t(const Ckt_Sop_t & other)
     valueClustersBak.resize(other.pCktNtk->GetValClustersNum());
     SOP.assign(other.SOP.begin(), other.SOP.end());
     nLiterals = other.nLiterals;
-    nonConstALCs.assign(other.nonConstALCs.begin(), other.nonConstALCs.end());
     foConeInfo.resize(other.foConeInfo.size());
     BD.resize(other.BD.size());
 }
@@ -85,62 +83,6 @@ void Ckt_Sop_t::CollectSOP(void)
                 continue;
         SOP.emplace_back(s);
     }
-}
-
-
-void Ckt_Sop_t::GenerateALCs(int maxNLiterals)
-{
-    nonConstALCs.clear();
-    GenerateALCsRecur(0, 0, 0, maxNLiterals);
-}
-
-
-void Ckt_Sop_t::GenerateALCsRecur(int i, int j, int n, int maxNLiterals)
-{
-    if (n > maxNLiterals)
-        return;
-    else if (i >= static_cast<int>(SOP.size())) {
-        vector <string> ALC(SOP);
-        for (auto it = ALC.begin(); it != ALC.end(); ++it) {
-            bool isAllDC = true;
-            for (auto & ch : *it) {
-                if (ch != '-') {
-                    isAllDC = false;
-                    break;
-                }
-            }
-            if (isAllDC) {
-                ALC.erase(it);
-                --it;
-            }
-        }
-        if (!ALC.empty() && n)
-            nonConstALCs.emplace_back(ALC);
-        return;
-    }
-    else if (j >= static_cast<int>(SOP[i].size()))
-        GenerateALCsRecur(i + 1, 0, n);
-    else {
-        // do not change
-        GenerateALCsRecur(i, j + 1, n);
-        // change
-        if (SOP[i][j] != '-') {
-            char bak = SOP[i][j];
-            SOP[i][j] = '-';
-            GenerateALCsRecur(i, j + 1, n + 1);
-            SOP[i][j] = bak;
-        }
-    }
-}
-
-
-void Ckt_Sop_t::PrintALCs(void) const
-{
-    for (auto ALC : nonConstALCs) {
-        PrintSOP(ALC);
-        cout << ";";
-    }
-    cout << "CONST0 ; CONST1 ;";
 }
 
 

@@ -1,28 +1,28 @@
-#include "cktBEE.h"
+#include "cktSASIMI.h"
 
 
 using namespace std;
 using namespace abc;
 
 
-Ckt_Rpl_Pair_t::Ckt_Rpl_Pair_t(Ckt_Gate_t * p_ts, Ckt_Gate_t * p_ss)
+Ckt_SASIMI_Candi_t::Ckt_SASIMI_Candi_t(Ckt_Gate_t * p_ts, Ckt_Gate_t * p_ss)
     : pTS(p_ts), pSS(p_ss), addedER(0)
 {
 }
 
 
-Ckt_Rpl_Pair_t::Ckt_Rpl_Pair_t(const Ckt_Rpl_Pair_t & other)
-    : pTS(other.pTS), pSS(other.pSS), addedER(0)
+Ckt_SASIMI_Candi_t::Ckt_SASIMI_Candi_t(const Ckt_SASIMI_Candi_t & other)
+    : pTS(other.pTS), pSS(other.pSS), addedER(other.addedER)
 {
 }
 
 
-Ckt_Rpl_Pair_t::~Ckt_Rpl_Pair_t(void)
+Ckt_SASIMI_Candi_t::~Ckt_SASIMI_Candi_t(void)
 {
 }
 
 
-std::ostream & operator << (ostream & os, const Ckt_Rpl_Pair_t & pr)
+std::ostream & operator << (ostream & os, const Ckt_SASIMI_Candi_t & pr)
 {
     cout << pr.pTS->GetName() << "\t" << pr.pSS->GetName() << "\t" << pr.addedER;
     return os;
@@ -49,7 +49,7 @@ void Ckt_BatchErrorEstimation(Ckt_Gate_Net_t & ckt, Ckt_Gate_Net_t & cktRef)
     ckt.GenInputDist(314);
     cktRef.FeedForward();
     ckt.FeedForward(pOrderedObjs);
-    int baseError = ckt.GetErrorRate(cktRef);
+    // int baseError = ckt.GetErrorRate(cktRef);
     ckt.BackupSimRes();
     // init parital difference
     for (int i = 0; i < ckt.GetPoNum(); ++i)
@@ -57,8 +57,8 @@ void Ckt_BatchErrorEstimation(Ckt_Gate_Net_t & ckt, Ckt_Gate_Net_t & cktRef)
     // get arrival time
     Ckt_GetArrivalTime(ckt);
     // get candidiate pairs
-    vector <Ckt_Rpl_Pair_t> pairs;
-    Ckt_GetValidPair(ckt, pOrderedObjs, pairs);
+    vector <Ckt_SASIMI_Candi_t> pairs;
+    Ckt_GetALCs(ckt, pOrderedObjs, pairs);
     // batch
     vector <uint64_t> isPoICorrect(ckt.GetPoNum(), 0);
     for (int fb = 0; fb < ckt.GetValClustersNum(); ++fb) {
@@ -190,7 +190,7 @@ void Ckt_GetBooleanDifference(Ckt_Gate_Net_t & ckt, vector <Ckt_Gate_t *> & pOrd
 }
 
 
-void Ckt_GetAddedErrorRate(vector <Ckt_Rpl_Pair_t> & pairs, int fb, uint64_t isCorrect)
+void Ckt_GetAddedErrorRate(vector <Ckt_SASIMI_Candi_t> & pairs, int fb, uint64_t isCorrect)
 {
     for (auto & pr : pairs) {
         uint64_t isDiff = pr.pTS->GetCluster(fb) ^ pr.pSS->GetCluster(fb);
@@ -200,7 +200,7 @@ void Ckt_GetAddedErrorRate(vector <Ckt_Rpl_Pair_t> & pairs, int fb, uint64_t isC
 }
 
 
-void Ckt_GetValidPair(Ckt_Gate_Net_t & ckt, vector <Ckt_Gate_t *> & pOrdObjs, std::vector <Ckt_Rpl_Pair_t> & pairs)
+void Ckt_GetALCs(Ckt_Gate_Net_t & ckt, vector <Ckt_Gate_t *> & pOrdObjs, std::vector <Ckt_SASIMI_Candi_t> & pairs)
 {
     pairs.clear();
     float invDelay = Mio_LibraryReadDelayInvRise(static_cast<Mio_Library_t *> (Abc_FrameReadLibGen()));
@@ -211,20 +211,20 @@ void Ckt_GetValidPair(Ckt_Gate_Net_t & ckt, vector <Ckt_Gate_t *> & pOrdObjs, st
             if (pCktSS->IsAddedInv() || pCktSS->IsPO() || pCktTS == pCktSS)
                 continue;
             if (Ckt_GetArrivalTime(*pCktTS) >= Ckt_GetArrivalTime(*pCktSS))
-                pairs.emplace_back(Ckt_Rpl_Pair_t(pCktTS, pCktSS));
+                pairs.emplace_back(Ckt_SASIMI_Candi_t(pCktTS, pCktSS));
 
             if (pCktTS->IsInv() || pCktSS->IsInv() || pCktSS->IsConst())
                 continue;
             if (Ckt_GetArrivalTime(*pCktTS) >= Ckt_GetArrivalTime(*pCktSS) + invDelay) {
                 Ckt_Gate_t * pCktInv = ckt.GetInverter2(*pCktSS);
-                pairs.emplace_back(Ckt_Rpl_Pair_t(pCktTS, pCktInv));
+                pairs.emplace_back(Ckt_SASIMI_Candi_t(pCktTS, pCktInv));
             }
         }
     }
 }
 
 
-void Ckt_ReplaceTest(Ckt_Gate_Net_t & ckt)
+void Ckt_EnumerateTest(Ckt_Gate_Net_t & ckt)
 {
     Ckt_Gate_Net_t cktRef(ckt);
     assert(Ckt_HasSamePo(ckt, cktRef));
@@ -239,8 +239,8 @@ void Ckt_ReplaceTest(Ckt_Gate_Net_t & ckt)
     // get arrival time
     Ckt_GetArrivalTime(ckt);
     // get candidate pairs
-    vector <Ckt_Rpl_Pair_t> pairs;
-    Ckt_GetValidPair(ckt, pOrderedObjs, pairs);
+    vector <Ckt_SASIMI_Candi_t> pairs;
+    Ckt_GetALCs(ckt, pOrderedObjs, pairs);
     // replace and recover
     vector <Ckt_Rpl_Info_t> info;
     for (auto & pr : pairs) {
@@ -251,6 +251,3 @@ void Ckt_ReplaceTest(Ckt_Gate_Net_t & ckt)
         // Ckt_Cec(cktRef, ckt);
     }
 }
-
-
-
