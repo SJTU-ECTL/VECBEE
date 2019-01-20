@@ -348,3 +348,69 @@ void Ckt_Sop_Net_t::RecoverFromRpl(Ckt_Sing_Sel_Info_t & info)
         assert(0);
     memcpy(info.pCktObj->GetAbcObj()->pData, tmp.c_str(), tmp.length() + 1);
 }
+
+
+void Ckt_Sop_Net_t::CheckFanio(void) const
+{
+    for (auto & cktObj : cktObjs)
+        cktObj.CheckFanio();
+}
+
+
+void Ckt_Sop_Net_t::UpdateFoCone(void)
+{
+    vector <Ckt_Sop_t *> pOrdObjs;
+    SortObjects(pOrdObjs);
+    for (auto & cktObj : cktObjs)
+        cktObj.InitFoCone(GetPoNum());
+    for (int i = 0; i < GetPoNum(); ++i)
+        pCktPos[i]->SetFoCone(i);
+    for (auto it = pOrdObjs.rbegin(); it != pOrdObjs.rend(); ++it) {
+        for (int i = 0; i < (*it)->GetFanoutNum(); ++i) {
+            Ckt_Sop_t * pCktFo = (*it)->GetFanout(i);
+            assert((*it)->GetFoConeSize() == pCktFo->GetFoConeSize());
+            (*it)->SelfOrFoCone(pCktFo);
+        }
+    }
+}
+
+
+void Ckt_Sop_Net_t::PrintCut(void) const
+{
+    for (auto & cktObj : cktObjs) {
+        cout << cktObj.GetName() << ":";
+        for (auto & pCktFg : cktObj.cut) {
+            cout << pCktFg->GetName() << "\t";
+        }
+        cout << endl;
+    }
+}
+
+
+void Ckt_Sop_Net_t::PrintCutNtk(void) const
+{
+    for (auto & cktObj : cktObjs) {
+        cout << cktObj.GetName() << ":";
+        for (auto & pCktObj: cktObj.cutNtk) {
+            cout << pCktObj->GetName() << "\t";
+        }
+        cout << endl;
+    }
+}
+
+
+void Ckt_Sop_Net_t::PrintSimRes(void) const
+{
+    for (auto & cktObj : cktObjs) {
+        cout << cktObj.GetName() << ":";
+        cktObj.PrintClusters();
+        cout << endl;
+    }
+}
+
+
+void Ckt_Sop_Net_t::PrintBD(void) const
+{
+    for (auto & cktObj : cktObjs)
+        cktObj.PrintBD();
+}

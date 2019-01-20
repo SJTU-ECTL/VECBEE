@@ -4,29 +4,139 @@ using namespace std;
 using namespace abc;
 
 
-Ckt_Sing_Sel_ALC_t::Ckt_Sing_Sel_ALC_t(Ckt_Sop_t * p_ckt_obj, vector <string> _sop, Ckt_Sop_Cat_t _type)
+Ckt_Sing_Sel_Candi_t::Ckt_Sing_Sel_Candi_t(Ckt_Sop_t * p_ckt_obj, vector <string> _sop, Ckt_Sop_Cat_t _type)
     : pCktObj(p_ckt_obj), type(_type), addedER(0)
 {
     SOP.assign(_sop.begin(), _sop.end());
 }
 
 
-Ckt_Sing_Sel_ALC_t::Ckt_Sing_Sel_ALC_t(const Ckt_Sing_Sel_ALC_t & other)
+Ckt_Sing_Sel_Candi_t::Ckt_Sing_Sel_Candi_t(const Ckt_Sing_Sel_Candi_t & other)
     : pCktObj(other.pCktObj), type(other.type), addedER(other.addedER)
 {
     SOP.assign(other.SOP.begin(), other.SOP.end());
 }
 
 
-Ckt_Sing_Sel_ALC_t::~Ckt_Sing_Sel_ALC_t(void)
+Ckt_Sing_Sel_Candi_t::~Ckt_Sing_Sel_Candi_t(void)
 {
 }
 
 
-ostream & operator << (ostream & os, const Ckt_Sing_Sel_ALC_t & ALC)
+ostream & operator << (ostream & os, const Ckt_Sing_Sel_Candi_t & candi)
 {
-    cout << ALC.pCktObj->GetName() << "\t" << ALC.SOP << "\t" << ALC.type;
+    cout << candi.pCktObj->GetName() << "\t" << candi.SOP << "\t" << candi.type << "\t" << candi.addedER;
     return os;
+}
+
+
+void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
+{
+    assert(&ckt != &cktRef);
+    assert(ckt.GetAbcNtk() != cktRef.GetAbcNtk());
+    assert(Ckt_HasSamePo(ckt, cktRef));
+    // get topological sequence
+    vector <Ckt_Sop_t *> pOrderedObjs;
+    ckt.SortObjects(pOrderedObjs);
+    // update fanout cone information
+    ckt.UpdateFoCone();
+    // find cuts and sub-networks
+    for (auto & pCktObj : pOrderedObjs) {
+        Ckt_FindCut(ckt, pCktObj->cut, *pCktObj);
+        Ckt_BuildSubNtk(pOrderedObjs, pCktObj->cutNtk);
+    }
+    // get base error rate & backup
+    cktRef.GenInputDist(314);
+    ckt.GenInputDist(314);
+    cktRef.FeedForward();
+    ckt.FeedForward(pOrderedObjs);
+    // int baseError = ckt.GetErrorRate(cktRef);
+    ckt.BackupSimRes();
+    // init parital difference
+    for (int i = 0; i < ckt.GetPoNum(); ++i)
+        ckt.GetPo(i)->SetBD(i, static_cast <uint64_t> (ULLONG_MAX));
+    // get candidiates
+    vector <Ckt_Sing_Sel_Candi_t> candis;
+    Ckt_GetALCs(ckt, pOrderedObjs, candis);
+    // batch
+    vector <uint64_t> isPoICorrect(ckt.GetPoNum(), 0);
+    for (int fb = 0; fb < ckt.GetValClustersNum(); ++fb) {
+        // check PO correctness
+        uint64_t isCorrect = static_cast <uint64_t> (ULLONG_MAX);
+        for (int i = 0; i < ckt.GetPoNum(); ++i) {
+            isPoICorrect[i] = ~(ckt.GetPo(i)->GetCluster(fb) ^ cktRef.GetPo(i)->GetCluster(fb));
+            isCorrect &= isPoICorrect[i];
+        }
+        // get partial boolean difference
+        Ckt_GetBooleanDifference(ckt, pOrderedObjs, isPoICorrect, fb);
+        // update added error rate
+        Ckt_GetAddedErrorRate(candis, fb, isCorrect);
+    }
+    // for (auto & pr : candis)
+    //     cout << pr << endl;
+}
+
+
+Ckt_Sop_t * Ckt_CheckExpansion(list <Ckt_Sop_t *> & cut)
+{
+    for (auto ppCktObj1 = cut.begin(); ppCktObj1 != cut.end(); ++ppCktObj1) {
+        auto ppCktObj2 = ppCktObj1;
+        ++ppCktObj2;
+        for (; ppCktObj2 != cut.end(); ++ppCktObj2) {
+            assert((*ppCktObj1)->GetFoConeSize() == (*ppCktObj2)->GetFoConeSize());
+            assert((*ppCktObj1)->GetTopoId() != (*ppCktObj2)->GetTopoId());
+            for (int i = 0; i < (*ppCktObj1)->GetFoConeSize(); ++i) {
+                if ((*ppCktObj1)->GetFoCone(i) & (*ppCktObj2)->GetFoCone(i)) {
+                    Ckt_Sop_t * pRet = nullptr;
+                    if ((*ppCktObj1)->GetTopoId() < (*ppCktObj2)->GetTopoId()) {
+                        pRet = *ppCktObj1;
+                        cut.erase(ppCktObj1);
+                    }
+                    else {
+                        pRet = *ppCktObj2;
+                        cut.erase(ppCktObj2);
+                    }
+                    return pRet;
+                }
+            }
+        }
+    }
+    return nullptr;
+}
+
+
+void Ckt_Expand(Ckt_Sop_t & cktObj, list <Ckt_Sop_t *> & cut)
+{
+    for (int i = 0; i < cktObj.GetFanoutNum(); ++i) {
+        Ckt_Sop_t * pCktFo = cktObj.GetFanout(i);
+        if (!pCktFo->GetVisited() && !pCktFo->IsDanggling()) {
+            cut.emplace_back(pCktFo);
+            pCktFo->SetVisited();
+        }
+    }
+}
+
+
+void Ckt_FindCut(Ckt_Sop_Net_t & ckt, list <Ckt_Sop_t *> & cut, Ckt_Sop_t & cktSrcObj)
+{
+    // init
+    cut.clear();
+    ckt.SetAllUnvisited2();
+    // expand the source object
+    Ckt_Expand(cktSrcObj, cut);
+    // expand until all objects in the cut are disjoint
+    Ckt_Sop_t * pCktExpd = nullptr;
+    while ((pCktExpd = Ckt_CheckExpansion(cut)) != nullptr)
+        Ckt_Expand(*pCktExpd, cut);
+}
+
+
+void Ckt_BuildSubNtk(vector <Ckt_Sop_t *> & pOrdObjs, list <Ckt_Sop_t *> & subNtk)
+{
+    subNtk.clear();
+    for (auto & pCktObj : pOrdObjs)
+        if (pCktObj->GetVisited())
+            subNtk.emplace_back(pCktObj);
 }
 
 
@@ -41,22 +151,22 @@ bool Ckt_HasSamePo(Ckt_Sop_Net_t & ckt1, Ckt_Sop_Net_t & ckt2)
 }
 
 
-void Ckt_GetALCs(Ckt_Sop_Net_t & ckt, vector <Ckt_Sop_t *> & pOrdObjs, vector < Ckt_Sing_Sel_ALC_t > & ALCs, int maxLiteralNum)
+void Ckt_GetALCs(Ckt_Sop_Net_t & ckt, vector <Ckt_Sop_t *> & pOrdObjs, vector < Ckt_Sing_Sel_Candi_t > & candis, int maxLiteralNum)
 {
-    ALCs.clear();
+    candis.clear();
     vector <string> tmp;
     tmp.clear();
     for (auto & pCktObj : pOrdObjs) {
         if (pCktObj->IsPI() || pCktObj->IsPO() || pCktObj->IsConst())
             continue;
-        ALCs.emplace_back(Ckt_Sing_Sel_ALC_t(pCktObj, tmp, Ckt_Sop_Cat_t::CONST0));
-        ALCs.emplace_back(Ckt_Sing_Sel_ALC_t(pCktObj, tmp, Ckt_Sop_Cat_t::CONST1));
-        Ckt_GetALCsRecur(pCktObj, ALCs, 0, 0, 0, maxLiteralNum);
+        candis.emplace_back(Ckt_Sing_Sel_Candi_t(pCktObj, tmp, Ckt_Sop_Cat_t::CONST0));
+        candis.emplace_back(Ckt_Sing_Sel_Candi_t(pCktObj, tmp, Ckt_Sop_Cat_t::CONST1));
+        Ckt_GetALCsRecur(pCktObj, candis, 0, 0, 0, maxLiteralNum);
     }
 }
 
 
-void Ckt_GetALCsRecur(Ckt_Sop_t * pCktObj, vector < Ckt_Sing_Sel_ALC_t > & ALCs, int i, int j, int n, int maxLiteralNum)
+void Ckt_GetALCsRecur(Ckt_Sop_t * pCktObj, vector < Ckt_Sing_Sel_Candi_t > & candis, int i, int j, int n, int maxLiteralNum)
 {
     if (n > maxLiteralNum)
         return;
@@ -77,23 +187,69 @@ void Ckt_GetALCsRecur(Ckt_Sop_t * pCktObj, vector < Ckt_Sing_Sel_ALC_t > & ALCs,
             }
         }
         if (!tmp.empty() && n)
-            ALCs.emplace_back(Ckt_Sing_Sel_ALC_t(pCktObj, tmp, pCktObj->GetType()));
+            candis.emplace_back(Ckt_Sing_Sel_Candi_t(pCktObj, tmp, pCktObj->GetType()));
         return;
     }
     else if (j >= pCktObj->GetSOPISize(i))
-        Ckt_GetALCsRecur(pCktObj, ALCs, i + 1, 0, n);
+        Ckt_GetALCsRecur(pCktObj, candis, i + 1, 0, n);
     else {
         // do not change
-        Ckt_GetALCsRecur(pCktObj, ALCs, i, j + 1, n);
+        Ckt_GetALCsRecur(pCktObj, candis, i, j + 1, n);
         // change
         if (pCktObj->GetSOPIJ(i, j) != '-') {
             char bak = pCktObj->GetSOPIJ(i, j);
             pCktObj->SetSOPIJ(i, j, '-');
-            Ckt_GetALCsRecur(pCktObj, ALCs, i, j + 1, n + 1);
+            Ckt_GetALCsRecur(pCktObj, candis, i, j + 1, n + 1);
             pCktObj->SetSOPIJ(i, j, bak);
         }
     }
 }
+
+
+void Ckt_GetBooleanDifference(Ckt_Sop_Net_t & ckt, vector <Ckt_Sop_t *> & pOrdObjs, vector <uint64_t> & isPoICorrect, int fb)
+{
+    for (auto ppCktObj = pOrdObjs.rbegin(); ppCktObj != pOrdObjs.rend(); ++ppCktObj) {
+        if ((*ppCktObj)->cut.empty())
+            continue;
+        // init
+        (*ppCktObj)->BDPlus = 0;
+        (*ppCktObj)->BDMinus = static_cast <uint64_t> (ULLONG_MAX);
+        for (int i = 0; i < ckt.GetPoNum(); ++i)
+            (*ppCktObj)->SetBD(i, 0);
+        // flip
+        (*ppCktObj)->FlipCluster(fb);
+        // simulate
+        ckt.FeedForward((*ppCktObj)->cutNtk, fb);
+        // record boolean difference
+        for (auto & pCktObj : (*ppCktObj)->cut) {
+            for (int i = 0; i < ckt.GetPoNum(); ++i) {
+                (*ppCktObj)->SelfOrBD(
+                    i,
+                    pCktObj->XorClusterBak(fb) & pCktObj->GetBD(i)
+                );
+            }
+        }
+        for (int i = 0; i < ckt.GetPoNum(); ++i) {
+            (*ppCktObj)->BDPlus |= (*ppCktObj)->GetBD(i);
+            (*ppCktObj)->BDMinus &= (isPoICorrect[i] ^ (*ppCktObj)->GetBD(i));
+        }
+        // recover
+        for (auto & pCktObj : (*ppCktObj)->cutNtk)
+            pCktObj->RecoverCluster(fb);
+        (*ppCktObj)->FlipCluster(fb);
+    }
+}
+
+
+void Ckt_GetAddedErrorRate(vector <Ckt_Sing_Sel_Candi_t> & candis, int fb, uint64_t isCorrect)
+{
+    for (auto & candi: candis) {
+        uint64_t isDiff = candi.pCktObj->GetCluster(fb) ^ candi.pCktObj->GetClusterValue(candi.SOP, candi.type, fb);
+        candi.addedER += Ckt_CountOneNum(isCorrect & candi.pCktObj->BDPlus & isDiff);
+        candi.addedER -= Ckt_CountOneNum(~isCorrect & candi.pCktObj->BDMinus & isDiff);
+    }
+}
+
 
 
 void Ckt_EnumerateTest(Ckt_Sop_Net_t & ckt)
@@ -109,14 +265,15 @@ void Ckt_EnumerateTest(Ckt_Sop_Net_t & ckt)
     cktRef.FeedForward();
     ckt.FeedForward(pOrderedObjs);
     // get candidate candis
-    vector <Ckt_Sing_Sel_ALC_t> candis;
+    vector <Ckt_Sing_Sel_Candi_t> candis;
     Ckt_GetALCs(ckt, pOrderedObjs, candis);
     // replace and recover
     Ckt_Sing_Sel_Info_t info;
     for (auto & candi: candis) {
         ckt.Replace(*(candi.pCktObj), candi.SOP, candi.type, info);
         ckt.FeedForward();
-        cout << candi << "\t" << ckt.GetErrorRate(cktRef) << endl;
+        candi.addedER = ckt.GetErrorRate(cktRef);
+        cout << candi << endl;
         ckt.RecoverFromRpl(info);
         // Ckt_Cec(cktRef, ckt);
     }

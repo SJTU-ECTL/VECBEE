@@ -126,6 +126,8 @@ void Ckt_Sop_t::UpdateClusters(void)
                 }
             }
         break;
+        default:
+        assert(0);
     }
 }
 
@@ -134,8 +136,12 @@ void Ckt_Sop_t::UpdateCluster(int i)
 {
     switch (type) {
         case Ckt_Sop_Cat_t::PI:
+        break;
         case Ckt_Sop_Cat_t::CONST0:
+            valueClusters[i] = 0;
+        break;
         case Ckt_Sop_Cat_t::CONST1:
+            valueClusters[i] = static_cast <uint64_t> (ULLONG_MAX);
         break;
         case Ckt_Sop_Cat_t::PO:
             valueClusters[i] = pCktFanins[0]->valueClusters[i];
@@ -153,7 +159,45 @@ void Ckt_Sop_t::UpdateCluster(int i)
                 valueClusters[i] |= product;
             }
         break;
+        default:
+        assert(0);
     }
+}
+
+
+uint64_t Ckt_Sop_t::GetClusterValue(std::vector <std::string> & newSOP, Ckt_Sop_Cat_t type, int i)
+{
+    uint64_t ret = 0;
+    switch (type) {
+        case Ckt_Sop_Cat_t::PI:
+        break;
+        case Ckt_Sop_Cat_t::CONST0:
+            return 0;
+        break;
+        case Ckt_Sop_Cat_t::CONST1:
+            return static_cast <uint64_t> (ULLONG_MAX);
+        break;
+        case Ckt_Sop_Cat_t::PO:
+            return pCktFanins[0]->valueClusters[i];
+        break;
+        case Ckt_Sop_Cat_t::INTER:
+            ret = 0;
+            for (auto & cube : newSOP) {
+                uint64_t product = static_cast <uint64_t> (ULLONG_MAX);
+                for (int j = 0; j < static_cast <int> (cube.length()); ++j) {
+                    if (cube[j] == '0')
+                        product &= ~(pCktFanins[j]->valueClusters[i]);
+                    else if (cube[j] == '1')
+                        product &= pCktFanins[j]->valueClusters[i];
+                }
+                ret |= product;
+            }
+            return ret;
+        break;
+        default:
+        assert(0);
+    }
+    return 0;
 }
 
 

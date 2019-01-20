@@ -52,6 +52,7 @@ public:
     void                                    PrintClusters       (void) const;
     void                                    UpdateClusters      (void);
     void                                    UpdateCluster       (int i);
+    uint64_t                                GetClusterValue     (std::vector <std::string> & newSOP, Ckt_Sop_Cat_t type, int i);
     void                                    ReplaceBy           (std::vector <std::string> & newSOP, Ckt_Sop_Cat_t _type, Ckt_Sing_Sel_Info_t & info);
     void                                    CheckFanio          (void) const;
     void                                    PrintBD             (void) const;
