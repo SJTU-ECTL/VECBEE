@@ -198,7 +198,7 @@ void Ckt_Gate_t::UpdateCluster(int i)
 }
 
 
-void Ckt_Gate_t::ReplaceBy(Ckt_Gate_t & cktNewObj, vector <Ckt_Rpl_Info_t> & info)
+void Ckt_Gate_t::ReplaceBy(Ckt_Gate_t & cktNewObj, vector <Ckt_SASIMI_Info_t> & info)
 {
     info.clear();
     assert(!IsPO() && !IsPI() && !IsConst() && !cktNewObj.IsPO() && this != &cktNewObj);
@@ -225,7 +225,7 @@ void Ckt_Gate_t::ReplaceBy(Ckt_Gate_t & cktNewObj, vector <Ckt_Rpl_Info_t> & inf
         cktNewObj.pCktFanouts.emplace_back(pCktOldFanout);
 
         // record history
-        info.emplace_back(Ckt_Rpl_Info_t(this,          itCktFanin - pCktOldFanout->pCktFanins.begin(),
+        info.emplace_back(Ckt_SASIMI_Info_t(this,          itCktFanin - pCktOldFanout->pCktFanins.begin(),
                                          pCktOldFanout, itCktFanout - pCktFanouts.begin()));
     }
 }
@@ -256,13 +256,13 @@ void Ckt_Gate_t::PrintBD(void) const
 }
 
 
-Ckt_Rpl_Info_t::Ckt_Rpl_Info_t(Ckt_Gate_t * pObj1, int iFanin, Ckt_Gate_t * pObj2, int iFanout)
+Ckt_SASIMI_Info_t::Ckt_SASIMI_Info_t(Ckt_Gate_t * pObj1, int iFanin, Ckt_Gate_t * pObj2, int iFanout)
     : pCktObjFrom(pObj1), iCktFanin(iFanin), pCktObjTo(pObj2), iCktFanout(iFanout)
 {
 }
 
 
-Ckt_Rpl_Info_t::~Ckt_Rpl_Info_t(void)
+Ckt_SASIMI_Info_t::~Ckt_SASIMI_Info_t(void)
 {
 }
 
@@ -337,7 +337,7 @@ ostream & operator << (ostream & os, const Ckt_Gate_Cat_t & type)
 }
 
 
-ostream & operator << (ostream & os, const Ckt_Rpl_Info_t & info)
+ostream & operator << (ostream & os, const Ckt_SASIMI_Info_t & info)
 {
     cout << info.pCktObjFrom->GetName() << "\t";
     cout << info.pCktObjTo->GetName() << "\t";

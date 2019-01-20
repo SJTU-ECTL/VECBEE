@@ -4,11 +4,11 @@
 
 #include <boost/random.hpp>
 #include "cktSop.h"
-#include "cktCec.h"
-#include "cktVisual.h"
 
 
 class Ckt_Sop_t;
+class Ckt_Sing_Sel_Info_t;
+enum class Ckt_Sop_Cat_t;
 
 
 class Ckt_Sop_Net_t
@@ -44,12 +44,8 @@ public:
     void                        CheckSimulator      (void);
     void                        TestSimulatorSpeed  (void);
     int                         GetErrorRate        (Ckt_Sop_Net_t & refNtk);
-    Ckt_Sop_t *                 AddInverter         (Ckt_Sop_t & cktObj);
-    Ckt_Sop_t *                 GetInverter         (Ckt_Sop_t & cktObj);
-    Ckt_Sop_t *                 GetInverter2        (Ckt_Sop_t & cktObj);
-    void                        Replace             (Ckt_Sop_t & cktOldObj, Ckt_Sop_t & cktNewObj, std::vector <Ckt_Rpl_Info_t> & info, bool isInv = false);
-    void                        ReplaceByName       (std::string oldName, std::string newName, std::vector <Ckt_Rpl_Info_t> & info);
-    void                        RecoverFromRpl      (std::vector <Ckt_Rpl_Info_t> & info);
+    void                        Replace             (Ckt_Sop_t & cktObj, std::vector <std::string> & newSOP, Ckt_Sop_Cat_t _type, Ckt_Sing_Sel_Info_t & info);
+    void                        RecoverFromRpl      (Ckt_Sing_Sel_Info_t & info);
     void                        CheckFanio          (void) const;
     void                        UpdateFoCone        (void);
     void                        PrintCut            (void) const;

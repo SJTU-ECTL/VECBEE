@@ -4,12 +4,10 @@
 
 #include <boost/random.hpp>
 #include "cktGate.h"
-#include "cktCec.h"
-#include "cktVisual.h"
 
 
 class Ckt_Gate_t;
-class Ckt_Rpl_Info_t;
+class Ckt_SASIMI_Info_t;
 
 
 class Ckt_Gate_Net_t
@@ -48,9 +46,9 @@ public:
     Ckt_Gate_t *                AddInverter         (Ckt_Gate_t & cktObj);
     Ckt_Gate_t *                GetInverter         (Ckt_Gate_t & cktObj);
     Ckt_Gate_t *                GetInverter2        (Ckt_Gate_t & cktObj);
-    void                        Replace             (Ckt_Gate_t & cktOldObj, Ckt_Gate_t & cktNewObj, std::vector <Ckt_Rpl_Info_t> & info, bool isInv = false);
-    void                        ReplaceByName       (std::string oldName, std::string newName, std::vector <Ckt_Rpl_Info_t> & info);
-    void                        RecoverFromRpl      (std::vector <Ckt_Rpl_Info_t> & info);
+    void                        Replace             (Ckt_Gate_t & cktOldObj, Ckt_Gate_t & cktNewObj, std::vector <Ckt_SASIMI_Info_t> & info, bool isInv = false);
+    void                        ReplaceByName       (std::string oldName, std::string newName, std::vector <Ckt_SASIMI_Info_t> & info);
+    void                        RecoverFromRpl      (std::vector <Ckt_SASIMI_Info_t> & info);
     void                        CheckFanio          (void) const;
     void                        UpdateFoCone        (void);
     void                        PrintCut            (void) const;
@@ -61,6 +59,8 @@ public:
     inline int                  GetObjNum           (void) const        { return static_cast <int> (cktObjs.size()); }
     inline int                  GetPoNum            (void) const        { return static_cast <int> (pCktPos.size()); }
     inline Ckt_Gate_t *         GetPo               (int i = 0) const   { return pCktPos[i]; }
+    inline Ckt_Gate_t *         GetConst0           (void) const        { return pCktConst0; }
+    inline Ckt_Gate_t *         GetConst1           (void) const        { return pCktConst1; }
     inline int                  GetValClustersNum   (void) const        { return nValueClusters; }
     inline abc::Abc_Ntk_t *     GetAbcNtk           (void) const        { return pAbcNtk; }
     inline std::string          GetName             (void) const        { return std::string(pAbcNtk->pName); }

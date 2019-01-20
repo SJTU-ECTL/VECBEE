@@ -8,7 +8,7 @@
 #include "cktBit.h"
 
 
-class Ckt_Rpl_Info_t;
+class Ckt_SASIMI_Info_t;
 class Ckt_Gate_Net_t;
 
 
@@ -52,7 +52,7 @@ public:
     void                        PrintClusters       (void) const;
     void                        UpdateClusters      (void);
     void                        UpdateCluster       (int i);
-    void                        ReplaceBy           (Ckt_Gate_t & cktNewObj, std::vector <Ckt_Rpl_Info_t> & info);
+    void                        ReplaceBy           (Ckt_Gate_t & cktNewObj, std::vector <Ckt_SASIMI_Info_t> & info);
     void                        CheckFanio          (void) const;
     void                        PrintBD             (void) const;
 
@@ -103,7 +103,7 @@ public:
 };
 
 
-class Ckt_Rpl_Info_t
+class Ckt_SASIMI_Info_t
 {
 public:
     Ckt_Gate_t *                pCktObjFrom;
@@ -111,13 +111,13 @@ public:
     Ckt_Gate_t *                pCktObjTo;
     int                         iCktFanout;
 
-    explicit                    Ckt_Rpl_Info_t      (Ckt_Gate_t * pObj1, int iFanin, Ckt_Gate_t * pObj2, int iFanout);
-                                ~Ckt_Rpl_Info_t     (void);
+    explicit                    Ckt_SASIMI_Info_t      (Ckt_Gate_t * pObj1, int iFanin, Ckt_Gate_t * pObj2, int iFanout);
+                                ~Ckt_SASIMI_Info_t     (void);
 };
 
 
 std::ostream &                  operator <<         (std::ostream & os, const Ckt_Gate_Cat_t & type);
-std::ostream &                  operator <<         (std::ostream & os, const Ckt_Rpl_Info_t & info);
+std::ostream &                  operator <<         (std::ostream & os, const Ckt_SASIMI_Info_t & info);
 Ckt_Gate_Cat_t                  Abc_GetGateType     (abc::Abc_Obj_t * pObj);
 bool                            Abc_GateIsConst0    (abc::Abc_Obj_t * pObj);
 bool                            Abc_GateIsConst1    (abc::Abc_Obj_t * pObj);

@@ -4,15 +4,15 @@ using namespace std;
 using namespace abc;
 
 
-Ckt_Sing_Sel_ALC_t::Ckt_Sing_Sel_ALC_t(Ckt_Sop_t * p_ckt_obj, vector <string> _sop, Ckt_Sop_Cat_t _type):
-    pCktObj(p_ckt_obj), type(_type), addedER(0)
+Ckt_Sing_Sel_ALC_t::Ckt_Sing_Sel_ALC_t(Ckt_Sop_t * p_ckt_obj, vector <string> _sop, Ckt_Sop_Cat_t _type)
+    : pCktObj(p_ckt_obj), type(_type), addedER(0)
 {
     SOP.assign(_sop.begin(), _sop.end());
 }
 
 
-Ckt_Sing_Sel_ALC_t::Ckt_Sing_Sel_ALC_t(const Ckt_Sing_Sel_ALC_t & other):
-    pCktObj(other.pCktObj), type(other.type), addedER(other.addedER)
+Ckt_Sing_Sel_ALC_t::Ckt_Sing_Sel_ALC_t(const Ckt_Sing_Sel_ALC_t & other)
+    : pCktObj(other.pCktObj), type(other.type), addedER(other.addedER)
 {
     SOP.assign(other.SOP.begin(), other.SOP.end());
 }
@@ -20,14 +20,6 @@ Ckt_Sing_Sel_ALC_t::Ckt_Sing_Sel_ALC_t(const Ckt_Sing_Sel_ALC_t & other):
 
 Ckt_Sing_Sel_ALC_t::~Ckt_Sing_Sel_ALC_t(void)
 {
-}
-
-
-ostream & operator << (ostream & os, const vector <string> & SOP)
-{
-    for (auto & s : SOP)
-        cout << s << "|";
-    return os;
 }
 
 
@@ -61,9 +53,6 @@ void Ckt_GetALCs(Ckt_Sop_Net_t & ckt, vector <Ckt_Sop_t *> & pOrdObjs, vector < 
         ALCs.emplace_back(Ckt_Sing_Sel_ALC_t(pCktObj, tmp, Ckt_Sop_Cat_t::CONST1));
         Ckt_GetALCsRecur(pCktObj, ALCs, 0, 0, 0, maxLiteralNum);
     }
-    for (auto & ALC : ALCs)
-        cout << ALC << endl;
-    cout << ALCs.size() << endl;
 }
 
 
@@ -123,12 +112,12 @@ void Ckt_EnumerateTest(Ckt_Sop_Net_t & ckt)
     vector <Ckt_Sing_Sel_ALC_t> candis;
     Ckt_GetALCs(ckt, pOrderedObjs, candis);
     // replace and recover
-    // vector <Ckt_Rpl_Info_t> info;
-    // for (auto & pr : candis) {
-    //     ckt.Replace(*pr.pTS, *pr.pSS, info);
-    //     ckt.FeedForward();
-    //     cout << pr.pTS->GetName() << "\t" << pr.pSS->GetName() << "\t" << ckt.GetErrorRate(cktRef) << endl;
-    //     ckt.RecoverFromRpl(info);
-    //     // Ckt_Cec(cktRef, ckt);
-    // }
+    Ckt_Sing_Sel_Info_t info;
+    for (auto & candi: candis) {
+        ckt.Replace(*(candi.pCktObj), candi.SOP, candi.type, info);
+        ckt.FeedForward();
+        cout << candi << "\t" << ckt.GetErrorRate(cktRef) << endl;
+        ckt.RecoverFromRpl(info);
+        // Ckt_Cec(cktRef, ckt);
+    }
 }

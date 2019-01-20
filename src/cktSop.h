@@ -8,6 +8,7 @@
 #include "cktSopNet.h"
 
 
+class Ckt_Sing_Sel_Info_t;
 class Ckt_Sop_Net_t;
 
 
@@ -46,18 +47,18 @@ public:
                                             Ckt_Sop_t           (const Ckt_Sop_t & other);
                                             ~Ckt_Sop_t          (void);
     void                                    PrintFanios         (void) const;
-    void                                    PrintSOP            (void) const;
-    void                                    PrintSOP            (std::vector <std::string> & strs) const;
     void                                    CollectSOP          (void);
     int                                     GetLiteralsNum      (void);
     void                                    PrintClusters       (void) const;
     void                                    UpdateClusters      (void);
     void                                    UpdateCluster       (int i);
+    void                                    ReplaceBy           (std::vector <std::string> & newSOP, Ckt_Sop_Cat_t _type, Ckt_Sing_Sel_Info_t & info);
     void                                    CheckFanio          (void) const;
     void                                    PrintBD             (void) const;
 
     inline abc::Abc_Obj_t *                 GetAbcObj           (void) const                            { return pAbcObj; }
     inline Ckt_Sop_Cat_t                    GetType             (void) const                            { return type; }
+    inline void                             SetType             (Ckt_Sop_Cat_t _type)                   { type = _type; }
     inline bool                             GetVisited          (void) const                            { return isVisited; }
     inline void                             SetVisited          (void)                                  { isVisited = true; }
     inline void                             ResetVisited        (void)                                  { isVisited = false; topoId = 0; }
@@ -75,9 +76,11 @@ public:
     inline uint64_t                         XorClusterBak       (int i) const                           { return valueClusters[i] ^ valueClustersBak[i]; }
     inline int                              GetSOPSize          (void) const                            { return static_cast <int> (SOP.size()); }
     inline int                              GetSOPISize         (int i) const                           { return static_cast <int> (SOP[i].size()); }
+    inline void                             SetSOP              (const std::vector <std::string> & s)   { SOP.assign(s.begin(), s.end()); }
     inline void                             SetSOPIJ            (int i, int j, char val)                { SOP[i][j] = val; }
     inline char                             GetSOPIJ            (int i, int j) const                    { return SOP[i][j]; }
     inline void                             CopySOP             (std::vector <std::string> & s) const   { s.assign(SOP.begin(), SOP.end()); }
+    inline std::vector <std::string>        GetSOP              (void) const                            { return SOP; }
     inline void                             InitFoCone          (int f)                                 { foConeInfo.resize((f >> 6) + 1, 0); }
     inline int                              GetFoConeSize       (void) const                            { return static_cast <int> (foConeInfo.size()); }
     inline uint64_t                         GetFoCone           (int i) const                           { return foConeInfo[i]; }
@@ -104,6 +107,20 @@ public:
 };
 
 
+class Ckt_Sing_Sel_Info_t
+{
+public:
+    Ckt_Sop_t *                             pCktObj;
+    Ckt_Sop_Cat_t                           type;
+    std::vector <std::string>               SOP;
+
+    explicit                                Ckt_Sing_Sel_Info_t (void);
+    explicit                                Ckt_Sing_Sel_Info_t (Ckt_Sop_t * p_ckt_obj, Ckt_Sop_Cat_t _type, const std::vector <std::string> & _sop);
+                                            ~Ckt_Sing_Sel_Info_t(void);
+};
+
+
+std::ostream &                              operator <<         (std::ostream & os, const std::vector <std::string> & SOP);
 std::ostream &                              operator <<         (std::ostream & os, const Ckt_Sop_Cat_t & type);
 Ckt_Sop_Cat_t                               Abc_GetSopType      (abc::Abc_Obj_t * pObj);
 

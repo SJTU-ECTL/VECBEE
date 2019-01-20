@@ -207,6 +207,8 @@ void Ckt_GetALCs(Ckt_Gate_Net_t & ckt, vector <Ckt_Gate_t *> & pOrdObjs, std::ve
     for (auto & pCktTS : pOrdObjs) {
         if (pCktTS->IsDanggling() || pCktTS->IsPI() || pCktTS->IsPO() || pCktTS->IsConst())
             continue;
+        pairs.emplace_back(Ckt_SASIMI_Candi_t(pCktTS, ckt.GetConst0()));
+        pairs.emplace_back(Ckt_SASIMI_Candi_t(pCktTS, ckt.GetConst1()));
         for (auto & pCktSS : pOrdObjs) {
             if (pCktSS->IsAddedInv() || pCktSS->IsPO() || pCktTS == pCktSS)
                 continue;
@@ -242,7 +244,7 @@ void Ckt_EnumerateTest(Ckt_Gate_Net_t & ckt)
     vector <Ckt_SASIMI_Candi_t> pairs;
     Ckt_GetALCs(ckt, pOrderedObjs, pairs);
     // replace and recover
-    vector <Ckt_Rpl_Info_t> info;
+    vector <Ckt_SASIMI_Info_t> info;
     for (auto & pr : pairs) {
         ckt.Replace(*pr.pTS, *pr.pSS, info);
         ckt.FeedForward();

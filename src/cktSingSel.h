@@ -3,6 +3,8 @@
 
 
 #include "cktSopNet.h"
+#include "cktVisual.h"
+#include "cktCec.h"
 
 
 class Ckt_Sing_Sel_ALC_t
@@ -13,13 +15,12 @@ public:
     Ckt_Sop_Cat_t type;
     int addedER;
 
-    Ckt_Sing_Sel_ALC_t(Ckt_Sop_t * p_ckt_obj, std::vector <std::string> _sop, Ckt_Sop_Cat_t _type);
+    explicit Ckt_Sing_Sel_ALC_t(Ckt_Sop_t * p_ckt_obj, std::vector <std::string> _sop, Ckt_Sop_Cat_t _type);
     Ckt_Sing_Sel_ALC_t(const Ckt_Sing_Sel_ALC_t & other);
     ~Ckt_Sing_Sel_ALC_t(void);
 };
 
 
-std::ostream &  operator <<             (std::ostream & os, const std::vector <std::string> & SOP);
 std::ostream &  operator <<             (std::ostream & os, const Ckt_Sing_Sel_ALC_t & ALC);
 void            Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef);
 Ckt_Sop_t *     Ckt_CheckExpansion      (std::list <Ckt_Sop_t *> & cut);

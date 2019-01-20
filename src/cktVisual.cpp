@@ -440,3 +440,9 @@ void Visualize(Ckt_Gate_Net_t & ckt, string fileName)
 {
     Visualize(ckt.GetAbcNtk(), fileName);
 }
+
+
+void Visualize(Ckt_Sop_Net_t & ckt, string fileName)
+{
+    Visualize(ckt.GetAbcNtk(), fileName);
+}

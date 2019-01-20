@@ -51,20 +51,6 @@ void Ckt_Sop_t::PrintFanios(void) const
 }
 
 
-void Ckt_Sop_t::PrintSOP(void) const
-{
-    for (auto & s : SOP)
-        cout << s << " ";
-}
-
-
-void Ckt_Sop_t::PrintSOP(vector <string> & strs) const
-{
-    for (auto & s : strs)
-        cout << s << " ";
-}
-
-
 void Ckt_Sop_t::CollectSOP(void)
 {
     if (IsPI() || IsPO() || IsConst())
@@ -112,8 +98,14 @@ void Ckt_Sop_t::UpdateClusters(void)
 {
     switch (type) {
         case Ckt_Sop_Cat_t::PI:
+        break;
         case Ckt_Sop_Cat_t::CONST0:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = 0;
+        break;
         case Ckt_Sop_Cat_t::CONST1:
+            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                valueClusters[i] = static_cast <uint64_t> (ULLONG_MAX);
         break;
         case Ckt_Sop_Cat_t::PO:
             for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
@@ -165,6 +157,34 @@ void Ckt_Sop_t::UpdateCluster(int i)
 }
 
 
+void Ckt_Sop_t::ReplaceBy(std::vector <std::string> & newSOP, Ckt_Sop_Cat_t _type, Ckt_Sing_Sel_Info_t & info)
+{
+    // backup
+    info.pCktObj = this;
+    info.type = type;
+    info.SOP.assign(SOP.begin(), SOP.end());
+    // local approximate change
+    SOP.assign(newSOP.begin(), newSOP.end());
+    type = _type;
+    // change SOP of ABC object
+    string tmp("");
+    if (type == Ckt_Sop_Cat_t::INTER) {
+        for (auto & cube : newSOP) {
+            tmp += cube;
+            tmp += " 1\n";
+        }
+        tmp += "\0";
+    }
+    else if (type == Ckt_Sop_Cat_t::CONST0)
+        tmp = " 0\n\0";
+    else if (type == Ckt_Sop_Cat_t::CONST1)
+        tmp = " 1\n\0";
+    else
+        assert(0);
+    memcpy(pAbcObj->pData, tmp.c_str(), tmp.length() + 1);
+}
+
+
 void Ckt_Sop_t::CheckFanio(void) const
 {
     Abc_Obj_t * pObj;
@@ -187,6 +207,32 @@ void Ckt_Sop_t::PrintBD(void) const
             cout << Ckt_GetBit(BD[i], static_cast <uint64_t> (j));
         cout << endl;
     }
+}
+
+
+Ckt_Sing_Sel_Info_t::Ckt_Sing_Sel_Info_t(void)
+    : pCktObj(nullptr), type(Ckt_Sop_Cat_t::INTER)
+{
+    SOP.clear();
+}
+
+
+Ckt_Sing_Sel_Info_t::Ckt_Sing_Sel_Info_t(Ckt_Sop_t * p_ckt_obj, Ckt_Sop_Cat_t _type, const std::vector <std::string> & _sop)
+    : pCktObj(p_ckt_obj), type(_type)
+{
+    SOP.assign(_sop.begin(), _sop.end());
+}
+
+Ckt_Sing_Sel_Info_t::~Ckt_Sing_Sel_Info_t(void)
+{
+}
+
+
+ostream & operator << (ostream & os, const vector <string> & SOP)
+{
+    for (auto & s : SOP)
+        cout << s << "|";
+    return os;
 }
 
 

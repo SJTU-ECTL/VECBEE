@@ -109,9 +109,7 @@ void Ckt_Sop_Net_t::PrintInfo(void) const
     cout << "---------------- Network information ----------------" << endl;
     cout << "Name\tType\tSOP\t#liter" << endl;
     for (auto & obj : cktObjs) {
-        cout << obj.GetName() << "\t" << obj.GetType() << "\t";
-        obj.PrintSOP();
-        cout << "\t" << obj.GetNLiterals() << endl;
+        cout << obj.GetName() << "\t" << obj.GetType() << "\t" << obj.GetSOP() << "\t" << obj.GetNLiterals() << endl;
         maxNLiterals = max(maxNLiterals, obj.GetNLiterals());
     }
     cout << "Max #literals = " << maxNLiterals << endl;
@@ -300,4 +298,53 @@ void Ckt_Sop_Net_t::TestSimulatorSpeed(void)
     cout << "circuit = " << GetName() << endl;
     cout << "frame number = " << nValueClusters * 64 << endl;
     cout << "time = " << ed - st << " us" << endl;
+}
+
+
+int Ckt_Sop_Net_t::GetErrorRate(Ckt_Sop_Net_t & refNtk)
+{
+    // make sure POs are same
+    assert(pCktPos.size() == refNtk.pCktPos.size());
+    int poNum = static_cast <int> (pCktPos.size());
+    for (int i = 0; i < poNum; ++i)
+        assert(pCktPos[i]->GetName() == refNtk.pCktPos[i]->GetName());
+    // compare value cluster of POs
+    int ret = 0;
+    for (int k = 0; k < nValueClusters; ++k) {
+        uint64_t temp = 0;
+        for (int i = 0; i < poNum; ++i)
+            temp |= pCktPos[i]->GetCluster(k) ^ refNtk.pCktPos[i]->GetCluster(k);
+        ret += Ckt_CountOneNum(temp);
+    }
+    return ret;
+}
+
+
+void Ckt_Sop_Net_t::Replace(Ckt_Sop_t & cktObj, vector <string> & newSOP, Ckt_Sop_Cat_t _type, Ckt_Sing_Sel_Info_t & info)
+{
+    assert(cktObj.GetAbcObj()->pNtk == GetAbcNtk());
+    cktObj.ReplaceBy(newSOP, _type, info);
+}
+
+
+void Ckt_Sop_Net_t::RecoverFromRpl(Ckt_Sing_Sel_Info_t & info)
+{
+    info.pCktObj->SetSOP(info.SOP);
+    info.pCktObj->SetType(info.type);
+    // change SOP of ABC object
+    string tmp("");
+    if (info.type == Ckt_Sop_Cat_t::INTER) {
+        for (auto & cube : info.SOP) {
+            tmp += cube;
+            tmp += " 1\n";
+        }
+        tmp += "\0";
+    }
+    else if (info.type == Ckt_Sop_Cat_t::CONST0)
+        tmp = " 0\n\0";
+    else if (info.type == Ckt_Sop_Cat_t::CONST1)
+        tmp = " 1\n\0";
+    else
+        assert(0);
+    memcpy(info.pCktObj->GetAbcObj()->pData, tmp.c_str(), tmp.length() + 1);
 }

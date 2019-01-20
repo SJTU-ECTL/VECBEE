@@ -13,7 +13,7 @@ public:
     Ckt_Gate_t * pSS;
     int addedER;
 
-    Ckt_SASIMI_Candi_t(Ckt_Gate_t * p_ts, Ckt_Gate_t * p_ss);
+    explicit Ckt_SASIMI_Candi_t(Ckt_Gate_t * p_ts, Ckt_Gate_t * p_ss);
     Ckt_SASIMI_Candi_t(const Ckt_SASIMI_Candi_t & other);
     ~Ckt_SASIMI_Candi_t(void);
 };

@@ -378,7 +378,7 @@ Ckt_Gate_t * Ckt_Gate_Net_t::GetInverter2(Ckt_Gate_t & cktObj)
 }
 
 
-void Ckt_Gate_Net_t::Replace(Ckt_Gate_t & cktOldObj, Ckt_Gate_t & cktNewObj, vector <Ckt_Rpl_Info_t> & info, bool isInv)
+void Ckt_Gate_Net_t::Replace(Ckt_Gate_t & cktOldObj, Ckt_Gate_t & cktNewObj, vector <Ckt_SASIMI_Info_t> & info, bool isInv)
 {
     assert(cktOldObj.GetAbcObj()->pNtk == GetAbcNtk());
     assert(cktNewObj.GetAbcObj()->pNtk == GetAbcNtk());
@@ -393,7 +393,7 @@ void Ckt_Gate_Net_t::Replace(Ckt_Gate_t & cktOldObj, Ckt_Gate_t & cktNewObj, vec
 }
 
 
-void Ckt_Gate_Net_t::ReplaceByName(string oldName, string newName, vector <Ckt_Rpl_Info_t> & info)
+void Ckt_Gate_Net_t::ReplaceByName(string oldName, string newName, vector <Ckt_SASIMI_Info_t> & info)
 {
     auto itCktOldObj = find_if(cktObjs.begin(), cktObjs.end(),
                 [&oldName](Ckt_Gate_t & obj) {
@@ -414,7 +414,7 @@ void Ckt_Gate_Net_t::ReplaceByName(string oldName, string newName, vector <Ckt_R
 }
 
 
-void Ckt_Gate_Net_t::RecoverFromRpl(vector <Ckt_Rpl_Info_t> & info)
+void Ckt_Gate_Net_t::RecoverFromRpl(vector <Ckt_SASIMI_Info_t> & info)
 {
     for (auto it = info.rbegin(); it != info.rend(); ++it) {
         // recover ABC
