@@ -50,6 +50,7 @@ public:
     void                        UpdateFoCone        (void);
     void                        PrintCut            (void) const;
     void                        PrintCutNtk         (void) const;
+    float                       GetAverNtkSize      (void) const;
     void                        PrintSimRes         (void) const;
     void                        PrintBD             (void) const;
 

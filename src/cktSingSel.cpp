@@ -59,6 +59,8 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
     vector <Ckt_Sing_Sel_Candi_t> candis;
     Ckt_GetALCs(ckt, pOrderedObjs, candis);
     // batch
+    clock_t st, ed;
+    int t1 = 0, t2 = 0;
     vector <uint64_t> isPoICorrect(ckt.GetPoNum(), 0);
     for (int fb = 0; fb < ckt.GetValClustersNum(); ++fb) {
         // check PO correctness
@@ -68,12 +70,20 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
             isCorrect &= isPoICorrect[i];
         }
         // get partial boolean difference
+        st = clock();
         Ckt_GetBooleanDifference(ckt, pOrderedObjs, isPoICorrect, fb);
+        ed = clock();
+        t1 += (ed - st);
         // update added error rate
+        st = clock();
         Ckt_GetAddedErrorRate(candis, fb, isCorrect);
+        ed = clock();
+        t2 += (ed - st);
     }
     // for (auto & pr : candis)
     //     cout << pr << endl;
+    cout << t1 << endl << t2 << endl;
+    cout << "average size of cutNtks = " << ckt.GetAverNtkSize() << endl;
 }
 
 
@@ -218,7 +228,7 @@ void Ckt_GetBooleanDifference(Ckt_Sop_Net_t & ckt, vector <Ckt_Sop_t *> & pOrdOb
             (*ppCktObj)->SetBD(i, 0);
         // flip
         (*ppCktObj)->FlipCluster(fb);
-        // simulate
+        // simulate (2/3 time of the function)
         ckt.FeedForward((*ppCktObj)->cutNtk, fb);
         // record boolean difference
         for (auto & pCktObj : (*ppCktObj)->cut) {

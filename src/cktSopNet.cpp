@@ -399,6 +399,15 @@ void Ckt_Sop_Net_t::PrintCutNtk(void) const
 }
 
 
+float Ckt_Sop_Net_t::GetAverNtkSize(void) const
+{
+    int nNodes = 0;
+    for (auto & cktObj : cktObjs)
+        nNodes += cktObj.cutNtk.size();
+    return nNodes / static_cast<float>(cktObjs.size());
+}
+
+
 void Ckt_Sop_Net_t::PrintSimRes(void) const
 {
     for (auto & cktObj : cktObjs) {
