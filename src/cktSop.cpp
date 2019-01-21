@@ -6,31 +6,38 @@ using namespace abc;
 
 
 Ckt_Sop_t::Ckt_Sop_t(Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk)
-    : pAbcObj(p_abc_obj), pCktNtk(p_ckt_ntk), type(Abc_GetSopType(p_abc_obj)), isVisited(false), topoId(0)
+    : pAbcObj(p_abc_obj), pCktNtk(p_ckt_ntk), type(Abc_GetSopType(p_abc_obj)),
+    isVisited(false), topoId(0), pCktCutNtk(nullptr), pCktOriObj(nullptr)
 {
-    valueClusters.resize(pCktNtk->GetValClustersNum());
-    valueClustersBak.resize(pCktNtk->GetValClustersNum());
     CollectSOP();
     GetLiteralsNum();
+    valueClusters.resize(pCktNtk->GetValClustersNum());
     foConeInfo.resize((Abc_NtkPoNum(pCktNtk->GetAbcNtk()) >> 6) + 1);
-    BD.resize(Abc_NtkPoNum(pCktNtk->GetAbcNtk()));
+    pCktFanins.clear();
+    pCktFanouts.clear();
 }
 
 
 Ckt_Sop_t::Ckt_Sop_t(const Ckt_Sop_t & other)
-    : pAbcObj(other.pAbcObj), pCktNtk(other.pCktNtk), type(other.GetType()), isVisited(other.isVisited), topoId(other.topoId)
+    : pAbcObj(other.pAbcObj), pCktNtk(other.pCktNtk), type(other.GetType()),
+    isVisited(other.isVisited), topoId(other.topoId), pCktCutNtk(other.pCktCutNtk), pCktOriObj(other.pCktOriObj)
 {
-    valueClusters.resize(other.pCktNtk->GetValClustersNum());
-    valueClustersBak.resize(other.pCktNtk->GetValClustersNum());
     SOP.assign(other.SOP.begin(), other.SOP.end());
     nLiterals = other.nLiterals;
+    valueClusters.resize(other.pCktNtk->GetValClustersNum());
     foConeInfo.resize(other.foConeInfo.size());
-    BD.resize(other.BD.size());
+    pCktFanins.clear();
+    pCktFanouts.clear();
 }
 
 
 Ckt_Sop_t::~Ckt_Sop_t(void)
 {
+    // free cut network
+    if (pCktCutNtk != nullptr) {
+        delete pCktCutNtk;
+        pCktCutNtk = nullptr;
+    }
 }
 
 
@@ -239,18 +246,6 @@ void Ckt_Sop_t::CheckFanio(void) const
         assert(static_cast <string> (Abc_ObjName(pObj)) == pCktFanouts[i]->GetName());
     Abc_ObjForEachFanin(pAbcObj, pObj, i)
         assert(static_cast <string> (Abc_ObjName(pObj)) == pCktFanins[i]->GetName());
-}
-
-
-void Ckt_Sop_t::PrintBD(void) const
-{
-    cout << GetName() << ":" << endl;
-    for (int i = 0; i < pCktNtk->GetPoNum(); ++i) {
-        cout << pCktNtk->GetPo(i)->GetName() << ",";
-        for (int j = 0; j < 64; ++j)
-            cout << Ckt_GetBit(BD[i], static_cast <uint64_t> (j));
-        cout << endl;
-    }
 }
 
 

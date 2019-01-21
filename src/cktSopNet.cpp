@@ -6,8 +6,21 @@ using namespace abc;
 using namespace boost;
 
 
+Ckt_Sop_Net_t::Ckt_Sop_Net_t(int nFrames)
+{
+    // allocate a new network
+    pAbcNtk = Abc_NtkAlloc(ABC_NTK_LOGIC, ABC_FUNC_SOP, 1);
+
+    // assign simulation clusters number
+    nValueClusters = nFrames / 64;
+
+    cktObjs.clear();
+    pCktPis.clear();
+    pCktPos.clear();
+}
+
+
 Ckt_Sop_Net_t::Ckt_Sop_Net_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
-    : nValueClusters(nFrames / 64)
 {
     Abc_Obj_t * pAbcObj, * pFanin;
     int i;
@@ -17,6 +30,9 @@ Ckt_Sop_Net_t::Ckt_Sop_Net_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
     // duplicate network
     pAbcNtk = Abc_NtkDup(p_abc_ntk);
 
+    // assign simulation clusters number
+    nValueClusters = nFrames / 64;
+
     // init circuit objects, use pTemp to temporarily store the reflection
     Abc_NtkForEachObj(pAbcNtk, pAbcObj, i) {
         cktObjs.emplace_back(Ckt_Sop_t(pAbcObj, this));
@@ -24,24 +40,11 @@ Ckt_Sop_Net_t::Ckt_Sop_Net_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
     }
 
     // get pointers of PI/PO/CONST0/CONST1
-    pCktConst0 = pCktConst1 = nullptr;
     for (auto & obj : cktObjs) {
         if (obj.IsPI())
             pCktPis.emplace_back(&obj);
         else if (obj.IsPO())
             pCktPos.emplace_back(&obj);
-        else if (obj.IsConst0())
-            pCktConst0 = &obj;
-        else if (obj.IsConst1())
-            pCktConst1 = &obj;
-    }
-    if (pCktConst0 == nullptr) {
-        cktObjs.emplace_back(Ckt_Sop_t(Abc_NtkCreateNodeConst0(pAbcNtk), this));
-        pCktConst0 = &(cktObjs.back());
-    }
-    if (pCktConst1 == nullptr) {
-        cktObjs.emplace_back(Ckt_Sop_t(Abc_NtkCreateNodeConst1(pAbcNtk), this));
-        pCktConst1 = &(cktObjs.back());
     }
 
     // add fanin/fanout information, use information saved in pTemp
@@ -53,13 +56,17 @@ Ckt_Sop_Net_t::Ckt_Sop_Net_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
 
 
 Ckt_Sop_Net_t::Ckt_Sop_Net_t(const Ckt_Sop_Net_t & other)
-    : nValueClusters(other.nValueClusters)
 {
     Abc_Obj_t * pAbcObj, * pFanin;
     int i;
 
+    assert(Abc_NtkIsSopLogic(other.pAbcNtk));
+
     // deep copy
     pAbcNtk = Abc_NtkDup(other.pAbcNtk);
+
+    // assign simulation clusters number
+    nValueClusters = other.nValueClusters;
 
     // init circuit objects, use pTemp to temporarily store the reflection
     Abc_NtkForEachObj(pAbcNtk, pAbcObj, i) {
@@ -68,24 +75,11 @@ Ckt_Sop_Net_t::Ckt_Sop_Net_t(const Ckt_Sop_Net_t & other)
     }
 
     // get pointers of PI/PO/CONST0/CONST1
-    pCktConst0 = pCktConst1 = nullptr;
     for (auto & obj : cktObjs) {
         if (obj.IsPI())
             pCktPis.emplace_back(&obj);
         else if (obj.IsPO())
             pCktPos.emplace_back(&obj);
-        else if (obj.IsConst0())
-            pCktConst0 = &obj;
-        else if (obj.IsConst1())
-            pCktConst1 = &obj;
-    }
-    if (pCktConst0 == nullptr) {
-        cktObjs.emplace_back(Ckt_Sop_t(Abc_NtkCreateNodeConst0(pAbcNtk), this));
-        pCktConst0 = &(cktObjs.back());
-    }
-    if (pCktConst1 == nullptr) {
-        cktObjs.emplace_back(Ckt_Sop_t(Abc_NtkCreateNodeConst1(pAbcNtk), this));
-        pCktConst1 = &(cktObjs.back());
     }
 
     // add fanin/fanout information, use information saved in pTemp
@@ -148,10 +142,6 @@ void Ckt_Sop_Net_t::GenInputDist(unsigned seed)
             }
             pCktPi->SetCluster(i, value);
         }
-    }
-    for (int i = 0; i < nValueClusters; ++i) {
-        pCktConst0->SetCluster(i, static_cast <uint64_t> (0));
-        pCktConst1->SetCluster(i, static_cast <uint64_t> (ULLONG_MAX));
     }
 }
 
@@ -242,13 +232,6 @@ void Ckt_Sop_Net_t::FeedForward(list <Ckt_Sop_t *> & subNtk, int i)
 {
     for (auto & pCktObj : subNtk)
         pCktObj->UpdateCluster(i);
-}
-
-
-void Ckt_Sop_Net_t::BackupSimRes(void)
-{
-    for (auto & cktObj : cktObjs)
-        cktObj.BackupClusters();
 }
 
 
@@ -375,39 +358,6 @@ void Ckt_Sop_Net_t::UpdateFoCone(void)
 }
 
 
-void Ckt_Sop_Net_t::PrintCut(void) const
-{
-    for (auto & cktObj : cktObjs) {
-        cout << cktObj.GetName() << ":";
-        for (auto & pCktFg : cktObj.cut) {
-            cout << pCktFg->GetName() << "\t";
-        }
-        cout << endl;
-    }
-}
-
-
-void Ckt_Sop_Net_t::PrintCutNtk(void) const
-{
-    for (auto & cktObj : cktObjs) {
-        cout << cktObj.GetName() << ":";
-        for (auto & pCktObj: cktObj.cutNtk) {
-            cout << pCktObj->GetName() << "\t";
-        }
-        cout << endl;
-    }
-}
-
-
-float Ckt_Sop_Net_t::GetAverNtkSize(void) const
-{
-    int nNodes = 0;
-    for (auto & cktObj : cktObjs)
-        nNodes += cktObj.cutNtk.size();
-    return nNodes / static_cast<float>(cktObjs.size());
-}
-
-
 void Ckt_Sop_Net_t::PrintSimRes(void) const
 {
     for (auto & cktObj : cktObjs) {
@@ -415,11 +365,4 @@ void Ckt_Sop_Net_t::PrintSimRes(void) const
         cktObj.PrintClusters();
         cout << endl;
     }
-}
-
-
-void Ckt_Sop_Net_t::PrintBD(void) const
-{
-    for (auto & cktObj : cktObjs)
-        cktObj.PrintBD();
 }

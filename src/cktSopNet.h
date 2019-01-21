@@ -19,12 +19,11 @@ private:
     std::list <Ckt_Sop_t>       cktObjs;            // circuit objects
     std::vector <Ckt_Sop_t *>   pCktPis;            // primary inputs pointers
     std::vector <Ckt_Sop_t *>   pCktPos;            // primary outputs pointers
-    Ckt_Sop_t *                 pCktConst0;         // const 0 pointer
-    Ckt_Sop_t *                 pCktConst1;         // const 1 pointer
 
     Ckt_Sop_Net_t &             operator =          (const Ckt_Sop_Net_t & other);
 
 public:
+    explicit                    Ckt_Sop_Net_t       (int nFrames = 1024);
     explicit                    Ckt_Sop_Net_t       (abc::Abc_Ntk_t * p_abc_ntk, int nFrames = 1024);
                                 Ckt_Sop_Net_t       (const Ckt_Sop_Net_t & other);
                                 ~Ckt_Sop_Net_t      (void);
@@ -40,7 +39,6 @@ public:
     void                        FeedForward         (void);
     void                        FeedForward         (std::vector <Ckt_Sop_t *> & pOrderedObjs);
     void                        FeedForward         (std::list <Ckt_Sop_t *> & pOrderedObjs, int i);
-    void                        BackupSimRes        (void);
     void                        CheckSimulator      (void);
     void                        TestSimulatorSpeed  (void);
     int                         GetErrorRate        (Ckt_Sop_Net_t & refNtk);
@@ -48,11 +46,7 @@ public:
     void                        RecoverFromRpl      (Ckt_Sing_Sel_Info_t & info);
     void                        CheckFanio          (void) const;
     void                        UpdateFoCone        (void);
-    void                        PrintCut            (void) const;
-    void                        PrintCutNtk         (void) const;
-    float                       GetAverNtkSize      (void) const;
     void                        PrintSimRes         (void) const;
-    void                        PrintBD             (void) const;
 
     inline int                  GetObjNum           (void) const        { return static_cast <int> (cktObjs.size()); }
     inline int                  GetPoNum            (void) const        { return static_cast <int> (pCktPos.size()); }

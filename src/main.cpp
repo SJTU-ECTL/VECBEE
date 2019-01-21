@@ -40,12 +40,13 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number)
     Ckt_Sop_Net_t ckt(pAbcNtk, number);
     Ckt_Sop_Net_t cktRef(ckt);
 
-    // ckt.PrintInfo();
     // cout << "brute" << endl;
     // Ckt_EnumerateTest(ckt);
-    cout << "batch" << endl;
-    Ckt_BatchErrorEstimation(ckt, cktRef);
+    // cout << "batch" << endl;
+    // Ckt_BatchErrorEstimation(ckt, cktRef);
     // ckt.TestSimulatorSpeed();
+    ckt.CheckSimulator();
+    Ckt_BuildCutNtks(ckt);
 }
 
 
