@@ -40,7 +40,8 @@ private:
     // only used for cut network
     //
     Ckt_Sop_Net_t *                         pCktCutNtk;         // cut network, containing a copy of objects between itself and its cut
-    Ckt_Sop_t *                             pCktOriObj;         // the corresponding object in the original network
+    Ckt_Sop_t *                             pCktObjOri;         // the original object in the parent network
+    Ckt_Sop_t *                             pCktObjCopy;        // temporarily record the copied object
 
     Ckt_Sop_t &                             operator =          (const Ckt_Sop_t &);
 
@@ -54,6 +55,7 @@ public:
     void                                    PrintClusters       (void) const;
     void                                    UpdateClusters      (void);
     void                                    UpdateCluster       (int i);
+    void                                    FlipClustersFrom    (Ckt_Sop_t * pCktObj);
     uint64_t                                GetClusterValue     (std::vector <std::string> & newSOP, Ckt_Sop_Cat_t type, int i);
     void                                    ReplaceBy           (std::vector <std::string> & newSOP, Ckt_Sop_Cat_t _type, Ckt_Sing_Sel_Info_t & info);
     void                                    CheckFanio          (void) const;
@@ -86,7 +88,8 @@ public:
     inline uint64_t                         GetFoCone           (int i) const                           { return foConeInfo[i]; }
     inline void                             SetFoCone           (int f)                                 { Ckt_SetBit(foConeInfo[f >> 6], f); }
     inline void                             SelfOrFoCone        (Ckt_Sop_t * pCktObj)                   { for (int i = 0; i < GetFoConeSize(); ++i) foConeInfo[i] |= pCktObj->foConeInfo[i]; }
-    inline void                             AddFanin            (Ckt_Sop_t * pCktFanin)                 { pCktFanins.emplace_back(pCktFanin); pCktFanin->pCktFanouts.emplace_back(this); }
+    inline void                             AddFanio            (Ckt_Sop_t * pCktFanin)                 { pCktFanins.emplace_back(pCktFanin); pCktFanin->pCktFanouts.emplace_back(this); }
+    inline void                             AddFanin            (Ckt_Sop_t * pCktFanin)                 { pCktFanins.emplace_back(pCktFanin); }
     inline Ckt_Sop_t *                      GetFanin            (int i = 0) const                       { return pCktFanins[i]; }
     inline int                              GetFaninNum         (void) const                            { return static_cast <int> (pCktFanins.size()); }
     inline void                             WriteFanin          (int i, Ckt_Sop_t * pCktFanin)          { pCktFanins[i] = pCktFanin; }
@@ -102,6 +105,11 @@ public:
     inline bool                             IsConst1            (void) const                            { return type == Ckt_Sop_Cat_t::CONST1; }
     inline bool                             IsDanggling         (void) const                            { return pCktFanouts.empty() && !IsPO(); }
     inline void                             SetCutNtk           (Ckt_Sop_Net_t * p_ckt_cut_ntk)         { pCktCutNtk = p_ckt_cut_ntk; }
+    inline Ckt_Sop_Net_t *                  GetCutNtk           (void) const                            { return pCktCutNtk; }
+    inline void                             SetOriObj           (Ckt_Sop_t * pCktObj)                   { pCktObjOri = pCktObj; }
+    inline Ckt_Sop_t *                      GetOriObj           (void) const                            { return pCktObjOri; }
+    inline void                             SetCopiedObj        (Ckt_Sop_t * pCktObj)                   { pCktObjCopy = pCktObj; }
+    inline Ckt_Sop_t *                      GetCopiedObj        (void) const                            { return pCktObjCopy; }
 };
 
 

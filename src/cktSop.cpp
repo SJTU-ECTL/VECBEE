@@ -6,12 +6,12 @@ using namespace abc;
 
 
 Ckt_Sop_t::Ckt_Sop_t(Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk)
-    : pAbcObj(p_abc_obj), pCktNtk(p_ckt_ntk), type(Abc_GetSopType(p_abc_obj)),
-    isVisited(false), topoId(0), pCktCutNtk(nullptr), pCktOriObj(nullptr)
+    : pAbcObj(p_abc_obj), pCktNtk(p_ckt_ntk), type(Abc_GetSopType(p_abc_obj)), isVisited(false),
+    topoId(0), pCktCutNtk(nullptr), pCktObjOri(nullptr), pCktObjCopy(nullptr)
 {
     CollectSOP();
     GetLiteralsNum();
-    valueClusters.resize(pCktNtk->GetValClustersNum());
+    valueClusters.resize(pCktNtk->GetSimNum());
     foConeInfo.resize((Abc_NtkPoNum(pCktNtk->GetAbcNtk()) >> 6) + 1);
     pCktFanins.clear();
     pCktFanouts.clear();
@@ -19,12 +19,12 @@ Ckt_Sop_t::Ckt_Sop_t(Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk)
 
 
 Ckt_Sop_t::Ckt_Sop_t(const Ckt_Sop_t & other)
-    : pAbcObj(other.pAbcObj), pCktNtk(other.pCktNtk), type(other.GetType()),
-    isVisited(other.isVisited), topoId(other.topoId), pCktCutNtk(other.pCktCutNtk), pCktOriObj(other.pCktOriObj)
+    : pAbcObj(other.pAbcObj), pCktNtk(other.pCktNtk), type(other.GetType()), isVisited(other.isVisited),
+    topoId(other.topoId), pCktCutNtk(other.pCktCutNtk), pCktObjOri(other.pCktObjOri), pCktObjCopy(other.pCktObjCopy)
 {
     SOP.assign(other.SOP.begin(), other.SOP.end());
     nLiterals = other.nLiterals;
-    valueClusters.resize(other.pCktNtk->GetValClustersNum());
+    valueClusters.resize(other.pCktNtk->GetSimNum());
     foConeInfo.resize(other.foConeInfo.size());
     pCktFanins.clear();
     pCktFanouts.clear();
@@ -136,6 +136,13 @@ void Ckt_Sop_t::UpdateClusters(void)
         default:
         assert(0);
     }
+}
+
+
+void Ckt_Sop_t::FlipClustersFrom(Ckt_Sop_t * pCktObj)
+{
+    for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+        valueClusters[i] = ~pCktObj->valueClusters[i];
 }
 
 

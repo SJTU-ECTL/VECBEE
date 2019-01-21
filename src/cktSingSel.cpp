@@ -62,7 +62,7 @@ ostream & operator << (ostream & os, const Ckt_Sing_Sel_Candi_t & candi)
 //     clock_t st, ed;
 //     int t1 = 0, t2 = 0;
 //     vector <uint64_t> isPoICorrect(ckt.GetPoNum(), 0);
-//     for (int fb = 0; fb < ckt.GetValClustersNum(); ++fb) {
+//     for (int fb = 0; fb < ckt.GetSimNum(); ++fb) {
 //         // check PO correctness
 //         uint64_t isCorrect = static_cast <uint64_t> (ULLONG_MAX);
 //         for (int i = 0; i < ckt.GetPoNum(); ++i) {
@@ -158,28 +158,52 @@ void Ckt_BuildCutNtks(Ckt_Sop_Net_t & ckt)
     // find cuts and sub-networks
     list <Ckt_Sop_t *> cut;
     list <Ckt_Sop_t *> subNtk;
+    clock_t st = clock();
     for (auto & pCktObj : pOrderedObjs) {
+        if (pCktObj->IsPI() || pCktObj->IsPO() || pCktObj->IsConst())
+            continue;
         ckt.SetAllUnvisited2();
         Ckt_ObjFindCut(*pCktObj, cut);
         Ckt_CollectVisited(pOrderedObjs, subNtk);
         pCktObj->SetCutNtk(Ckt_CreateNtkFrom(*pCktObj, subNtk, cut));
     }
+    cout << clock() - st << endl;
+    st = clock();
+    for (auto & pCktObj : pOrderedObjs) {
+        if (pCktObj->IsPI() || pCktObj->IsPO() || pCktObj->IsConst())
+            continue;
+        Ckt_SimCutNtk(*(pCktObj->GetCutNtk()));
+    }
+    cout << clock() - st << endl;
+}
+
+
+void Ckt_SimCutNtk(Ckt_Sop_Net_t & cutNtk)
+{
+    // init value clusters of PI
+    Ckt_Sop_t * pCktPi = cutNtk.GetPi(0);
+    pCktPi->FlipClustersFrom(pCktPi->GetOriObj());
+    // feed forward
+    auto pCktObj = cutNtk.GetPCktObjs()->begin();
+    ++pCktObj;
+    for (; pCktObj != cutNtk.GetPCktObjs()->end(); ++ pCktObj)
+        pCktObj->UpdateClusters();
 }
 
 
 Ckt_Sop_Net_t * Ckt_CreateNtkFrom(Ckt_Sop_t & cktSrcObj, std::list <Ckt_Sop_t *> & subNtk, std::list <Ckt_Sop_t *> & cut)
 {
     // make sure objects are in the same network
-    Ckt_Sop_Net_t * pFaNtk = cktSrcObj.GetCktNtk();
+    Ckt_Sop_Net_t * pCktFaNtk = cktSrcObj.GetCktNtk();
     for (auto & pCktObj : subNtk)
-        assert(pFaNtk == pCktObj->GetCktNtk());
+        assert(pCktFaNtk == pCktObj->GetCktNtk());
     for (auto & pCktObj : cut)
-        assert(pFaNtk == pCktObj->GetCktNtk());
+        assert(pCktFaNtk == pCktObj->GetCktNtk());
     // start an empty network
-    Ckt_Sop_Net_t * pCkt = new Ckt_Sop_Net_t(pFaNtk->GetValClustersNum() * 64);
-    assert(pCkt != nullptr);
-    //
-    return pCkt;
+    Ckt_Sop_Net_t * pCutNtk = new Ckt_Sop_Net_t(cktSrcObj, subNtk, cut, pCktFaNtk->GetSimNum() * 64);
+    assert(pCutNtk != nullptr);
+
+    return pCutNtk;
 }
 
 

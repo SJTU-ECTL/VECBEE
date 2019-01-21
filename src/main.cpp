@@ -44,8 +44,8 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number)
     // Ckt_EnumerateTest(ckt);
     // cout << "batch" << endl;
     // Ckt_BatchErrorEstimation(ckt, cktRef);
-    // ckt.TestSimulatorSpeed();
-    ckt.CheckSimulator();
+    ckt.TestSimulatorSpeed();
+    // ckt.CheckSimulator();
     Ckt_BuildCutNtks(ckt);
 }
 

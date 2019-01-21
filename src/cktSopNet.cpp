@@ -6,20 +6,6 @@ using namespace abc;
 using namespace boost;
 
 
-Ckt_Sop_Net_t::Ckt_Sop_Net_t(int nFrames)
-{
-    // allocate a new network
-    pAbcNtk = Abc_NtkAlloc(ABC_NTK_LOGIC, ABC_FUNC_SOP, 1);
-
-    // assign simulation clusters number
-    nValueClusters = nFrames / 64;
-
-    cktObjs.clear();
-    pCktPis.clear();
-    pCktPos.clear();
-}
-
-
 Ckt_Sop_Net_t::Ckt_Sop_Net_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
 {
     Abc_Obj_t * pAbcObj, * pFanin;
@@ -35,7 +21,8 @@ Ckt_Sop_Net_t::Ckt_Sop_Net_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
 
     // init circuit objects, use pTemp to temporarily store the reflection
     Abc_NtkForEachObj(pAbcNtk, pAbcObj, i) {
-        cktObjs.emplace_back(Ckt_Sop_t(pAbcObj, this));
+        // cktObjs.emplace_back(Ckt_Sop_t(pAbcObj, this));
+        AddObj(pAbcObj);
         pAbcObj->pTemp = static_cast <void *> (&(cktObjs.back()));
     }
 
@@ -50,8 +37,56 @@ Ckt_Sop_Net_t::Ckt_Sop_Net_t(Abc_Ntk_t * p_abc_ntk, int nFrames)
     // add fanin/fanout information, use information saved in pTemp
     for (auto & obj : cktObjs) {
         Abc_ObjForEachFanin(obj.GetAbcObj(), pFanin, i)
-            obj.AddFanin(static_cast <Ckt_Sop_t *> (pFanin->pTemp));
+            obj.AddFanio(static_cast <Ckt_Sop_t *> (pFanin->pTemp));
     }
+}
+
+
+Ckt_Sop_Net_t::Ckt_Sop_Net_t(Ckt_Sop_t & cktSrcObj, list <Ckt_Sop_t *> & subNtk, list <Ckt_Sop_t *> & cut, int nFrames)
+{
+    //
+    // only used for generate cut network
+    //
+    assert(!cktSrcObj.IsPI() && !cktSrcObj.IsPO() && !cktSrcObj.IsConst());
+    // make sure objects are in the same network
+    Ckt_Sop_Net_t * pCktFaNtk = cktSrcObj.GetCktNtk();
+    for (auto & pCktObj : subNtk)
+        assert(pCktFaNtk == pCktObj->GetCktNtk());
+    for (auto & pCktObj : cut)
+        assert(pCktFaNtk == pCktObj->GetCktNtk());
+
+    // allocate a new network
+    pAbcNtk = Abc_NtkAlloc(ABC_NTK_LOGIC, ABC_FUNC_SOP, 1);
+
+    // assign simulation clusters number
+    nValueClusters = nFrames / 64;
+
+    // copy objects
+    AddObj(Abc_NtkDupObj(pAbcNtk, cktSrcObj.GetAbcObj(), 1));
+    cktSrcObj.SetCopiedObj(&(cktObjs.back()));
+    cktObjs.back().SetOriObj(&cktSrcObj);
+    for (auto & pCktObj : subNtk) {
+        AddObj(Abc_NtkDupObj(pAbcNtk, pCktObj->GetAbcObj(), 1));
+        pCktObj->SetCopiedObj(&(cktObjs.back()));
+        cktObjs.back().SetOriObj(pCktObj);
+    }
+
+    // reconnect, only update pCktFanins, do not use ABC fanio structure
+    for (auto & pCktObj : subNtk) {
+        Ckt_Sop_t * pCktObjCopy = pCktObj->GetCopiedObj();
+        for (int i = 0; i < pCktObj->GetFaninNum(); ++i) {
+            Ckt_Sop_t * pCktFanin = pCktObj->GetFanin(i);
+            if (pCktFanin->GetCopiedObj() == nullptr)
+                pCktObjCopy->AddFanin(pCktFanin);
+            else
+                pCktObjCopy->AddFanin(pCktFanin->GetCopiedObj());
+        }
+    }
+
+    // add virtual PI/PO
+    pCktPis.emplace_back(cktSrcObj.GetCopiedObj());
+    for (auto & pCktObj : cut)
+        pCktPos.emplace_back(pCktObj->GetCopiedObj());
 }
 
 
@@ -70,7 +105,8 @@ Ckt_Sop_Net_t::Ckt_Sop_Net_t(const Ckt_Sop_Net_t & other)
 
     // init circuit objects, use pTemp to temporarily store the reflection
     Abc_NtkForEachObj(pAbcNtk, pAbcObj, i) {
-        cktObjs.emplace_back(Ckt_Sop_t(pAbcObj, this));
+        // cktObjs.emplace_back(Ckt_Sop_t(pAbcObj, this));
+        AddObj(pAbcObj);
         pAbcObj->pTemp = static_cast <void *> (&(cktObjs.back()));
     }
 
@@ -85,7 +121,7 @@ Ckt_Sop_Net_t::Ckt_Sop_Net_t(const Ckt_Sop_Net_t & other)
     // add fanin/fanout information, use information saved in pTemp
     for (auto & obj : cktObjs) {
         Abc_ObjForEachFanin(obj.GetAbcObj(), pFanin, i)
-            obj.AddFanin(static_cast <Ckt_Sop_t *> (pFanin->pTemp));
+            obj.AddFanio(static_cast <Ckt_Sop_t *> (pFanin->pTemp));
     }
 }
 
@@ -93,7 +129,10 @@ Ckt_Sop_Net_t::Ckt_Sop_Net_t(const Ckt_Sop_Net_t & other)
 Ckt_Sop_Net_t::~Ckt_Sop_Net_t(void)
 {
     // free network (includes ABC objects added by user)
-    Abc_NtkDelete(pAbcNtk);
+    if (pAbcNtk != nullptr) {
+        pAbcNtk = nullptr;
+        Abc_NtkDelete(pAbcNtk);
+    }
 }
 
 
@@ -222,7 +261,6 @@ void Ckt_Sop_Net_t::FeedForward(void)
 
 void Ckt_Sop_Net_t::FeedForward(vector <Ckt_Sop_t *> & pOrderedObjs)
 {
-    // update
     for (auto & pCktObj : pOrderedObjs)
         pCktObj->UpdateClusters();
 }
@@ -366,3 +404,10 @@ void Ckt_Sop_Net_t::PrintSimRes(void) const
         cout << endl;
     }
 }
+
+
+void Ckt_Sop_Net_t::AddObj(Abc_Obj_t * pAbcObj)
+{
+    cktObjs.emplace_back(Ckt_Sop_t(pAbcObj, this));
+}
+
