@@ -119,17 +119,36 @@ void Ckt_Sop_t::UpdateClusters(void)
                 valueClusters[i] = pCktFanins[0]->valueClusters[i];
         break;
         case Ckt_Sop_Cat_t::INTER:
-            for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i) {
-                valueClusters[i] = 0;
-                for (auto & cube : SOP) {
-                    uint64_t product = static_cast <uint64_t> (ULLONG_MAX);
-                    for (int j = 0; j < static_cast <int> (cube.length()); ++j) {
-                        if (cube[j] == '0')
-                            product &= ~(pCktFanins[j]->valueClusters[i]);
-                        else if (cube[j] == '1')
-                            product &= pCktFanins[j]->valueClusters[i];
+            // for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i) {
+            //     valueClusters[i] = 0;
+            //     for (auto & cube : SOP) {
+            //         uint64_t product = static_cast <uint64_t> (ULLONG_MAX);
+            //         for (int j = 0; j < static_cast <int> (cube.length()); ++j) {
+            //             if (cube[j] == '0')
+            //                 product &= ~(pCktFanins[j]->valueClusters[i]);
+            //             else if (cube[j] == '1')
+            //                 product &= pCktFanins[j]->valueClusters[i];
+            //         }
+            //         valueClusters[i] |= product;
+            //     }
+            // }
+            for (auto pCube = SOP.begin(); pCube != SOP.end(); ++pCube) {
+                vector <uint64_t> product(valueClusters.size(), static_cast <uint64_t> (ULLONG_MAX));
+                for (int j = 0; j < static_cast <int> (pCube->length()); ++j) {
+                    if ((*pCube)[j] == '0') {
+                        for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                            product[i] &= ~(pCktFanins[j]->valueClusters[i]);
                     }
-                    valueClusters[i] |= product;
+                    else {
+                        for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                            product[i] &= pCktFanins[j]->valueClusters[i];
+                    }
+                }
+                if (pCube == SOP.begin())
+                    valueClusters.assign(product.begin(), product.end());
+                else {
+                    for (int i = 0; i < static_cast <int> (valueClusters.size()); ++i)
+                        valueClusters[i] |= product[i];
                 }
             }
         break;
