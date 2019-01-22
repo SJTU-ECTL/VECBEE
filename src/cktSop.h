@@ -43,7 +43,19 @@ private:
     Ckt_Sop_t *                             pCktObjOri;         // the original object in the parent network
     Ckt_Sop_t *                             pCktObjCopy;        // temporarily record the copied object
 
+    //
+    // only used for batch error estimaion
+    //
+    std::vector <uint64_t>                  BD;                 // partial boolean difference
+
+    //
+    // forbid automatically generate
+    //
     Ckt_Sop_t &                             operator =          (const Ckt_Sop_t &);
+
+public:
+    uint64_t                                BDPlus;             // temporary
+    uint64_t                                BDMinus;            // temporary
 
 public:
     explicit                                Ckt_Sop_t           (abc::Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk);
@@ -109,7 +121,12 @@ public:
     inline void                             SetOriObj           (Ckt_Sop_t * pCktObj)                   { pCktObjOri = pCktObj; }
     inline Ckt_Sop_t *                      GetOriObj           (void) const                            { return pCktObjOri; }
     inline void                             SetCopiedObj        (Ckt_Sop_t * pCktObj)                   { pCktObjCopy = pCktObj; }
+    inline void                             ClearCopiedObj      (void)                                  { pCktObjCopy = nullptr; }
     inline Ckt_Sop_t *                      GetCopiedObj        (void) const                            { return pCktObjCopy; }
+    inline void                             SetBD               (int i, uint64_t value)                 { BD[i] = value; }
+    inline uint64_t                         GetBD               (int i) const                           { return BD[i]; }
+    inline void                             SelfOrBD            (int i, uint64_t value)                 { BD[i] |= value; }
+    inline int                              GetBDSize           (void) const                            { return static_cast <int> (BD.size()); }
 };
 
 

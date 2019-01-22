@@ -30,61 +30,60 @@ ostream & operator << (ostream & os, const Ckt_Sing_Sel_Candi_t & candi)
 }
 
 
-// void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
-// {
-//     assert(&ckt != &cktRef);
-//     assert(ckt.GetAbcNtk() != cktRef.GetAbcNtk());
-//     assert(Ckt_HasSamePo(ckt, cktRef));
-//     // get topological sequence
-//     vector <Ckt_Sop_t *> pOrderedObjs;
-//     ckt.SortObjects(pOrderedObjs);
-//     // update fanout cone information
-//     ckt.UpdateFoCone();
-//     // find cuts and sub-networks
-//     for (auto & pCktObj : pOrderedObjs) {
-//         Ckt_FindCut(ckt, pCktObj->cut, *pCktObj);
-//         Ckt_BuildSubNtk(pOrderedObjs, pCktObj->cutNtk);
-//     }
-//     // get base error rate & backup
-//     cktRef.GenInputDist(314);
-//     ckt.GenInputDist(314);
-//     cktRef.FeedForward();
-//     ckt.FeedForward(pOrderedObjs);
-//     // int baseError = ckt.GetErrorRate(cktRef);
-//     ckt.BackupSimRes();
-//     // init parital difference
-//     for (int i = 0; i < ckt.GetPoNum(); ++i)
-//         ckt.GetPo(i)->SetBD(i, static_cast <uint64_t> (ULLONG_MAX));
-//     // get candidiates
-//     vector <Ckt_Sing_Sel_Candi_t> candis;
-//     Ckt_GetALCs(ckt, pOrderedObjs, candis);
-//     // batch
-//     clock_t st, ed;
-//     int t1 = 0, t2 = 0;
-//     vector <uint64_t> isPoICorrect(ckt.GetPoNum(), 0);
-//     for (int fb = 0; fb < ckt.GetSimNum(); ++fb) {
-//         // check PO correctness
-//         uint64_t isCorrect = static_cast <uint64_t> (ULLONG_MAX);
-//         for (int i = 0; i < ckt.GetPoNum(); ++i) {
-//             isPoICorrect[i] = ~(ckt.GetPo(i)->GetCluster(fb) ^ cktRef.GetPo(i)->GetCluster(fb));
-//             isCorrect &= isPoICorrect[i];
-//         }
-//         // get partial boolean difference
-//         st = clock();
-//         Ckt_GetBooleanDifference(ckt, pOrderedObjs, isPoICorrect, fb);
-//         ed = clock();
-//         t1 += (ed - st);
-//         // update added error rate
-//         st = clock();
-//         Ckt_GetAddedErrorRate(candis, fb, isCorrect);
-//         ed = clock();
-//         t2 += (ed - st);
-//     }
-//     // for (auto & pr : candis)
-//     //     cout << pr << endl;
-//     cout << t1 << endl << t2 << endl;
-//     cout << "average size of cutNtks = " << ckt.GetAverNtkSize() << endl;
-// }
+void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
+{
+    assert(&ckt != &cktRef);
+    assert(ckt.GetAbcNtk() != cktRef.GetAbcNtk());
+    assert(Ckt_HasSamePo(ckt, cktRef));
+    // get topological sequence
+    vector <Ckt_Sop_t *> pOrderedObjs;
+    ckt.SortObjects(pOrderedObjs);
+    // build cut networks
+    Ckt_BuildCutNtks(ckt, pOrderedObjs);
+    // simulate base network, get base error rate
+    cktRef.GenInputDist(314);
+    ckt.GenInputDist(314);
+    cktRef.FeedForward();
+    ckt.FeedForward(pOrderedObjs);
+    // ckt.PrintSimRes();
+    // simulate cut networks
+    for (auto & pCktObj : pOrderedObjs) {
+        if (pCktObj->IsPI() || pCktObj->IsPO() || pCktObj->IsConst())
+            continue;
+        Ckt_SimCutNtk(*(pCktObj->GetCutNtk()));
+    }
+    // init parital difference
+    for (int i = 0; i < ckt.GetPoNum(); ++i)
+        ckt.GetPo(i)->SetBD(i, static_cast <uint64_t> (ULLONG_MAX));
+    // get candidiates
+    vector <Ckt_Sing_Sel_Candi_t> candis;
+    Ckt_GetALCs(ckt, pOrderedObjs, candis);
+    // batch
+    clock_t st, ed;
+    int t1 = 0, t2 = 0;
+    vector <uint64_t> isPoICorrect(ckt.GetPoNum(), 0);
+    for (int fb = 0; fb < ckt.GetSimNum(); ++fb) {
+        // check PO correctness
+        uint64_t isCorrect = static_cast <uint64_t> (ULLONG_MAX);
+        for (int i = 0; i < ckt.GetPoNum(); ++i) {
+            isPoICorrect[i] = ~(ckt.GetPo(i)->GetCluster(fb) ^ cktRef.GetPo(i)->GetCluster(fb));
+            isCorrect &= isPoICorrect[i];
+        }
+        // get partial boolean difference
+        st = clock();
+        Ckt_GetBoolDiff(ckt, pOrderedObjs, isPoICorrect, fb);
+        ed = clock();
+        t1 += (ed - st);
+        // update added error rate
+        st = clock();
+        Ckt_GetAddedErrorRate(candis, fb, isCorrect);
+        ed = clock();
+        t2 += (ed - st);
+    }
+    for (auto & pr : candis)
+        cout << pr << endl;
+    cout << t1 << endl << t2 << endl;
+}
 
 
 Ckt_Sop_t * Ckt_CheckExpansion(list <Ckt_Sop_t *> & cut)
@@ -148,17 +147,13 @@ void Ckt_ObjFindCut(Ckt_Sop_t & cktSrcObj, list <Ckt_Sop_t *> & cut)
 }
 
 
-void Ckt_BuildCutNtks(Ckt_Sop_Net_t & ckt)
+void Ckt_BuildCutNtks(Ckt_Sop_Net_t & ckt, vector <Ckt_Sop_t *> & pOrderedObjs)
 {
-    // get topological sequence
-    vector <Ckt_Sop_t *> pOrderedObjs;
-    ckt.SortObjects(pOrderedObjs);
     // update fanout cone information
     ckt.UpdateFoCone();
     // find cuts and sub-networks
     list <Ckt_Sop_t *> cut;
     list <Ckt_Sop_t *> subNtk;
-    clock_t st = clock();
     for (auto & pCktObj : pOrderedObjs) {
         if (pCktObj->IsPI() || pCktObj->IsPO() || pCktObj->IsConst())
             continue;
@@ -167,14 +162,6 @@ void Ckt_BuildCutNtks(Ckt_Sop_Net_t & ckt)
         Ckt_CollectVisited(pOrderedObjs, subNtk);
         pCktObj->SetCutNtk(Ckt_CreateNtkFrom(*pCktObj, subNtk, cut));
     }
-    cout << clock() - st << endl;
-    st = clock();
-    for (auto & pCktObj : pOrderedObjs) {
-        if (pCktObj->IsPI() || pCktObj->IsPO() || pCktObj->IsConst())
-            continue;
-        Ckt_SimCutNtk(*(pCktObj->GetCutNtk()));
-    }
-    cout << clock() - st << endl;
 }
 
 
@@ -274,49 +261,45 @@ void Ckt_GetALCsRecur(Ckt_Sop_t * pCktObj, vector < Ckt_Sing_Sel_Candi_t > & can
 }
 
 
-// void Ckt_GetBooleanDifference(Ckt_Sop_Net_t & ckt, vector <Ckt_Sop_t *> & pOrdObjs, vector <uint64_t> & isPoICorrect, int fb)
-// {
-//     for (auto ppCktObj = pOrdObjs.rbegin(); ppCktObj != pOrdObjs.rend(); ++ppCktObj) {
-//         if ((*ppCktObj)->cut.empty())
-//             continue;
-//         // init
-//         (*ppCktObj)->BDPlus = 0;
-//         (*ppCktObj)->BDMinus = static_cast <uint64_t> (ULLONG_MAX);
-//         for (int i = 0; i < ckt.GetPoNum(); ++i)
-//             (*ppCktObj)->SetBD(i, 0);
-//         // flip
-//         (*ppCktObj)->FlipCluster(fb);
-//         // simulate (2/3 time of the function)
-//         ckt.FeedForward((*ppCktObj)->cutNtk, fb);
-//         // record boolean difference
-//         for (auto & pCktObj : (*ppCktObj)->cut) {
-//             for (int i = 0; i < ckt.GetPoNum(); ++i) {
-//                 (*ppCktObj)->SelfOrBD(
-//                     i,
-//                     pCktObj->XorClusterBak(fb) & pCktObj->GetBD(i)
-//                 );
-//             }
-//         }
-//         for (int i = 0; i < ckt.GetPoNum(); ++i) {
-//             (*ppCktObj)->BDPlus |= (*ppCktObj)->GetBD(i);
-//             (*ppCktObj)->BDMinus &= (isPoICorrect[i] ^ (*ppCktObj)->GetBD(i));
-//         }
-//         // recover
-//         for (auto & pCktObj : (*ppCktObj)->cutNtk)
-//             pCktObj->RecoverCluster(fb);
-//         (*ppCktObj)->FlipCluster(fb);
-//     }
-// }
-//
-//
-// void Ckt_GetAddedErrorRate(vector <Ckt_Sing_Sel_Candi_t> & candis, int fb, uint64_t isCorrect)
-// {
-//     for (auto & candi: candis) {
-//         uint64_t isDiff = candi.pCktObj->GetCluster(fb) ^ candi.pCktObj->GetClusterValue(candi.SOP, candi.type, fb);
-//         candi.addedER += Ckt_CountOneNum(isCorrect & candi.pCktObj->BDPlus & isDiff);
-//         candi.addedER -= Ckt_CountOneNum(~isCorrect & candi.pCktObj->BDMinus & isDiff);
-//     }
-// }
+void Ckt_GetBoolDiff(Ckt_Sop_Net_t & ckt, vector <Ckt_Sop_t *> & pOrdObjs, vector <uint64_t> & isPoICorrect, int fb)
+{
+    for (auto ppCktObj = pOrdObjs.rbegin(); ppCktObj != pOrdObjs.rend(); ++ppCktObj) {
+        if ((*ppCktObj)->IsPI() || (*ppCktObj)->IsPO() || (*ppCktObj)->IsConst())
+            continue;
+        Ckt_Sop_Net_t * pCutNtk = (*ppCktObj)->GetCutNtk();
+        // init
+        (*ppCktObj)->BDPlus = 0;
+        (*ppCktObj)->BDMinus = static_cast <uint64_t> (ULLONG_MAX);
+        for (int i = 0; i < ckt.GetPoNum(); ++i)
+            (*ppCktObj)->SetBD(i, 0);
+        // compute boolean difference
+        for (int i = 0; i < pCutNtk->GetPoNum(); ++i) {
+            Ckt_Sop_t * pCut = pCutNtk->GetPo(i);
+            Ckt_Sop_t * pCutOri = pCut->GetOriObj();
+            uint64_t cutBD = pCut->GetCluster(fb) ^ pCut->GetOriObj()->GetCluster(fb);
+            for (int j = 0; j < ckt.GetPoNum(); ++j) {
+                (*ppCktObj)->SelfOrBD(
+                    j,
+                    pCutOri->GetBD(j) & cutBD
+                );
+            }
+        }
+        for (int i = 0; i < ckt.GetPoNum(); ++i) {
+            (*ppCktObj)->BDPlus |= (*ppCktObj)->GetBD(i);
+            (*ppCktObj)->BDMinus &= (isPoICorrect[i] ^ (*ppCktObj)->GetBD(i));
+        }
+    }
+}
+
+
+void Ckt_GetAddedErrorRate(vector <Ckt_Sing_Sel_Candi_t> & candis, int fb, uint64_t isCorrect)
+{
+    for (auto & candi: candis) {
+        uint64_t isDiff = candi.pCktObj->GetCluster(fb) ^ candi.pCktObj->GetClusterValue(candi.SOP, candi.type, fb);
+        candi.addedER += Ckt_CountOneNum(isCorrect & candi.pCktObj->BDPlus & isDiff);
+        candi.addedER -= Ckt_CountOneNum(~isCorrect & candi.pCktObj->BDMinus & isDiff);
+    }
+}
 
 
 

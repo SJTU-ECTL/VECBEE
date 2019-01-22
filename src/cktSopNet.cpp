@@ -54,6 +54,8 @@ Ckt_Sop_Net_t::Ckt_Sop_Net_t(Ckt_Sop_t & cktSrcObj, list <Ckt_Sop_t *> & subNtk,
         assert(pCktFaNtk == pCktObj->GetCktNtk());
     for (auto & pCktObj : cut)
         assert(pCktFaNtk == pCktObj->GetCktNtk());
+    for (auto & cktObj : pCktFaNtk->cktObjs)
+        cktObj.ClearCopiedObj();
 
     // allocate a new network
     pAbcNtk = Abc_NtkAlloc(ABC_NTK_LOGIC, ABC_FUNC_SOP, 1);
