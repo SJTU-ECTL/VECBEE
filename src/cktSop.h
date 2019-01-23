@@ -69,7 +69,7 @@ public:
     void                                    UpdateCluster       (int i);
     void                                    FlipClustersFrom    (Ckt_Sop_t * pCktObj);
     uint64_t                                GetClusterValue     (std::vector <std::string> & newSOP, Ckt_Sop_Cat_t type, int i);
-    void                                    GetClustersValue    (std::vector <std::string> & newSOP, std::vector <uint64_t> & values);
+    void                                    GetClustersValue    (std::vector <std::string> & newSOP, Ckt_Sop_Cat_t type, std::vector <uint64_t> & values);
     void                                    XorClustersValue    (std::vector <uint64_t> & values);
     void                                    ReplaceBy           (std::vector <std::string> & newSOP, Ckt_Sop_Cat_t _type, Ckt_Sing_Sel_Info_t & info);
     void                                    CheckFanio          (void) const;
@@ -135,13 +135,16 @@ public:
     inline void                             ResetBD             (void)                                                              { std::fill(BD.begin(), BD.end(), 0); }
     inline void                             UpdateBD            (Ckt_Sop_t * pCut)                                                  { Ckt_Sop_t * pOriCut = pCut->GetOriObj(); for (int i = 0; i < GetSimNum(); ++i) BD[i] |= (pCut->isDiff[i] & pOriCut->BD[i]); }
     inline int                              GetBDSize           (void) const                                                        { return static_cast <int> (BD.size()); }
+    inline uint64_t                         GetBD               (int i) const                                                       { return BD[i]; }
     inline void                             ResizeBDInc         (void)                                                              { BDInc.resize(GetSimNum()); }
     inline void                             ResetBDInc          (void)                                                              { std::fill(BDInc.begin(), BDInc.end(), 0); }
     inline void                             UpdateBDInc         (void)                                                              { for (int i = 0; i < GetSimNum(); ++i) BDInc[i] |= BD[i]; }
+    inline uint64_t                         GetBDInc            (int i) const                                                       { return BDInc[i]; }
+    inline int                              GetIncER            (std::vector <uint64_t> & isCor, std::vector <uint64_t> & vals )    { int ret = 0; for (int i = 0; i < GetSimNum(); ++i) ret += Ckt_CountOneNum(isCor[i] & BDInc[i] & vals[i]); return ret; }
     inline void                             ResizeBDDec         (void)                                                              { BDDec.resize(GetSimNum()); }
     inline void                             ResetBDDec          (void)                                                              { std::fill(BDDec.begin(), BDDec.end(), static_cast <uint64_t> (ULLONG_MAX)); }
     inline void                             UpdateBDDec         (std::vector <uint64_t> & isPoCorrect)                              { for (int i = 0; i < GetSimNum(); ++i) BDDec[i] &= (isPoCorrect[i] ^ BD[i]); }
-    inline int                              GetIncER            (std::vector <uint64_t> & isCor, std::vector <uint64_t> & vals )    { int ret = 0; for (int i = 0; i < GetSimNum(); ++i) ret += Ckt_CountOneNum(isCor[i] & BDInc[i] & vals[i]); return ret; }
+    inline uint64_t                         GetBDDec            (int i) const                                                       { return BDDec[i]; }
     inline int                              GetDecER            (std::vector <uint64_t> & isCor, std::vector <uint64_t> & vals )    { int ret = 0; for (int i = 0; i < GetSimNum(); ++i) ret += Ckt_CountOneNum(~isCor[i] & BDDec[i] & vals[i]); return ret; }
 };
 

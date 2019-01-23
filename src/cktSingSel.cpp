@@ -71,6 +71,7 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
     vector <uint64_t> isCorrect(ckt.GetSimNum(), static_cast <uint64_t> (ULLONG_MAX));
     for (int i = 0; i < ckt.GetPoNum(); ++i) {
         Ckt_Sop_t * pCktPo = ckt.GetPo(i);
+        // cout << pCktPo->GetName() << "---------------------" << endl;
         Ckt_Sop_t * pRefCktPo = ckt.GetPo(i);
         // init PO's boolean difference & get correctness of PO
         for (int j = 0; j < ckt.GetPoNum(); ++j) {
@@ -93,16 +94,17 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
             pCktObj->ResetBD();
             for (int k = 0; k < pCutNtk->GetPoNum(); ++k)
                 pCktObj->UpdateBD(pCutNtk->GetPo(k));
+            // record the influence on all POs
+            pCktObj->UpdateBDInc();
+            pCktObj->UpdateBDDec(isPoCorrect);
         }
-        // record the influence on all POs
-        ckt.GetPo(i)->UpdateBDInc();
-        ckt.GetPo(i)->UpdateBDDec(isPoCorrect);
     }
+    // update added error rate
     vector <uint64_t> values(ckt.GetSimNum());
     for (auto & candi : candis) {
         Ckt_Sop_t * pCktObj = candi.pCktObj;
         // simulate the node, save the result in values
-        pCktObj->GetClustersValue(candi.SOP, values);
+        pCktObj->GetClustersValue(candi.SOP, candi.type, values);
         // values ^= valueClusters
         pCktObj->XorClustersValue(values);
         // update error rate
