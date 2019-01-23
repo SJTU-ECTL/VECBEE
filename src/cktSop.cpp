@@ -15,8 +15,10 @@ Ckt_Sop_t::Ckt_Sop_t(Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk)
     foConeInfo.resize((Abc_NtkPoNum(pCktNtk->GetAbcNtk()) >> 6) + 1);
     pCktFanins.clear();
     pCktFanouts.clear();
-    BD.clear();
     isDiff.clear();
+    BD.clear();
+    BDInc.clear();
+    BDDec.clear();
 }
 
 
@@ -30,8 +32,10 @@ Ckt_Sop_t::Ckt_Sop_t(const Ckt_Sop_t & other)
     foConeInfo.resize(other.foConeInfo.size());
     pCktFanins.clear();
     pCktFanouts.clear();
-    BD.clear();
     isDiff.clear();
+    BD.clear();
+    BDInc.clear();
+    BDDec.clear();
 }
 
 
@@ -202,7 +206,7 @@ void Ckt_Sop_t::UpdateCluster(int i)
 }
 
 
-uint64_t Ckt_Sop_t::GetClusterValue(std::vector <std::string> & newSOP, Ckt_Sop_Cat_t type, int i)
+uint64_t Ckt_Sop_t::GetClusterValue(vector <string> & newSOP, Ckt_Sop_Cat_t type, int i)
 {
     uint64_t ret = 0;
     switch (type) {
@@ -238,7 +242,38 @@ uint64_t Ckt_Sop_t::GetClusterValue(std::vector <std::string> & newSOP, Ckt_Sop_
 }
 
 
-void Ckt_Sop_t::ReplaceBy(std::vector <std::string> & newSOP, Ckt_Sop_Cat_t _type, Ckt_Sing_Sel_Info_t & info)
+void Ckt_Sop_t::GetClustersValue(vector <string> & newSOP, vector <uint64_t> & values)
+{
+    for (auto pCube = newSOP.begin(); pCube != newSOP.end(); ++pCube) {
+        vector <uint64_t> product(values.size(), static_cast <uint64_t> (ULLONG_MAX));
+        for (int j = 0; j < static_cast <int> (pCube->length()); ++j) {
+            if ((*pCube)[j] == '0') {
+                for (int i = 0; i < static_cast <int> (values.size()); ++i)
+                    product[i] &= ~(pCktFanins[j]->valueClusters[i]);
+            }
+            else if ((*pCube)[j] == '1') {
+                for (int i = 0; i < static_cast <int> (values.size()); ++i)
+                    product[i] &= pCktFanins[j]->valueClusters[i];
+            }
+        }
+        if (pCube == newSOP.begin())
+            values.assign(product.begin(), product.end());
+        else {
+            for (int i = 0; i < static_cast <int> (values.size()); ++i)
+                values[i] |= product[i];
+        }
+    }
+}
+
+
+void Ckt_Sop_t::XorClustersValue(vector <uint64_t> & values)
+{
+    for (int i = 0; i < static_cast <int> (values.size()); ++i)
+        values[i] ^= valueClusters[i];
+}
+
+
+void Ckt_Sop_t::ReplaceBy(vector <string> & newSOP, Ckt_Sop_Cat_t _type, Ckt_Sing_Sel_Info_t & info)
 {
     // backup
     info.pCktObj = this;
@@ -286,7 +321,7 @@ Ckt_Sing_Sel_Info_t::Ckt_Sing_Sel_Info_t(void)
 }
 
 
-Ckt_Sing_Sel_Info_t::Ckt_Sing_Sel_Info_t(Ckt_Sop_t * p_ckt_obj, Ckt_Sop_Cat_t _type, const std::vector <std::string> & _sop)
+Ckt_Sing_Sel_Info_t::Ckt_Sing_Sel_Info_t(Ckt_Sop_t * p_ckt_obj, Ckt_Sop_Cat_t _type, const vector <string> & _sop)
     : pCktObj(p_ckt_obj), type(_type)
 {
     SOP.assign(_sop.begin(), _sop.end());

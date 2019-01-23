@@ -42,7 +42,7 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
     clock_t t = clock();
     Ckt_BuildCutNtks(ckt, pOrderedObjs);
     cout << "Build cut network time = " << clock() - t << endl;
-    // simulate base network, get base error rate
+    // simulate base network
     cktRef.GenInputDist(314);
     ckt.GenInputDist(314);
     cktRef.FeedForward();
@@ -56,17 +56,34 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
     // get candidiates
     vector <Ckt_Sing_Sel_Candi_t> candis;
     Ckt_GetALCs(ckt, pOrderedObjs, candis);
-    // batch
+
     t = clock();
+    // init BD
+    for (auto & pCktObj : pOrderedObjs) {
+        pCktObj->ResizeBD();
+        pCktObj->ResizeBDInc();
+        pCktObj->ResizeBDDec();
+        pCktObj->ResetBDInc();
+        pCktObj->ResetBDDec();
+    }
+    // get BD & BDInc & BDDec
+    vector <uint64_t> isPoCorrect(ckt.GetSimNum());
+    vector <uint64_t> isCorrect(ckt.GetSimNum(), static_cast <uint64_t> (ULLONG_MAX));
     for (int i = 0; i < ckt.GetPoNum(); ++i) {
-        // init PO's boolean difference
+        Ckt_Sop_t * pCktPo = ckt.GetPo(i);
+        Ckt_Sop_t * pRefCktPo = ckt.GetPo(i);
+        // init PO's boolean difference & get correctness of PO
         for (int j = 0; j < ckt.GetPoNum(); ++j) {
             if (i == j)
                 ckt.GetPo(j)->SetBD();
             else
                 ckt.GetPo(j)->ResetBD();
+            for (int k = 0; k < ckt.GetSimNum(); ++k) {
+                isPoCorrect[k] = ~(pCktPo->GetCluster(k) ^ pRefCktPo->GetCluster(k));
+                isCorrect[k] &= isPoCorrect[k];
+            }
         }
-        // get boolean difference
+        // get boolean difference on one PO
         for (auto ppCktObj = pOrderedObjs.rbegin(); ppCktObj != pOrderedObjs.rend(); ++ppCktObj) {
             Ckt_Sop_t * pCktObj = *ppCktObj;
             if (pCktObj->IsPI() || pCktObj->IsPO() || pCktObj->IsConst())
@@ -77,6 +94,21 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
             for (int k = 0; k < pCutNtk->GetPoNum(); ++k)
                 pCktObj->UpdateBD(pCutNtk->GetPo(k));
         }
+        // record the influence on all POs
+        ckt.GetPo(i)->UpdateBDInc();
+        ckt.GetPo(i)->UpdateBDDec(isPoCorrect);
+    }
+    vector <uint64_t> values(ckt.GetSimNum());
+    for (auto & candi : candis) {
+        Ckt_Sop_t * pCktObj = candi.pCktObj;
+        // simulate the node, save the result in values
+        pCktObj->GetClustersValue(candi.SOP, values);
+        // values ^= valueClusters
+        pCktObj->XorClustersValue(values);
+        // update error rate
+        candi.addedER += pCktObj->GetIncER(isCorrect, values);
+        candi.addedER -= pCktObj->GetDecER(isCorrect, values);
+        cout << candi << endl;
     }
     cout << "Get boolean difference time = " << clock() - t << endl;
 }
