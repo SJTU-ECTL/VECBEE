@@ -15,7 +15,8 @@ Ckt_Sop_t::Ckt_Sop_t(Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk)
     foConeInfo.resize((Abc_NtkPoNum(pCktNtk->GetAbcNtk()) >> 6) + 1);
     pCktFanins.clear();
     pCktFanouts.clear();
-    BD.resize(Abc_NtkPoNum(pCktNtk->GetAbcNtk()), 0);
+    BD.clear();
+    isDiff.clear();
 }
 
 
@@ -29,7 +30,8 @@ Ckt_Sop_t::Ckt_Sop_t(const Ckt_Sop_t & other)
     foConeInfo.resize(other.foConeInfo.size());
     pCktFanins.clear();
     pCktFanouts.clear();
-    BD.resize(other.BD.size(), 0);
+    BD.clear();
+    isDiff.clear();
 }
 
 

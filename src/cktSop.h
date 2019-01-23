@@ -42,9 +42,10 @@ private:
     Ckt_Sop_Net_t *                         pCktCutNtk;         // cut network, containing a copy of objects between itself and its cut
     Ckt_Sop_t *                             pCktObjOri;         // the original object in the parent network
     Ckt_Sop_t *                             pCktObjCopy;        // temporarily record the copied object
+    std::vector <uint64_t>                  isDiff;             // valueClusters ^ pCktObjOri->valueClusters
 
     //
-    // only used for batch error estimaion
+    // only used for batch error estimation
     //
     std::vector <uint64_t>                  BD;                 // partial boolean difference
 
@@ -53,9 +54,6 @@ private:
     //
     Ckt_Sop_t &                             operator =          (const Ckt_Sop_t &);
 
-public:
-    uint64_t                                BDPlus;             // temporary
-    uint64_t                                BDMinus;            // temporary
 
 public:
     explicit                                Ckt_Sop_t           (abc::Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk);
@@ -84,6 +82,7 @@ public:
     inline int                              GetTopoId           (void) const                            { return topoId; }
     inline int                              GetNLiterals        (void) const                            { return nLiterals; }
     inline int                              GetClustersSize     (void) const                            { return static_cast <int> (valueClusters.size()); }
+    inline int                              GetSimNum           (void) const                            { return static_cast <int> (valueClusters.size()); }
     inline void                             ResizeClusters      (int len)                               { valueClusters.resize(len); }
     inline void                             SetCluster          (int i, uint64_t value)                 { valueClusters[i] = value; }
     inline void                             FlipCluster         (int i)                                 { valueClusters[i] = ~valueClusters[i]; }
@@ -123,10 +122,14 @@ public:
     inline void                             SetCopiedObj        (Ckt_Sop_t * pCktObj)                   { pCktObjCopy = pCktObj; }
     inline void                             ClearCopiedObj      (void)                                  { pCktObjCopy = nullptr; }
     inline Ckt_Sop_t *                      GetCopiedObj        (void) const                            { return pCktObjCopy; }
-    inline void                             SetBD               (int i, uint64_t value)                 { BD[i] = value; }
-    inline uint64_t                         GetBD               (int i) const                           { return BD[i]; }
-    inline void                             SelfOrBD            (int i, uint64_t value)                 { BD[i] |= value; }
+    inline bool                             IsInBaseNtk         (void) const                            { return (GetOriObj() == nullptr); }
+    inline bool                             IsInCutNtk          (void) const                            { return (GetOriObj() != nullptr); }
+    inline void                             SetBD               (void)                                  { BD.resize(GetSimNum(), static_cast <uint64_t> (ULLONG_MAX)); }
+    inline void                             ResetBD             (void)                                  { BD.resize(GetSimNum(), 0); }
+    inline void                             UpdateBD            (Ckt_Sop_t * pCut)                      { Ckt_Sop_t * pOriCut = pCut->GetOriObj(); for (int i = 0; i < GetSimNum(); ++i) BD[i] |= (pCut->isDiff[i] & pOriCut->BD[i]); }
     inline int                              GetBDSize           (void) const                            { return static_cast <int> (BD.size()); }
+    inline void                             ResizeIsDiff        (void)                                  { isDiff.resize(GetSimNum()); }
+    inline void                             UpdateIsDiff        (void)                                  { for (int i = 0; i < GetSimNum(); ++i) isDiff[i] = valueClusters[i] ^ pCktObjOri->valueClusters[i]; }
 };
 
 
