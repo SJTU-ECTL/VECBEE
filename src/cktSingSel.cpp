@@ -4,15 +4,21 @@ using namespace std;
 using namespace abc;
 
 
+Ckt_Sing_Sel_Candi_t::Ckt_Sing_Sel_Candi_t(void)
+    : pCktObj(nullptr), type(Ckt_Sop_Cat_t::INTER), addedER(0), score(-FLT_MAX)
+{
+    SOP.clear();
+}
+
 Ckt_Sing_Sel_Candi_t::Ckt_Sing_Sel_Candi_t(Ckt_Sop_t * p_ckt_obj, vector <string> _sop, Ckt_Sop_Cat_t _type)
-    : pCktObj(p_ckt_obj), type(_type), addedER(0)
+    : pCktObj(p_ckt_obj), type(_type), addedER(0), score(-FLT_MAX)
 {
     SOP.assign(_sop.begin(), _sop.end());
 }
 
 
 Ckt_Sing_Sel_Candi_t::Ckt_Sing_Sel_Candi_t(const Ckt_Sing_Sel_Candi_t & other)
-    : pCktObj(other.pCktObj), type(other.type), addedER(other.addedER)
+    : pCktObj(other.pCktObj), type(other.type), addedER(other.addedER), score(other.score)
 {
     SOP.assign(other.SOP.begin(), other.SOP.end());
 }
@@ -30,7 +36,7 @@ ostream & operator << (ostream & os, const Ckt_Sing_Sel_Candi_t & candi)
 }
 
 
-void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
+void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_Sing_Sel_Candi_t & res)
 {
     assert(&ckt != &cktRef);
     assert(ckt.GetAbcNtk() != cktRef.GetAbcNtk());
@@ -38,24 +44,30 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
     // get topological sequence
     vector <Ckt_Sop_t *> pOrderedObjs;
     ckt.SortObjects(pOrderedObjs);
+    // get candidiates
+    vector <Ckt_Sing_Sel_Candi_t> candis;
+    Ckt_GetALCs(ckt, pOrderedObjs, candis);
+    if (candis.empty()) {
+        cout << "Warning: no more ASE candidates" << endl;
+        res.pCktObj = nullptr;
+        return;
+    }
     // build cut networks
     clock_t t = clock();
     Ckt_BuildCutNtks(ckt, pOrderedObjs);
-    cout << "Build cut network time = " << clock() - t << endl;
+    // cout << "Build cut network time = " << clock() - t << endl;
     // simulate base network
     cktRef.GenInputDist(314);
     ckt.GenInputDist(314);
     cktRef.FeedForward();
     ckt.FeedForward(pOrderedObjs);
+    int baseError = ckt.GetErrorRate(cktRef);
     // simulate cut networks
     for (auto & pCktObj : pOrderedObjs) {
         if (pCktObj->IsPI() || pCktObj->IsPO() || pCktObj->IsConst())
             continue;
         Ckt_SimCutNtk(*(pCktObj->GetCutNtk()));
     }
-    // get candidiates
-    vector <Ckt_Sing_Sel_Candi_t> candis;
-    Ckt_GetALCs(ckt, pOrderedObjs, candis);
 
     t = clock();
     // init BD
@@ -71,7 +83,6 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
     vector <uint64_t> isCorrect(ckt.GetSimNum(), static_cast <uint64_t> (ULLONG_MAX));
     for (int i = 0; i < ckt.GetPoNum(); ++i) {
         Ckt_Sop_t * pCktPo = ckt.GetPo(i);
-        // cout << pCktPo->GetName() << "---------------------" << endl;
         Ckt_Sop_t * pRefCktPo = ckt.GetPo(i);
         // init PO's boolean difference & get correctness of PO
         for (int j = 0; j < ckt.GetPoNum(); ++j) {
@@ -110,9 +121,22 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
         // update error rate
         candi.addedER += pCktObj->GetIncER(isCorrect, values);
         candi.addedER -= pCktObj->GetDecER(isCorrect, values);
-        cout << candi << endl;
     }
-    cout << "Get boolean difference time = " << clock() - t << endl;
+    // cout << "Get boolean difference time = " << clock() - t << endl;
+    // find the best candidate
+    res.score = -FLT_MAX;
+    for (auto & candi : candis) {
+        float newER = static_cast <float> (baseError + candi.addedER);
+        float score = (candi.pCktObj->GetNLiterals() - GetLiteralsNum(candi.SOP)) / (newER + 1);
+        cout << candi << "\t" << newER << "\t" << score << endl;
+        if (score > res.score) {
+            res.pCktObj = candi.pCktObj;
+            res.SOP.assign(candi.SOP.begin(), candi.SOP.end());
+            res.type = candi.type;
+            res.addedER = candi.addedER;
+            res.score = score;
+        }
+    }
 }
 
 
@@ -321,5 +345,32 @@ void Ckt_EnumerateTest(Ckt_Sop_Net_t & ckt)
         cout << candi << endl;
         ckt.RecoverFromRpl(info);
         // Ckt_Cec(cktRef, ckt);
+    }
+}
+
+
+void Ckt_SingleSelectionOnce(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
+{
+    // get error rate
+    cktRef.GenInputDist(314);
+    ckt.GenInputDist(314);
+    cktRef.FeedForward();
+    ckt.FeedForward();
+    cout << "Current error = " << ckt.GetErrorRate(cktRef) << endl;
+
+    // find best approximate simplified expression
+    Ckt_Sing_Sel_Candi_t bestASE;
+    Ckt_BatchErrorEstimation(ckt, cktRef, bestASE);
+
+    // change function
+    if (bestASE.pCktObj == nullptr) {
+        cout << "Warning: no more ASE candidates" << endl;
+        return;
+    }
+    else {
+        cout << "Best ASE = " << bestASE << endl;
+        cout << "Added error of best ASE = " << bestASE.addedER << endl;
+        Ckt_Sing_Sel_Info_t rplInfo;
+        bestASE.pCktObj->ReplaceBy(bestASE.SOP, bestASE.type, rplInfo);
     }
 }

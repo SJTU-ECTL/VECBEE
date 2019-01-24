@@ -165,6 +165,7 @@ public:
 std::ostream &                              operator <<         (std::ostream & os, const std::vector <std::string> & SOP);
 std::ostream &                              operator <<         (std::ostream & os, const Ckt_Sop_Cat_t & type);
 Ckt_Sop_Cat_t                               Abc_GetSopType      (abc::Abc_Obj_t * pObj);
+int                                         GetLiteralsNum      (const std::vector <std::string> & SOP);
 
 
 #endif

@@ -386,3 +386,14 @@ Ckt_Sop_Cat_t Abc_GetSopType( Abc_Obj_t * pObj )
     else
         return Ckt_Sop_Cat_t::INTER;
 }
+
+
+int GetLiteralsNum(const vector <string> & SOP)
+{
+    int ret = 0;
+    for (auto & s : SOP)
+        for (auto & ch : s)
+            if (ch != '-')
+                ++ret;
+    return ret;
+}
