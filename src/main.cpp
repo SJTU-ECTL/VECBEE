@@ -35,18 +35,13 @@ void Execute_Gate_Net(Abc_Ntk_t * pAbcNtk, int number)
 }
 
 
-void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number)
+void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres)
 {
     Ckt_Sop_Net_t ckt(pAbcNtk, number);
     Ckt_Sop_Net_t cktRef(ckt);
+    int EThres = static_cast <int> (ERThres * number);
 
-    // cout << "brute" << endl;
-    // Ckt_EnumerateTest(ckt);
-    // cout << "batch" << endl;
-    for (int i = 0; i < 10; ++i)
-        Ckt_SingleSelectionOnce(ckt, cktRef);
-    // ckt.CheckSimulator();
-    // ckt.TestSimulatorSpeed();
+    while (Ckt_SingleSelectionOnce(ckt, cktRef) <= EThres);
 }
 
 
@@ -56,6 +51,7 @@ int main(int argc, char * argv[])
     string file = option.get <string> ("file");
     string genlib = option.get <string> ("genlib");
     int number = option.get <int> ("number");
+    float ERThres = option.get <float> ("error");
 
     Abc_Start();
     Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
@@ -66,7 +62,7 @@ int main(int argc, char * argv[])
 
     Abc_Ntk_t * pAbcNtk = Abc_FrameReadNtk(pAbc);
     if (Abc_NtkIsSopLogic(pAbcNtk))
-        Execute_Sop_Net(pAbcNtk, number);
+        Execute_Sop_Net(pAbcNtk, number, ERThres);
     else if (Abc_NtkIsMappedLogic(pAbcNtk))
         Execute_Gate_Net(pAbcNtk, number);
 

@@ -14,6 +14,7 @@ public:
     std::vector <std::string> SOP;
     Ckt_Sop_Cat_t type;
     int addedER;
+    int newER;
     float score;
 
     explicit Ckt_Sing_Sel_Candi_t(void);
@@ -37,8 +38,8 @@ void            Ckt_GetBoolDiff(Ckt_Sop_Net_t & ckt, std::vector <Ckt_Sop_t *> &
 void            Ckt_GetAddedErrorRate   (std::vector <Ckt_Sing_Sel_Candi_t> & candis, int fb, uint64_t isCorrect);
 void            Ckt_GetALCs             (Ckt_Sop_Net_t & ckt, std::vector <Ckt_Sop_t *> & pOrdObjs, std::vector < Ckt_Sing_Sel_Candi_t > & candis, int maxLiteralNum = 5);
 void            Ckt_GetALCsRecur        (Ckt_Sop_t * pCktObj, std::vector < Ckt_Sing_Sel_Candi_t > & candis, int i, int j, int n, int maxLiteralNum = 5);
-void            Ckt_EnumerateTest       (Ckt_Sop_Net_t & ckt);
-void            Ckt_SingleSelectionOnce (Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef);
+void            Ckt_EnumerateTest       (Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef);
+float           Ckt_SingleSelectionOnce (Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef);
 
 
 #endif
