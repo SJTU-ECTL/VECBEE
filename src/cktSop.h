@@ -73,6 +73,8 @@ public:
     void                                    XorClustersValue    (std::vector <uint64_t> & values);
     void                                    ReplaceBy           (std::vector <std::string> & newSOP, Ckt_Sop_Cat_t _type, Ckt_Sing_Sel_Info_t & info);
     void                                    CheckFanio          (void) const;
+    void                                    ClearCutNtk         (void);
+    void                                    ClearMem            (void);
 
     inline abc::Abc_Obj_t *                 GetAbcObj           (void) const                                                        { return pAbcObj; }
     inline Ckt_Sop_Net_t *                  GetCktNtk           (void) const                                                        { return pCktNtk; }

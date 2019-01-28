@@ -31,7 +31,6 @@ void            Ckt_ObjExpand           (Ckt_Sop_t & cktObj, std::list <Ckt_Sop_
 void            Ckt_CollectVisited      (std::vector <Ckt_Sop_t *> & pOrdObjs, std::list <Ckt_Sop_t *> & subNtk);
 void            Ckt_ObjFindCut          (Ckt_Sop_t & cktSrcObj, std::list <Ckt_Sop_t *> & cut);
 void            Ckt_BuildCutNtks        (Ckt_Sop_Net_t & ckt, std::vector <Ckt_Sop_t *> & pOrdObjs);
-void            Ckt_SimCutNtk           (Ckt_Sop_Net_t & cutNtk);
 Ckt_Sop_Net_t * Ckt_CreateNtkFrom       (Ckt_Sop_t & cktSrcObj, std::list <Ckt_Sop_t *> & subNtk, std::list <Ckt_Sop_t *> & cut);
 bool            Ckt_HasSamePo           (Ckt_Sop_Net_t & ckt1, Ckt_Sop_Net_t & ckt2);
 void            Ckt_GetBoolDiff(Ckt_Sop_Net_t & ckt, std::vector <Ckt_Sop_t *> & pOrdObjs, std::vector <uint64_t> & isPoICorrect, int fb);

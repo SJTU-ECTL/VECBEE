@@ -14,7 +14,7 @@ parser Cmdline_Parser(int argc, char * argv[])
     parser option;
     option.add <string> ("file",   'f', "Circuit file",       false, "data/sop/c432.blif");
     option.add <string> ("genlib", 'g', "Map libarary file",  false, "data/genlib/mcnc.genlib");
-    option.add <float>  ("error",  'e', "Error rate",         false, 0.05, range(0, 1));
+    option.add <float>  ("error",  'e', "Error rate",         false, 0.05f, range(0.0f, 1.0f));
     option.add <int>    ("number", 'n', "Frame number",       false, 1024, range(1, INT_MAX));
     option.parse_check(argc, argv);
     return option;
@@ -61,10 +61,17 @@ int main(int argc, char * argv[])
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
 
     Abc_Ntk_t * pAbcNtk = Abc_FrameReadNtk(pAbc);
-    if (Abc_NtkIsSopLogic(pAbcNtk))
-        Execute_Sop_Net(pAbcNtk, number, ERThres);
-    else if (Abc_NtkIsMappedLogic(pAbcNtk))
-        Execute_Gate_Net(pAbcNtk, number);
+    Ckt_Sop_Net_t ckt(pAbcNtk, number);
+    while (1) {
+        vector <Ckt_Sop_t *> pOrderedObjs;
+        ckt.SortObjects(pOrderedObjs);
+        ckt.ClearCutNtks();
+        Ckt_BuildCutNtks(ckt, pOrderedObjs);
+    }
+    // if (Abc_NtkIsSopLogic(pAbcNtk))
+    //     Execute_Sop_Net(pAbcNtk, number, ERThres);
+    // else if (Abc_NtkIsMappedLogic(pAbcNtk))
+    //     Execute_Gate_Net(pAbcNtk, number);
 
     Abc_Stop();
 

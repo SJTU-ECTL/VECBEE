@@ -54,6 +54,7 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
     }
     // build cut networks
     clock_t t = clock();
+    ckt.ClearCutNtks();
     Ckt_BuildCutNtks(ckt, pOrderedObjs);
     // cout << "Build cut network time = " << clock() - t << endl;
     // simulate base network
@@ -67,7 +68,7 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
     for (auto & pCktObj : pOrderedObjs) {
         if (pCktObj->IsPI() || pCktObj->IsPO() || pCktObj->IsConst())
             continue;
-        Ckt_SimCutNtk(*(pCktObj->GetCutNtk()));
+        pCktObj->GetCutNtk()->FeedForwardCutNtk();
     }
 
     t = clock();
@@ -89,7 +90,7 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
         for (int j = 0; j < ckt.GetPoNum(); ++j) {
             if (i == j)
                 ckt.GetPo(j)->SetBD();
-            else
+           else
                 ckt.GetPo(j)->ResetBD();
             for (int k = 0; k < ckt.GetSimNum(); ++k) {
                 isPoCorrect[k] = ~(pCktPo->GetCluster(k) ^ pRefCktPo->GetCluster(k));
@@ -210,6 +211,8 @@ void Ckt_BuildCutNtks(Ckt_Sop_Net_t & ckt, vector <Ckt_Sop_t *> & pOrderedObjs)
     // find cuts and sub-networks
     list <Ckt_Sop_t *> cut;
     list <Ckt_Sop_t *> subNtk;
+
+    // Ckt_ClearCutNtks(ckt);
     for (auto & pCktObj : pOrderedObjs) {
         if (pCktObj->IsPI() || pCktObj->IsPO() || pCktObj->IsConst())
             continue;
@@ -217,25 +220,6 @@ void Ckt_BuildCutNtks(Ckt_Sop_Net_t & ckt, vector <Ckt_Sop_t *> & pOrderedObjs)
         Ckt_ObjFindCut(*pCktObj, cut);
         Ckt_CollectVisited(pOrderedObjs, subNtk);
         pCktObj->SetCutNtk(Ckt_CreateNtkFrom(*pCktObj, subNtk, cut));
-    }
-}
-
-
-void Ckt_SimCutNtk(Ckt_Sop_Net_t & cutNtk)
-{
-    // init value clusters of virtual PI
-    assert(cutNtk.GetPiNum() == 1);
-    Ckt_Sop_t * pCktPi = cutNtk.GetPi(0);
-    pCktPi->FlipClustersFrom(pCktPi->GetOriObj());
-    // feed forward
-    auto pCktObj = cutNtk.GetPCktObjs()->begin();
-    ++pCktObj;
-    for (; pCktObj != cutNtk.GetPCktObjs()->end(); ++ pCktObj)
-        pCktObj->UpdateClusters();
-    // mark whether the values of cut nodes are same as the ones in base network
-    for (int i = 0; i < cutNtk.GetPoNum(); ++i) {
-        cutNtk.GetPo(i)->ResizeIsDiff();
-        cutNtk.GetPo(i)->UpdateIsDiff();
     }
 }
 
@@ -254,7 +238,6 @@ Ckt_Sop_Net_t * Ckt_CreateNtkFrom(Ckt_Sop_t & cktSrcObj, std::list <Ckt_Sop_t *>
 
     return pCutNtk;
 }
-
 
 
 bool Ckt_HasSamePo(Ckt_Sop_Net_t & ckt1, Ckt_Sop_Net_t & ckt2)

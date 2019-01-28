@@ -321,6 +321,29 @@ void Ckt_Sop_t::CheckFanio(void) const
 }
 
 
+void Ckt_Sop_t::ClearCutNtk(void)
+{
+    if (pCktCutNtk != nullptr) {
+        delete pCktCutNtk;
+        pCktCutNtk = nullptr;
+    }
+}
+
+
+void Ckt_Sop_t::ClearMem(void)
+{
+    vector <string>().swap(SOP);
+    vector <uint64_t>().swap(valueClusters);
+    vector <uint64_t>().swap(foConeInfo);
+    vector <Ckt_Sop_t *>().swap(pCktFanins);
+    vector <Ckt_Sop_t *>().swap(pCktFanouts);
+    vector <uint64_t>().swap(isDiff);
+    vector <uint64_t>().swap(BD);
+    vector <uint64_t>().swap(BDInc);
+    vector <uint64_t>().swap(BDDec);
+}
+
+
 Ckt_Sing_Sel_Info_t::Ckt_Sing_Sel_Info_t(void)
     : pCktObj(nullptr), type(Ckt_Sop_Cat_t::INTER)
 {

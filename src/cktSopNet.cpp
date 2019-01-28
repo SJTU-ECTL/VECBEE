@@ -130,10 +130,10 @@ Ckt_Sop_Net_t::Ckt_Sop_Net_t(const Ckt_Sop_Net_t & other)
 
 Ckt_Sop_Net_t::~Ckt_Sop_Net_t(void)
 {
-    // free network (includes ABC objects added by user)
+    // free ABC network
     if (pAbcNtk != nullptr) {
-        pAbcNtk = nullptr;
         Abc_NtkDelete(pAbcNtk);
+        pAbcNtk = nullptr;
     }
 }
 
@@ -275,6 +275,25 @@ void Ckt_Sop_Net_t::FeedForward(list <Ckt_Sop_t *> & subNtk, int i)
 }
 
 
+void Ckt_Sop_Net_t::FeedForwardCutNtk(void)
+{
+    // init value clusters of virtual PI
+    assert(GetPiNum() == 1);
+    Ckt_Sop_t * pCktPi = GetPi(0);
+    pCktPi->FlipClustersFrom(pCktPi->GetOriObj());
+    // feed forward
+    auto pCktObj = cktObjs.begin();
+    ++pCktObj;
+    for (; pCktObj != cktObjs.end(); ++ pCktObj)
+        pCktObj->UpdateClusters();
+    // mark whether the values of cut nodes are same as the ones in base network
+    for (auto & pCktPo : pCktPos) {
+        pCktPo->ResizeIsDiff();
+        pCktPo->UpdateIsDiff();
+    }
+}
+
+
 void Ckt_Sop_Net_t::CheckSimulator(void)
 {
     // only for c6288
@@ -413,3 +432,9 @@ void Ckt_Sop_Net_t::AddObj(Abc_Obj_t * pAbcObj)
     cktObjs.emplace_back(Ckt_Sop_t(pAbcObj, this));
 }
 
+
+void Ckt_Sop_Net_t::ClearCutNtks(void)
+{
+    for (auto & cktObj : cktObjs)
+        cktObj.ClearCutNtk();
+}

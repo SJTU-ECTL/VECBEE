@@ -39,6 +39,7 @@ public:
     void                            FeedForward         (void);
     void                            FeedForward         (std::vector <Ckt_Sop_t *> & pOrderedObjs);
     void                            FeedForward         (std::list <Ckt_Sop_t *> & pOrderedObjs, int i);
+    void                            FeedForwardCutNtk   (void);
     void                            CheckSimulator      (void);
     void                            TestSimulatorSpeed  (void);
     int                             GetErrorRate        (Ckt_Sop_Net_t & refNtk);
@@ -48,9 +49,9 @@ public:
     void                            UpdateFoCone        (void);
     void                            PrintSimRes         (void) const;
     void                            AddObj              (abc::Abc_Obj_t * pAbcObj);
+    void                            ClearCutNtks        (void);
 
     inline int                      GetObjNum           (void) const                { return static_cast <int> (cktObjs.size()); }
-    inline std::list <Ckt_Sop_t> *  GetPCktObjs         (void) const                { return const_cast <std::list <Ckt_Sop_t> *> (&cktObjs); }
     inline int                      GetPiNum            (void) const                { return static_cast <int> (pCktPis.size()); }
     inline Ckt_Sop_t *              GetPi               (int i = 0) const           { return pCktPis[i]; }
     inline int                      GetPoNum            (void) const                { return static_cast <int> (pCktPos.size()); }
