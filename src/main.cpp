@@ -42,8 +42,13 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres)
     Ckt_Sop_Net_t cktRef(ckt);
     int EThres = static_cast <int> (ERThres * number);
 
-    Ckt_Synthesis(ckt);
+    cout << "#nodes = " << ckt.GetObjNum() - ckt.GetPiNum() - ckt.GetPoNum() << endl;
+    cout << "#PIs = " << ckt.GetPiNum() << endl;
+    cout << "#POs = " << ckt.GetPoNum() << endl;
+    float orgArea = Ckt_Synthesis(ckt);
     while (Ckt_SingleSelectionOnce(ckt, cktRef) <= EThres);
+    float newArea = Ckt_Synthesis(ckt);
+    cout << "Area reduction ratio = " << (orgArea - newArea) / orgArea << endl;
 }
 
 

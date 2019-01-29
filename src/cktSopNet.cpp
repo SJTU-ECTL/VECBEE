@@ -438,3 +438,26 @@ void Ckt_Sop_Net_t::ClearCutNtks(void)
     for (auto & cktObj : cktObjs)
         cktObj.ClearCutNtk();
 }
+
+
+int Ckt_Sop_Net_t::CountBufNum(void) const
+{
+    int ret = 0;
+    for (auto & cktObj : cktObjs) {
+        if (cktObj.IsBuf())
+            ++ret;
+    }
+    return ret;
+}
+
+
+
+int Ckt_Sop_Net_t::CountBufNum2(void) const
+{
+    int ret = 0;
+    for (auto & cktObj : cktObjs) {
+        if (cktObj.IsBuf() && !(cktObj.GetFanin(0)->IsPI() && cktObj.GetFanout(0)->IsPO()))
+            ++ret;
+    }
+    return ret;
+}

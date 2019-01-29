@@ -50,6 +50,8 @@ public:
     void                            PrintSimRes         (void) const;
     void                            AddObj              (abc::Abc_Obj_t * pAbcObj);
     void                            ClearCutNtks        (void);
+    int                             CountBufNum         (void) const;
+    int                             CountBufNum2        (void) const;
 
     inline int                      GetObjNum           (void) const                { return static_cast <int> (cktObjs.size()); }
     inline int                      GetPiNum            (void) const                { return static_cast <int> (pCktPis.size()); }

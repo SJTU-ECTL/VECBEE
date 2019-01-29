@@ -121,6 +121,7 @@ public:
     inline bool                             IsConst0            (void) const                                                        { return type == Ckt_Sop_Cat_t::CONST0; }
     inline bool                             IsConst1            (void) const                                                        { return type == Ckt_Sop_Cat_t::CONST1; }
     inline bool                             IsDanggling         (void) const                                                        { return pCktFanouts.empty() && !IsPO(); }
+    inline bool                             IsBuf               (void) const                                                        { return (SOP.size() == 1 && SOP[0] == "1"); }
     inline void                             SetCutNtk           (Ckt_Sop_Net_t * p_ckt_cut_ntk)                                     { pCktCutNtk = p_ckt_cut_ntk; }
     inline Ckt_Sop_Net_t *                  GetCutNtk           (void) const                                                        { return pCktCutNtk; }
     inline void                             SetOriObj           (Ckt_Sop_t * pCktObj)                                               { pCktObjOri = pCktObj; }

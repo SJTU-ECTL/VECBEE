@@ -62,7 +62,7 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
     cktRef.FeedForward();
     ckt.FeedForward(pOrderedObjs);
     int baseError = ckt.GetErrorRate(cktRef);
-    cout << "Base error = " << baseError << endl;
+    // cout << "Base error = " << baseError << endl;
     // simulate cut networks
     for (auto & pCktObj : pOrderedObjs) {
         if (pCktObj->IsPI() || pCktObj->IsPO() || pCktObj->IsConst())
@@ -345,9 +345,9 @@ float Ckt_SingleSelectionOnce(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
         return 1.0;
     }
     else {
-        cout << "Best ASE = " << bestASE << endl;
-        cout << "Added error of best ASE = " << bestASE.addedER << endl;
-        cout << "New error of best ASE = " << bestASE.newER << endl;
+        // cout << "Best ASE = " << bestASE << endl;
+        // cout << "Added error of best ASE = " << bestASE.addedER << endl;
+        // cout << "New error of best ASE = " << bestASE.newER << endl;
         Ckt_Sing_Sel_Info_t rplInfo;
         bestASE.pCktObj->ReplaceBy(bestASE.SOP, bestASE.type, rplInfo);
         return bestASE.newER;

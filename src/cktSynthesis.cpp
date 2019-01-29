@@ -7,54 +7,20 @@ using namespace abc;
 
 float Ckt_Synthesis(Ckt_Sop_Net_t & ckt)
 {
+    string Command;
+
     Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
-    Abc_Ntk_t * pNtkNew = Abc_NtkDup(ckt.GetAbcNtk());
+    Abc_FrameReplaceCurrentNetwork(pAbc, Abc_NtkDup(ckt.GetAbcNtk()));
 
-    Abc_FrameSetCurrentNetwork(pAbc, pNtkNew);
-
-    float delay, area, areaOld, delayOld;
-    char Command[1000];
-
-    sprintf( Command, "strash; map;" );
-    assert( !Cmd_CommandExecute(pAbc, Command) );
-    areaOld = GetArea(pNtkNew);
-    delayOld = Abc_GetArrivalTime(pNtkNew);
-    cout << "area = "<< areaOld << " delay = " << delayOld << endl;
-    while (1) {
-        sprintf( Command, "strash; balance; rewrite -l; refactor -l; balance; map" );
-        assert( !Cmd_CommandExecute(pAbc, Command) );
-        delay = Abc_GetArrivalTime( pNtkNew);
-        area = GetArea( pNtkNew );
-        if (area >= areaOld)
-            break;
-        areaOld = area;
-        delayOld = delay;
-        cout << "rewrite -l, refactor -l : " << "area = " << areaOld << " delay = " << delayOld << endl;
-
-        sprintf( Command, "strash; balance; rewrite -l; rewrite -lz; balance; map" );
-        assert( !Cmd_CommandExecute(pAbc, Command) );
-        delay = Abc_GetArrivalTime( pNtkNew);
-        area = GetArea( pNtkNew );
-        if (area >= areaOld)
-            break;
-        areaOld = area;
-        delayOld = delay;
-        cout << "rewrite -l, rewrite -lz : " << "area = " << areaOld << " delay = " << delayOld << endl;
-
-        sprintf( Command, "strash; balance; refactor -lz; rewrite -lz; balance; map" );
-        assert( !Cmd_CommandExecute(pAbc, Command) );
-        delay = Abc_GetArrivalTime( pNtkNew);
-        area = GetArea( pNtkNew );
-        if (area >= areaOld)
-            break;
-        areaOld = area;
-        delayOld = delay;
-        cout << "refactor -lz, rewrite -lz : " << "area = " << areaOld << " delay = " << delayOld << endl;
-    }
-
-    cout << "area = "<< areaOld << " delay = " << delayOld << endl;
-    // Abc_NtkDelete(pNtkNew);
-    return areaOld;
+    Command = string("strash; balance; rewrite -l; refactor -l; balance; rewrite -l; rewrite -lz; balance; refactor -lz; rewrite -lz; balance;");
+    for (int i = 0; i < 10; ++i)
+        assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+    Command = string("map -a;");
+    assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+    float area = GetArea(Abc_FrameReadNtk(pAbc));
+    float delay = Abc_GetArrivalTime(Abc_FrameReadNtk(pAbc));
+    cout << "area = " << area << " delay = " << delay << endl;
+    return area;
 }
 
 
