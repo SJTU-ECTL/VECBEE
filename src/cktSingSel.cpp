@@ -54,7 +54,6 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
     }
     // build cut networks
     clock_t t = clock();
-    ckt.ClearCutNtks();
     Ckt_BuildCutNtks(ckt, pOrderedObjs);
     // cout << "Build cut network time = " << clock() - t << endl;
     // simulate base network
@@ -206,6 +205,8 @@ void Ckt_ObjFindCut(Ckt_Sop_t & cktSrcObj, list <Ckt_Sop_t *> & cut)
 
 void Ckt_BuildCutNtks(Ckt_Sop_Net_t & ckt, vector <Ckt_Sop_t *> & pOrderedObjs)
 {
+    // clear cut networks
+    ckt.ClearCutNtks();
     // update fanout cone information
     ckt.UpdateFoCone();
     // find cuts and sub-networks

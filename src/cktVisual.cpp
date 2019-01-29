@@ -393,7 +393,7 @@ int NtkCountLogicNodes(Vec_Ptr_t * vNodes)
 }
 
 
-void Visualize(Abc_Ntk_t * pAbcNtk, string fileName)
+void Ckt_Visualize(Abc_Ntk_t * pAbcNtk, string fileName)
 {
     FILE * pFile;
     abc::Abc_Ntk_t * pNtk;
@@ -436,13 +436,13 @@ void Visualize(Abc_Ntk_t * pAbcNtk, string fileName)
 }
 
 
-void Visualize(Ckt_Gate_Net_t & ckt, string fileName)
+void Ckt_Visualize(Ckt_Gate_Net_t & ckt, string fileName)
 {
-    Visualize(ckt.GetAbcNtk(), fileName);
+    Ckt_Visualize(ckt.GetAbcNtk(), fileName);
 }
 
 
-void Visualize(Ckt_Sop_Net_t & ckt, string fileName)
+void Ckt_Visualize(Ckt_Sop_Net_t & ckt, string fileName)
 {
-    Visualize(ckt.GetAbcNtk(), fileName);
+    Ckt_Visualize(ckt.GetAbcNtk(), fileName);
 }

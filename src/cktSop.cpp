@@ -42,10 +42,7 @@ Ckt_Sop_t::Ckt_Sop_t(const Ckt_Sop_t & other)
 Ckt_Sop_t::~Ckt_Sop_t(void)
 {
     // free cut network
-    if (pCktCutNtk != nullptr) {
-        delete pCktCutNtk;
-        pCktCutNtk = nullptr;
-    }
+    ClearCutNtk();
 }
 
 

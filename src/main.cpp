@@ -2,6 +2,7 @@
 #include "cktSASIMI.h"
 #include "cktSingSel.h"
 #include "cmdline.h"
+#include "cktSynthesis.h"
 
 
 using namespace std;
@@ -41,6 +42,7 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres)
     Ckt_Sop_Net_t cktRef(ckt);
     int EThres = static_cast <int> (ERThres * number);
 
+    Ckt_Synthesis(ckt);
     while (Ckt_SingleSelectionOnce(ckt, cktRef) <= EThres);
 }
 
@@ -62,16 +64,10 @@ int main(int argc, char * argv[])
 
     Abc_Ntk_t * pAbcNtk = Abc_FrameReadNtk(pAbc);
     Ckt_Sop_Net_t ckt(pAbcNtk, number);
-    while (1) {
-        vector <Ckt_Sop_t *> pOrderedObjs;
-        ckt.SortObjects(pOrderedObjs);
-        ckt.ClearCutNtks();
-        Ckt_BuildCutNtks(ckt, pOrderedObjs);
-    }
-    // if (Abc_NtkIsSopLogic(pAbcNtk))
-    //     Execute_Sop_Net(pAbcNtk, number, ERThres);
-    // else if (Abc_NtkIsMappedLogic(pAbcNtk))
-    //     Execute_Gate_Net(pAbcNtk, number);
+    if (Abc_NtkIsSopLogic(pAbcNtk))
+        Execute_Sop_Net(pAbcNtk, number, ERThres);
+    else if (Abc_NtkIsMappedLogic(pAbcNtk))
+        Execute_Gate_Net(pAbcNtk, number);
 
     Abc_Stop();
 
