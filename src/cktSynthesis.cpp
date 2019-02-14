@@ -12,11 +12,12 @@ float Ckt_Synthesis(Ckt_Sop_Net_t & ckt)
     Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
     Abc_FrameReplaceCurrentNetwork(pAbc, Abc_NtkDup(ckt.GetAbcNtk()));
 
-    Command = string("strash; balance; rewrite -l; refactor -l; balance; rewrite -l; rewrite -lz; balance; refactor -lz; rewrite -lz; balance;");
-    for (int i = 0; i < 10; ++i)
+    for (int i = 0; i < 10; ++i) {
+        Command = string("strash; balance; rewrite -l; refactor -l; balance; rewrite -l; rewrite -lz; balance; refactor -lz; rewrite -lz; balance;");
         assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
-    Command = string("map -a;");
-    assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+        Command = string("map -a;");
+        assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+    }
     float area = GetArea(Abc_FrameReadNtk(pAbc));
     float delay = Abc_GetArrivalTime(Abc_FrameReadNtk(pAbc));
     cout << "area = " << area << " delay = " << delay << endl;

@@ -48,7 +48,8 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres)
     float orgArea = Ckt_Synthesis(ckt);
     while (Ckt_SingleSelectionOnce(ckt, cktRef) <= EThres);
     float newArea = Ckt_Synthesis(ckt);
-    cout << "Area reduction ratio = " << (orgArea - newArea) / orgArea << endl;
+    // cout << "Area reduction ratio = " << (orgArea - newArea) / orgArea << endl;
+    cout << "Final area = " << newArea << endl;
 }
 
 
