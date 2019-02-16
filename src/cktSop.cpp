@@ -295,10 +295,18 @@ void Ckt_Sop_t::ReplaceBy(vector <string> & newSOP, Ckt_Sop_Cat_t _type, Ckt_Sin
         }
         tmp += "\0";
     }
-    else if (type == Ckt_Sop_Cat_t::CONST0)
-        tmp = " 0\n\0";
-    else if (type == Ckt_Sop_Cat_t::CONST1)
-        tmp = " 1\n\0";
+    else if (type == Ckt_Sop_Cat_t::CONST0) {
+        tmp = "";
+        for (int i = 0; i < GetFaninNum(); ++i)
+            tmp += "-";
+        tmp += " 0\n\0";
+    }
+    else if (type == Ckt_Sop_Cat_t::CONST1) {
+        tmp = "";
+        for (int i = 0; i < GetFaninNum(); ++i)
+            tmp += "-";
+        tmp += " 1\n\0";
+    }
     else
         assert(0);
     memcpy(pAbcObj->pData, tmp.c_str(), tmp.length() + 1);

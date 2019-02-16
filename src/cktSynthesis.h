@@ -8,6 +8,7 @@
 
 
 float Ckt_Synthesis(Ckt_Sop_Net_t & ckt);
+float Ckt_Synthesis2(Ckt_Sop_Net_t & ckt);
 float GetArea(abc::Abc_Ntk_t * pNtk);
 
 

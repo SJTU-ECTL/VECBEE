@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
+#include "cmdline.h"
 #include "cktSASIMI.h"
 #include "cktSingSel.h"
-#include "cmdline.h"
 #include "cktSynthesis.h"
+#include "cktBlif.h"
 
 
 using namespace std;
@@ -45,11 +46,13 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres)
     cout << "#nodes = " << ckt.GetObjNum() - ckt.GetPiNum() - ckt.GetPoNum() << endl;
     cout << "#PIs = " << ckt.GetPiNum() << endl;
     cout << "#POs = " << ckt.GetPoNum() << endl;
-    float orgArea = Ckt_Synthesis(ckt);
+    float orgArea = Ckt_Synthesis2(ckt);
+    cout << "Original area = " << orgArea << endl;
     while (Ckt_SingleSelectionOnce(ckt, cktRef) <= EThres);
-    float newArea = Ckt_Synthesis(ckt);
-    // cout << "Area reduction ratio = " << (orgArea - newArea) / orgArea << endl;
+    float newArea = Ckt_Synthesis2(ckt);
     cout << "Final area = " << newArea << endl;
+    // Ckt_WriteBlif(Abc_FrameReadNtk(Abc_FrameGetGlobalFrame()), "output.blif");
+    // Ckt_WriteBlif(ckt, "output.blif");
 }
 
 

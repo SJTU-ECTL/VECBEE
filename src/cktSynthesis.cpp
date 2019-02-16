@@ -25,6 +25,26 @@ float Ckt_Synthesis(Ckt_Sop_Net_t & ckt)
 }
 
 
+float Ckt_Synthesis2(Ckt_Sop_Net_t & ckt)
+{
+    string Command;
+
+    Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
+    Abc_FrameReplaceCurrentNetwork(pAbc, Abc_NtkDup(ckt.GetAbcNtk()));
+
+    for (int i = 0; i < 10; ++i) {
+        Command = string("balance; rewrite; refactor; balance; rewrite; rewrite -z; balance; refactor -z; rewrite -z; balance");
+        assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+        Command = string("map -a;");
+        assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+    }
+    float area = GetArea(Abc_FrameReadNtk(pAbc));
+    float delay = Abc_GetArrivalTime(Abc_FrameReadNtk(pAbc));
+    cout << "area = " << area << " delay = " << delay << endl;
+    return area;
+}
+
+
 float GetArea(Abc_Ntk_t * pNtk)
 {
     assert(Abc_NtkHasMapping(pNtk));
