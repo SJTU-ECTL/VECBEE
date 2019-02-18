@@ -18,7 +18,7 @@ float Ckt_Synthesis(Ckt_Sop_Net_t & ckt)
         Command = string("map -a;");
         assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
     }
-    float area = GetArea(Abc_FrameReadNtk(pAbc));
+    float area = Ckt_GetArea(Abc_FrameReadNtk(pAbc));
     float delay = Abc_GetArrivalTime(Abc_FrameReadNtk(pAbc));
     cout << "area = " << area << " delay = " << delay << endl;
     return area;
@@ -28,6 +28,7 @@ float Ckt_Synthesis(Ckt_Sop_Net_t & ckt)
 float Ckt_Synthesis2(Ckt_Sop_Net_t & ckt)
 {
     string Command;
+    float area = FLT_MAX;
 
     Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
     Abc_FrameReplaceCurrentNetwork(pAbc, Abc_NtkDup(ckt.GetAbcNtk()));
@@ -37,15 +38,37 @@ float Ckt_Synthesis2(Ckt_Sop_Net_t & ckt)
         assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
         Command = string("map -a;");
         assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+        area = min(area, Ckt_GetArea(Abc_FrameReadNtk(pAbc)));
     }
-    float area = GetArea(Abc_FrameReadNtk(pAbc));
     float delay = Abc_GetArrivalTime(Abc_FrameReadNtk(pAbc));
     cout << "area = " << area << " delay = " << delay << endl;
     return area;
 }
 
 
-float GetArea(Abc_Ntk_t * pNtk)
+
+float Ckt_Synthesis3(Ckt_Sop_Net_t & ckt)
+{
+    string Command;
+    float area = FLT_MAX;
+
+    Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
+    Abc_FrameReplaceCurrentNetwork(pAbc, Abc_NtkDup(ckt.GetAbcNtk()));
+
+    for (int i = 0; i < 10; ++i) {
+        Command = string("strash; rewrite; refactor; rewrite; rewrite -z; refactor -z; rewrite -z;");
+        assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+        Command = string("map -a;");
+        assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+        area = min(area, Ckt_GetArea(Abc_FrameReadNtk(pAbc)));
+    }
+    float delay = Abc_GetArrivalTime(Abc_FrameReadNtk(pAbc));
+    cout << "area = " << area << " delay = " << delay << endl;
+    return area;
+}
+
+
+float Ckt_GetArea(Abc_Ntk_t * pNtk)
 {
     assert(Abc_NtkHasMapping(pNtk));
     Vec_Ptr_t * vNodes = Abc_NtkDfs(pNtk, 0);
