@@ -345,11 +345,17 @@ float Ckt_SingleSelectionOnce(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
         return 1.0;
     }
     else {
-        // cout << "Best ASE = " << bestASE << endl;
+        cout << "Best ASE = " << bestASE << endl;
         // cout << "Added error of best ASE = " << bestASE.addedER << endl;
         // cout << "New error of best ASE = " << bestASE.newER << endl;
         Ckt_Sing_Sel_Info_t rplInfo;
         bestASE.pCktObj->ReplaceBy(bestASE.SOP, bestASE.type, rplInfo);
+        // verify correctness of batch error estimation
+        vector <Ckt_Sop_t *> pOrderedObjs;
+        ckt.SortObjects(pOrderedObjs);
+        ckt.FeedForward(pOrderedObjs);
+        int newError = ckt.GetErrorRate(cktRef);
+        assert(newError == bestASE.newER);
         return bestASE.newER;
     }
 }
