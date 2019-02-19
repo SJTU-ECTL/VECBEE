@@ -256,8 +256,10 @@ void Ckt_Sop_Net_t::FeedForward(void)
     vector <Ckt_Sop_t *> pOrderedObjs;
     SortObjects(pOrderedObjs);
     // update
-    for (auto & pCktObj : pOrderedObjs)
+    for (auto & pCktObj : pOrderedObjs) {
+        // cout << pCktObj->GetName() << endl;
         pCktObj->UpdateClusters();
+    }
 }
 
 
@@ -366,6 +368,24 @@ void Ckt_Sop_Net_t::Replace(Ckt_Sop_t & cktObj, vector <string> & newSOP, Ckt_So
 {
     assert(cktObj.GetAbcObj()->pNtk == GetAbcNtk());
     cktObj.ReplaceBy(newSOP, _type, info);
+}
+
+
+void Ckt_Sop_Net_t::ReplaceByName(string objName, vector <string> & newSOP, Ckt_Sop_Cat_t _type)
+{
+    list <Ckt_Sop_t>::iterator pCktObj;
+    for (pCktObj = cktObjs.begin(); pCktObj != cktObjs.end(); ++pCktObj) {
+        if (pCktObj->GetName() == objName)
+            break;
+    }
+    if (pCktObj == cktObjs.end()) {
+        cout << "Cannot find object " << objName << endl;
+        return;
+    }
+    assert(pCktObj->GetAbcObj()->pNtk == GetAbcNtk());
+    Ckt_Sing_Sel_Info_t info;
+    // cout << pCktObj->GetName() << endl;
+    pCktObj->ReplaceBy(newSOP, _type, info);
 }
 
 

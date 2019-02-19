@@ -44,6 +44,7 @@ public:
     void                            TestSimulatorSpeed  (void);
     int                             GetErrorRate        (Ckt_Sop_Net_t & refNtk);
     void                            Replace             (Ckt_Sop_t & cktObj, std::vector <std::string> & newSOP, Ckt_Sop_Cat_t _type, Ckt_Sing_Sel_Info_t & info);
+    void                            ReplaceByName       (std::string objName, std::vector <std::string> & newSOP, Ckt_Sop_Cat_t _type);
     void                            RecoverFromRpl      (Ckt_Sing_Sel_Info_t & info);
     void                            CheckFanio          (void) const;
     void                            UpdateFoCone        (void);

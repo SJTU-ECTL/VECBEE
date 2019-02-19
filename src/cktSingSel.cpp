@@ -53,7 +53,7 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
         return;
     }
     // build cut networks
-    clock_t t = clock();
+    // clock_t t = clock();
     Ckt_BuildCutNtks(ckt, pOrderedObjs);
     // cout << "Build cut network time = " << clock() - t << endl;
     // simulate base network
@@ -70,7 +70,7 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
         pCktObj->GetCutNtk()->FeedForwardCutNtk();
     }
 
-    t = clock();
+    // t = clock();
     // init BD
     for (auto & pCktObj : pOrderedObjs) {
         pCktObj->ResizeBD();
@@ -129,7 +129,7 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
     for (auto & candi : candis) {
         float newER = static_cast <float> (baseError + candi.addedER);
         float score = (candi.pCktObj->GetNLiterals() - GetLiteralsNum(candi.SOP)) / (newER + 1);
-        // cout << candi << "\t" << newER << "\t" << score << endl;
+        // cout << candi << "\t" << newER << "\t" << (candi.pCktObj->GetNLiterals() - GetLiteralsNum(candi.SOP)) << "\t" << score << endl;
         if (score > res.score) {
             res.pCktObj = candi.pCktObj;
             res.SOP.assign(candi.SOP.begin(), candi.SOP.end());
@@ -256,18 +256,20 @@ void Ckt_GetALCs(Ckt_Sop_Net_t & ckt, vector <Ckt_Sop_t *> & pOrdObjs, vector < 
 {
     candis.clear();
     vector <string> tmp;
+    set <string> appearedPattern;
     tmp.clear();
     for (auto & pCktObj : pOrdObjs) {
         if (pCktObj->IsPI() || pCktObj->IsPO() || pCktObj->IsConst())
             continue;
+        appearedPattern.clear();
         candis.emplace_back(Ckt_Sing_Sel_Candi_t(pCktObj, tmp, Ckt_Sop_Cat_t::CONST0));
         candis.emplace_back(Ckt_Sing_Sel_Candi_t(pCktObj, tmp, Ckt_Sop_Cat_t::CONST1));
-        Ckt_GetALCsRecur(pCktObj, candis, 0, 0, 0, maxLiteralNum);
+        Ckt_GetALCsRecur(pCktObj, candis, 0, 0, 0, maxLiteralNum, appearedPattern);
     }
 }
 
 
-void Ckt_GetALCsRecur(Ckt_Sop_t * pCktObj, vector < Ckt_Sing_Sel_Candi_t > & candis, int i, int j, int n, int maxLiteralNum)
+void Ckt_GetALCsRecur(Ckt_Sop_t * pCktObj, vector < Ckt_Sing_Sel_Candi_t > & candis, int i, int j, int n, int maxLiteralNum, set <string> & pattern)
 {
     if (n > maxLiteralNum)
         return;
@@ -287,20 +289,20 @@ void Ckt_GetALCsRecur(Ckt_Sop_t * pCktObj, vector < Ckt_Sing_Sel_Candi_t > & can
                 --it;
             }
         }
-        if (!tmp.empty() && n)
+        if (!tmp.empty() && n && !Ckt_CheckPattern(pattern, tmp))
             candis.emplace_back(Ckt_Sing_Sel_Candi_t(pCktObj, tmp, pCktObj->GetType()));
         return;
     }
     else if (j >= pCktObj->GetSOPISize(i))
-        Ckt_GetALCsRecur(pCktObj, candis, i + 1, 0, n);
+        Ckt_GetALCsRecur(pCktObj, candis, i + 1, 0, n, maxLiteralNum, pattern);
     else {
         // do not change
-        Ckt_GetALCsRecur(pCktObj, candis, i, j + 1, n);
+        Ckt_GetALCsRecur(pCktObj, candis, i, j + 1, n, maxLiteralNum, pattern);
         // change
         if (pCktObj->GetSOPIJ(i, j) != '-') {
             char bak = pCktObj->GetSOPIJ(i, j);
             pCktObj->SetSOPIJ(i, j, '-');
-            Ckt_GetALCsRecur(pCktObj, candis, i, j + 1, n + 1);
+            Ckt_GetALCsRecur(pCktObj, candis, i, j + 1, n + 1, maxLiteralNum, pattern);
             pCktObj->SetSOPIJ(i, j, bak);
         }
     }
@@ -357,5 +359,19 @@ float Ckt_SingleSelectionOnce(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
         int newError = ckt.GetErrorRate(cktRef);
         assert(newError == bestASE.newER);
         return bestASE.newER;
+    }
+}
+
+
+bool Ckt_CheckPattern(set <string> & pattern, vector <string> & SOP)
+{
+    string tmp("");
+    for (auto & str : SOP)
+        tmp += str;
+    if (pattern.count(tmp))
+        return true;
+    else {
+        pattern.insert(tmp);
+        return false;
     }
 }

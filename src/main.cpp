@@ -52,7 +52,44 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres)
     float newArea = Ckt_Synthesis2(ckt);
     cout << "Final area = " << newArea << endl;
     // Ckt_WriteBlif(Abc_FrameReadNtk(Abc_FrameGetGlobalFrame()), "output.blif");
-    // Ckt_WriteBlif(ckt, "output.blif");
+    Ckt_WriteBlif(ckt, "output.blif");
+}
+
+
+void Manual_Test(Abc_Ntk_t * pAbcNtk, int number)
+{
+    Ckt_Sop_Net_t ckt(pAbcNtk, number);
+    Ckt_Sop_Net_t cktRef(ckt);
+    ckt.GenInputDist(314);
+    cktRef.GenInputDist(314);
+    cktRef.FeedForward();
+    vector <string> SOP;
+
+    SOP.clear();
+    SOP.emplace_back(string("----"));
+    ckt.ReplaceByName(string("[171353]"), SOP, Ckt_Sop_Cat_t::CONST1);
+    ckt.FeedForward();
+    cout << ckt.GetErrorRate(cktRef) / static_cast <float> (number) << endl;
+
+    SOP.clear();
+    SOP.emplace_back(string("-0-"));
+    ckt.ReplaceByName(string("[168741]"), SOP, Ckt_Sop_Cat_t::INTER);
+    ckt.FeedForward();
+    cout << ckt.GetErrorRate(cktRef) / static_cast <float> (number) << endl;
+
+    float newArea = Ckt_Synthesis2(ckt);
+    cout << "Final area = " << newArea << endl;
+    Ckt_WriteBlif(ckt, "output.blif");
+}
+
+
+void Manual_Test2(Abc_Ntk_t * pAbcNtk, int number)
+{
+    // Ckt_Sop_Net_t ckt(pAbcNtk, number);
+    // Ckt_Sop_Net_t cktRef(ckt);
+    // Ckt_SingleSelectionOnce(ckt, cktRef);
+    Ckt_Gate_Net_t ckt(pAbcNtk, number);
+    ckt.TestSimulatorSpeed();
 }
 
 
@@ -72,12 +109,13 @@ int main(int argc, char * argv[])
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
 
     Abc_Ntk_t * pAbcNtk = Abc_FrameReadNtk(pAbc);
-    Ckt_Sop_Net_t ckt(pAbcNtk, number);
+
     if (Abc_NtkIsSopLogic(pAbcNtk))
         Execute_Sop_Net(pAbcNtk, number, ERThres);
     else if (Abc_NtkIsMappedLogic(pAbcNtk))
         Execute_Gate_Net(pAbcNtk, number);
-
+    // Manual_Test(pAbcNtk, number);
+    // Manual_Test2(pAbcNtk, number);
     Abc_Stop();
 
     return 0;
