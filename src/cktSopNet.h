@@ -49,7 +49,9 @@ public:
     void                            CheckFanio          (void) const;
     void                            UpdateFoCone        (void);
     void                            PrintSimRes         (void) const;
+    void                            PrintSimRes         (int i) const;
     void                            AddObj              (abc::Abc_Obj_t * pAbcObj);
+    void                            AddObj              (abc::Abc_Obj_t * pAbcObj, Ckt_Sop_Cat_t type);
     void                            ClearCutNtks        (void);
     int                             CountBufNum         (void) const;
     int                             CountBufNum2        (void) const;

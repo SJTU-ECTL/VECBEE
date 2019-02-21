@@ -111,6 +111,7 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
             pCktObj->UpdateBDDec(isPoCorrect);
         }
     }
+
     // update added error rate
     vector <uint64_t> values(ckt.GetSimNum());
     for (auto & candi : candis) {
@@ -129,7 +130,7 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
     for (auto & candi : candis) {
         float newER = static_cast <float> (baseError + candi.addedER);
         float score = (candi.pCktObj->GetNLiterals() - GetLiteralsNum(candi.SOP)) / (newER + 1);
-        // cout << candi << "\t" << newER << "\t" << (candi.pCktObj->GetNLiterals() - GetLiteralsNum(candi.SOP)) << "\t" << score << endl;
+        // cout << candi << "\t" << newER << endl;
         if (score > res.score) {
             res.pCktObj = candi.pCktObj;
             res.SOP.assign(candi.SOP.begin(), candi.SOP.end());
@@ -347,7 +348,6 @@ float Ckt_SingleSelectionOnce(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
         return 1.0;
     }
     else {
-        cout << "Best ASE = " << bestASE << endl;
         // cout << "Added error of best ASE = " << bestASE.addedER << endl;
         // cout << "New error of best ASE = " << bestASE.newER << endl;
         Ckt_Sing_Sel_Info_t rplInfo;
@@ -357,6 +357,7 @@ float Ckt_SingleSelectionOnce(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
         ckt.SortObjects(pOrderedObjs);
         ckt.FeedForward(pOrderedObjs);
         int newError = ckt.GetErrorRate(cktRef);
+        cout << "Best ASE = " << bestASE << "\t" << "newError = " << newError << endl;
         assert(newError == bestASE.newER);
         return bestASE.newER;
     }

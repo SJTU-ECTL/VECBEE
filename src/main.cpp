@@ -51,8 +51,16 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres)
     while (Ckt_SingleSelectionOnce(ckt, cktRef) <= EThres);
     float newArea = Ckt_Synthesis2(ckt);
     cout << "Final area = " << newArea << endl;
-    // Ckt_WriteBlif(Abc_FrameReadNtk(Abc_FrameGetGlobalFrame()), "output.blif");
-    Ckt_WriteBlif(ckt, "output.blif");
+
+    assert(system("if [ ! -d approx ]; then mkdir approx; fi") != -1);
+    string fileName("approx/");
+    fileName += ckt.GetName();
+    fileName += string("_");
+    stringstream str;
+    str << ERThres;
+    fileName += str.str();
+    fileName += string(".blif");
+    cout << fileName << endl;
 }
 
 
@@ -65,21 +73,39 @@ void Manual_Test(Abc_Ntk_t * pAbcNtk, int number)
     cktRef.FeedForward();
     vector <string> SOP;
 
-    SOP.clear();
-    SOP.emplace_back(string("----"));
-    ckt.ReplaceByName(string("[171353]"), SOP, Ckt_Sop_Cat_t::CONST1);
-    ckt.FeedForward();
-    cout << ckt.GetErrorRate(cktRef) / static_cast <float> (number) << endl;
+    // cout << "Ref" << endl;
+    // for (int i = 0; i < cktRef.GetPoNum(); ++i)
+    //     cout << cktRef.GetPo(i)->GetName() << "\t" << Ckt_GetBit(cktRef.GetPo(i)->GetCluster(0), 63) << endl;
 
     SOP.clear();
-    SOP.emplace_back(string("-0-"));
-    ckt.ReplaceByName(string("[168741]"), SOP, Ckt_Sop_Cat_t::INTER);
-    ckt.FeedForward();
-    cout << ckt.GetErrorRate(cktRef) / static_cast <float> (number) << endl;
+    ckt.ReplaceByName(string("G284gat"), SOP, Ckt_Sop_Cat_t::CONST1);
+    ckt.ReplaceByName(string("G348gat"), SOP, Ckt_Sop_Cat_t::CONST0);
+    ckt.ReplaceByName(string("G400gat"), SOP, Ckt_Sop_Cat_t::CONST0);
+    ckt.ReplaceByName(string("G529gat"), SOP, Ckt_Sop_Cat_t::CONST1);
+    ckt.ReplaceByName(string("G526gat"), SOP, Ckt_Sop_Cat_t::CONST0);
+    ckt.ReplaceByName(string("G527gat"), SOP, Ckt_Sop_Cat_t::CONST1);
+    ckt.ReplaceByName(string("G528gat"), SOP, Ckt_Sop_Cat_t::CONST1);
+    ckt.ReplaceByName(string("G432gat"), SOP, Ckt_Sop_Cat_t::CONST0);
+    // Ckt_WriteBlif(ckt, "output.blif");
 
-    float newArea = Ckt_Synthesis2(ckt);
-    cout << "Final area = " << newArea << endl;
-    Ckt_WriteBlif(ckt, "output.blif");
+    // cout << "Bef" << endl;
+    // ckt.FeedForward();
+    // cout << ckt.GetErrorRate(cktRef) << endl;
+    // for (int i = 0; i < ckt.GetPoNum(); ++i)
+    //     cout << ckt.GetPo(i)->GetName() << "\t" << Ckt_GetBit(ckt.GetPo(i)->GetCluster(0), 63) << endl;
+
+    cout << "brute" << endl;
+    Ckt_EnumerateTest(ckt, cktRef);
+    cout << "batch" << endl;
+    Ckt_Sing_Sel_Candi_t bestASE;
+    Ckt_BatchErrorEstimation(ckt, cktRef, bestASE);
+
+    // ckt.ReplaceByName(string("G287gat"), SOP, Ckt_Sop_Cat_t::CONST0);
+    // cout << "Aft" << endl;
+    // ckt.FeedForward();
+    // cout << ckt.GetErrorRate(cktRef) << endl;
+    // for (int i = 0; i < ckt.GetPoNum(); ++i)
+    //     cout << ckt.GetPo(i)->GetName() << "\t" << Ckt_GetBit(ckt.GetPo(i)->GetCluster(0), 63) << endl;
 }
 
 

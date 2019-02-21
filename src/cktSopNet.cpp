@@ -64,11 +64,11 @@ Ckt_Sop_Net_t::Ckt_Sop_Net_t(Ckt_Sop_t & cktSrcObj, list <Ckt_Sop_t *> & subNtk,
     nValueClusters = nFrames / 64;
 
     // copy objects
-    AddObj(Abc_NtkDupObj(pAbcNtk, cktSrcObj.GetAbcObj(), 1));
+    AddObj(Abc_NtkDupObj(pAbcNtk, cktSrcObj.GetAbcObj(), 1), cktSrcObj.GetType());
     cktSrcObj.SetCopiedObj(&(cktObjs.back()));
     cktObjs.back().SetOriObj(&cktSrcObj);
     for (auto & pCktObj : subNtk) {
-        AddObj(Abc_NtkDupObj(pAbcNtk, pCktObj->GetAbcObj(), 1));
+        AddObj(Abc_NtkDupObj(pAbcNtk, pCktObj->GetAbcObj(), 1), pCktObj->GetType());
         pCktObj->SetCopiedObj(&(cktObjs.back()));
         cktObjs.back().SetOriObj(pCktObj);
     }
@@ -447,9 +447,22 @@ void Ckt_Sop_Net_t::PrintSimRes(void) const
 }
 
 
+void Ckt_Sop_Net_t::PrintSimRes(int i) const
+{
+    for (auto & cktObj : cktObjs)
+        cout << cktObj.GetName() << "\t" << cktObj.GetCluster(i) << "\t" << cktObj.GetType() << endl;
+}
+
+
 void Ckt_Sop_Net_t::AddObj(Abc_Obj_t * pAbcObj)
 {
     cktObjs.emplace_back(Ckt_Sop_t(pAbcObj, this));
+}
+
+
+void Ckt_Sop_Net_t::AddObj(Abc_Obj_t * pAbcObj, Ckt_Sop_Cat_t type)
+{
+    cktObjs.emplace_back(Ckt_Sop_t(pAbcObj, this, type));
 }
 
 

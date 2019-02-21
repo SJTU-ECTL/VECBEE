@@ -22,6 +22,23 @@ Ckt_Sop_t::Ckt_Sop_t(Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk)
 }
 
 
+Ckt_Sop_t::Ckt_Sop_t(Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk, Ckt_Sop_Cat_t _type)
+    : pAbcObj(p_abc_obj), pCktNtk(p_ckt_ntk), type(_type), isVisited(false),
+    topoId(0), pCktCutNtk(nullptr), pCktObjOri(nullptr), pCktObjCopy(nullptr)
+{
+    CollectSOP();
+    GetLiteralsNum();
+    valueClusters.resize(pCktNtk->GetSimNum());
+    foConeInfo.resize((Abc_NtkPoNum(pCktNtk->GetAbcNtk()) >> 6) + 1);
+    pCktFanins.clear();
+    pCktFanouts.clear();
+    isDiff.clear();
+    BD.clear();
+    BDInc.clear();
+    BDDec.clear();
+}
+
+
 Ckt_Sop_t::Ckt_Sop_t(const Ckt_Sop_t & other)
     : pAbcObj(other.pAbcObj), pCktNtk(other.pCktNtk), type(other.GetType()), isVisited(other.isVisited),
     topoId(other.topoId), pCktCutNtk(other.pCktCutNtk), pCktObjOri(other.pCktObjOri), pCktObjCopy(other.pCktObjCopy)

@@ -59,6 +59,7 @@ private:
 
 public:
     explicit                                Ckt_Sop_t           (abc::Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk);
+    explicit                                Ckt_Sop_t           (abc::Abc_Obj_t * p_abc_obj, Ckt_Sop_Net_t * p_ckt_ntk, Ckt_Sop_Cat_t _type);
                                             Ckt_Sop_t           (const Ckt_Sop_t & other);
                                             ~Ckt_Sop_t          (void);
     void                                    PrintFanios         (void) const;
