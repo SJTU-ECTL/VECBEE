@@ -11,3 +11,6 @@ resub -a; sweep
 
 eliminate -1; sweep
 full_simplify -m nocomp
+
+map -m 0
+print_map_stats

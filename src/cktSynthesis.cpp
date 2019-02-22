@@ -25,10 +25,9 @@ float Ckt_Synthesis(Ckt_Sop_Net_t & ckt)
 }
 
 
-float Ckt_Synthesis2(Ckt_Sop_Net_t & ckt)
+float Ckt_Synthesis2(Ckt_Sop_Net_t & ckt, string er)
 {
     string Command;
-    float area = FLT_MAX;
 
     Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
     Abc_FrameReplaceCurrentNetwork(pAbc, Abc_NtkDup(ckt.GetAbcNtk()));
@@ -38,10 +37,19 @@ float Ckt_Synthesis2(Ckt_Sop_Net_t & ckt)
         assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
         Command = string("map -a;");
         assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
-        area = min(area, Ckt_GetArea(Abc_FrameReadNtk(pAbc)));
+        // area = min(area, Ckt_GetArea(Abc_FrameReadNtk(pAbc)));
     }
+    float area = Ckt_GetArea(Abc_FrameReadNtk(pAbc));
     float delay = Abc_GetArrivalTime(Abc_FrameReadNtk(pAbc));
     cout << "area = " << area << " delay = " << delay << endl;
+    assert(system("if [ ! -d mapped ]; then mkdir mapped; fi") != -1);
+    Command = string("write_blif mapped/");
+    Command += ckt.GetName();
+    Command += string("_");
+    Command += er;
+    Command += string(".blif");
+    assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+
     return area;
 }
 

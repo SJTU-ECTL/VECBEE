@@ -4,6 +4,7 @@
 
 #include "cktSopNet.h"
 #include "cktVisual.h"
+#include "cktSynthesis.h"
 #include "cktCec.h"
 
 
@@ -38,7 +39,7 @@ void            Ckt_GetAddedErrorRate   (std::vector <Ckt_Sing_Sel_Candi_t> & ca
 void            Ckt_GetALCs             (Ckt_Sop_Net_t & ckt, std::vector <Ckt_Sop_t *> & pOrdObjs, std::vector < Ckt_Sing_Sel_Candi_t > & candis, int maxLiteralNum = 5);
 void            Ckt_GetALCsRecur        (Ckt_Sop_t * pCktObj, std::vector < Ckt_Sing_Sel_Candi_t > & candis, int i, int j, int n, int maxLiteralNum, std::set <std::string> & pattern);
 void            Ckt_EnumerateTest       (Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef);
-float           Ckt_SingleSelectionOnce (Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef);
+float           Ckt_SingleSelectionOnce (Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, int EThres);
 bool            Ckt_CheckPattern        (std::set <std::string> & pattern, std::vector <std::string> & SOP);
 
 

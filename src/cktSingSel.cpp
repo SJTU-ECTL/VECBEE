@@ -336,7 +336,7 @@ void Ckt_EnumerateTest(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
 }
 
 
-float Ckt_SingleSelectionOnce(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
+float Ckt_SingleSelectionOnce(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, int EThres)
 {
     // find best approximate simplified expression
     Ckt_Sing_Sel_Candi_t bestASE;
@@ -351,14 +351,18 @@ float Ckt_SingleSelectionOnce(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef)
         // cout << "Added error of best ASE = " << bestASE.addedER << endl;
         // cout << "New error of best ASE = " << bestASE.newER << endl;
         Ckt_Sing_Sel_Info_t rplInfo;
-        bestASE.pCktObj->ReplaceBy(bestASE.SOP, bestASE.type, rplInfo);
-        // verify correctness of batch error estimation
-        vector <Ckt_Sop_t *> pOrderedObjs;
-        ckt.SortObjects(pOrderedObjs);
-        ckt.FeedForward(pOrderedObjs);
-        int newError = ckt.GetErrorRate(cktRef);
-        cout << "Best ASE = " << bestASE << "\t" << "newError = " << newError << endl;
-        assert(newError == bestASE.newER);
+        if (bestASE.newER <= EThres) {
+            bestASE.pCktObj->ReplaceBy(bestASE.SOP, bestASE.type, rplInfo);
+            // // verify correctness of batch error estimation
+            // vector <Ckt_Sop_t *> pOrderedObjs;
+            // ckt.SortObjects(pOrderedObjs);
+            // ckt.FeedForward(pOrderedObjs);
+            // int newError = ckt.GetErrorRate(cktRef);
+            // cout << "Best ASE = " << bestASE << "\t" << "newError = " << newError << endl;
+            // assert(newError == bestASE.newER);
+            // // measure area and delay
+            // Ckt_Synthesis2(ckt);
+        }
         return bestASE.newER;
     }
 }

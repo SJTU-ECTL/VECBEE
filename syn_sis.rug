@@ -1,0 +1,5 @@
+read_blif approx/cla32_0.blif
+read_library data/genlib/mcnc.genlib
+
+map -m 0
+print_map_stats

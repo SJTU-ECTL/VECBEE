@@ -43,24 +43,31 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres)
     Ckt_Sop_Net_t cktRef(ckt);
     int EThres = static_cast <int> (ERThres * number);
 
-    cout << "#nodes = " << ckt.GetObjNum() - ckt.GetPiNum() - ckt.GetPoNum() << endl;
-    cout << "#PIs = " << ckt.GetPiNum() << endl;
-    cout << "#POs = " << ckt.GetPoNum() << endl;
-    float orgArea = Ckt_Synthesis2(ckt);
-    cout << "Original area = " << orgArea << endl;
-    while (Ckt_SingleSelectionOnce(ckt, cktRef) <= EThres);
-    float newArea = Ckt_Synthesis2(ckt);
-    cout << "Final area = " << newArea << endl;
+    // cout << "#nodes = " << ckt.GetObjNum() - ckt.GetPiNum() - ckt.GetPoNum() << endl;
+    // cout << "#PIs = " << ckt.GetPiNum() << endl;
+    // cout << "#POs = " << ckt.GetPoNum() << endl;
+    // float orgArea = Ckt_Synthesis2(ckt);
+    // cout << "Original area = " << orgArea << endl;
+    while (Ckt_SingleSelectionOnce(ckt, cktRef, EThres) <= EThres);
 
     assert(system("if [ ! -d approx ]; then mkdir approx; fi") != -1);
     string fileName("approx/");
     fileName += ckt.GetName();
     fileName += string("_");
+    ckt.GenInputDist(314);
+    ckt.FeedForward();
+    cktRef.GenInputDist(314);
+    cktRef.FeedForward();
+    float er = ckt.GetErrorRate(cktRef) / static_cast <float> (number);
     stringstream str;
-    str << ERThres;
+    str << er;
     fileName += str.str();
     fileName += string(".blif");
     cout << fileName << endl;
+    Ckt_WriteBlif(ckt, fileName);
+
+    float newArea = Ckt_Synthesis2(ckt, str.str());
+    cout << "Final area = " << newArea << endl;
 }
 
 
