@@ -1,9 +1,10 @@
 sweep; eliminate -1
-simplify
+simplify -l
 eliminate -1
 
-sweep; eliminate 5
-simplify
+sweep; eliminate -1
+simplify -l
+eliminate -1
 
 resub -a
 
@@ -26,3 +27,6 @@ eliminate 0
 decomp -g *
 
 eliminate -1; sweep
+
+map -m 0
+print_map_stats
