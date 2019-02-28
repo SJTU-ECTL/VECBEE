@@ -126,6 +126,39 @@ void Manual_Test2(Abc_Ntk_t * pAbcNtk, int number)
 }
 
 
+void Aig_Test(void)
+{
+    Abc_Ntk_t * pAig;
+    pAig = Abc_NtkAlloc(ABC_NTK_STRASH, ABC_FUNC_AIG, 1);
+    string ntkName("test");
+    pAig->pName = Extra_UtilStrsav(ntkName.c_str());
+    int nPrimaryInputs = 3;
+    for (int i = 0; i < nPrimaryInputs; ++i) {
+        Abc_Obj_t * pObj = Abc_NtkCreatePi(pAig);
+        stringstream ss;
+        string str;
+        ss << static_cast <char> ('A' + i);
+        ss >> str;
+        Abc_ObjAssignName(pObj, const_cast <char *> (str.c_str()), nullptr);
+    }
+    for (int i = 0; i < nPrimaryInputs; ++i)
+        cout << Abc_ObjName(Abc_NtkPi(pAig, i)) << endl;
+    cout << Abc_NtkPiNum(pAig) << endl;
+    Abc_Obj_t * pObjA = Abc_NtkPi(pAig, 0);
+    Abc_Obj_t * pObjB = Abc_NtkPi(pAig, 1);
+    Abc_Obj_t * pObjC = Abc_NtkPi(pAig, 2);
+    Abc_Obj_t * pObjAnd = Abc_AigAnd((Abc_Aig_t *)pAig->pManFunc, pObjA, pObjB);
+    Abc_Obj_t * pObjF = Abc_AigOr((Abc_Aig_t *)pAig->pManFunc, pObjAnd, pObjC);
+    Abc_Obj_t * pPo = Abc_NtkCreatePo(pAig);
+    Abc_ObjAddFanin(pPo, pObjF);
+    assert(Abc_NtkCheck(pAig));
+    Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
+    Abc_FrameReplaceCurrentNetwork(pAbc, pAig);
+    string command("show");
+    assert( !Cmd_CommandExecute(pAbc, command.c_str()) );
+}
+
+
 int main(int argc, char * argv[])
 {
     parser option = Cmdline_Parser(argc, argv);
@@ -143,12 +176,14 @@ int main(int argc, char * argv[])
 
     Abc_Ntk_t * pAbcNtk = Abc_FrameReadNtk(pAbc);
 
-    if (Abc_NtkIsSopLogic(pAbcNtk))
-        Execute_Sop_Net(pAbcNtk, number, ERThres);
-    else if (Abc_NtkIsMappedLogic(pAbcNtk))
-        Execute_Gate_Net(pAbcNtk, number);
+    // if (Abc_NtkIsSopLogic(pAbcNtk))
+    //     Execute_Sop_Net(pAbcNtk, number, ERThres);
+    // else if (Abc_NtkIsMappedLogic(pAbcNtk))
+    //     Execute_Gate_Net(pAbcNtk, number);
     // Manual_Test(pAbcNtk, number);
     // Manual_Test2(pAbcNtk, number);
+    Aig_Test();
+
     Abc_Stop();
 
     return 0;
