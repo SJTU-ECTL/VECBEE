@@ -4,6 +4,7 @@
 #include "cktSingSel.h"
 #include "cktSynthesis.h"
 #include "cktBlif.h"
+#include "cktNtk.h"
 
 
 using namespace std;
@@ -159,6 +160,12 @@ void Aig_Test(void)
 }
 
 
+void test(Abc_Ntk_t * pAbcNtk, int number)
+{
+    Ckt_Ntk_t ntk(pAbcNtk, number);
+}
+
+
 int main(int argc, char * argv[])
 {
     parser option = Cmdline_Parser(argc, argv);
@@ -182,7 +189,8 @@ int main(int argc, char * argv[])
     //     Execute_Gate_Net(pAbcNtk, number);
     // Manual_Test(pAbcNtk, number);
     // Manual_Test2(pAbcNtk, number);
-    Aig_Test();
+    // Aig_Test();
+    test(pAbcNtk, number);
 
     Abc_Stop();
 
