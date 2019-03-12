@@ -183,14 +183,14 @@ int main(int argc, char * argv[])
 
     Abc_Ntk_t * pAbcNtk = Abc_FrameReadNtk(pAbc);
 
-    // if (Abc_NtkIsSopLogic(pAbcNtk))
-    //     Execute_Sop_Net(pAbcNtk, number, ERThres);
-    // else if (Abc_NtkIsMappedLogic(pAbcNtk))
-    //     Execute_Gate_Net(pAbcNtk, number);
+    if (Abc_NtkIsSopLogic(pAbcNtk))
+        Execute_Sop_Net(pAbcNtk, number, ERThres);
+    else if (Abc_NtkIsMappedLogic(pAbcNtk))
+        Execute_Gate_Net(pAbcNtk, number);
     // Manual_Test(pAbcNtk, number);
     // Manual_Test2(pAbcNtk, number);
     // Aig_Test();
-    test(pAbcNtk, number);
+    // test(pAbcNtk, number);
 
     Abc_Stop();
 

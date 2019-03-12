@@ -38,6 +38,7 @@ ostream & operator << (ostream & os, const Ckt_Sing_Sel_Candi_t & candi)
 
 void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_Sing_Sel_Candi_t & res)
 {
+    // clock_t t = clock();
     assert(&ckt != &cktRef);
     assert(ckt.GetAbcNtk() != cktRef.GetAbcNtk());
     assert(Ckt_HasSamePo(ckt, cktRef));
@@ -53,7 +54,6 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
         return;
     }
     // build cut networks
-    // clock_t t = clock();
     Ckt_BuildCutNtks(ckt, pOrderedObjs);
     // cout << "Build cut network time = " << clock() - t << endl;
     // simulate base network
@@ -340,7 +340,10 @@ float Ckt_SingleSelectionOnce(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, int E
 {
     // find best approximate simplified expression
     Ckt_Sing_Sel_Candi_t bestASE;
+    static int tt;
+    clock_t t = clock();
     Ckt_BatchErrorEstimation(ckt, cktRef, bestASE);
+    tt += clock() - t;
 
     // change function
     if (bestASE.pCktObj == nullptr) {
@@ -362,6 +365,9 @@ float Ckt_SingleSelectionOnce(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, int E
             // assert(newError == bestASE.newER);
             // // measure area and delay
             // Ckt_Synthesis2(ckt);
+        }
+        else {
+            cout << tt << endl;
         }
         return bestASE.newER;
     }
