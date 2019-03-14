@@ -1,4 +1,4 @@
-# Benchmark "wal8" written by ABC on Thu Mar 14 15:10:40 2019
+# Benchmark "wal8" written by ABC on Thu Mar 14 21:29:46 2019
 .model wal8
 .inputs multiplicand[0] multiplicand[1] multiplicand[2] multiplicand[3] \
  multiplicand[4] multiplicand[5] multiplicand[6] multiplicand[7] \
@@ -236,17 +236,17 @@
 .gate nand2  a=n241 b=n228 O=n252
 .gate nand2  a=n252 b=n239 O=n253
 .gate nand3  a=n197 b=multiplier[2] c=multiplicand[7] O=n254
-.gate inv1   a=multiplicand[6] O=n255
-.gate nor2   a=n75 b=n255 O=n256
-.gate aoi22  a=multiplier[5] b=multiplicand[4] c=multiplier[4] d=multiplicand[5] O=n257
-.gate nor2   a=n133 b=n231 O=n258
-.gate inv1   a=n258 O=n259
-.gate nor2   a=n259 b=n233 O=n260
-.gate nor2   a=n260 b=n257 O=n261
-.gate xnor2a a=n261 b=n256 O=n262
+.gate aoi22  a=multiplier[5] b=multiplicand[4] c=multiplier[4] d=multiplicand[5] O=n255
+.gate nor2   a=n133 b=n231 O=n256
+.gate inv1   a=n256 O=n257
+.gate nor2   a=n257 b=n233 O=n258
+.gate nor2   a=n258 b=n255 O=n259
+.gate inv1   a=multiplicand[6] O=n260
+.gate nor2   a=n75 b=n260 O=n261
+.gate xnor2a a=n261 b=n259 O=n262
 .gate xor2a  a=n262 b=n254 O=n263
-.gate or2    a=n263 b=n253 O=n264
-.gate nand2  a=n263 b=n253 O=n265
+.gate nand2  a=n263 b=n253 O=n264
+.gate or2    a=n263 b=n253 O=n265
 .gate nand2  a=n265 b=n264 O=n266
 .gate nor2   a=n118 b=n132 O=n267
 .gate nand2  a=n235 b=n136 O=n268
@@ -276,7 +276,7 @@
 .gate nand2  a=multiplier[4] b=multiplicand[6] O=n292
 .gate nand2  a=multiplier[3] b=multiplicand[7] O=n293
 .gate xor2a  a=n293 b=n292 O=n294
-.gate xor2a  a=n294 b=n258 O=n295
+.gate xor2a  a=n294 b=n256 O=n295
 .gate or2    a=n295 b=n291 O=n296
 .gate nand2  a=n295 b=n291 O=n297
 .gate nand2  a=n297 b=n296 O=n298
@@ -286,15 +286,15 @@
 .gate inv1   a=n301 O=n302
 .gate nor2   a=n300 b=n299 O=n303
 .gate nor2   a=n303 b=n302 O=n304
-.gate inv1   a=n257 O=n305
-.gate aoi21  a=n305 b=n256 c=n260 O=n306
+.gate inv1   a=n255 O=n305
+.gate aoi21  a=n261 b=n305 c=n258 O=n306
 .gate xor2a  a=n306 b=n304 O=n307
 .gate xor2a  a=n307 b=n298 O=n308
 .gate nand2  a=n308 b=n289 O=n309
 .gate or2    a=n308 b=n289 O=n310
 .gate nand2  a=n310 b=n309 O=n311
-.gate nand2  a=n272 b=n264 O=n312
-.gate nand2  a=n312 b=n265 O=n313
+.gate nand2  a=n272 b=n265 O=n312
+.gate nand2  a=n312 b=n264 O=n313
 .gate xor2a  a=n313 b=n311 O=n314
 .gate xor2a  a=n314 b=n286 O=n315
 .gate inv1   a=n282 O=n316
@@ -307,7 +307,7 @@
 .gate xor2a  a=n322 b=n321 O=n323
 .gate nand2  a=multiplier[7] b=multiplicand[4] O=n324
 .gate nor2   a=n118 b=n231 O=n325
-.gate nand2  a=n294 b=n258 O=n326
+.gate nand2  a=n294 b=n256 O=n326
 .gate oai21  a=n293 b=n292 c=n326 O=n327
 .gate nor2   a=n327 b=n325 O=n328
 .gate inv1   a=n328 O=n329
@@ -339,7 +339,7 @@
 .gate nor2   a=n322 b=n321 O=n355
 .gate inv1   a=n355 O=n356
 .gate nor2   a=n356 b=n118 O=n357
-.gate nor2   a=n118 b=n255 O=n358
+.gate nor2   a=n118 b=n260 O=n358
 .gate inv1   a=n358 O=n359
 .gate aoi21  a=n359 b=n356 c=n357 O=n360
 .gate xor2a  a=n360 b=n354 O=n361

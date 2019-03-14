@@ -62,6 +62,8 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres)
     fileName += string(".blif");
     // cout << fileName << endl;
 
+    Ckt_Synthesis2(ckt, str.str());
+
     string command;
     Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
     Abc_FrameReplaceCurrentNetwork(pAbc, Abc_NtkDup(ckt.GetAbcNtk()));
@@ -75,7 +77,6 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres)
     Ckt_Sop_Net_t appCkt(Abc_FrameReadNtk(pAbc), number);
     cout << "error rate = " << er << endl;
     cout << "#literals = " << appCkt.CountLiteralNum() << endl;
-    Ckt_Synthesis2(appCkt, str.str());
 }
 
 
