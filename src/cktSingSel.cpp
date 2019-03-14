@@ -367,7 +367,7 @@ float Ckt_SingleSelectionOnce(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, int E
             // Ckt_Synthesis2(ckt);
         }
         else {
-            cout << tt << endl;
+            cout << "single selection time = " << tt / 1000000.0 << endl;
         }
         return bestASE.newER;
     }

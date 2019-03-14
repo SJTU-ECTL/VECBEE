@@ -483,8 +483,6 @@ int Ckt_Sop_Net_t::CountBufNum(void) const
     return ret;
 }
 
-
-
 int Ckt_Sop_Net_t::CountBufNum2(void) const
 {
     int ret = 0;
@@ -492,5 +490,14 @@ int Ckt_Sop_Net_t::CountBufNum2(void) const
         if (cktObj.IsBuf() && !(cktObj.GetFanin(0)->IsPI() && cktObj.GetFanout(0)->IsPO()))
             ++ret;
     }
+    return ret;
+}
+
+
+int Ckt_Sop_Net_t::CountLiteralNum(void) const
+{
+    int ret = 0;
+    for (auto & cktObj : cktObjs)
+        ret += cktObj.GetNLiterals();
     return ret;
 }

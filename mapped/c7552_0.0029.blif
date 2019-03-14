@@ -1,0 +1,959 @@
+# Benchmark "c7552" written by ABC on Thu Mar 14 15:07:55 2019
+.model c7552
+.inputs 1 5 9 12 15 18 23 26 29 32 35 38 41 44 47 50 53 54 55 56 57 58 59 \
+ 60 61 62 63 64 65 66 69 70 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 \
+ 89 94 97 100 103 106 109 110 111 112 113 114 115 118 121 124 127 130 133 \
+ 134 135 138 141 144 147 150 151 152 153 154 155 156 157 158 159 160 161 \
+ 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 \
+ 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 \
+ 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 \
+ 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 \
+ 234 235 236 237 238 239 240 IN-241 242 245 248 251 254 257 260 263 267 271 \
+ 274 277 280 283 286 289 293 296 299 303 307 310 313 316 319 322 325 328 \
+ 331 334 337 340 343 346 349 352 355 358 361 364 367 382
+.outputs 241 387 388 478 482 484 486 489 492 501 505 507 509 511 513 515 \
+ 517 519 535 537 539 541 543 545 547 549 551 553 556 559 561 563 565 567 \
+ 569 571 573 582 643 707 813 881 882 883 884 885 889 945 1110 1111 1112 \
+ 1113 1114 1489 1490 1781 10025 10101 10102 10103 10104 10109 10110 10111 \
+ 10112 10350 10351 10352 10353 10574 10575 10576 10628 10632 10641 10704 \
+ 10706 10711 10712 10713 10714 10715 10716 10717 10718 10729 10759 10760 \
+ 10761 10762 10763 10827 10837 10838 10839 10840 10868 10869 10870 10871 \
+ 10905 10906 10907 10908 11333 11334 11340 11342
+
+.and_gate_delay 1.9
+.default_input_arrival 0 0
+.default_output_required 0 0
+
+
+
+.gate inv1   a=15 O=582
+.gate inv1   a=5 O=n317
+.gate inv1   a=57 O=n318
+.gate nand2  a=n318 b=n317 O=881
+.gate nand4  a=240 b=228 c=184 d=150 O=882
+.gate nand4  a=230 b=218 c=210 d=152 O=883
+.gate nand4  a=186 b=185 c=183 d=182 O=884
+.gate nand4  a=199 b=188 c=172 d=162 O=885
+.gate nand2  a=242 b=n317 O=1110
+.gate nand3  a=134 b=133 c=n317 O=1113
+.gate and2   a=163 b=1 O=1781
+.gate inv1   a=367 O=n327
+.gate inv1   a=41 O=n328
+.gate nor3   a=310 b=n328 c=18 O=n329
+.gate inv1   a=n329 O=n330
+.gate inv1   a=18 O=n331
+.gate nand3  a=310 b=n328 c=n331 O=n332
+.gate inv1   a=n332 O=n333
+.gate nor2   a=n333 b=n329 O=n334
+.gate inv1   a=n334 O=n335
+.gate nor2   a=n333 b=n327 O=n336
+.gate aoi22  a=n336 b=n330 c=n335 d=n327 O=10025
+.gate nand2  a=382 b=263 O=n338
+.gate xor2a  a=n338 b=38 O=n339
+.gate inv1   a=n339 O=n340
+.gate nand2  a=12 b=9 O=n341
+.gate oai21  a=213 b=n331 c=n341 O=n342
+.gate and2   a=n342 b=260 O=n343
+.gate nor2   a=n342 b=260 O=n344
+.gate inv1   a=257 O=n345
+.gate inv1   a=214 O=n346
+.gate nand2  a=n346 b=18 O=n347
+.gate nand2  a=n347 b=n341 O=n348
+.gate inv1   a=n348 O=n349
+.gate nor2   a=n349 b=n345 O=n350
+.gate inv1   a=364 O=n351
+.gate inv1   a=219 O=n352
+.gate nor2   a=66 b=18 O=n353
+.gate aoi21  a=n352 b=18 c=n353 O=n354
+.gate nor2   a=n354 b=n351 O=n355
+.gate inv1   a=n355 O=n356
+.gate nand2  a=n354 b=n351 O=n357
+.gate nand2  a=n357 b=n356 O=n358
+.gate nor2   a=50 b=18 O=n359
+.gate inv1   a=n359 O=n360
+.gate oai21  a=220 b=n331 c=n360 O=n361
+.gate and2   a=n361 b=361 O=n362
+.gate nor2   a=121 b=18 O=n363
+.gate inv1   a=n363 O=n364
+.gate oai21  a=224 b=n331 c=n364 O=n365
+.gate and2   a=n365 b=349 O=n366
+.gate nor2   a=118 b=18 O=n367
+.gate inv1   a=n367 O=n368
+.gate oai21  a=217 b=n331 c=n368 O=n369
+.gate nor2   a=n369 b=340 O=n370
+.gate inv1   a=340 O=n371
+.gate inv1   a=n369 O=n372
+.gate nor2   a=n372 b=n371 O=n373
+.gate nor2   a=n373 b=n370 O=n374
+.gate nor2   a=97 b=18 O=n375
+.gate inv1   a=n375 O=n376
+.gate oai21  a=226 b=n331 c=n376 O=n377
+.gate or2    a=n377 b=343 O=n378
+.gate nand2  a=n377 b=343 O=n379
+.gate nand2  a=n379 b=n378 O=n380
+.gate inv1   a=n380 O=n381
+.gate nand2  a=n381 b=n374 O=n382
+.gate inv1   a=346 O=n383
+.gate inv1   a=225 O=n384
+.gate nor2   a=94 b=18 O=n385
+.gate aoi21  a=n384 b=18 c=n385 O=n386
+.gate nor2   a=n386 b=n383 O=n387
+.gate and2   a=n386 b=n383 O=n388
+.gate nor2   a=n388 b=n387 O=n389
+.gate inv1   a=n389 O=n390
+.gate nor2   a=n390 b=n382 O=n391
+.gate inv1   a=334 O=n392
+.gate nor2   a=100 b=18 O=n393
+.gate inv1   a=n393 O=n394
+.gate oai21  a=231 b=n331 c=n394 O=n395
+.gate inv1   a=n395 O=n396
+.gate nor2   a=n396 b=n392 O=n397
+.gate nand2  a=n396 b=n392 O=n398
+.gate inv1   a=331 O=n399
+.gate nor2   a=124 b=18 O=n400
+.gate inv1   a=n400 O=n401
+.gate oai21  a=232 b=n331 c=n401 O=n402
+.gate inv1   a=n402 O=n403
+.gate nor2   a=n403 b=n399 O=n404
+.gate inv1   a=n404 O=n405
+.gate inv1   a=322 O=n406
+.gate inv1   a=235 O=n407
+.gate nor2   a=103 b=18 O=n408
+.gate aoi21  a=n407 b=18 c=n408 O=n409
+.gate nor2   a=n409 b=n406 O=n410
+.gate xor2a  a=n409 b=n406 O=n411
+.gate inv1   a=319 O=n412
+.gate inv1   a=236 O=n413
+.gate nor2   a=23 b=18 O=n414
+.gate aoi21  a=n413 b=18 c=n414 O=n415
+.gate nor2   a=n415 b=n412 O=n416
+.gate inv1   a=n416 O=n417
+.gate inv1   a=n415 O=n418
+.gate nor2   a=n418 b=319 O=n419
+.gate nor2   a=29 b=18 O=n420
+.gate inv1   a=n420 O=n421
+.gate oai21  a=238 b=n331 c=n421 O=n422
+.gate and2   a=n422 b=313 O=n423
+.gate nor2   a=n422 b=313 O=n424
+.gate nor2   a=n424 b=n423 O=n425
+.gate nor2   a=26 b=18 O=n426
+.gate inv1   a=n426 O=n427
+.gate oai21  a=237 b=n331 c=n427 O=n428
+.gate and2   a=n428 b=316 O=n429
+.gate nor2   a=n428 b=316 O=n430
+.gate nor2   a=n430 b=n429 O=n431
+.gate nand3  a=n431 b=n425 c=n334 O=n432
+.gate inv1   a=n430 O=n433
+.gate inv1   a=n424 O=n434
+.gate aoi21  a=n434 b=n330 c=n423 O=n435
+.gate inv1   a=n435 O=n436
+.gate aoi21  a=n436 b=n433 c=n429 O=n437
+.gate inv1   a=n437 O=n438
+.gate oai21  a=n432 b=n327 c=n438 O=n439
+.gate oai21  a=n439 b=n419 c=n417 O=n440
+.gate aoi21  a=n440 b=n411 c=n410 O=n441
+.gate inv1   a=233 O=n442
+.gate nor2   a=127 b=18 O=n443
+.gate aoi21  a=n442 b=18 c=n443 O=n444
+.gate inv1   a=n444 O=n445
+.gate nor2   a=n445 b=328 O=n446
+.gate nand2  a=n445 b=328 O=n447
+.gate inv1   a=n447 O=n448
+.gate nor2   a=n448 b=n446 O=n449
+.gate nor2   a=130 b=18 O=n450
+.gate inv1   a=n450 O=n451
+.gate oai21  a=234 b=n331 c=n451 O=n452
+.gate nor2   a=n452 b=325 O=n453
+.gate nand2  a=n452 b=325 O=n454
+.gate inv1   a=n454 O=n455
+.gate nor2   a=n455 b=n453 O=n456
+.gate nand3  a=n456 b=n449 c=n441 O=n457
+.gate oai21  a=n453 b=n446 c=n447 O=n458
+.gate nand2  a=n458 b=n457 O=n459
+.gate nor2   a=n402 b=331 O=n460
+.gate oai21  a=n460 b=n459 c=n405 O=n461
+.gate aoi21  a=n461 b=n398 c=n397 O=n462
+.gate nand2  a=n462 b=n391 O=n463
+.gate nor2   a=n365 b=349 O=n464
+.gate inv1   a=n388 O=n465
+.gate inv1   a=n370 O=n466
+.gate nand2  a=n378 b=n466 O=n467
+.gate nand2  a=n467 b=n379 O=n468
+.gate aoi21  a=n468 b=n465 c=n387 O=n469
+.gate nor2   a=n469 b=n464 O=n470
+.gate aoi21  a=n470 b=n463 c=n366 O=n471
+.gate inv1   a=352 O=n472
+.gate inv1   a=223 O=n473
+.gate nor2   a=47 b=18 O=n474
+.gate aoi21  a=n473 b=18 c=n474 O=n475
+.gate and2   a=n475 b=n472 O=n476
+.gate or2    a=n476 b=n471 O=n477
+.gate inv1   a=358 O=n478
+.gate inv1   a=221 O=n479
+.gate nor2   a=32 b=18 O=n480
+.gate aoi21  a=n479 b=18 c=n480 O=n481
+.gate nor2   a=n481 b=n478 O=n482
+.gate inv1   a=n481 O=n483
+.gate nor2   a=n483 b=358 O=n484
+.gate nor2   a=n484 b=n482 O=n485
+.gate nor2   a=35 b=18 O=n486
+.gate inv1   a=n486 O=n487
+.gate oai21  a=222 b=n331 c=n487 O=n488
+.gate nor2   a=n488 b=355 O=n489
+.gate inv1   a=355 O=n490
+.gate inv1   a=n488 O=n491
+.gate nor2   a=n491 b=n490 O=n492
+.gate nor2   a=n492 b=n489 O=n493
+.gate nor2   a=n475 b=n472 O=n494
+.gate inv1   a=n494 O=n495
+.gate nand4  a=n495 b=n493 c=n485 d=n477 O=n496
+.gate nor2   a=n361 b=361 O=n497
+.gate inv1   a=n484 O=n498
+.gate inv1   a=n489 O=n499
+.gate aoi21  a=n499 b=n498 c=n482 O=n500
+.gate nor2   a=n500 b=n497 O=n501
+.gate aoi21  a=n501 b=n496 c=n362 O=n502
+.gate nor2   a=n502 b=n358 O=n503
+.gate inv1   a=n503 O=n504
+.gate nor2   a=135 b=18 O=n505
+.gate inv1   a=n505 O=n506
+.gate oai21  a=158 b=n331 c=n506 O=n507
+.gate nor2   a=n507 b=286 O=n508
+.gate inv1   a=n508 O=n509
+.gate nand2  a=n507 b=286 O=n510
+.gate and2   a=n510 b=n509 O=n511
+.gate inv1   a=n511 O=n512
+.gate nor2   a=144 b=18 O=n513
+.gate inv1   a=n513 O=n514
+.gate oai21  a=159 b=n331 c=n514 O=n515
+.gate nor2   a=n515 b=283 O=n516
+.gate inv1   a=n516 O=n517
+.gate nand2  a=n515 b=283 O=n518
+.gate nand2  a=n518 b=n517 O=n519
+.gate inv1   a=280 O=n520
+.gate nor2   a=138 b=18 O=n521
+.gate inv1   a=n521 O=n522
+.gate oai21  a=160 b=n331 c=n522 O=n523
+.gate inv1   a=n523 O=n524
+.gate nor2   a=n524 b=n520 O=n525
+.gate inv1   a=n525 O=n526
+.gate nand2  a=n524 b=n520 O=n527
+.gate nand2  a=n527 b=n526 O=n528
+.gate nor2   a=147 b=18 O=n529
+.gate inv1   a=n529 O=n530
+.gate oai21  a=151 b=n331 c=n530 O=n531
+.gate nor2   a=n531 b=277 O=n532
+.gate nand2  a=n531 b=277 O=n533
+.gate inv1   a=n533 O=n534
+.gate nor2   a=n534 b=n532 O=n535
+.gate inv1   a=n535 O=n536
+.gate nor3   a=n536 b=n528 c=n519 O=n537
+.gate inv1   a=n537 O=n538
+.gate nor2   a=n538 b=n512 O=n539
+.gate oai21  a=157 b=n331 c=n341 O=n540
+.gate nor2   a=n540 b=289 O=n541
+.gate nand2  a=n540 b=289 O=n542
+.gate inv1   a=n542 O=n543
+.gate nor2   a=n543 b=n541 O=n544
+.gate nand4  a=n544 b=n539 c=n504 d=n356 O=n545
+.gate inv1   a=n532 O=n546
+.gate aoi21  a=n546 b=n527 c=n525 O=n547
+.gate inv1   a=n547 O=n548
+.gate nand2  a=n548 b=n517 O=n549
+.gate nand2  a=n549 b=n518 O=n550
+.gate nor2   a=n550 b=n512 O=n551
+.gate nor2   a=n551 b=n508 O=n552
+.gate inv1   a=n552 O=n553
+.gate aoi21  a=n553 b=n542 c=n541 O=n554
+.gate nand2  a=n554 b=n545 O=n555
+.gate inv1   a=n555 O=n556
+.gate inv1   a=156 O=n557
+.gate nand2  a=n557 b=18 O=n558
+.gate nand2  a=n558 b=n341 O=n559
+.gate nor2   a=n559 b=293 O=n560
+.gate inv1   a=n560 O=n561
+.gate inv1   a=155 O=n562
+.gate nand2  a=n562 b=18 O=n563
+.gate nand2  a=n563 b=n341 O=n564
+.gate nor2   a=n564 b=296 O=n565
+.gate inv1   a=n565 O=n566
+.gate nand3  a=n566 b=n561 c=n556 O=n567
+.gate oai21  a=154 b=n331 c=n341 O=n568
+.gate nor2   a=n568 b=299 O=n569
+.gate nand2  a=n568 b=299 O=n570
+.gate inv1   a=n570 O=n571
+.gate nor2   a=n571 b=n569 O=n572
+.gate inv1   a=153 O=n573
+.gate nand2  a=n573 b=18 O=n574
+.gate nand2  a=n574 b=n341 O=n575
+.gate nor2   a=n575 b=303 O=n576
+.gate nand2  a=n575 b=303 O=n577
+.gate inv1   a=n577 O=n578
+.gate nor2   a=n578 b=n576 O=n579
+.gate nand2  a=n559 b=293 O=n580
+.gate nand2  a=n564 b=296 O=n581
+.gate nand2  a=n581 b=n580 O=n582
+.gate nand2  a=n582 b=n566 O=n583
+.gate nand4  a=n583 b=n579 c=n572 d=n567 O=n584
+.gate oai21  a=n576 b=n569 c=n577 O=n585
+.gate nand2  a=n585 b=n584 O=n586
+.gate inv1   a=209 O=n587
+.gate inv1   a=n341 O=n588
+.gate inv1   a=251 O=n589
+.gate aoi21  a=n341 b=n331 c=n589 O=n590
+.gate oai21  a=n588 b=n587 c=n590 O=n591
+.gate inv1   a=n591 O=n592
+.gate inv1   a=106 O=n593
+.gate oai21  a=215 b=n331 c=n341 O=n594
+.gate inv1   a=n594 O=n595
+.gate nor2   a=n595 b=n593 O=n596
+.gate nor2   a=n594 b=106 O=n597
+.gate nor2   a=n597 b=n596 O=n598
+.gate inv1   a=216 O=n599
+.gate nand2  a=n599 b=18 O=n600
+.gate nand2  a=n600 b=n341 O=n601
+.gate nor2   a=n601 b=254 O=n602
+.gate oai21  a=209 b=n331 c=n341 O=n603
+.gate nor2   a=n603 b=251 O=n604
+.gate nor2   a=n604 b=n602 O=n605
+.gate inv1   a=254 O=n606
+.gate inv1   a=n601 O=n607
+.gate nor2   a=n607 b=n606 O=n608
+.gate inv1   a=n608 O=n609
+.gate nand2  a=n609 b=n605 O=n610
+.gate inv1   a=n610 O=n611
+.gate nand2  a=n611 b=n598 O=n612
+.gate nor2   a=n612 b=n592 O=n613
+.gate inv1   a=n596 O=n614
+.gate inv1   a=n597 O=n615
+.gate oai21  a=n608 b=n605 c=n615 O=n616
+.gate nand2  a=n616 b=n614 O=n617
+.gate inv1   a=n617 O=n618
+.gate aoi21  a=n613 b=n586 c=n618 O=n619
+.gate nor2   a=n348 b=257 O=n620
+.gate inv1   a=n620 O=n621
+.gate aoi21  a=n621 b=n619 c=n350 O=n622
+.gate nor2   a=n622 b=n344 O=n623
+.gate nor2   a=n623 b=n343 O=n624
+.gate nand2  a=n624 b=n340 O=n625
+.gate nor2   a=n624 b=n340 O=n626
+.gate inv1   a=n626 O=n627
+.gate nand2  a=n627 b=n625 O=10839
+.gate nor2   a=n338 b=38 O=n629
+.gate inv1   a=n629 O=n630
+.gate nand2  a=382 b=267 O=n631
+.gate xor2a  a=n631 b=38 O=n632
+.gate nand2  a=n632 b=n630 O=n633
+.gate oai21  a=n631 b=n624 c=38 O=n634
+.gate oai21  a=n633 b=10839 c=n634 O=10101
+.gate nor2   a=271 b=245 O=n636
+.gate nand2  a=n636 b=382 O=n637
+.gate nand2  a=n637 b=38 O=n638
+.gate nor2   a=257 b=n331 O=n639
+.gate aoi21  a=112 b=n331 c=n639 O=n640
+.gate nor2   a=260 b=n331 O=n641
+.gate aoi21  a=88 b=n331 c=n641 O=n642
+.gate oai21  a=167 b=n331 c=n341 O=n643
+.gate inv1   a=n643 O=n644
+.gate oai21  a=166 b=n331 c=n644 O=n645
+.gate nand3  a=n645 b=n642 c=n640 O=n646
+.gate oai21  a=166 b=n331 c=n341 O=n647
+.gate inv1   a=168 O=n648
+.gate nand2  a=n648 b=18 O=n649
+.gate nand2  a=n649 b=n341 O=n650
+.gate nor2   a=106 b=n331 O=n651
+.gate aoi21  a=87 b=n331 c=n651 O=n652
+.gate inv1   a=169 O=n653
+.gate nand2  a=n653 b=18 O=n654
+.gate nand2  a=n654 b=n341 O=n655
+.gate nand2  a=111 b=n331 O=n656
+.gate oai21  a=254 b=n331 c=n656 O=n657
+.gate inv1   a=n657 O=n658
+.gate aoi22  a=n658 b=n655 c=n652 d=n650 O=n659
+.gate nor2   a=n643 b=n640 O=n660
+.gate inv1   a=n660 O=n661
+.gate nand2  a=n647 b=n643 O=n662
+.gate nand3  a=n662 b=n661 c=n659 O=n663
+.gate oai21  a=n647 b=n642 c=n663 O=n664
+.gate nand2  a=113 b=n331 O=n665
+.gate oai21  a=251 b=n331 c=n665 O=n666
+.gate aoi21  a=n657 b=n654 c=n666 O=n667
+.gate nand2  a=n659 b=n341 O=n668
+.gate nor2   a=n652 b=n650 O=n669
+.gate nor2   a=n669 b=n660 O=n670
+.gate oai21  a=n668 b=n667 c=n670 O=n671
+.gate aoi22  a=n647 b=n642 c=n643 d=n640 O=n672
+.gate aoi22  a=n672 b=n671 c=n664 d=n646 O=n673
+.gate nand2  a=271 b=245 O=n674
+.gate nand2  a=n674 b=382 O=n675
+.gate aoi21  a=n636 b=38 c=n675 O=n676
+.gate oai21  a=n676 b=n673 c=n638 O=10102
+.gate xnor2a a=n440 b=n411 O=10109
+.gate nor2   a=n419 b=n416 O=n679
+.gate xor2a  a=n679 b=n439 O=10110
+.gate inv1   a=n336 O=n681
+.gate oai21  a=n423 b=n681 c=n436 O=n682
+.gate xor2a  a=n682 b=n431 O=10111
+.gate nand2  a=n681 b=n330 O=n684
+.gate xor2a  a=n684 b=n425 O=10112
+.gate inv1   a=n397 O=n686
+.gate nand2  a=n398 b=n686 O=n687
+.gate xor2a  a=n687 b=n461 O=10350
+.gate nor2   a=n460 b=n404 O=n689
+.gate xor2a  a=n689 b=n459 O=10351
+.gate oai21  a=n453 b=n441 c=n454 O=n691
+.gate xnor2a a=n691 b=n449 O=10352
+.gate xor2a  a=n456 b=n441 O=10353
+.gate oai22  a=n564 b=n558 c=n563 d=n559 O=n694
+.gate nand2  a=n575 b=n568 O=n695
+.gate inv1   a=n568 O=n696
+.gate nand2  a=n574 b=n696 O=n697
+.gate nand2  a=n697 b=n695 O=n698
+.gate xor2a  a=n698 b=n515 O=n699
+.gate xor2a  a=n699 b=n694 O=n700
+.gate xor2a  a=n700 b=n531 O=n701
+.gate xnor2a a=n701 b=n540 O=n702
+.gate nor2   a=141 b=18 O=n703
+.gate inv1   a=n703 O=n704
+.gate oai21  a=161 b=n331 c=n704 O=n705
+.gate xor2a  a=n705 b=n507 O=n706
+.gate xor2a  a=n706 b=n523 O=n707
+.gate or2    a=n707 b=n702 O=n708
+.gate nand2  a=n707 b=n702 O=n709
+.gate xor2a  a=n365 b=n361 O=n710
+.gate xor2a  a=n710 b=n386 O=n711
+.gate xor2a  a=n711 b=n369 O=n712
+.gate inv1   a=115 O=n713
+.gate nand2  a=n713 b=n331 O=n714
+.gate oai21  a=227 b=n331 c=n714 O=n715
+.gate xor2a  a=n715 b=n354 O=n716
+.gate xor2a  a=n716 b=n483 O=n717
+.gate xor2a  a=n475 b=n377 O=n718
+.gate xor2a  a=n718 b=n717 O=n719
+.gate xor2a  a=n719 b=n712 O=n720
+.gate nor2   a=n720 b=n491 O=n721
+.gate nand2  a=n720 b=n491 O=n722
+.gate xnor2a a=212 b=211 O=n723
+.gate nand2  a=n723 b=209 O=n724
+.gate nor2   a=n588 b=n331 O=n725
+.gate inv1   a=n723 O=n726
+.gate nand2  a=n726 b=n587 O=n727
+.gate nand3  a=n727 b=n725 c=n724 O=n728
+.gate nand2  a=n595 b=n347 O=n729
+.gate oai21  a=n595 b=n349 c=n729 O=n730
+.gate inv1   a=n342 O=n731
+.gate nand2  a=n600 b=n731 O=n732
+.gate oai21  a=n607 b=n731 c=n732 O=n733
+.gate xor2a  a=n733 b=n730 O=n734
+.gate xor2a  a=n734 b=n728 O=n735
+.gate xor2a  a=n452 b=n402 O=n736
+.gate xnor2a a=n736 b=n428 O=n737
+.gate xor2a  a=n737 b=n422 O=n738
+.gate xor2a  a=n418 b=n395 O=n739
+.gate xor2a  a=n739 b=n444 O=n740
+.gate nor2   a=n328 b=18 O=n741
+.gate nor3   a=44 b=41 c=18 O=n742
+.gate aoi21  a=n741 b=44 c=n742 O=n743
+.gate inv1   a=229 O=n744
+.gate aoi21  a=239 b=n744 c=n331 O=n745
+.gate oai21  a=239 b=n744 c=n745 O=n746
+.gate nand2  a=n746 b=n743 O=n747
+.gate xor2a  a=n747 b=n409 O=n748
+.gate xor2a  a=n748 b=n740 O=n749
+.gate xor2a  a=n749 b=n738 O=n750
+.gate nand3  a=n750 b=n735 c=n722 O=n751
+.gate nor2   a=n751 b=n721 O=n752
+.gate nand3  a=n752 b=n709 c=n708 O=10574
+.gate nand2  a=61 b=n331 O=n754
+.gate inv1   a=361 O=n755
+.gate nand2  a=n755 b=18 O=n756
+.gate nand2  a=n756 b=n754 O=n757
+.gate nand2  a=60 b=n331 O=n758
+.gate oai21  a=358 b=n331 c=n758 O=n759
+.gate xnor2a a=n759 b=n757 O=n760
+.gate nor2   a=355 b=n331 O=n761
+.gate aoi21  a=79 b=n331 c=n761 O=n762
+.gate nand2  a=59 b=n331 O=n763
+.gate oai21  a=346 b=n331 c=n763 O=n764
+.gate nand2  a=62 b=n331 O=n765
+.gate oai21  a=364 b=n331 c=n765 O=n766
+.gate nor2   a=340 b=n331 O=n767
+.gate aoi21  a=77 b=n331 c=n767 O=n768
+.gate inv1   a=n768 O=n769
+.gate nand2  a=337 b=18 O=n770
+.gate oai21  a=58 b=18 c=n770 O=n771
+.gate nand2  a=81 b=n331 O=n772
+.gate inv1   a=349 O=n773
+.gate nand2  a=n773 b=18 O=n774
+.gate nand2  a=n774 b=n772 O=n775
+.gate xor2a  a=n775 b=n771 O=n776
+.gate xor2a  a=n776 b=n769 O=n777
+.gate xor2a  a=n777 b=n766 O=n778
+.gate xnor2a a=n778 b=n764 O=n779
+.gate xor2a  a=n779 b=n762 O=n780
+.gate nand2  a=78 b=n331 O=n781
+.gate oai21  a=343 b=n331 c=n781 O=n782
+.gate nand2  a=80 b=n331 O=n783
+.gate oai21  a=352 b=n331 c=n783 O=n784
+.gate xor2a  a=n784 b=n782 O=n785
+.gate xor2a  a=n785 b=n780 O=n786
+.gate or2    a=n786 b=n760 O=n787
+.gate nand2  a=n786 b=n760 O=n788
+.gate xnor2a a=n666 b=n657 O=n789
+.gate nor2   a=248 b=n331 O=n790
+.gate aoi21  a=114 b=n331 c=n790 O=n791
+.gate xnor2a a=267 b=263 O=n792
+.gate inv1   a=n636 O=n793
+.gate aoi21  a=n674 b=n793 c=18 O=n794
+.gate aoi21  a=n792 b=18 c=n794 O=n795
+.gate xor2a  a=n642 b=n640 O=n796
+.gate xor2a  a=n796 b=n652 O=n797
+.gate xor2a  a=n797 b=n795 O=n798
+.gate xor2a  a=n798 b=n791 O=n799
+.gate xor2a  a=n799 b=n789 O=n800
+.gate xnor2a a=293 b=274 O=n801
+.gate nand2  a=82 b=63 O=n802
+.gate or2    a=82 b=63 O=n803
+.gate nand3  a=n803 b=n802 c=n331 O=n804
+.gate oai21  a=n801 b=n331 c=n804 O=n805
+.gate xnor2a a=283 b=280 O=n806
+.gate nand2  a=84 b=83 O=n807
+.gate or2    a=84 b=83 O=n808
+.gate nand3  a=n808 b=n807 c=n331 O=n809
+.gate oai21  a=n806 b=n331 c=n809 O=n810
+.gate xor2a  a=n810 b=n805 O=n811
+.gate xnor2a a=286 b=277 O=n812
+.gate inv1   a=85 O=n813
+.gate nand2  a=n813 b=65 O=n814
+.gate inv1   a=65 O=n815
+.gate aoi21  a=85 b=n815 c=18 O=n816
+.gate aoi22  a=n816 b=n814 c=n812 d=18 O=n817
+.gate xor2a  a=n817 b=n811 O=n818
+.gate xor2a  a=303 b=289 O=n819
+.gate nand2  a=110 b=64 O=n820
+.gate nor2   a=110 b=64 O=n821
+.gate nor2   a=n821 b=18 O=n822
+.gate aoi22  a=n822 b=n820 c=n819 d=18 O=n823
+.gate xnor2a a=n823 b=n818 O=n824
+.gate inv1   a=n824 O=n825
+.gate xor2a  a=299 b=296 O=n826
+.gate nand2  a=109 b=86 O=n827
+.gate nor2   a=109 b=86 O=n828
+.gate nor2   a=n828 b=18 O=n829
+.gate aoi22  a=n829 b=n827 c=n826 d=18 O=n830
+.gate nor2   a=n830 b=n825 O=n831
+.gate inv1   a=n830 O=n832
+.gate xnor2a a=325 b=316 O=n833
+.gate nand2  a=76 b=53 O=n834
+.gate or2    a=76 b=53 O=n835
+.gate nand3  a=n835 b=n834 c=n331 O=n836
+.gate oai21  a=n833 b=n331 c=n836 O=n837
+.gate xnor2a a=310 b=307 O=n838
+.gate nand2  a=70 b=69 O=n839
+.gate or2    a=70 b=69 O=n840
+.gate nand3  a=n840 b=n839 c=n331 O=n841
+.gate oai21  a=n838 b=n331 c=n841 O=n842
+.gate xor2a  a=n842 b=n837 O=n843
+.gate nand2  a=56 b=n331 O=n844
+.gate oai21  a=334 b=n331 c=n844 O=n845
+.gate nand2  a=74 b=n331 O=n846
+.gate oai21  a=313 b=n331 c=n846 O=n847
+.gate xnor2a a=n847 b=n845 O=n848
+.gate xor2a  a=n848 b=n843 O=n849
+.gate xnor2a a=322 b=319 O=n850
+.gate nand2  a=75 b=73 O=n851
+.gate or2    a=75 b=73 O=n852
+.gate nand3  a=n852 b=n851 c=n331 O=n853
+.gate oai21  a=n850 b=n331 c=n853 O=n854
+.gate xor2a  a=331 b=328 O=n855
+.gate inv1   a=54 O=n856
+.gate aoi21  a=55 b=n856 c=18 O=n857
+.gate oai21  a=55 b=n856 c=n857 O=n858
+.gate oai21  a=n855 b=n331 c=n858 O=n859
+.gate xor2a  a=n859 b=n854 O=n860
+.gate xor2a  a=n860 b=n849 O=n861
+.gate oai21  a=n832 b=n824 c=n861 O=n862
+.gate nor3   a=n862 b=n831 c=n800 O=n863
+.gate nand3  a=n863 b=n788 c=n787 O=10575
+.gate oai21  a=176 b=n331 c=n341 O=n865
+.gate oai21  a=178 b=n331 c=n506 O=n866
+.gate inv1   a=174 O=n867
+.gate xor2a  a=175 b=173 O=n868
+.gate and2   a=n868 b=n867 O=n869
+.gate oai21  a=n868 b=n867 c=18 O=n870
+.gate oai21  a=n870 b=n869 c=n341 O=n871
+.gate xor2a  a=n871 b=n866 O=n872
+.gate xor2a  a=n872 b=n865 O=n873
+.gate oai21  a=181 b=n331 c=n704 O=n874
+.gate oai21  a=180 b=n331 c=n522 O=n875
+.gate oai21  a=171 b=n331 c=n530 O=n876
+.gate xnor2a a=n876 b=n875 O=n877
+.gate xor2a  a=n877 b=n874 O=n878
+.gate oai21  a=179 b=n331 c=n514 O=n879
+.gate oai21  a=177 b=n331 c=n341 O=n880
+.gate xnor2a a=n880 b=n879 O=n881
+.gate xor2a  a=n881 b=n878 O=n882
+.gate nand2  a=n882 b=n873 O=n883
+.gate oai21  a=190 b=n331 c=n360 O=n884
+.gate inv1   a=189 O=n885
+.gate aoi21  a=n885 b=18 c=n353 O=n886
+.gate xor2a  a=n886 b=n884 O=n887
+.gate oai21  a=194 b=n331 c=n364 O=n888
+.gate oai21  a=197 b=n331 c=n714 O=n889
+.gate oai21  a=187 b=n331 c=n368 O=n890
+.gate xor2a  a=n890 b=n889 O=n891
+.gate oai21  a=192 b=n331 c=n487 O=n892
+.gate xnor2a a=n892 b=n891 O=n893
+.gate xnor2a a=n893 b=n888 O=n894
+.gate inv1   a=195 O=n895
+.gate aoi21  a=n895 b=18 c=n385 O=n896
+.gate inv1   a=191 O=n897
+.gate aoi21  a=n897 b=18 c=n480 O=n898
+.gate oai21  a=196 b=n331 c=n376 O=n899
+.gate inv1   a=193 O=n900
+.gate aoi21  a=n900 b=18 c=n474 O=n901
+.gate xnor2a a=n901 b=n899 O=n902
+.gate xor2a  a=n902 b=n898 O=n903
+.gate xnor2a a=n903 b=n896 O=n904
+.gate xor2a  a=n904 b=n894 O=n905
+.gate nor2   a=n905 b=n887 O=n906
+.gate nor2   a=n882 b=n873 O=n907
+.gate nor2   a=n907 b=n906 O=n908
+.gate inv1   a=170 O=n909
+.gate xor2a  a=165 b=164 O=n910
+.gate nand2  a=n910 b=n909 O=n911
+.gate inv1   a=n910 O=n912
+.gate nand2  a=n912 b=170 O=n913
+.gate nand3  a=n913 b=n911 c=n725 O=n914
+.gate nand2  a=n662 b=n645 O=n915
+.gate oai22  a=n655 b=n649 c=n654 d=n650 O=n916
+.gate xor2a  a=n916 b=n915 O=n917
+.gate xor2a  a=n917 b=n914 O=n918
+.gate oai21  a=203 b=n331 c=n451 O=n919
+.gate inv1   a=n919 O=n920
+.gate oai21  a=200 b=n331 c=n394 O=n921
+.gate inv1   a=205 O=n922
+.gate aoi21  a=n922 b=18 c=n414 O=n923
+.gate xor2a  a=n923 b=n921 O=n924
+.gate inv1   a=204 O=n925
+.gate aoi21  a=n925 b=18 c=n408 O=n926
+.gate oai21  a=201 b=n331 c=n401 O=n927
+.gate oai21  a=206 b=n331 c=n427 O=n928
+.gate xor2a  a=n928 b=n927 O=n929
+.gate xor2a  a=n929 b=n926 O=n930
+.gate xor2a  a=n930 b=n924 O=n931
+.gate inv1   a=n443 O=n932
+.gate oai21  a=202 b=n331 c=n932 O=n933
+.gate oai21  a=207 b=n331 c=n421 O=n934
+.gate inv1   a=198 O=n935
+.gate aoi21  a=208 b=n935 c=n331 O=n936
+.gate oai21  a=208 b=n935 c=n936 O=n937
+.gate nand2  a=n937 b=n743 O=n938
+.gate xnor2a a=n938 b=n934 O=n939
+.gate xor2a  a=n939 b=n933 O=n940
+.gate xnor2a a=n940 b=n931 O=n941
+.gate aoi21  a=n941 b=n920 c=n918 O=n942
+.gate inv1   a=n941 O=n943
+.gate aoi22  a=n943 b=n919 c=n905 d=n887 O=n944
+.gate nand4  a=n944 b=n942 c=n908 d=n883 O=10576
+.gate nor3   a=n536 b=n503 c=n355 O=n946
+.gate nor2   a=n503 b=n355 O=n947
+.gate nor2   a=n947 b=n535 O=n948
+.gate nor2   a=n948 b=n946 O=10632
+.gate nor2   a=n604 b=n592 O=n950
+.gate xor2a  a=n950 b=n586 O=10641
+.gate nand2  a=n886 b=n766 O=n952
+.gate nor2   a=n886 b=n766 O=n953
+.gate inv1   a=n757 O=n954
+.gate nor2   a=n884 b=n954 O=n955
+.gate nand2  a=n884 b=n954 O=n956
+.gate nand2  a=n898 b=n759 O=n957
+.gate nor2   a=n898 b=n759 O=n958
+.gate nor2   a=n892 b=n762 O=n959
+.gate nand2  a=n892 b=n762 O=n960
+.gate nand2  a=n901 b=n784 O=n961
+.gate nor2   a=n901 b=n784 O=n962
+.gate inv1   a=n775 O=n963
+.gate nor2   a=n888 b=n963 O=n964
+.gate nand2  a=n888 b=n963 O=n965
+.gate nand2  a=n896 b=n764 O=n966
+.gate nor2   a=n896 b=n764 O=n967
+.gate inv1   a=n845 O=n968
+.gate inv1   a=n890 O=n969
+.gate nand2  a=n969 b=n769 O=n970
+.gate nand3  a=n970 b=n921 c=n968 O=n971
+.gate inv1   a=n782 O=n972
+.gate aoi22  a=n899 b=n972 c=n890 d=n768 O=n973
+.gate nor2   a=n899 b=n972 O=n974
+.gate aoi21  a=n973 b=n971 c=n974 O=n975
+.gate oai21  a=n975 b=n967 c=n966 O=n976
+.gate aoi21  a=n976 b=n965 c=n964 O=n977
+.gate oai21  a=n977 b=n962 c=n961 O=n978
+.gate aoi21  a=n978 b=n960 c=n959 O=n979
+.gate oai21  a=n979 b=n958 c=n957 O=n980
+.gate aoi21  a=n980 b=n956 c=n955 O=n981
+.gate oai21  a=n981 b=n953 c=n952 O=10704
+.gate nand3  a=n947 b=n550 c=n539 O=n983
+.gate xnor2a a=n552 b=n544 O=n984
+.gate xnor2a a=n984 b=n983 O=10711
+.gate inv1   a=n528 O=n986
+.gate nand2  a=n946 b=n986 O=n987
+.gate inv1   a=n519 O=n988
+.gate xor2a  a=n988 b=n511 O=n989
+.gate inv1   a=n989 O=n990
+.gate oai21  a=n990 b=n987 c=n550 O=n991
+.gate aoi21  a=n987 b=n511 c=n991 O=n992
+.gate nor2   a=n992 b=n551 O=10712
+.gate nand2  a=n987 b=n548 O=n994
+.gate xor2a  a=n994 b=n988 O=10713
+.gate oai21  a=n947 b=n532 c=n533 O=n996
+.gate xor2a  a=n996 b=n528 O=10714
+.gate nor2   a=n344 b=n343 O=n998
+.gate xor2a  a=n998 b=n622 O=10715
+.gate nor2   a=n620 b=n350 O=n1000
+.gate xnor2a a=n1000 b=n619 O=10716
+.gate inv1   a=n586 O=n1002
+.gate oai21  a=n592 b=n1002 c=n611 O=n1003
+.gate nand2  a=n1003 b=n609 O=n1004
+.gate xnor2a a=n1004 b=n598 O=10717
+.gate nor2   a=n608 b=n602 O=n1006
+.gate aoi21  a=n591 b=n586 c=n604 O=n1007
+.gate oai21  a=n1007 b=n1006 c=n1003 O=10718
+.gate inv1   a=n569 O=n1010
+.gate nand2  a=n583 b=n567 O=n1011
+.gate aoi21  a=n1011 b=n1010 c=n571 O=n1012
+.gate xor2a  a=n1012 b=n579 O=10760
+.gate xnor2a a=n1011 b=n572 O=10761
+.gate nand2  a=n580 b=n561 O=n1015
+.gate inv1   a=n1015 O=n1016
+.gate nand2  a=n1016 b=n555 O=n1017
+.gate nand2  a=n581 b=n566 O=n1018
+.gate xor2a  a=n1018 b=n561 O=n1019
+.gate inv1   a=n1019 O=n1020
+.gate nor2   a=n1018 b=n1017 O=n1021
+.gate aoi21  a=n1020 b=n1017 c=n1021 O=10762
+.gate xor2a  a=n1016 b=n555 O=10763
+.gate xor2a  a=n462 b=n374 O=10827
+.gate nand2  a=n632 b=n626 O=n1025
+.gate nor2   a=n631 b=38 O=n1026
+.gate aoi22  a=n632 b=n630 c=n1026 d=263 O=n1027
+.gate nand2  a=n1027 b=n627 O=n1028
+.gate nand2  a=n1028 b=n1025 O=10837
+.gate nor2   a=n494 b=n476 O=n1030
+.gate xor2a  a=n1030 b=n471 O=10868
+.gate aoi21  a=n462 b=n391 c=n469 O=n1032
+.gate nor2   a=n464 b=n366 O=n1033
+.gate xnor2a a=n1033 b=n1032 O=10869
+.gate nand2  a=n462 b=n374 O=n1035
+.gate oai21  a=n1035 b=n380 c=n468 O=n1036
+.gate xor2a  a=n1036 b=n389 O=10870
+.gate nand2  a=n1035 b=n466 O=n1038
+.gate xor2a  a=n1038 b=n381 O=10871
+.gate nand2  a=n502 b=n358 O=n1040
+.gate nand2  a=n1040 b=n504 O=10905
+.gate inv1   a=n500 O=n1042
+.gate nand2  a=n1042 b=n496 O=n1043
+.gate nor2   a=n497 b=n362 O=n1044
+.gate xor2a  a=n1044 b=n1043 O=10906
+.gate nand2  a=n495 b=n477 O=n1046
+.gate aoi21  a=n1046 b=n499 c=n492 O=n1047
+.gate xor2a  a=n1047 b=n485 O=10907
+.gate inv1   a=n493 O=n1049
+.gate xor2a  a=n1046 b=n1049 O=10908
+.gate oai21  a=n539 b=n519 c=n552 O=n1051
+.gate oai21  a=n552 b=n519 c=n1051 O=n1052
+.gate xor2a  a=n1052 b=n548 O=n1053
+.gate nand3  a=n550 b=n538 c=n533 O=n1054
+.gate oai21  a=n550 b=n533 c=n1054 O=n1055
+.gate nand2  a=n536 b=n528 O=n1056
+.gate xor2a  a=n1056 b=n544 O=n1057
+.gate xor2a  a=n1057 b=n512 O=n1058
+.gate xor2a  a=n1058 b=n1055 O=n1059
+.gate xor2a  a=n1059 b=n1053 O=n1060
+.gate nand2  a=n547 b=n518 O=n1061
+.gate nand2  a=n1061 b=n549 O=n1062
+.gate nand2  a=n1062 b=n990 O=n1063
+.gate oai21  a=n1062 b=n512 c=n1063 O=n1064
+.gate xor2a  a=n984 b=n533 O=n1065
+.gate xor2a  a=n1065 b=n986 O=n1066
+.gate xor2a  a=n1066 b=n1064 O=n1067
+.gate nor2   a=n1067 b=n947 O=n1068
+.gate aoi21  a=n1060 b=n947 c=n1068 O=n1069
+.gate xor2a  a=n579 b=n572 O=n1070
+.gate oai21  a=n565 b=n560 c=n581 O=n1071
+.gate aoi21  a=n1071 b=n1010 c=n571 O=n1072
+.gate nor2   a=n581 b=n580 O=n1073
+.gate nand2  a=n582 b=n561 O=n1074
+.gate oai22  a=n1074 b=n1073 c=n565 d=n561 O=n1075
+.gate xor2a  a=n1075 b=n1072 O=n1076
+.gate nand2  a=n1076 b=n556 O=n1077
+.gate nand2  a=n583 b=n570 O=n1078
+.gate oai21  a=n583 b=n569 c=n1078 O=n1079
+.gate xor2a  a=n1079 b=n1020 O=n1080
+.gate oai21  a=n1080 b=n556 c=n1077 O=n1081
+.gate xor2a  a=n1081 b=n1070 O=n1082
+.gate xor2a  a=n1082 b=n1069 O=11333
+.gate xnor2a a=n998 b=n598 O=n1084
+.gate nand2  a=n621 b=n617 O=n1085
+.gate oai21  a=n617 b=n350 c=n1085 O=n1086
+.gate and2   a=n950 b=n608 O=n1087
+.gate inv1   a=n604 O=n1088
+.gate oai22  a=n608 b=n591 c=n1088 d=n602 O=n1089
+.gate nor2   a=n1089 b=n1087 O=n1090
+.gate xor2a  a=n1090 b=n1086 O=n1091
+.gate nand2  a=n1091 b=n1002 O=n1092
+.gate nor3   a=n950 b=n601 c=254 O=n1093
+.gate nor3   a=n1093 b=n1087 c=n611 O=n1094
+.gate inv1   a=n350 O=n1095
+.gate oai21  a=n1085 b=n613 c=n1095 O=n1096
+.gate nand3  a=n618 b=n590 c=n587 O=n1097
+.gate nand3  a=n617 b=n612 c=n591 O=n1098
+.gate nand2  a=n1098 b=n1097 O=n1099
+.gate xor2a  a=n1099 b=n1096 O=n1100
+.gate xor2a  a=n1100 b=n1094 O=n1101
+.gate oai21  a=n1101 b=n1002 c=n1092 O=n1102
+.gate xor2a  a=n1102 b=n1000 O=n1103
+.gate xor2a  a=n1103 b=n1084 O=n1104
+.gate nor2   a=n1027 b=10839 O=n1105
+.gate aoi21  a=10837 b=10839 c=n1105 O=n1106
+.gate xor2a  a=n1106 b=n1104 O=11334
+.gate xor2a  a=n1044 b=n358 O=n1108
+.gate xor2a  a=n1030 b=n380 O=n1109
+.gate nand2  a=n468 b=n382 O=n1110
+.gate inv1   a=n1110 O=n1111
+.gate inv1   a=n373 O=n1112
+.gate xor2a  a=n469 b=n1112 O=n1113
+.gate aoi21  a=n1113 b=n1111 c=n391 O=n1114
+.gate oai21  a=n1113 b=n1111 c=n1114 O=n1115
+.gate inv1   a=n464 O=n1116
+.gate oai21  a=n469 b=n366 c=n1116 O=n1117
+.gate xor2a  a=n1117 b=n390 O=n1118
+.gate nand2  a=n1116 b=n391 O=n1119
+.gate nand3  a=n1119 b=n1118 c=n374 O=n1120
+.gate oai21  a=n1118 b=n374 c=n1120 O=n1121
+.gate xnor2a a=n1121 b=n1115 O=n1122
+.gate xor2a  a=n1122 b=n1109 O=n1123
+.gate inv1   a=n387 O=n1124
+.gate nor2   a=n468 b=n388 O=n1125
+.gate aoi21  a=n468 b=n1124 c=n1125 O=n1126
+.gate xor2a  a=n1117 b=n1112 O=n1127
+.gate xor2a  a=n1127 b=n1109 O=n1128
+.gate xor2a  a=n1128 b=n1126 O=n1129
+.gate nor2   a=n1129 b=n462 O=n1130
+.gate aoi21  a=n1123 b=n462 c=n1130 O=n1131
+.gate nor2   a=n501 b=n362 O=n1132
+.gate xor2a  a=n1132 b=n493 O=n1133
+.gate inv1   a=n482 O=n1134
+.gate nor2   a=n492 b=n1134 O=n1135
+.gate aoi21  a=n492 b=n484 c=n1135 O=n1136
+.gate nand2  a=n1044 b=n1042 O=n1137
+.gate nand3  a=n1136 b=n1137 c=n1133 O=n1138
+.gate oai21  a=n1136 b=n1133 c=n1138 O=n1139
+.gate xor2a  a=n1139 b=n485 O=n1140
+.gate inv1   a=n1135 O=n1141
+.gate nand2  a=n484 b=n490 O=n1142
+.gate nand3  a=n1142 b=n1049 c=n1134 O=n1143
+.gate nand2  a=n1143 b=n1141 O=n1144
+.gate xor2a  a=n1144 b=n1132 O=n1145
+.gate nand2  a=n1145 b=n1046 O=n1146
+.gate oai21  a=n1140 b=n1046 c=n1146 O=n1147
+.gate xor2a  a=n1147 b=n1131 O=n1148
+.gate xor2a  a=n1148 b=n1108 O=11340
+.gate xor2a  a=n689 b=n687 O=n1150
+.gate nor2   a=n425 b=n329 O=n1151
+.gate aoi21  a=n425 b=n332 c=n1151 O=n1152
+.gate xnor2a a=n679 b=n411 O=n1153
+.gate xor2a  a=n1153 b=n431 O=n1154
+.gate xor2a  a=n1154 b=n436 O=n1155
+.gate inv1   a=n432 O=n1156
+.gate oai21  a=n437 b=n1156 c=n417 O=n1157
+.gate inv1   a=n419 O=n1158
+.gate nand2  a=n438 b=n1158 O=n1159
+.gate oai21  a=n1159 b=n1156 c=n1157 O=n1160
+.gate xor2a  a=n1160 b=n1155 O=n1161
+.gate aoi21  a=n1161 b=n1152 c=n327 O=n1162
+.gate oai21  a=n1161 b=n1152 c=n1162 O=n1163
+.gate nand2  a=n1159 b=n417 O=n1164
+.gate xor2a  a=n1164 b=n335 O=n1165
+.gate nor2   a=n434 b=n330 O=n1166
+.gate aoi21  a=n423 b=n330 c=n1166 O=n1167
+.gate xnor2a a=n1167 b=n437 O=n1168
+.gate xor2a  a=n1168 b=n1165 O=n1169
+.gate aoi21  a=n1169 b=n1154 c=367 O=n1170
+.gate oai21  a=n1169 b=n1154 c=n1170 O=n1171
+.gate nand2  a=n1171 b=n1163 O=n1172
+.gate inv1   a=n460 O=n1173
+.gate aoi21  a=n1173 b=n458 c=n404 O=n1174
+.gate xnor2a a=n1174 b=n456 O=n1175
+.gate nor2   a=n455 b=n448 O=n1176
+.gate nor2   a=n454 b=n446 O=n1177
+.gate nor2   a=n1177 b=n1176 O=n1178
+.gate nand2  a=n1175 b=n1178 O=n1179
+.gate nand2  a=n689 b=n458 O=n1180
+.gate oai21  a=n1177 b=n1176 c=n1180 O=n1181
+.gate oai21  a=n1181 b=n1175 c=n1179 O=n1182
+.gate xor2a  a=n1182 b=n449 O=n1183
+.gate nor2   a=n454 b=n447 O=n1184
+.gate nand2  a=n453 b=n449 O=n1185
+.gate oai21  a=n1184 b=n1176 c=n1185 O=n1186
+.gate xor2a  a=n1186 b=n1174 O=n1187
+.gate nor2   a=n1187 b=n441 O=n1188
+.gate aoi21  a=n1183 b=n441 c=n1188 O=n1189
+.gate xor2a  a=n1189 b=n1172 O=n1190
+.gate xor2a  a=n1190 b=n1150 O=11342
+.gate one    O=10729
+.gate buf    a=IN-241 O=241
+.gate buf    a=1 O=387
+.gate buf    a=1 O=388
+.gate buf    a=248 O=478
+.gate buf    a=254 O=482
+.gate buf    a=257 O=484
+.gate buf    a=260 O=486
+.gate buf    a=263 O=489
+.gate buf    a=267 O=492
+.gate buf    a=274 O=501
+.gate buf    a=280 O=505
+.gate buf    a=283 O=507
+.gate buf    a=286 O=509
+.gate buf    a=289 O=511
+.gate buf    a=293 O=513
+.gate buf    a=296 O=515
+.gate buf    a=299 O=517
+.gate buf    a=303 O=519
+.gate buf    a=307 O=535
+.gate buf    a=310 O=537
+.gate buf    a=313 O=539
+.gate buf    a=316 O=541
+.gate buf    a=319 O=543
+.gate buf    a=322 O=545
+.gate buf    a=325 O=547
+.gate buf    a=328 O=549
+.gate buf    a=331 O=551
+.gate buf    a=334 O=553
+.gate buf    a=337 O=556
+.gate buf    a=343 O=559
+.gate buf    a=346 O=561
+.gate buf    a=349 O=563
+.gate buf    a=352 O=565
+.gate buf    a=355 O=567
+.gate buf    a=358 O=569
+.gate buf    a=361 O=571
+.gate buf    a=364 O=573
+.gate buf    a=251 O=643
+.gate buf    a=277 O=707
+.gate buf    a=340 O=813
+.gate buf    a=1 O=889
+.gate buf    a=106 O=945
+.gate inv1   a=15 O=1111
+.gate nand2  a=242 b=n317 O=1112
+.gate inv1   a=15 O=1114
+.gate nand3  a=134 b=133 c=n317 O=1489
+.gate buf    a=1 O=1490
+.gate oai21  a=n676 b=n673 c=n638 O=10103
+.gate oai21  a=n633 b=10839 c=n634 O=10104
+.gate oai21  a=n676 b=n673 c=n638 O=10628
+.gate oai21  a=n633 b=10839 c=n634 O=10706
+.gate oai21  a=n633 b=10839 c=n634 O=10759
+.gate nand2  a=n1028 b=n1025 O=10838
+.gate nand2  a=n627 b=n625 O=10840
+.end

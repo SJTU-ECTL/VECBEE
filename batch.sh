@@ -20,8 +20,8 @@ do
        	then
             for er in ${errorArray[@]}
             do
-                echo -e 'time ./main -f' ${file} '-n 10000' -e ${er} '> log/'${er}'_'${filename}'.log'
-                time ./main -f ${file} -n 10000 -e ${er} > log/${er}_${filename}.log
+                echo -e './main -f' ${file} '-n 10000' -e ${er} '> log/'${er}'_'${filename}'.log'
+                ./main -f ${file} -n 10000 -e ${er} > log/${er}_${filename}.log
             done
 		fi
     fi

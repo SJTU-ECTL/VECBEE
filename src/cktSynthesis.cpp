@@ -41,7 +41,7 @@ float Ckt_Synthesis2(Ckt_Sop_Net_t & ckt, string er)
     }
     float area = Ckt_GetArea(Abc_FrameReadNtk(pAbc));
     float delay = Abc_GetArrivalTime(Abc_FrameReadNtk(pAbc));
-    cout << "area = " << area << " delay = " << delay << endl;
+    cout << "area = " << area << endl << "delay = " << delay << endl;
     assert(system("if [ ! -d mapped ]; then mkdir mapped; fi") != -1);
     Command = string("write_blif mapped/");
     Command += ckt.GetName();
@@ -53,6 +53,35 @@ float Ckt_Synthesis2(Ckt_Sop_Net_t & ckt, string er)
     return area;
 }
 
+
+float Ckt_Synthesis2(Abc_Ntk_t * pNtk, string er)
+{
+    string Command;
+    string ntkName(pNtk->pName);
+    float area, delay;
+
+    Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
+    Abc_FrameReplaceCurrentNetwork(pAbc, Abc_NtkDup(pNtk));
+
+    for (int i = 0; i < 10; ++i) {
+        Command = string("balance; rewrite; refactor; balance; rewrite; rewrite -z; balance; refactor -z; rewrite -z; balance");
+        assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+        Command = string("map -a;");
+        assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+    }
+    area = Ckt_GetArea(Abc_FrameReadNtk(pAbc));
+    delay = Abc_GetArrivalTime(Abc_FrameReadNtk(pAbc));
+    cout << "area = " << area << endl << "delay = " << delay << endl;
+    assert(system("if [ ! -d mapped ]; then mkdir mapped; fi") != -1);
+    Command = string("write_blif mapped/mapped");
+    Command += ntkName;
+    Command += string("_");
+    Command += er;
+    Command += string(".blif");
+    assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+
+    return area;
+}
 
 
 float Ckt_Synthesis3(Ckt_Sop_Net_t & ckt)

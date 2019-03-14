@@ -9,6 +9,7 @@
 
 float Ckt_Synthesis(Ckt_Sop_Net_t & ckt);
 float Ckt_Synthesis2(Ckt_Sop_Net_t & ckt, std::string er);
+float Ckt_Synthesis2(abc::Abc_Ntk_t * pNtk, std::string er);
 float Ckt_Synthesis3(Ckt_Sop_Net_t & ckt);
 float Ckt_GetArea(abc::Abc_Ntk_t * pNtk);
 

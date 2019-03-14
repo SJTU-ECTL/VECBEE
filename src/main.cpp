@@ -15,7 +15,7 @@ using namespace cmdline;
 parser Cmdline_Parser(int argc, char * argv[])
 {
     parser option;
-    option.add <string> ("file",   'f', "Circuit file",       false, "data/sop/c432.blif");
+    option.add <string> ("file",   'f', "Circuit file",       false, "data/su/c880_rem.blif");
     option.add <string> ("genlib", 'g', "Map libarary file",  false, "data/genlib/mcnc.genlib");
     option.add <float>  ("error",  'e', "Error rate",         false, 0.05f, range(0.0f, 1.0f));
     option.add <int>    ("number", 'n', "Frame number",       false, 1024, range(1, INT_MAX));
@@ -44,11 +44,7 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres)
     Ckt_Sop_Net_t cktRef(ckt);
     int EThres = static_cast <int> (ERThres * number);
 
-    // cout << "#nodes = " << ckt.GetObjNum() - ckt.GetPiNum() - ckt.GetPoNum() << endl;
-    // cout << "#PIs = " << ckt.GetPiNum() << endl;
-    // cout << "#POs = " << ckt.GetPoNum() << endl;
-    // float orgArea = Ckt_Synthesis2(ckt);
-    // cout << "Original area = " << orgArea << endl;
+    cout << "fileName = " << ckt.GetName() << endl;
     while (Ckt_SingleSelectionOnce(ckt, cktRef, EThres) <= EThres);
 
     assert(system("if [ ! -d approx ]; then mkdir approx; fi") != -1);
@@ -64,11 +60,22 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres)
     str << er;
     fileName += str.str();
     fileName += string(".blif");
-    cout << fileName << endl;
-    Ckt_WriteBlif(ckt, fileName);
+    // cout << fileName << endl;
 
-    float newArea = Ckt_Synthesis2(ckt, str.str());
-    cout << "Final area = " << newArea << endl;
+    string command;
+    Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
+    Abc_FrameReplaceCurrentNetwork(pAbc, Abc_NtkDup(ckt.GetAbcNtk()));
+    command = "sweep";
+    assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
+    command = "write " + fileName;
+    assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
+    command = "read " + fileName;
+    assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
+
+    Ckt_Sop_Net_t appCkt(Abc_FrameReadNtk(pAbc), number);
+    cout << "error rate = " << er << endl;
+    cout << "#literals = " << appCkt.CountLiteralNum() << endl;
+    Ckt_Synthesis2(appCkt, str.str());
 }
 
 
