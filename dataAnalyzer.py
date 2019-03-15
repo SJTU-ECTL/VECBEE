@@ -23,10 +23,14 @@ class experimentCase:
                 self.errorRate = float(line[13:])
             elif line.startswith('#literals = '):
                 self.nLiterals = int(line[12:])
-            elif line.startswith('area = '):
-                self.area = int(line[7:])
-            elif line.startswith('delay = '):
-                self.delay = float(line[8:])
+            # elif line.startswith('area = '):
+            #     self.area = int(line[7:])
+            # elif line.startswith('delay = '):
+            #     self.delay = float(line[8:])
+            elif line.startswith('Total Area\t\t= '):
+                self.area = float(line[14:])
+            elif line.startswith('Most Negative Slack\t= '):
+                self.delay = float(line[23:])
             else:
                 assert(0)
 
@@ -50,11 +54,13 @@ if __name__ == '__main__':
     for fileName in fileNames:
         cs = experimentCase(directory+fileName)
         csList.append(cs)
+        # print(cs)
 
     csList.sort()
     circuits = set([])
     for cs in csList:
         circuits.add(cs.fileName)
+
     nInfo = 5
     nEr = 7
     nRows = nEr * nInfo

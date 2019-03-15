@@ -38,7 +38,7 @@ void Execute_Gate_Net(Abc_Ntk_t * pAbcNtk, int number)
 }
 
 
-void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres)
+void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres, string genlib)
 {
     Ckt_Sop_Net_t ckt(pAbcNtk, number);
     Ckt_Sop_Net_t cktRef(ckt);
@@ -48,7 +48,7 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres)
     while (Ckt_SingleSelectionOnce(ckt, cktRef, EThres) <= EThres);
 
     assert(system("if [ ! -d approx ]; then mkdir approx; fi") != -1);
-    string fileName("approx/");
+    string fileName("");
     fileName += ckt.GetName();
     fileName += string("_");
     ckt.GenInputDist(314);
@@ -60,78 +60,30 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres)
     str << er;
     fileName += str.str();
     fileName += string(".blif");
-    // cout << fileName << endl;
 
-    Ckt_Synthesis2(ckt, str.str());
+    Ckt_Synthesis2(ckt, fileName);
 
     string command;
     Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
     Abc_FrameReplaceCurrentNetwork(pAbc, Abc_NtkDup(ckt.GetAbcNtk()));
     command = "sweep";
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
-    command = "write " + fileName;
+    command = "write approx/" + fileName;
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
-    command = "read " + fileName;
+    command = "read approx/" + fileName;
     assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
 
     Ckt_Sop_Net_t appCkt(Abc_FrameReadNtk(pAbc), number);
     cout << "error rate = " << er << endl;
     cout << "#literals = " << appCkt.CountLiteralNum() << endl;
-}
 
-
-void Manual_Test(Abc_Ntk_t * pAbcNtk, int number)
-{
-    Ckt_Sop_Net_t ckt(pAbcNtk, number);
-    Ckt_Sop_Net_t cktRef(ckt);
-    ckt.GenInputDist(314);
-    cktRef.GenInputDist(314);
-    cktRef.FeedForward();
-    vector <string> SOP;
-
-    // cout << "Ref" << endl;
-    // for (int i = 0; i < cktRef.GetPoNum(); ++i)
-    //     cout << cktRef.GetPo(i)->GetName() << "\t" << Ckt_GetBit(cktRef.GetPo(i)->GetCluster(0), 63) << endl;
-
-    SOP.clear();
-    ckt.ReplaceByName(string("G284gat"), SOP, Ckt_Sop_Cat_t::CONST1);
-    ckt.ReplaceByName(string("G348gat"), SOP, Ckt_Sop_Cat_t::CONST0);
-    ckt.ReplaceByName(string("G400gat"), SOP, Ckt_Sop_Cat_t::CONST0);
-    ckt.ReplaceByName(string("G529gat"), SOP, Ckt_Sop_Cat_t::CONST1);
-    ckt.ReplaceByName(string("G526gat"), SOP, Ckt_Sop_Cat_t::CONST0);
-    ckt.ReplaceByName(string("G527gat"), SOP, Ckt_Sop_Cat_t::CONST1);
-    ckt.ReplaceByName(string("G528gat"), SOP, Ckt_Sop_Cat_t::CONST1);
-    ckt.ReplaceByName(string("G432gat"), SOP, Ckt_Sop_Cat_t::CONST0);
-    // Ckt_WriteBlif(ckt, "output.blif");
-
-    // cout << "Bef" << endl;
-    // ckt.FeedForward();
-    // cout << ckt.GetErrorRate(cktRef) << endl;
-    // for (int i = 0; i < ckt.GetPoNum(); ++i)
-    //     cout << ckt.GetPo(i)->GetName() << "\t" << Ckt_GetBit(ckt.GetPo(i)->GetCluster(0), 63) << endl;
-
-    cout << "brute" << endl;
-    Ckt_EnumerateTest(ckt, cktRef);
-    cout << "batch" << endl;
-    Ckt_Sing_Sel_Candi_t bestASE;
-    Ckt_BatchErrorEstimation(ckt, cktRef, bestASE);
-
-    // ckt.ReplaceByName(string("G287gat"), SOP, Ckt_Sop_Cat_t::CONST0);
-    // cout << "Aft" << endl;
-    // ckt.FeedForward();
-    // cout << ckt.GetErrorRate(cktRef) << endl;
-    // for (int i = 0; i < ckt.GetPoNum(); ++i)
-    //     cout << ckt.GetPo(i)->GetName() << "\t" << Ckt_GetBit(ckt.GetPo(i)->GetCluster(0), 63) << endl;
-}
-
-
-void Manual_Test2(Abc_Ntk_t * pAbcNtk, int number)
-{
-    // Ckt_Sop_Net_t ckt(pAbcNtk, number);
-    // Ckt_Sop_Net_t cktRef(ckt);
-    // Ckt_SingleSelectionOnce(ckt, cktRef);
-    Ckt_Gate_Net_t ckt(pAbcNtk, number);
-    ckt.TestSimulatorSpeed();
+    FILE * fp = nullptr;
+    assert(fp = fopen("./script/temp.rug", "w"));
+    fprintf(fp, "read_library %s\n", genlib.c_str());
+    fprintf(fp, "read_blif mapped/%s\n", fileName.c_str());
+    fprintf(fp, "print_map_stats\n");
+    fclose(fp);
+    assert(system("sis -f ./script/temp.rug -t none | grep -e \"Most Negative Slack\" -e \"Total Area\"") != -1);
 }
 
 
@@ -168,12 +120,6 @@ void Aig_Test(void)
 }
 
 
-void test(Abc_Ntk_t * pAbcNtk, int number)
-{
-    Ckt_Ntk_t ntk(pAbcNtk, number);
-}
-
-
 int main(int argc, char * argv[])
 {
     parser option = Cmdline_Parser(argc, argv);
@@ -192,13 +138,9 @@ int main(int argc, char * argv[])
     Abc_Ntk_t * pAbcNtk = Abc_FrameReadNtk(pAbc);
 
     if (Abc_NtkIsSopLogic(pAbcNtk))
-        Execute_Sop_Net(pAbcNtk, number, ERThres);
+        Execute_Sop_Net(pAbcNtk, number, ERThres, genlib);
     else if (Abc_NtkIsMappedLogic(pAbcNtk))
         Execute_Gate_Net(pAbcNtk, number);
-    // Manual_Test(pAbcNtk, number);
-    // Manual_Test2(pAbcNtk, number);
-    // Aig_Test();
-    // test(pAbcNtk, number);
 
     Abc_Stop();
 

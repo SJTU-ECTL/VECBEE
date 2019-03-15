@@ -1,4 +1,4 @@
-# Benchmark "c880" written by ABC on Thu Mar 14 21:28:51 2019
+# Benchmark "c880" written by ABC on Fri Mar 15 19:56:08 2019
 .model c880
 .inputs G1gat G8gat G13gat G17gat G26gat G29gat G36gat G42gat G51gat G55gat \
  G59gat G68gat G72gat G73gat G74gat G75gat G80gat G85gat G86gat G87gat \
@@ -18,11 +18,11 @@
 111 1
 .names G85gat G86gat G391gat
 11 1
-.names G390gat n114 G419gat
+.names G390gat G270gat G419gat
 00 0
-.names G90gat n118 G423gat
+.names G90gat G298gat G423gat
 11 1
-.names n114 G390gat G446gat
+.names G270gat G390gat G446gat
 01 0
 .names G1gat G26gat G51gat G447gat
 111 1
@@ -30,29 +30,29 @@
  0
 .names G449gat
  0
-.names n122 n123 G767gat
+.names G552gat G588gat G767gat
 00 1
-.names n124 n125 G768gat
+.names G587gat G589gat G768gat
 00 1
-.names n126 n127 n128 G850gat
+.names G805gat G787gat G731gat G850gat
 111 0
-.names n172 n131 n130 G863gat
+.names G631gat G777gat G826gat G863gat
 011 0
-.names n133 n134 n135 G864gat
+.names G827gat G781gat G712gat G864gat
 111 0
-.names n137 n138 n139 G865gat
+.names G828gat G785gat G721gat G865gat
 111 0
-.names n192 n143 n142 G874gat
+.names G624gat G772gat G845gat G874gat
 011 0
-.names n198 n146 n145 G878gat
+.names G596gat G769gat G859gat G878gat
 011 0
-.names n204 n149 n148 G879gat
+.names G605gat G770gat G860gat G879gat
 011 0
-.names n210 n152 n151 G880gat
+.names G615gat G771gat G861gat G880gat
 011 0
 .names G1gat G8gat G13gat G17gat G418gat
 1111 1
-.names G1gat G26gat G13gat G17gat n114
+.names G1gat G26gat G13gat G17gat G270gat
 1111 0
 .names G59gat G75gat G80gat G420gat
 111 0
@@ -60,448 +60,448 @@
 111 0
 .names G59gat G36gat G42gat G422gat
 111 0
-.names G87gat G88gat n118
+.names G87gat G88gat G298gat
 00 0
-.names G89gat n118 G450gat
+.names G89gat G298gat G450gat
 11 1
-.names n157 n158 n122
+.names G530gat G533gat G552gat
 11 1
-.names n157 n158 n123
+.names G530gat G533gat G588gat
 00 1
-.names n159 n160 n124
+.names G544gat G547gat G587gat
 11 1
-.names n159 n160 n125
+.names G544gat G547gat G589gat
 00 1
-.names n161 n162 n126
+.names G340gat G794gat G805gat
 00 1
-.names n163 n164 n127
+.names G759gat G760gat G787gat
 00 1
-.names n165 n166 n128
+.names G341gat G659gat G731gat
 00 1
-.names n168 n169 n130
+.names G335gat G808gat G826gat
 00 1
-.names n170 n171 n131
+.names G748gat G749gat G777gat
 00 1
-.names n174 n175 n133
+.names G336gat G809gat G827gat
 00 1
-.names n176 n177 n134
+.names G751gat G752gat G781gat
 00 1
-.names n178 n179 n135
+.names G337gat G640gat G712gat
 00 1
-.names n180 n181 n137
+.names G338gat G810gat G828gat
 00 1
-.names n182 n183 n138
+.names G754gat G755gat G785gat
 00 1
-.names n184 n185 n139
+.names G339gat G650gat G721gat
 00 1
-.names n186 n187 G866gat
+.names G590gat G841gat G866gat
 11 0
-.names n188 n189 n142
+.names G334gat G836gat G845gat
 00 1
-.names n190 n191 n143
+.names G745gat G746gat G772gat
 00 1
-.names n194 n195 n145
+.names G417gat G851gat G859gat
 00 1
-.names n196 n197 n146
+.names G736gat G737gat G769gat
 00 1
-.names n200 n201 n148
+.names G332gat G852gat G860gat
 00 1
-.names n202 n203 n149
+.names G739gat G740gat G770gat
 00 1
-.names n206 n207 n151
+.names G333gat G853gat G861gat
 00 1
-.names n208 n209 n152
+.names G742gat G743gat G771gat
 00 1
-.names n212 n213 n157
+.names G498gat G499gat G530gat
 11 0
-.names n214 n215 n158
+.names G500gat G501gat G533gat
 11 0
-.names n216 n217 n159
+.names G518gat G519gat G544gat
 11 0
-.names n218 n219 n160
+.names G520gat G521gat G547gat
 11 0
-.names G210gat G121gat n161
+.names G210gat G121gat G340gat
 11 1
-.names G219gat n220 n162
+.names G219gat G786gat G794gat
 11 1
-.names G228gat n221 n163
+.names G228gat G727gat G759gat
 11 1
-.names n222 G237gat n164
+.names G651gat G237gat G760gat
 01 1
-.names G255gat G267gat n165
+.names G255gat G267gat G341gat
 11 1
-.names n262 G246gat n166
+.names G543gat G246gat G659gat
 01 1
-.names G210gat G106gat n168
+.names G210gat G106gat G335gat
 11 1
-.names G219gat n225 n169
+.names G219gat G802gat G808gat
 11 1
-.names G228gat n226 n170
+.names G228gat G700gat G748gat
 11 1
-.names n227 G237gat n171
+.names G625gat G237gat G749gat
 01 1
-.names n267 G246gat n172
+.names G540gat G246gat G631gat
 01 1
-.names G210gat G111gat n174
+.names G210gat G111gat G336gat
 11 1
-.names G219gat n229 n175
+.names G219gat G803gat G809gat
 11 1
-.names G228gat n230 n176
+.names G228gat G708gat G751gat
 11 1
-.names n231 G237gat n177
+.names G632gat G237gat G752gat
 01 1
-.names G255gat G259gat n178
+.names G255gat G259gat G337gat
 11 1
-.names n271 G246gat n179
+.names G541gat G246gat G640gat
 01 1
-.names G210gat G116gat n180
+.names G210gat G116gat G338gat
 11 1
-.names G219gat n233 n181
+.names G219gat G804gat G810gat
 11 1
-.names G228gat n234 n182
+.names G228gat G717gat G754gat
 11 1
-.names n235 G237gat n183
+.names G641gat G237gat G755gat
 01 1
-.names G255gat G260gat n184
+.names G255gat G260gat G339gat
 11 1
-.names n275 G246gat n185
+.names G542gat G246gat G650gat
 01 1
-.names n237 G159gat n186
+.names G553gat G159gat G590gat
 11 0
-.names n238 n239 n187
+.names G815gat G593gat G841gat
 11 0
-.names G210gat G101gat n188
+.names G210gat G101gat G334gat
 11 1
-.names G219gat n240 n189
+.names G219gat G825gat G836gat
 11 1
-.names G228gat n241 n190
+.names G228gat G692gat G745gat
 11 1
-.names n242 G237gat n191
+.names G616gat G237gat G746gat
 01 1
-.names G246gat n243 n192
+.names G246gat G565gat G624gat
 11 1
-.names G210gat G268gat n194
+.names G210gat G268gat G417gat
 11 1
-.names G219gat n244 n195
+.names G219gat G842gat G851gat
 11 1
-.names G228gat n245 n196
+.names G228gat G665gat G736gat
 11 1
-.names n186 G237gat n197
+.names G590gat G237gat G737gat
 01 1
-.names G246gat n237 n198
+.names G246gat G553gat G596gat
 11 1
-.names G210gat G91gat n200
+.names G210gat G91gat G332gat
 11 1
-.names G219gat n246 n201
+.names G219gat G843gat G852gat
 11 1
-.names G228gat n247 n202
+.names G228gat G673gat G739gat
 11 1
-.names n248 G237gat n203
+.names G597gat G237gat G740gat
 01 1
-.names G246gat n249 n204
+.names G246gat G557gat G605gat
 11 1
-.names G210gat G96gat n206
+.names G210gat G96gat G333gat
 11 1
-.names G219gat n250 n207
+.names G219gat G844gat G853gat
 11 1
-.names G228gat n251 n208
+.names G228gat G682gat G742gat
 11 1
-.names n252 G237gat n209
+.names G606gat G237gat G743gat
 01 1
-.names G246gat n253 n210
+.names G246gat G561gat G615gat
 11 1
-.names G130gat n254 n212
+.names G130gat G460gat G498gat
 11 0
-.names G130gat n254 n213
+.names G130gat G460gat G499gat
 00 0
-.names n255 G135gat n214
+.names G463gat G135gat G500gat
 11 0
-.names n255 G135gat n215
+.names G463gat G135gat G501gat
 00 0
-.names G130gat n256 n216
+.names G130gat G492gat G518gat
 11 0
-.names G130gat n256 n217
+.names G130gat G492gat G519gat
 00 0
-.names n257 G207gat n218
+.names G495gat G207gat G520gat
 11 0
-.names n257 G207gat n219
+.names G495gat G207gat G521gat
 00 0
-.names n258 n259 n220
+.names G757gat G758gat G786gat
 00 1
-.names n260 n222 n221
+.names G654gat G651gat G727gat
 11 1
-.names n262 G201gat n222
+.names G543gat G201gat G651gat
 01 0
-.names n264 n265 n225
+.names G788gat G789gat G802gat
 00 1
-.names n266 n227 n226
+.names G628gat G625gat G700gat
 11 1
-.names n267 G183gat n227
+.names G540gat G183gat G625gat
 01 0
-.names n268 n269 n229
+.names G790gat G791gat G803gat
 00 1
-.names n270 n231 n230
+.names G635gat G632gat G708gat
 11 1
-.names n271 G189gat n231
+.names G541gat G189gat G632gat
 01 0
-.names n272 n273 n233
+.names G792gat G793gat G804gat
 00 1
-.names n274 n235 n234
+.names G644gat G641gat G717gat
 11 1
-.names n275 G195gat n235
+.names G542gat G195gat G641gat
 01 0
-.names n320 n276 n237
+.names G475gat G536gat G553gat
 01 0
-.names n248 n278 n279 n280 n238
+.names G597gat G765gat G766gat G814gat G815gat
 1111 0
-.names n237 G159gat n239
+.names G553gat G159gat G593gat
 00 0
-.names n281 n282 n240
+.names G806gat G807gat G825gat
 00 1
-.names n283 n242 n241
+.names G619gat G616gat G692gat
 11 1
-.names n243 G177gat n242
+.names G565gat G177gat G616gat
 11 0
-.names n325 n284 n243
+.names G481gat G539gat G565gat
 01 0
-.names n286 n287 n244
+.names G830gat G831gat G842gat
 00 1
-.names n239 n186 n245
+.names G593gat G590gat G665gat
 11 1
-.names n288 n289 n246
+.names G832gat G833gat G843gat
 00 1
-.names n290 n248 n247
+.names G600gat G597gat G673gat
 11 1
-.names n249 G165gat n248
+.names G557gat G165gat G597gat
 11 0
-.names n329 n291 n249
+.names G477gat G537gat G557gat
 01 0
-.names n293 n294 n250
+.names G834gat G835gat G844gat
 00 1
-.names n295 n252 n251
+.names G609gat G606gat G682gat
 11 1
-.names n253 G171gat n252
+.names G561gat G171gat G606gat
 11 0
-.names n333 n296 n253
+.names G479gat G538gat G561gat
 01 0
-.names n298 n299 n254
+.names G406gat G425gat G460gat
 00 1
-.names n300 n301 n255
+.names G409gat G426gat G463gat
 00 1
-.names n302 n303 n256
+.names G413gat G444gat G492gat
 00 1
-.names n304 n305 n257
+.names G416gat G445gat G495gat
 00 1
-.names n221 G261gat n258
+.names G727gat G261gat G757gat
 00 1
-.names n221 G261gat n259
+.names G727gat G261gat G758gat
 11 1
-.names G201gat n262 n260
+.names G201gat G543gat G654gat
 01 0
-.names n307 n308 n262
+.names G516gat G517gat G543gat
 00 1
-.names n226 n309 n264
+.names G700gat G773gat G788gat
 00 1
-.names n226 n309 n265
+.names G700gat G773gat G789gat
 11 1
-.names G183gat n267 n266
+.names G183gat G540gat G628gat
 01 0
-.names n310 n311 n267
+.names G510gat G511gat G540gat
 00 1
-.names n230 n312 n268
+.names G708gat G778gat G790gat
 00 1
-.names n230 n312 n269
+.names G708gat G778gat G791gat
 11 1
-.names G189gat n271 n270
+.names G189gat G541gat G635gat
 01 0
-.names n313 n314 n271
+.names G512gat G513gat G541gat
 00 1
-.names n234 n315 n272
+.names G717gat G782gat G792gat
 00 1
-.names n234 n315 n273
+.names G717gat G782gat G793gat
 11 1
-.names G195gat n275 n274
+.names G195gat G542gat G644gat
 01 0
-.names n316 n317 n275
+.names G514gat G515gat G542gat
 00 1
-.names n318 n319 n276
+.names G309gat G502gat G536gat
 00 1
-.names n252 n290 n278
+.names G606gat G600gat G765gat
 01 0
-.names n242 n295 n290 n279
+.names G616gat G609gat G600gat G766gat
 011 0
-.names n290 n295 n283 n322 n280
+.names G600gat G609gat G619gat G796gat G814gat
 1111 0
-.names n241 n322 n281
+.names G692gat G796gat G806gat
 00 1
-.names n241 n322 n282
+.names G692gat G796gat G807gat
 11 1
-.names n243 G177gat n283
+.names G565gat G177gat G619gat
 00 0
-.names n323 n324 n284
+.names G318gat G508gat G539gat
 00 1
-.names n245 n238 n286
+.names G665gat G815gat G830gat
 00 1
-.names n245 n238 n287
+.names G665gat G815gat G831gat
 11 1
-.names n247 n326 n288
+.names G673gat G819gat G832gat
 00 1
-.names n247 n326 n289
+.names G673gat G819gat G833gat
 11 1
-.names n249 G165gat n290
+.names G557gat G165gat G600gat
 00 0
-.names n327 n328 n291
+.names G316gat G504gat G537gat
 00 1
-.names n251 n330 n293
+.names G682gat G822gat G834gat
 00 1
-.names n251 n330 n294
+.names G682gat G822gat G835gat
 11 1
-.names n253 G171gat n295
+.names G561gat G171gat G609gat
 00 0
-.names n331 n332 n296
+.names G317gat G506gat G538gat
 00 1
-.names n334 n335 n298
+.names G357gat G360gat G406gat
 11 1
-.names n334 n335 n299
+.names G357gat G360gat G425gat
 00 1
-.names n336 n337 n300
+.names G363gat G366gat G409gat
 11 1
-.names n336 n337 n301
+.names G363gat G366gat G426gat
 00 1
-.names n338 n339 n302
+.names G376gat G379gat G413gat
 11 1
-.names n338 n339 n303
+.names G376gat G379gat G444gat
 00 1
-.names n340 n341 n304
+.names G382gat G385gat G416gat
 11 1
-.names n340 n341 n305
+.names G382gat G385gat G445gat
 00 1
-.names G153gat n343 n307
+.names G153gat G483gat G516gat
 11 1
-.names n376 G126gat n308
+.names G279gat G126gat G517gat
 01 1
-.names n231 n345 n346 n309
+.names G632gat G734gat G762gat G773gat
 111 0
-.names G143gat n343 n310
+.names G143gat G483gat G510gat
 11 1
-.names n376 G111gat n311
+.names G279gat G111gat G511gat
 01 1
-.names n235 n348 n349 n312
+.names G641gat G733gat G761gat G778gat
 111 0
-.names G146gat n343 n313
+.names G146gat G483gat G512gat
 11 1
-.names n376 G116gat n314
+.names G279gat G116gat G513gat
 01 1
-.names n222 n350 n315
+.names G651gat G732gat G782gat
 11 0
-.names G149gat n343 n316
+.names G149gat G483gat G514gat
 11 1
-.names n376 G121gat n317
+.names G279gat G121gat G515gat
 01 1
-.names G8gat G138gat n318
+.names G8gat G138gat G309gat
 11 1
-.names n376 G91gat n319
+.names G279gat G91gat G502gat
 01 1
-.names G143gat n351 n320
+.names G143gat G427gat G475gat
 11 1
-.names n227 n353 n322
+.names G625gat G795gat G796gat
 11 0
-.names G152gat G138gat n323
+.names G152gat G138gat G318gat
 11 1
-.names n376 G106gat n324
+.names G279gat G106gat G508gat
 01 1
-.names G153gat n351 n325
+.names G153gat G427gat G481gat
 11 1
-.names n252 n354 n355 n326
+.names G606gat G764gat G813gat G819gat
 111 0
-.names G51gat G138gat n327
+.names G51gat G138gat G316gat
 11 1
-.names n376 G96gat n328
+.names G279gat G96gat G504gat
 01 1
-.names G146gat n351 n329
+.names G146gat G427gat G477gat
 11 1
-.names n242 n356 n330
+.names G616gat G812gat G822gat
 11 0
-.names G17gat G138gat n331
+.names G17gat G138gat G317gat
 11 1
-.names n376 G101gat n332
+.names G279gat G101gat G506gat
 01 1
-.names G149gat n351 n333
+.names G149gat G427gat G479gat
 11 1
-.names n357 n358 n334
+.names G301gat G302gat G357gat
 11 0
-.names n359 n360 n335
+.names G303gat G304gat G360gat
 11 0
-.names n361 n362 n336
+.names G305gat G306gat G363gat
 11 0
-.names n363 n364 n337
+.names G307gat G308gat G366gat
 11 0
-.names n365 n366 n338
+.names G324gat G325gat G376gat
 11 0
-.names n367 n368 n339
+.names G326gat G327gat G379gat
 11 0
-.names n369 n370 n340
+.names G328gat G329gat G382gat
 11 0
-.names n371 n372 n341
+.names G330gat G331gat G385gat
 11 0
-.names n381 G1gat n343
+.names G443gat G1gat G483gat
 11 0
-.names n270 n274 n260 G261gat n345
+.names G635gat G644gat G654gat G261gat G734gat
 1111 0
-.names n235 n270 n346
+.names G641gat G635gat G762gat
 01 0
-.names n274 n260 G261gat n348
+.names G644gat G654gat G261gat G733gat
 111 0
-.names n222 n274 n349
+.names G651gat G644gat G761gat
 01 0
-.names n260 G261gat n350
+.names G654gat G261gat G732gat
 11 0
-.names G55gat G447gat n375 n351
+.names G55gat G447gat G319gat G427gat
 111 1
-.names n266 n309 n353
+.names G628gat G773gat G795gat
 11 0
-.names n242 n295 n354
+.names G616gat G609gat G764gat
 01 0
-.names n295 n283 n322 n355
+.names G609gat G619gat G796gat G813gat
 111 0
-.names n283 n322 n356
+.names G619gat G796gat G812gat
 11 0
-.names G91gat G96gat n357
+.names G91gat G96gat G301gat
 11 0
-.names G91gat G96gat n358
+.names G91gat G96gat G302gat
 00 0
-.names G101gat G106gat n359
+.names G101gat G106gat G303gat
 11 0
-.names G101gat G106gat n360
+.names G101gat G106gat G304gat
 00 0
-.names G111gat G116gat n361
+.names G111gat G116gat G305gat
 11 0
-.names G111gat G116gat n362
+.names G111gat G116gat G306gat
 00 0
-.names G121gat G126gat n363
+.names G121gat G126gat G307gat
 11 0
-.names G121gat G126gat n364
+.names G121gat G126gat G308gat
 00 0
-.names G159gat G165gat n365
+.names G159gat G165gat G324gat
 11 0
-.names G159gat G165gat n366
+.names G159gat G165gat G325gat
 00 0
-.names G171gat G177gat n367
+.names G171gat G177gat G326gat
 11 0
-.names G171gat G177gat n368
+.names G171gat G177gat G327gat
 00 0
-.names G183gat G189gat n369
+.names G183gat G189gat G328gat
 11 0
-.names G183gat G189gat n370
+.names G183gat G189gat G329gat
 00 0
-.names G195gat G201gat n371
+.names G195gat G201gat G330gat
 11 0
-.names G195gat G201gat n372
+.names G195gat G201gat G331gat
 00 0
-.names G59gat G156gat n375
+.names G59gat G156gat G319gat
 11 0
-.names G1gat G8gat G51gat G17gat n376
+.names G1gat G8gat G51gat G17gat G279gat
 1111 0
-.names G17gat G447gat n375 n381
+.names G17gat G447gat G319gat G443gat
 111 0
 .end
