@@ -17,7 +17,7 @@ To compile [_ABC_](https://github.com/berkeley-abc/abc), you need:
 - make
 - libreadline
 
-To compile the `circuit` project, further need:
+To compile the project, further need:
 - libboost
 - ctags
 
