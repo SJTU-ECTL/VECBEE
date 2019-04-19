@@ -1,10 +1,18 @@
-# Circuit
-This is a personal C++ wrapper of [ABC](https://people.eecs.berkeley.edu/~alanmi/abc/),
-A System for Sequential Synthesis and Verification.
-Currently, it could performs efficient bitwise-based logic simulation.
+# Batch Error Estimation for Approximate Logic Synthesis
+It is an approximate logic synthesis system,
+which applies the batch error estimation technique[1] on the single selection method[2].
+
+The project is an extension of [_ABC_](https://people.eecs.berkeley.edu/~alanmi/abc/)
+(A System for Sequential Synthesis and Verification).
+
+For more details, please refer to:
+
+- [1]: [_Efficient Batch Statistical Error Estimation for Iterative Multi-level Approximate Logic Synthesis_](http://umji.sjtu.edu.cn/~wkqian/papers/Su_Wu_Qian_Efficient_Batch_Statistical_Error_Estimation_for_Iterative_Multi_level_Approximate_Logic_Synthesis.pdf)
+
+- [2]: [_An efficient method for multi-level approximate logic synthesis under error rate constraint_](http://umji.sjtu.edu.cn/~wkqian/papers/Wu_Qian_An_Efficient_Method_for_Multi-level_Approximate_Logic_Synthesis_under_Error_Rate_Constraint.pdf)
 
 ## Requirements
-To compile [ABC](https://github.com/berkeley-abc/abc), you need:
+To compile [_ABC_](https://github.com/berkeley-abc/abc), you need:
 - gcc
 - make
 - libreadline
@@ -14,7 +22,7 @@ To compile the `circuit` project, further need:
 - ctags
 
 ## Getting Started
-### Build ABC
+### Build _ABC_
 In Ubuntu, you can simply run:
 ```
 sudo chmod +x configure.sh
@@ -22,10 +30,10 @@ sudo chmod +x configure.sh
 ```
 sh configure.sh
 ```
-It will automatically clone `ABC` to `./abc/`,
+It will automatically clone `_ABC_` to `./abc/`,
 compile it and generate a static library.
 
-### Build Circuit
+### Build Project
 To generate a executable program, just use:
 ```
 make
