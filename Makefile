@@ -18,8 +18,8 @@ CFLAGS  := -g -Wall -O3 -std=c++11 $(DEFINES) $(INCLUDE)
 CXXFLAGS:= $(CFLAGS)
 
 #commands
-.PHONY : all objs rebuild clean init ctags
-all : ctags init $(TARGET)
+.PHONY : all objs rebuild clean init
+all : init $(TARGET)
 
 objs : init $(OBJS)
 
@@ -28,13 +28,9 @@ rebuild : clean all
 clean :
 	rm -rf $(DIR_OBJ)
 	rm -f $(TARGET)
-	rm -f tags
 
 init :
 	if [ ! -d obj ]; then mkdir obj; fi
-
-ctags :
-	ctags -R
 
 $(TARGET) : $(OBJS)
 	$(CC) $(CXXFLAGS) -o $@ $(OBJS) $(LDFLAGS) $(LIBS)

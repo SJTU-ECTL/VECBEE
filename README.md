@@ -19,7 +19,6 @@ To compile [_ABC_](https://github.com/berkeley-abc/abc), you need:
 
 To compile the project, further need:
 - libboost
-- ctags
 
 ## Getting Started
 ### Build _ABC_
@@ -30,7 +29,7 @@ sudo chmod +x configure.sh
 ```
 sh configure.sh
 ```
-It will automatically clone `_ABC_` to `./abc/`,
+It will automatically clone _ABC_ to `./abc/`,
 compile it and generate a static library.
 
 ### Build Project
