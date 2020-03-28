@@ -18,7 +18,7 @@ parser Cmdline_Parser(int argc, char * argv[])
     option.add <string> ("file",   'f', "Circuit file",       false, "data/su/c880_rem.blif");
     option.add <string> ("genlib", 'g', "Map libarary file",  false, "data/genlib/mcnc.genlib");
     option.add <float>  ("error",  'e', "Error rate",         false, 0.05f, range(0.0f, 1.0f));
-    option.add <int>    ("number", 'n', "Frame number",       false, 1024, range(1, INT_MAX));
+    option.add <int>    ("number", 'n', "Frame number",       false, 10000, range(1, INT_MAX));
     option.parse_check(argc, argv);
     return option;
 }
