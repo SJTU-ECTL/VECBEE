@@ -1,9 +1,8 @@
-# Batch Error Estimation for Approximate Logic Synthesis
-It is an approximate logic synthesis system,
-which applies the batch error estimation technique[1] on the single selection method[2].
+# VECBEE: A Versatile Efficiency-Accuracy Configurable Batch Error Estimation Method for Greedy Approximate Logic Synthesis
 
-The project is an extension of [_ABC_](https://people.eecs.berkeley.edu/~alanmi/abc/)
-(A System for Sequential Synthesis and Verification).
+This project implements an efficient batch error estimation method for approximate logic synthesis.
+The error estimation method is applied into two local approximate changes,
+that is, SASIMI and ANS.
 
 For more details, please refer to:
 
@@ -12,46 +11,45 @@ For more details, please refer to:
 - [2]: [_An efficient method for multi-level approximate logic synthesis under error rate constraint_](http://umji.sjtu.edu.cn/~wkqian/papers/Wu_Qian_An_Efficient_Method_for_Multi-level_Approximate_Logic_Synthesis_under_Error_Rate_Constraint.pdf)
 
 ## Requirements
-To compile [_ABC_](https://github.com/berkeley-abc/abc), you need:
+To compile both sub-projects SASIMI and ANS, you need:
 - gcc
+- g++
 - make
-- libreadline
+- ctags
 
-To compile the project, further need:
+To compile the ANS sub-project, you also need:
+- libreadline
 - libboost
 
-## Getting Started
-### Build _ABC_
-In Ubuntu, you can simply run:
-```
-sudo chmod +x configure.sh
-```
-```
-sh configure.sh
-```
-It will automatically clone _ABC_ to `./abc/`,
-compile it and generate a static library.
+The ANS sub-project also requires ABC.
 
-### Build Project
-To generate a executable program, just use:
+## SASIMI
+The sub-project SASIMI is very easy to compile and use.
+```
+cd SASIMI
+make
+./main < circuit-name > (i.e., ./main c880)
+```
+
+## ANS
+The sub-project ANS requires ABC.
+Clone `ABC` into `ANS/abc/`.
+```
+cd ANS
+git clone git@github.com:berkeley-abc/abc.git
+```
+
+Build a static library `libabc.a`.
+```
+cd abc/
+make libabc.a
+cd ..
+```
+
+Generate a executable program:
 ```
 make
 ```
-And it will generate a program named `main`.
+It will generate a program named `main`.
 
-Use `./main -?` to get help.
-- usage: ./main [options] ...
-- options:
--   -f, --file      Circuit file (string [=data/sop/c432.blif])
--   -g, --genlib    Map library file (string [=data/genlib/mcnc.genlib])
--   -e, --error     Error rate (float [=0.05])
--   -n, --number    Frame number (int [=1024])
--   -?, --help      print this message
-
-The benchmarks are saved in `BLIF` format in the folder `./data/gate/` and `.data/sop/`,
-which are circuit in gate netlist style and SOP style, respectively.
-
-The standard cell libraries are saved in `GENLIB` format in the folder `./data/genlib/`.
-
-You can change the error rate for approximate computing with the argument `-e`,
-and set the simulation frame number with the argument `-n`.
+Use `./main -h` to get help.

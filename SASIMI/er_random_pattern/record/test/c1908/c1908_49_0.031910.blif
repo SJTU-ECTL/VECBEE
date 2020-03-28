@@ -1,0 +1,212 @@
+.model ckt_sim
+.inputs G101 G104 G107 G110 G113 G116 G119 G122 G125 G128 G131 G134 G137 G140 G143 G146 G210 G214 G217 G221 G224 G227 G234 G237 G469 G472 G475 G478 G898 G900 G902 G952 G953
+.outputs G3 G6 G9 G12 G30 G45 G48 G15 G18 G21 G24 G27 G33 G36 G39 G42 G75 G51 G54 G60 G63 G66 G69 G72 G57
+.gate one    O=[95954]
+.gate one    O=[95970]
+.gate one    O=[96000]
+.gate one    O=[96004]
+.gate one    O=[96555]
+.gate zero   O=[96080]
+.gate one    O=[96093]
+.gate one    O=[96101]
+.gate inv1   a=G101 O=[95844]
+.gate inv1   a=G104 O=[95870]
+.gate inv1   a=G107 O=[95871]
+.gate inv1   a=G110 O=[95862]
+.gate inv1   a=G113 O=[95865]
+.gate inv1   a=G116 O=[95866]
+.gate inv1   a=G119 O=[95867]
+.gate inv1   a=G122 O=[95863]
+.gate inv1   a=G125 O=[95854]
+.gate inv1   a=G128 O=[95855]
+.gate buf    a=G131 O=G33
+.gate inv1   a=G134 O=[95891]
+.gate inv1   a=G137 O=[95925]
+.gate inv1   a=G140 O=[95908]
+.gate inv1   a=G143 O=[95856]
+.gate inv1   a=G146 O=[95857]
+.gate inv1   a=G237 O=[95846]
+.gate nand2  a=G237 b=G234 O=[97052]
+.gate inv1   a=G898 O=[95880]
+.gate inv1   a=G902 O=[95847]
+.gate inv1   a=G952 O=[95884]
+.gate inv1   a=G953 O=[95852]
+.gate nor2   a=G952 b=G953 O=[95227]
+.gate inv1   a=[95844] O=G3
+.gate aoi22  a=[95871] b=G104 c=[95870] d=G107 O=G995
+.gate inv1   a=[95862] O=G12
+.gate aoi22  a=[95867] b=G116 c=[95866] d=G119 O=G1035
+.gate inv1   a=[95867] O=G21
+.gate aoi22  a=[95863] b=G110 c=[95862] d=G122 O=G268
+.gate aoi22  a=[95863] b=G116 c=[95866] d=G122 O=G1283
+.gate aoi22  a=[95863] b=G113 c=[95865] d=G122 O=G1227
+.gate inv1   a=[95863] O=G24
+.gate inv1   a=[95854] O=G27
+.gate aoi22  a=[95855] b=G119 c=[95867] d=G128 O=G1317
+.gate inv1   a=[95855] O=G30
+.gate inv1   a=[95891] O=G36
+.gate aoi22  a=[95925] b=G134 c=[95891] d=G137 O=G1117
+.gate inv1   a=[95925] O=G39
+.gate oai22  a=G110 b=[95908] c=G140 d=[95862] O=[95923]
+.gate oai22  a=G140 b=[95854] c=G125 d=[95908] O=[95909]
+.gate inv1   a=[95908] O=G42
+.gate aoi22  a=[95856] b=G128 c=[95855] d=G143 O=G1305
+.gate inv1   a=[95856] O=G45
+.gate aoi22  a=[95857] b=G143 c=[95856] d=G146 O=G1073
+.gate inv1   a=[95857] O=G48
+.gate nand4  a=[95880] b=G902 c=[97052] d=G953 O=[96927]
+.gate nand2  a=[95847] b=G234 O=[96952]
+.gate nand2  a=[95846] b=[95847] O=[96949]
+.gate nand2  a=[95884] b=G953 O=[96466]
+.gate nand2  a=[95852] b=G227 O=[95922]
+.gate nand3  a=[95852] b=[95846] c=G210 O=[95946]
+.gate nand3  a=[95852] b=G234 c=G221 O=[95936]
+.gate nand2  a=[95852] b=G224 O=[95853]
+.gate nand3  a=[97052] b=[95852] c=G952 O=[95886]
+.gate nand3  a=[95852] b=G234 c=G217 O=[95890]
+.gate nand3  a=[95852] b=[95846] c=G214 O=[95905]
+.gate aoi21  a=G224 b=G898 c=[95852] O=G1634
+.gate aoi21  a=G227 b=G900 c=[95852] O=G1644
+.gate xor2a  a=G101 b=G995 O=[95873]
+.gate xor2a  a=G113 b=G1035 O=[95869]
+.gate xnor2b a=G1283 b=G107 O=G1865
+.gate xnor2b a=G1227 b=G104 O=G1234
+.gate xor2a  a=G110 b=G1317 O=[95939]
+.gate xor2a  a=G131 b=G1117 O=[95927]
+.gate nand2  a=[95909] b=G146 O=[97279]
+.gate xnor2b a=G1305 b=G134 O=G1862
+.gate xor2a  a=G128 b=G1073 O=[95859]
+.gate nand2  a=[96952] b=G221 O=[95919]
+.gate nand2  a=[96952] b=G217 O=[95934]
+.gate nand2  a=[96949] b=G214 O=[95848]
+.gate nand2  a=[96949] b=G210 O=[95850]
+.gate inv1   a=[96466] O=[96467]
+.gate nor2   a=[95922] b=[95923] O=G359
+.gate inv1   a=[95946] O=[97116]
+.gate inv1   a=[95936] O=[97224]
+.gate nand2  a=[96927] b=[95886] O=[96739]
+.gate inv1   a=[95905] O=[97379]
+.gate nor2   a=[95869] b=[95873] O=G1003
+.gate oai21  a=G146 b=[95909] c=[97279] O=[95910]
+.gate xor2a  a=G1862 b=G1865 O=[95896]
+.gate nand2  a=[95859] b=[95873] O=[97267]
+.gate nand2  a=[95927] b=[95859] O=[97301]
+.gate nand2  a=[95859] b=G125 O=[97247]
+.gate inv1   a=[95934] O=[97027]
+.gate inv1   a=[95850] O=[96995]
+.gate aoi21  a=[95922] b=[95923] c=G359 O=G360
+.gate oai22  a=G101 b=[97116] c=[95844] d=[95946] O=[95947]
+.gate aoi22  a=G137 b=[97224] c=[95925] d=[95936] O=G406
+.gate aoi22  a=[95856] b=[95905] c=G143 d=[97379] O=G1249
+.gate aoi21  a=[95869] b=[95873] c=G1003 O=G1005
+.gate inv1   a=[95910] O=[97215]
+.gate nand2  a=[95890] b=[95896] O=[97019]
+.gate oai21  a=[95859] b=[95873] c=[97267] O=[95928]
+.gate oai21  a=[95859] b=[95927] c=[97301] O=[95948]
+.gate oai21  a=G125 b=[95859] c=[97247] O=[95860]
+.gate inv1   a=[95947] O=[96920]
+.gate xor2a  a=G131 b=G1249 O=[95907]
+.gate xnor2a a=G268 b=G1005 O=[95875]
+.gate nor2   a=[97215] b=[95939] O=G1326
+.gate oai21  a=[95890] b=[95896] c=[97019] O=[95897]
+.gate nor2   a=[95927] b=[95928] O=G1133
+.gate nand2  a=[95948] b=[95869] O=[97170]
+.gate nor2   a=[95909] b=[95948] O=G365
+.gate nand2  a=[95853] b=[95860] O=[97130]
+.gate inv1   a=[95907] O=[97209]
+.gate aoi21  a=[95880] b=G953 c=[95875] O=G1910
+.gate aoi21  a=[95939] b=[97215] c=G1326 O=G1327
+.gate nand2  a=[95847] b=[95897] O=[95898]
+.gate aoi21  a=[95927] b=[95928] c=G1133 O=G1774
+.gate oai21  a=[95869] b=[95948] c=[97170] O=[95949]
+.gate aoi21  a=[95909] b=[95948] c=G365 O=G366
+.gate oai21  a=[95853] b=[95860] c=[97130] O=[95861]
+.gate aoi22  a=[95910] b=[97209] c=[95907] d=[97215] O=G1239
+.gate xnor2a a=G406 b=G1327 O=[95941]
+.gate nand2  a=[95898] b=G478 O=[96955]
+.gate xnor2a a=G360 b=G1774 O=[95930]
+.gate inv1   a=[95949] O=[97121]
+.gate oai21  a=G900 b=[95852] c=G366 O=[96100]
+.gate nand2  a=[95861] b=[95875] O=[97009]
+.gate xor2a  a=G1234 b=G1239 O=[95912]
+.gate nand2  a=[95847] b=[95941] O=[95942]
+.gate nand2  a=[95941] b=[96093] O=[96576]
+.gate oai21  a=G478 b=[95898] c=[96955] O=[95899]
+.gate nand2  a=[95847] b=[95930] O=[95931]
+.gate aoi22  a=[95949] b=[96920] c=[95947] d=[97121] O=G425
+.gate inv1   a=[96100] O=[97039]
+.gate oai21  a=[95861] b=[95875] c=[97009] O=[95876]
+.gate nand2  a=[95847] b=[95912] O=[95913]
+.gate inv1   a=[95942] O=[97062]
+.gate oai21  a=[95941] b=[96093] c=[96576] O=[96479]
+.gate inv1   a=[95899] O=[96814]
+.gate nand2  a=[95931] b=G469 O=[96975]
+.gate nor2   a=G902 b=G425 O=G441
+.gate inv1   a=G425 O=[96489]
+.gate aoi22  a=[96100] b=[96080] c=[96101] d=[97039] O=G1649
+.gate or2    a=G902 b=[95876] O=[95877]
+.gate inv1   a=[95876] O=[96876]
+.gate nand2  a=[95913] b=G475 O=[96959]
+.gate oai22  a=[97062] b=[95934] c=[97027] d=[95942] O=[95943]
+.gate and2   a=[96466] b=[96479] O=G66
+.gate oai21  a=G469 b=[95931] c=[96975] O=[95932]
+.gate xor2a  a=G472 b=G441 O=[95951]
+.gate and2   a=[96466] b=[96489] O=G57
+.gate xnor2a a=G1644 b=G1649 O=G72
+.gate inv1   a=[95877] O=[97068]
+.gate oai21  a=G475 b=[95913] c=[96959] O=[95914]
+.gate inv1   a=[95943] O=[96675]
+.gate nand2  a=[95919] b=[95932] O=[95933]
+.gate inv1   a=[95932] O=[95140]
+.gate inv1   a=[95951] O=[96840]
+.gate oai22  a=[97068] b=[95850] c=[96995] d=[95877] O=[95878]
+.gate nand2  a=[95914] b=[96814] O=[95955]
+.gate or2    a=[96814] b=[95914] O=[95961]
+.gate nand2  a=[95951] b=[96675] O=[95952]
+.gate nand2  a=[95919] b=[95140] O=[95990]
+.gate nand2  a=[96675] b=[96840] O=[95958]
+.gate nand2  a=[95848] b=[95878] O=[95879]
+.gate inv1   a=[95955] O=[96689]
+.gate inv1   a=[95961] O=[96721]
+.gate nor2   a=[95952] b=[95990] O=[95364]
+.gate nor2   a=[95933] b=[95958] O=[95466]
+.gate inv1   a=[95879] O=[96627]
+.gate nand4  a=[95466] b=[96627] c=[96739] d=[96689] O=[95960]
+.gate nand4  a=[95466] b=[96627] c=[96739] d=[96721] O=[95965]
+.gate nand4  a=[95364] b=[96627] c=[96739] d=[96689] O=[95992]
+.gate nand4  a=[95364] b=[96627] c=[96739] d=[96721] O=[95996]
+.gate nand2  a=[95960] b=G104 O=[96402]
+.gate nand2  a=[95965] b=G107 O=[96406]
+.gate nand4  a=[95954] b=[95960] c=[95965] d=[95970] O=[96069]
+.gate nand2  a=[95992] b=G113 O=[96426]
+.gate nand2  a=[95996] b=G116 O=[96430]
+.gate nand4  a=[95992] b=[95996] c=[96000] d=[96004] O=[96072]
+.gate oai21  a=G104 b=[95960] c=[96402] O=G6
+.gate oai21  a=G107 b=[95965] c=[96406] O=G9
+.gate oai21  a=G113 b=[95992] c=[96426] O=G15
+.gate oai21  a=G116 b=[95996] c=[96430] O=G18
+.gate or2    a=[96069] b=[96072] O=[97000]
+.gate nand3  a=[97000] b=G902 c=[96995] O=[96085]
+.gate nand3  a=[97000] b=G902 c=G469 O=[96087]
+.gate nand3  a=[97000] b=G902 c=G475 O=[96089]
+.gate nand3  a=[97000] b=G902 c=G478 O=[96091]
+.gate inv1   a=[97000] O=G887
+.gate inv1   a=[96085] O=[96871]
+.gate nand2  a=[95930] b=[96087] O=[96564]
+.gate nand2  a=[95912] b=[96089] O=[96568]
+.gate nand2  a=[95897] b=[96091] O=[96572]
+.gate nand4  a=[95852] b=G952 c=[96555] d=G887 O=[96462]
+.gate nor2   a=G953 b=G887 O=G1913
+.gate aoi22  a=[96085] b=[96876] c=[95876] d=[96871] O=G49
+.gate oai21  a=[95930] b=[96087] c=[96564] O=[96473]
+.gate oai21  a=[95912] b=[96089] c=[96568] O=[96475]
+.gate oai21  a=[95897] b=[96091] c=[96572] O=[96477]
+.gate inv1   a=[96462] O=[96463]
+.gate xnor2b a=G1910 b=G1913 O=G1639
+.gate nor2   a=G49 b=[96467] O=G51
+.gate and2   a=[96466] b=[96473] O=G54
+.gate and2   a=[96466] b=[96475] O=G60
+.gate and2   a=[96466] b=[96477] O=G63
+.gate aoi21  a=[96555] b=[95227] c=[96463] O=G75
+.gate xnor2a a=G1634 b=G1639 O=G69
+.end
