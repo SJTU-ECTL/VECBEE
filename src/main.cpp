@@ -51,9 +51,11 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres, string genl
     string fileName("");
     fileName += ckt.GetName();
     fileName += string("_");
-    ckt.GenInputDist(314);
+    random_device rd;
+    unsigned seed = static_cast <unsigned> (rd());
+    ckt.GenInputDist(seed);
     ckt.FeedForward();
-    cktRef.GenInputDist(314);
+    cktRef.GenInputDist(seed);
     cktRef.FeedForward();
     float er = ckt.GetErrorRate(cktRef) / static_cast <float> (number);
     stringstream str;

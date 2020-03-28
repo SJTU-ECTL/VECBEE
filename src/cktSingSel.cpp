@@ -57,8 +57,10 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
     Ckt_BuildCutNtks(ckt, pOrderedObjs);
     // cout << "Build cut network time = " << clock() - t << endl;
     // simulate base network
-    cktRef.GenInputDist(314);
-    ckt.GenInputDist(314);
+    random_device rd;
+    unsigned seed = static_cast <unsigned>(rd());
+    cktRef.GenInputDist(seed);
+    ckt.GenInputDist(seed);
     cktRef.FeedForward();
     ckt.FeedForward(pOrderedObjs);
     int baseError = ckt.GetErrorRate(cktRef);
