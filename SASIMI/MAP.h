@@ -33,7 +33,7 @@ using namespace std;
 // #define AEMRate 0.0000612
 // #define AEMRate 0.0000306
 // #define AEMRate 0.0000153
-#define AEMFlag 1
+#define AEMFlag 0
 #define SimValue 100000
 #define TYPE vector<node>
 #define ITER vector<vector<node>::iterator>
@@ -137,7 +137,9 @@ public:
     int FindNode(const string var);
     void OutputFile(const char*  f="/a.aag");
     void RandomInput(unsigned seed); // Chang modify, add seed
+    void RandomInputBoost(unsigned seed);
     void PrintInputPattern(const char *f);
+    void PrintOutputPattern(void);
     void ReadInputPattern(const char *f);
     void SimulateNode(void);
     double ReduceArea(const int l);

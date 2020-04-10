@@ -79,12 +79,12 @@ int main(int argc,char **argv) {
         printf("Original Area:%lf, Original Delay:%lf, Orignial Gate :%d\n", map.MaxArea, map.MaxDelay,
                (int) map.QN.size());
         while (error <= ERROR) {
-            random_device rd;
-            unsigned seed = static_cast <unsigned> (rd());
-            map0.RandomInput(seed);
+            // random_device rd;
+            // unsigned seed = static_cast <unsigned> (rd());
+            // map0.RandomInput(seed);
             map0.SimulateNode();
             map0.EvaluateTI();
-            map.RandomInput(seed);
+            // map.RandomInput(seed);
             map.SimulateNode();
             map.CollectTI(map0); // Chang modify, change input pattern and get correct output at runtime
             clock_t tempTime = clock();

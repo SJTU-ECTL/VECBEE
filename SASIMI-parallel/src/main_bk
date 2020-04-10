@@ -1,0 +1,170 @@
+#include "headers.h"
+#include "cmdline.h"
+#include "abcApi.h"
+#include "debugAssert.h"
+#include "cktUtil.h"
+#include "simulatorPro.h"
+
+
+using namespace std;
+using namespace cmdline;
+
+
+parser Cmdline_Parser(int argc, char * argv[])
+{
+    parser option;
+    option.add <string> ("input", 'i', "Original Circuit file", true);
+    option.parse_check(argc, argv);
+    return option;
+}
+
+
+void RenameNtk(Abc_Ntk_t * pNtk, string & fileName)
+{
+    uint32_t pos0 = fileName.find(".blif");
+    DASSERT(pos0 != fileName.npos);
+    uint32_t pos1 = fileName.rfind("/");
+    if (pos1 == fileName.npos)
+        pos1 = -1;
+    Ckt_NtkRename(pNtk, fileName.substr(pos1 + 1, pos0 - pos1 - 1).c_str());
+}
+
+
+void NtkDfs_rec( Abc_Obj_t * pNode, Vec_Ptr_t * vNodes )
+{
+    Abc_Obj_t * pFanin;
+    int i;
+    assert( !Abc_ObjIsNet(pNode) );
+    // if this node is already visited, skip
+    if ( Abc_NodeIsTravIdCurrent( pNode ) )
+        return;
+    // mark the node as visited
+    Abc_NodeSetTravIdCurrent( pNode );
+    // // skip the CI
+    // if ( Abc_ObjIsCi(pNode) || (Abc_NtkIsStrash(pNode->pNtk) && Abc_AigNodeIsConst(pNode)) )
+    //     return;
+    // assert( Abc_ObjIsNode( pNode ) || Abc_ObjIsBox( pNode ) );
+    // visit the transitive fanin of the node
+    Abc_ObjForEachFanin( pNode, pFanin, i )
+    {
+//        pFanin = Abc_ObjFanin( pNode, Abc_ObjFaninNum(pNode)-1-i );
+        NtkDfs_rec( Abc_ObjFanin0Ntk(pFanin), vNodes );
+    }
+    // add the node after the fanins have been added
+    Vec_PtrPush( vNodes, pNode );
+}
+
+
+Vec_Ptr_t * GetTFICone(Abc_Ntk_t * pNtk, Abc_Obj_t * pObj)
+{
+    DASSERT(pObj->pNtk == pNtk);
+    // set the traversal ID
+    Abc_NtkIncrementTravId( pNtk );
+    // start the array of nodes
+    Vec_Ptr_t * vNodes = Vec_PtrAlloc( 100 );
+    // collect
+    if ( Abc_NtkIsStrash(pNtk) && Abc_AigNodeIsConst(pObj) )
+        DASSERT(0);
+    if ( Abc_ObjIsCo(pObj) )
+    {
+        Abc_NodeSetTravIdCurrent(pObj);
+        NtkDfs_rec( Abc_ObjFanin0Ntk(Abc_ObjFanin0(pObj)), vNodes );
+    }
+    else if ( Abc_ObjIsNode(pObj) || Abc_ObjIsCi(pObj) )
+        NtkDfs_rec( pObj, vNodes );
+    return vNodes;
+}
+
+
+int main(int argc, char * argv[])
+{
+    // command line parser
+    parser option = Cmdline_Parser(argc, argv);
+    string input = option.get <string> ("input");
+
+    // initilize ABC
+    Abc_Start();
+    Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
+    ostringstream command("");
+    command << "read_genlib -v data/library/mcnc.genlib";
+    DASSERT(!Cmd_CommandExecute(pAbc, command.str().c_str()));
+    command.str("");
+    command << "read_blif " << input;
+    DASSERT(!Cmd_CommandExecute(pAbc, command.str().c_str()));
+    Abc_Ntk_t * pNtk = Abc_NtkDup(Abc_FrameReadNtk(pAbc));
+
+    Abc_NtkLevel(pNtk);
+    Abc_Obj_t * pPo = nullptr;
+    int i = 0;
+    int64_t sum = 0;
+    int sumCnt = 0;
+    clock_t st = clock();
+    Abc_NtkForEachPo(pNtk, pPo, i) {
+        // cout << "--------------------" << endl;
+        // cout << "For the PO " << Abc_ObjName(pPo) << endl;
+        Vec_Ptr_t * vNodes = GetTFICone(pNtk, pPo);
+        Abc_Obj_t * pObj = nullptr, * pTarget = nullptr;
+        int j = 0, k = 0;
+        set <Abc_Obj_t *> subgraph;
+        subgraph.clear();
+        Vec_PtrForEachEntry(Abc_Obj_t *, vNodes, pObj, j)
+            subgraph.insert(pObj);
+        Abc_NtkForEachNode(pNtk, pTarget, k) {
+            if (!subgraph.count(pTarget))
+                continue;
+            // cout << "For the node " << Abc_ObjName(pTarget) << endl;
+            // init source
+            Vec_PtrForEachEntry(Abc_Obj_t *, vNodes, pObj, j) {
+                if (pObj == pTarget)
+                    pObj->dTemp = 1.0;
+                else
+                    pObj->dTemp = 0.0;
+            }
+            // flow
+            Vec_PtrForEachEntry(Abc_Obj_t *, vNodes, pObj, j) {
+                if (pObj->dTemp == 0)
+                    continue;
+                Abc_Obj_t * pFanout = nullptr;
+                int l = 0;
+                int nFanout = 0;
+                Abc_ObjForEachFanout(pObj, pFanout, l) {
+                    if (subgraph.count(pFanout))
+                        ++nFanout;
+                }
+                if (nFanout) {
+                    Abc_ObjForEachFanout(pObj, pFanout, l) {
+                        if (subgraph.count(pFanout)) {
+                            pFanout->dTemp += pObj->dTemp / float(nFanout);
+                        }
+                    }
+                }
+            }
+            // determine cut
+            Abc_Obj_t * pCut = nullptr;
+            int minLevel = INT_MAX;
+            Vec_PtrForEachEntry(Abc_Obj_t *, vNodes, pObj, j) {
+                // cout << Abc_ObjName(pObj) << "(" << pObj->dTemp << ")" << ",";
+                if (pObj->dTemp == 1 && minLevel > pObj->Level && (pObj != pTarget || (pObj == pTarget && pObj == Abc_ObjFanin0(pPo)) ) ) {
+                    pCut = pObj;
+                    minLevel = pObj->Level;
+                }
+            }
+            if (minLevel == INT_MAX)
+                minLevel = pTarget->Level;
+            sum += (minLevel - pTarget->Level);
+            ++sumCnt;
+            // cout << pTarget->Level << "," << minLevel << endl;
+            // bug
+            // DASSERT(minLevel != INT_MAX);
+            // cout << endl;
+        }
+        Vec_PtrFree(vNodes);
+    }
+    cout << sum << "," << sum / (double)sumCnt << "," << clock() - st;
+    Abc_NtkDelete(pNtk);
+
+    // recycle memory
+    Abc_Stop();
+
+    return 0;
+}

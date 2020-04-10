@@ -2,14 +2,14 @@
 
 make rebuild
 
-rm -rf log/
-rm -rf record/
-mkdir record
-mkdir record/test
-if [ ! -d log ]
-then
-    mkdir log
-fi
+# rm -rf log/
+# rm -rf record/
+# mkdir record
+# mkdir record/test
+# if [ ! -d log ]
+# then
+#     mkdir log
+# fi
 
 for file in ./blif_used/*
 do
@@ -20,11 +20,12 @@ do
        	if [[ "$name" == *.blif ]]
        	then
             echo ${filename}
-            if [ ! -d ./record/test/${filename} ]
-            then
-                mkdir ./record/test/${filename}
-            fi
-            (nohup ./main ${filename} > log/${filename}.log &)
+            # if [ ! -d ./record/test/${filename} ]
+            # then
+            #     mkdir ./record/test/${filename}
+            # fi
+            # (nohup ./main ${filename} > log/${filename}.log &)
+            ./main ${filename} 0
 		fi
     fi
 done

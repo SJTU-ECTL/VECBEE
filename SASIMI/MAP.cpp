@@ -596,6 +596,7 @@ void MAP::RandomInput(unsigned seed) { // Chang modify, add seed
         }
 }
 
+
 void MAP::PrintInputPattern(const char *f) {
     FILE* f_out=fopen(f,"w");
     int j;
@@ -609,6 +610,17 @@ void MAP::PrintInputPattern(const char *f) {
     }
     fclose(f_out);
 }
+
+
+void MAP::PrintOutputPattern(void) {
+    for (int i = 0; i < SimValue; ++i) {
+        for (int j = I; j < I + O; ++j) {
+            printf("%d", N[j].I[i]);
+        }
+        printf("\n");
+    }
+}
+
 
 void MAP::ReadInputPattern(const char *f) {
     FILE* f_in=fopen(f,"r");
@@ -717,8 +729,8 @@ int MAP::FindDeleteNode(double nowerror) {
     sub = 0;
     ComputeMFFC();
     //ComputeValue(TempValue,false);
-    MeasueAdjustVote_Meng(FLOOR);
-    //MeasureAllVote_Meng();
+    //MeasueAdjustVote_Meng(FLOOR);
+    MeasureAllVote_Meng();
     TN.clear();
     for(i=(int)QN.size()-1;i>=0;i--)
         if(N[QN[i]].g!=gzero&&N[QN[i]].g!=gone){
@@ -735,6 +747,7 @@ int MAP::FindDeleteNode(double nowerror) {
             }
         }
     std::sort(TN.begin(),TN.end(),SortTN);
+    assert(0);
     return del;
 }
 
@@ -965,6 +978,10 @@ bool MAP::CheckJoint(vector< vector<unsigned long> >& isInFanoutCone, map<unsign
     return false;
 }
 
+
+static inline bool          Ckt_GetBit        (uint64_t x, uint64_t f)      {return static_cast<bool>((x >> f) & static_cast<uint64_t>(1));}
+
+
 void MAP::MeasureAllVote_Meng() {
     clock_t temptime=clock();
     map<unsigned long,int> disjointSet;
@@ -992,8 +1009,6 @@ void MAP::MeasureAllVote_Meng() {
     }
     for(int i=QN.size()-1; i>=0; --i){
         loc = QN[i];
-        if(loc==333)
-            loc=333;
         disjointSet.clear();
         ComputeSet.clear();
         TempdisjointSet.clear();
@@ -1127,6 +1142,18 @@ void MAP::MeasureAllVote_Meng() {
             N[iter->second].temp=NULL;
         }
     }
+
+    // for (int i = QN.size() - 1; i >= 0; --i) {
+    //     loc = QN[i];
+    //     if (N[loc].var == "[36964]") {
+    //         assert(O <= 64);
+    //         for (int j = 0; j < O; ++j) {
+    //             for (int k = 0; k < SimValue; ++k)
+    //             cout << N[loc].var << "," << N[I + j].var << "," << Ckt_GetBit(N[loc].V1[k], j) << endl;
+    //         }
+    //     }
+    // }
+    // assert(0);
     matrixTime+=(clock()-temptime);
 }
 
@@ -1691,9 +1718,10 @@ double MAP::Measure(int x,double nowerror) {
                 N[x].reducearea = area;
             }
         }
+        cout << N[x].var << "," << i << "," << error << endl;
     }
     for (i = 0; i < (int) QN.size(); i++){
-        if (N[QN[i]].delay <= (N[x].delay) && QN[i] != x) {
+        if (round(N[QN[i]].delay * 1000) <= round(N[x].delay * 1000) && QN[i] != x) {
             flag = false;
             for (j = 0; j < inlong; j++){
                 if ((N[QN[i]].inloc[j] & N[x].inloc[j]) > 0) {
@@ -1709,6 +1737,7 @@ double MAP::Measure(int x,double nowerror) {
                     flag = false;
             if (flag) {
                 error = AddError(x, QN[i]);
+                cout << N[x].var << "," << N[QN[i]].var << "," << error << "," << N[x].inverterror << endl;
                 //error=AccurateMeasureError(x,QN[i]);
                 if (error + nowerror <= ERROR ||
                     ((N[x].inverterror) + nowerror <= ERROR && N[x].delay >= N[QN[i]].delay + 1)) {
@@ -1749,6 +1778,7 @@ double MAP::Measure(int x,double nowerror) {
         innum=i/64;
         if(((N[x].inloc[innum]>>(i%64)))%2){
             error=AddError(x,i);
+            cout << N[x].var << "," << N[i].var << "," << error << "," << N[x].inverterror << endl;
             //error=AccurateMeasureError(x,i);
             if(error+nowerror<=ERROR||(N[x].inverterror)+nowerror<=ERROR){
                 area=MeasureArea(x,i)-1;
@@ -2403,7 +2433,6 @@ double MAP::MeasureArea(const int x, const int sub) {  //The delay and area shou
         if(Flag){
             area+=N[N[x].mffc[i]].area;
         }
-
     }
     //area=lambda*(area/MaxArea)+(1-lambda)*(N[x].delay-N[sub].delay)/MaxDelay;
     areaTime+=(clock()-tempTime);
