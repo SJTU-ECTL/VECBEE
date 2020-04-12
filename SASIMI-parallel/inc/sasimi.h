@@ -22,9 +22,10 @@ public:
     void CollectMFFC(IN Abc_Ntk_t * pAppNtk, OUT std::vector <Vec_Ptr_t *> & vMffcs);
     void FreeMFFC(std::vector <Vec_Ptr_t *> & vMffcs);
     void GetCPM(IN Simulator_t & oriSmlt, IN Simulator_t & appSmlt, OUT std::vector < std::vector <tVec> > & bds);
-    void CollectAllLACs(IN Simulator_t & oriSmlt, IN Simulator_t & appSmlt, IN std::vector < std::vector <tVec> > & bds);
-    void CollectNodeLAC(IN Abc_Obj_t * pObj, IN Simulator_t & appSmlt, IN std::vector <tVec> & isERInc, IN std::vector <tVec> & isERDec, IN std::vector <tVec> & sources);
+    void CollectAllLACs(IN Simulator_t & oriSmlt, IN Simulator_t & appSmlt, IN std::vector < std::vector <tVec> > & bds, IN std::vector <Vec_Ptr_t * > & vMffcs);
+    void CollectNodeLAC(IN Abc_Obj_t * pObj, IN Simulator_t & appSmlt, IN std::vector <tVec> & isERInc, IN std::vector <tVec> & isERDec, IN std::vector <tVec> & sources, IN std::vector <Vec_Ptr_t * > & vMffcs, IN int baseER);
     void GetDError(IN Simulator_t & appSmlt, IN Abc_Obj_t * pTS, IN Abc_Obj_t * pSS, IN std::vector <tVec> & isERInc, IN std::vector <tVec> & isERDec, OUT std::pair<int, int> & errors);
+    double GetDArea(Abc_Obj_t * pTS, Abc_Obj_t * pSS, std::vector <Vec_Ptr_t *> & vMffcs);
 };
 
 

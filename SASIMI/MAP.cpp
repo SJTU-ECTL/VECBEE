@@ -1717,8 +1717,8 @@ double MAP::Measure(int x,double nowerror) {
                 N[x].error = error;
                 N[x].reducearea = area;
             }
+            cout << N[x].var << "," << i << "," << error << ",," << area << endl;
         }
-        cout << N[x].var << "," << i << "," << error << endl;
     }
     for (i = 0; i < (int) QN.size(); i++){
         if (round(N[QN[i]].delay * 1000) <= round(N[x].delay * 1000) && QN[i] != x) {
@@ -1737,7 +1737,6 @@ double MAP::Measure(int x,double nowerror) {
                     flag = false;
             if (flag) {
                 error = AddError(x, QN[i]);
-                cout << N[x].var << "," << N[QN[i]].var << "," << error << "," << N[x].inverterror << endl;
                 //error=AccurateMeasureError(x,QN[i]);
                 if (error + nowerror <= ERROR ||
                     ((N[x].inverterror) + nowerror <= ERROR && N[x].delay >= N[QN[i]].delay + 1)) {
@@ -1764,7 +1763,7 @@ double MAP::Measure(int x,double nowerror) {
                             N[x].reducearea = area;
                         }
                     }
-
+                    cout << N[x].var << "," << N[QN[i]].var << "," << error << "," << N[x].inverterror << "," << area << endl;
                 }
             }
         }
@@ -1778,7 +1777,6 @@ double MAP::Measure(int x,double nowerror) {
         innum=i/64;
         if(((N[x].inloc[innum]>>(i%64)))%2){
             error=AddError(x,i);
-            cout << N[x].var << "," << N[i].var << "," << error << "," << N[x].inverterror << endl;
             //error=AccurateMeasureError(x,i);
             if(error+nowerror<=ERROR||(N[x].inverterror)+nowerror<=ERROR){
                 area=MeasureArea(x,i)-1;
@@ -1802,7 +1800,7 @@ double MAP::Measure(int x,double nowerror) {
                         N[x].reducearea=area;
                     }
                 }
-
+                cout << N[x].var << "," << N[i].var << "," << error << "," << N[x].inverterror << "," << area << endl;
             }
         }
     }
@@ -2410,6 +2408,9 @@ double MAP::MeasureArea(const int x, const int sub) {  //The delay and area shou
     int i,j;
     bool Flag;
     bool subflag=false;
+    if (N[x].var == "[36964]") {
+        cout << N[x].var << endl;
+    }
     for(i=0;i<(int)N[x].mffc.size();i++){
         Flag=true;
         if(N[x].mffc[i]==sub){
@@ -2818,14 +2819,12 @@ void MAP::ComputeMFFC()
     // free memory
     free( outDegree );
     free(storeDegree);
-//    for ( unsigned int i = 0; i < N.size(); i ++ ) {
-//        if ( N[i].mffc.size() ) {
-//            cout << N[i].var << ":";
-//            for ( unsigned int j = 0; j < N[i].mffc.size(); j ++ )
-//                cout << N[N[i].mffc[j]].var << " ";
-//            cout << endl;
-//        }
-//    }
+    // for ( unsigned int i = 0; i < QN.size(); i ++ ) {
+    //     cout << N[QN[i]].var << " tar,";
+    //     for ( unsigned int j = 0; j < N[QN[i]].mffc.size(); j ++ )
+    //         cout << N[N[QN[i]].mffc[j]].var << ",";
+    //     cout << endl;
+    // }
 
 }
 

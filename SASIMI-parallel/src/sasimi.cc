@@ -30,13 +30,13 @@ void SASIMI_Manager_t::GreedySelection(Abc_Ntk_t * pOriNtk)
     // iteation
     double error = 0;
     vector < vector <tVec> > bds; // cpm[o][n][i]
-    std::vector <Vec_Ptr_t *> vMffcs;
+    vector <Vec_Ptr_t *> vMffcs;
     while (error < errorBound) {
         appSmlt.Simulate();
         CollectMFFC(pAppNtk, vMffcs);
         Abc_NtkDelayTrace(pAppNtk, nullptr, nullptr, 0);
         GetCPM(oriSmlt, appSmlt, bds);
-        CollectAllLACs(oriSmlt, appSmlt, bds);
+        CollectAllLACs(oriSmlt, appSmlt, bds, vMffcs);
         FreeMFFC(vMffcs);
         break;
     }
@@ -60,14 +60,19 @@ void SASIMI_Manager_t::CollectMFFC(IN Abc_Ntk_t * pAppNtk, OUT vector <Vec_Ptr_t
     int i = 0;
     Abc_NtkForEachNode(pAppNtk, pNode, i) {
         DASSERT(pNode->Id < static_cast <int> (vMffcs.size()));
-        vMffcs[pNode->Id] = nullptr;
-        if ( Abc_ObjFanoutNum(pNode) > 1 ) {
-            vMffcs[pNode->Id] = Vec_PtrAlloc(100);
-            Abc_NodeDeref_rec( pNode );
-            Abc_NodeMffcConeSupp( pNode, vMffcs[pNode->Id], nullptr );
-            Abc_NodeRef_rec( pNode );
-        }
+        vMffcs[pNode->Id] = Vec_PtrAlloc(100);
+        Abc_NodeDeref_rec( pNode );
+        Abc_NodeMffcConeSupp( pNode, vMffcs[pNode->Id], nullptr );
+        Abc_NodeRef_rec( pNode );
     }
+    // Abc_NtkForEachNode(pAppNtk, pNode, i) {
+    //     Abc_Obj_t * pObj = nullptr;
+    //     int j = 0;
+    //     cout << Abc_ObjName(pNode) << " tar,";
+    //     Vec_PtrForEachEntry(Abc_Obj_t *, vMffcs[pNode->Id], pObj, j)
+    //         cout << Abc_ObjName(pObj) << ",";
+    //     cout << endl;
+    // }
 }
 
 
@@ -124,7 +129,7 @@ void SASIMI_Manager_t::GetCPM(IN Simulator_t & oriSmlt, IN Simulator_t & appSmlt
 }
 
 
-void SASIMI_Manager_t::CollectAllLACs(IN Simulator_t & oriSmlt, IN Simulator_t & appSmlt, IN vector < vector <tVec> > & bds)
+void SASIMI_Manager_t::CollectAllLACs(IN Simulator_t & oriSmlt, IN Simulator_t & appSmlt, IN vector < vector <tVec> > & bds, IN vector <Vec_Ptr_t *> & vMffcs)
 {
     Abc_Ntk_t * pOriNtk = oriSmlt.GetNetwork();
     Abc_Ntk_t * pAppNtk = appSmlt.GetNetwork();
@@ -193,26 +198,38 @@ void SASIMI_Manager_t::CollectAllLACs(IN Simulator_t & oriSmlt, IN Simulator_t &
     }
     Vec_PtrFree(vNodes);
     // collect one LAC for each node
+    int baseER = GetER(&oriSmlt, &appSmlt);
     Abc_NtkForEachNode(pAppNtk, pObj, i) {
         if (!Abc_NodeIsConst(pObj)) {
-            CollectNodeLAC(pObj, appSmlt, isERInc, isERDec, sources);
+            CollectNodeLAC(pObj, appSmlt, isERInc, isERDec, sources, vMffcs, baseER);
         }
     }
 }
 
 
-void SASIMI_Manager_t::CollectNodeLAC(IN Abc_Obj_t * pTS, IN Simulator_t & appSmlt, IN vector <tVec> & isERInc, IN vector <tVec> & isERDec, IN vector <tVec> & sources)
+void SASIMI_Manager_t::CollectNodeLAC(IN Abc_Obj_t * pTS, IN Simulator_t & appSmlt, IN vector <tVec> & isERInc, IN vector <tVec> & isERDec, IN vector <tVec> & sources, IN vector <Vec_Ptr_t *> & vMffcs, IN int baseER)
 {
     Abc_Ntk_t * pAppNtk = appSmlt.GetNetwork();
     DASSERT(pAppNtk == pTS->pNtk);
+    double errorBoundFrame = errorBound * appSmlt.GetFrameNum();
+    double invDelay = Mio_LibraryReadDelayInvMax((Mio_Library_t *)Abc_FrameReadLibGen()) + 0.1;
+    int areaInv = Mio_LibraryReadAreaInv((Mio_Library_t *)Abc_FrameReadLibGen());
+    int areaBuf = Mio_LibraryReadAreaBuf((Mio_Library_t *)Abc_FrameReadLibGen());
     // consider constant replacement
     Abc_Obj_t * pConst0 = Ckt_GetConst(pAppNtk, 0);
-    pair <int, int> errors;
-    GetDError(appSmlt, pTS, pConst0, isERInc, isERDec, errors);
-    cout << Abc_ObjName(pTS) << ",0," << errors.first / static_cast <double>(appSmlt.GetFrameNum()) << endl;
+    pair <int, int> dErrors;
+    GetDError(appSmlt, pTS, pConst0, isERInc, isERDec, dErrors);
+    if (baseER + dErrors.first <= errorBoundFrame) {
+        double dArea = GetDArea(pTS, pConst0, vMffcs);
+        cout << Abc_ObjName(pTS) << ",0," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << ",," << dArea << endl;
+    }
     Abc_Obj_t * pConst1 = Ckt_GetConst(pAppNtk, 1);
-    GetDError(appSmlt, pTS, pConst1, isERInc, isERDec, errors);
-    cout << Abc_ObjName(pTS) << ",1," << errors.first / static_cast <double>(appSmlt.GetFrameNum()) << endl;
+    GetDError(appSmlt, pTS, pConst1, isERInc, isERDec, dErrors);
+    if (baseER + dErrors.first <= errorBoundFrame) {
+        double dArea = GetDArea(pTS, pConst1, vMffcs);
+        cout << Abc_ObjName(pTS) << ",1," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << ",," << dArea << endl;
+    }
+
     // consider other nodes' replacement
     Abc_Obj_t * pSS= nullptr;
     int i = 0;
@@ -246,8 +263,28 @@ void SASIMI_Manager_t::CollectNodeLAC(IN Abc_Obj_t * pTS, IN Simulator_t & appSm
         }
         if (isSkip)
             continue;
-        GetDError(appSmlt, pTS, pSS, isERInc, isERDec, errors);
-        cout << Abc_ObjName(pTS) << "," << Abc_ObjName(pSS) << "," << errors.first / static_cast <double>(appSmlt.GetFrameNum()) << "," << errors.second / static_cast <double>(appSmlt.GetFrameNum()) << endl;
+        GetDError(appSmlt, pTS, pSS, isERInc, isERDec, dErrors);
+        if (baseER + dErrors.first <= errorBoundFrame ||
+           (baseER + dErrors.second <= errorBoundFrame && Ckt_GetObjArrivalTime(pTS, 3) >= Ckt_GetObjArrivalTime(pSS, 3) +  invDelay * 1000)) {
+            double dArea = GetDArea(pTS, pSS, vMffcs);
+            if (dErrors.first <= dErrors.second) {
+                Abc_Obj_t * pFanout = nullptr;
+                int j = 0;
+                bool isPoDriver = false;
+                Abc_ObjForEachFanout(pSS, pFanout, j) {
+                    if (Abc_ObjIsPo(pFanout)) {
+                        isPoDriver = true;
+                        break;
+                    }
+                }
+                if (isPoDriver)
+                    dArea -= areaBuf;
+            }
+            else if (Ckt_GetObjArrivalTime(pTS, 3) >= Ckt_GetObjArrivalTime(pSS, 3) +  invDelay * 1000) {
+                dArea -= areaInv;
+            }
+            cout << Abc_ObjName(pTS) << "," << Abc_ObjName(pSS) << "," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << "," << dErrors.second / static_cast <double>(appSmlt.GetFrameNum()) << "," << dArea << endl;
+        }
     }
     if (Abc_NodeIsBuf(pTS) && Abc_ObjIsPi(Abc_ObjFanin0(pTS)))
         return;
@@ -262,13 +299,23 @@ void SASIMI_Manager_t::CollectNodeLAC(IN Abc_Obj_t * pTS, IN Simulator_t & appSm
         }
         if (isSkip)
             continue;
-        GetDError(appSmlt, pTS, pSS, isERInc, isERDec, errors);
-        cout << Abc_ObjName(pTS) << "," << Abc_ObjName(pSS) << "," << errors.first / static_cast <double>(appSmlt.GetFrameNum()) << "," << errors.second / static_cast <double>(appSmlt.GetFrameNum()) << endl;
+        GetDError(appSmlt, pTS, pSS, isERInc, isERDec, dErrors);
+        if (baseER + dErrors.first <= errorBoundFrame || baseER + dErrors.second <= errorBoundFrame) {
+            double dArea = GetDArea(pTS, pSS, vMffcs);
+            if (dErrors.first <= dErrors.second) {
+                dArea -= areaBuf;
+            }
+            else {
+                dArea -= areaInv;
+            }
+            cout << Abc_ObjName(pTS) << "," << Abc_ObjName(pSS) << "," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << "," << dErrors.second / static_cast <double>(appSmlt.GetFrameNum()) << "," << dArea << endl;
+        }
+        // cout << Abc_ObjName(pTS) << "," << Abc_ObjName(pSS) << "," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << "," << dErrors.second / static_cast <double>(appSmlt.GetFrameNum()) << endl;
     }
 }
 
 
-void SASIMI_Manager_t::GetDError(IN Simulator_t & appSmlt, IN Abc_Obj_t * pTS, IN Abc_Obj_t * pSS, IN vector <tVec> & isERInc, IN vector <tVec> & isERDec, OUT pair<int, int> & errors)
+void SASIMI_Manager_t::GetDError(IN Simulator_t & appSmlt, IN Abc_Obj_t * pTS, IN Abc_Obj_t * pSS, IN vector <tVec> & isERInc, IN vector <tVec> & isERDec, OUT pair<int, int> & dErrors)
 {
     Abc_Ntk_t * pAppNtk = appSmlt.GetNetwork();
     DASSERT(pAppNtk == pTS->pNtk);
@@ -288,6 +335,53 @@ void SASIMI_Manager_t::GetDError(IN Simulator_t & appSmlt, IN Abc_Obj_t * pTS, I
             dInvError -= Ckt_CountOneNum(decFlag);
         }
     }
-    errors.first = dError;
-    errors.second = dInvError;
+    dErrors.first = dError;
+    dErrors.second = dInvError;
+}
+
+
+double SASIMI_Manager_t::GetDArea(Abc_Obj_t * pTS, Abc_Obj_t * pSS, vector <Vec_Ptr_t *> & vMffcs)
+{
+    DASSERT(Abc_NtkIsMappedLogic(pTS->pNtk) && pTS->pNtk == pSS->pNtk);
+    Abc_Obj_t * pObj = nullptr;
+    int i = 0;
+    set <Abc_Obj_t *> m1;
+    Vec_PtrForEachEntry(Abc_Obj_t *, vMffcs[pTS->Id], pObj, i)
+        m1.insert(pObj);
+    set <Abc_Obj_t *> m2;
+    if (Abc_ObjIsNode(pSS)) {
+        Vec_PtrForEachEntry(Abc_Obj_t *, vMffcs[pSS->Id], pObj, i)
+            m2.insert(pObj);
+    }
+
+    vector <Abc_Obj_t *> mInter(max(m1.size(), m2.size()));
+    auto iter = set_intersection(m1.begin(), m1.end(), m2.begin(), m2.end(), mInter.begin());
+    mInter.resize(iter - mInter.begin());
+    vector <Abc_Obj_t *> mDiff(m1.size());
+    iter = set_difference(m1.begin(), m1.end(), mInter.begin(), mInter.end(), mDiff.begin());
+    mDiff.resize(iter - mDiff.begin());
+
+    double dArea = 0;
+    for (auto & pObj: mDiff)
+        dArea += Mio_GateReadArea( (Mio_Gate_t *)pObj->pData );
+
+    // if (string(Abc_ObjName(pTS)) == "[37789]" && string(Abc_ObjName(pSS)) == "[37787]") {
+    //     cout << "TS MFFC " << Abc_ObjName(pTS) << ":";
+    //     Vec_PtrForEachEntry(Abc_Obj_t *, vMffcs[pTS->Id], pObj, i)
+    //         cout << Abc_ObjName(pObj) << ",";
+    //     cout << endl;
+    //     cout << "SS MFFC " << Abc_ObjName(pSS) << ":";
+    //     Vec_PtrForEachEntry(Abc_Obj_t *, vMffcs[pSS->Id], pObj, i)
+    //         cout << Abc_ObjName(pObj) << ",";
+    //     cout << endl;
+    //     cout << "intersection:";
+    //     for (auto & pObj: mInter)
+    //         cout << Abc_ObjName(pObj);
+    //     cout << endl;
+    //     cout << "saved:";
+    //     for (auto & pObj: mDiff)
+    //         cout << Abc_ObjName(pObj) << ",";
+    //     cout << endl;
+    // }
+    return dArea;
 }

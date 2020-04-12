@@ -78,14 +78,12 @@ void Simulator_t::Input(unsigned seed)
                     values[pObj->Id][i] = static_cast <uint64_t> (ULLONG_MAX);
                     tmpValues[pObj->Id][i] = static_cast <uint64_t> (ULLONG_MAX);
                 }
-                // cout << Abc_ObjName(pObj) << "," << Abc_ObjName(Abc_ObjFanout0(pObj)) << endl;
             }
             else if (Abc_NodeIsConst0(pObj)) {
                 for (int i = 0; i < nBlock; ++i) {
                     values[pObj->Id][i] = 0;
                     tmpValues[pObj->Id][i] = 0;
                 }
-                // cout << Abc_ObjName(pObj) << "," << Abc_ObjName(Abc_ObjFanout0(pObj)) << endl;
             }
         }
     }
