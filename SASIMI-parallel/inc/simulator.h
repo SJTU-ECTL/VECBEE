@@ -43,9 +43,10 @@ public:
     void Simulate();
     void SimulateCutNtks();
     void SimulateResub(Abc_Obj_t * pOldObj, void * pResubFunc, Vec_Ptr_t * vResubFanins);
+    void SimulateSASIMI(Abc_Obj_t * pTS, Abc_Obj_t * pSS);
     void UpdateAigNode(Abc_Obj_t * pObj);
     void UpdateSopNode(Abc_Obj_t * pObj);
-    void UpdateMapNode(Abc_Obj_t * pObj);
+    void UpdateMapNode(Abc_Obj_t * pObj, bool isTmpValue = false);
     void UpdateAigObjCutNtk(Abc_Obj_t * pObj);
     void UpdateSopObjCutNtk(Abc_Obj_t * pObj);
     void UpdateMapObjCutNtk(Abc_Obj_t * pObj);
@@ -88,6 +89,7 @@ void GetOffset(IN Simulator_t * pSmlt1, IN Simulator_t * pSmlt2, IN bool isCheck
 double GetNMEDFromOffset(IN std::vector < std::vector <int8_t> > & offsets);
 double MeasureER(Abc_Ntk_t * pNtk1, Abc_Ntk_t * pNtk2, int nFrame = 102400, unsigned seed = 314, bool isCheck = true);
 double MeasureResubER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, Abc_Obj_t * pOldObj, void * pResubFunc, Vec_Ptr_t * vResubFanins, bool isCheck = true);
+double MeasureSASIMIER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, Abc_Obj_t * pTS, Abc_Obj_t * pSS, bool isCheck = true);
 int GetER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, bool isCheck = true, bool isResub = false);
 bool IOChecker(Abc_Ntk_t * pNtk1, Abc_Ntk_t * pNtk2);
 bool SmltChecker(Simulator_t * pSmlt1, Simulator_t * pSmlt2);

@@ -732,7 +732,7 @@ int MAP::FindDeleteNode(double nowerror) {
     //MeasueAdjustVote_Meng(FLOOR);
     MeasureAllVote_Meng();
     TN.clear();
-    for(i=(int)QN.size()-1;i>=0;i--)
+    for(i=(int)QN.size()-1;i>=0;i--) {
         if(N[QN[i]].g!=gzero&&N[QN[i]].g!=gone){
             if(AEMFlag)
                 P = MeasureWithAEM(QN[i], nowerror);
@@ -746,8 +746,14 @@ int MAP::FindDeleteNode(double nowerror) {
                 TN.push_back(x);
             }
         }
+    }
     std::sort(TN.begin(),TN.end(),SortTN);
-    assert(0);
+    // int cnt = 0;
+    // for (auto & x : TN) {
+    //     cout << "(" << N[x.loc].var << "," << N[N[x.loc].sub].var << "," << N[x.loc].inv << "," << N[x.loc].error << "," << x.reducearea << "," << x.P << ")" << endl;
+    //     if (++cnt == 10)
+    //         break;
+    // }
     return del;
 }
 
@@ -1703,7 +1709,7 @@ double MAP::Measure(int x,double nowerror) {
     bool flag;
     //MeasureTwoVote(x);
     //MeasureAdjustVote(x,FLOOR);
-    nowerror = 0;
+    //nowerror = 0;
     for (i = 0; i < 2; i++) { //consider 0 and 1
         error = AddError(x, i);
         //error=AccurateMeasureError(x,i);
@@ -1717,7 +1723,7 @@ double MAP::Measure(int x,double nowerror) {
                 N[x].error = error;
                 N[x].reducearea = area;
             }
-            cout << N[x].var << "," << i << "," << error << ",," << area << endl;
+            // cout << N[x].var << "," << i << "," << error << ",," << area << endl;
         }
     }
     for (i = 0; i < (int) QN.size(); i++){
@@ -1742,28 +1748,32 @@ double MAP::Measure(int x,double nowerror) {
                     ((N[x].inverterror) + nowerror <= ERROR && N[x].delay >= N[QN[i]].delay + 1)) {
                     area = MeasureArea(x, QN[i]);
                     if (error <= N[x].inverterror) {
-                        if (N[QN[i]].type == out)
-                            area = area - 1;
-                        TemP = area / error;
-                        if ((error < 0 && P > TemP) || (error >= 0 && P >= 0 && P < TemP)) {
-                            P = TemP;
-                            N[x].sub = QN[i];
-                            N[x].inv = false;
-                            N[x].error = error;
-                            N[x].reducearea = area;
+                        if (error + nowerror <= ERROR) {
+                            if (N[QN[i]].type == out)
+                                area = area - 1;
+                            TemP = area / error;
+                            if ((error < 0 && P > TemP) || (error >= 0 && P >= 0 && P < TemP)) {
+                                P = TemP;
+                                N[x].sub = QN[i];
+                                N[x].inv = false;
+                                N[x].error = error;
+                                N[x].reducearea = area;
+                            }
                         }
-                    } else if(N[x].delay>=N[QN[i]].delay+1) {
-                        area = area - 1;
-                        TemP = area / (N[x].inverterror);
-                        if ((N[x].inverterror < 0 && P > TemP) || (N[x].inverterror >= 0 && P >= 0 && P < TemP)) {
-                            P = TemP;
-                            N[x].sub = QN[i];
-                            N[x].inv = true;
-                            N[x].error = N[x].inverterror;
-                            N[x].reducearea = area;
+                    } else {
+                        if(N[x].delay>=N[QN[i]].delay+1 && N[x].inverterror + nowerror <= ERROR) {
+                            area = area - 1;
+                            TemP = area / (N[x].inverterror);
+                            if ((N[x].inverterror < 0 && P > TemP) || (N[x].inverterror >= 0 && P >= 0 && P < TemP)) {
+                                P = TemP;
+                                N[x].sub = QN[i];
+                                N[x].inv = true;
+                                N[x].error = N[x].inverterror;
+                                N[x].reducearea = area;
+                            }
                         }
                     }
-                    cout << N[x].var << "," << N[QN[i]].var << "," << error << "," << N[x].inverterror << "," << area << endl;
+                    // cout << N[x].var << "," << N[QN[i]].var << "," << error << "," << N[x].inverterror << "," << area << endl;
                 }
             }
         }
@@ -1800,7 +1810,7 @@ double MAP::Measure(int x,double nowerror) {
                         N[x].reducearea=area;
                     }
                 }
-                cout << N[x].var << "," << N[i].var << "," << error << "," << N[x].inverterror << "," << area << endl;
+                // cout << N[x].var << "," << N[i].var << "," << error << "," << N[x].inverterror << "," << area << endl;
             }
         }
     }
@@ -2508,7 +2518,14 @@ double MAP::AddError(const int x, const int sub) {
     bool flag;
     N[x].inverterror=1;
     int invertsum=0;
+    int incNum = 0;
+    int decNum = 0;
+    extern int cntRound;
+    // if (N[x].var == "[39009]" && sub == 1) {
+    //     cout << "Warning: round " <<  cntRound << ",";
+    // }
     if(O2max){
+        assert(0);
         for(int i=0;i<SimValue;i++){
             if((N[x].V1[i]||N[x].V2[i]||N[x].V3[i])) {
                 if (N[x].I[i] != N[sub].I[i]) {
@@ -2552,6 +2569,7 @@ double MAP::AddError(const int x, const int sub) {
         }
     }
     else if(Omax){
+        assert(0);
         for(int i=0;i<SimValue;i++) {
             if (N[x].V1[i] || N[x].V2[i]){
                 if(N[x].I[i] != N[sub].I[i]) {
@@ -2587,21 +2605,36 @@ double MAP::AddError(const int x, const int sub) {
                 }
             }
         }
-
     }
     else{
         for(int i=0;i<SimValue;i++) {
+            // if (N[x].var == "[39009]" && sub == 1 && cntRound == 6 && i == 87267)
+            //     cout << "Warning v" << N[x].V1[i] << endl;
             if (N[x].V1[i]) {
                 if (N[x].I[i] != N[sub].I[i]) {
+                    // if (N[x].var == "[39009]" && sub == 1 && cntRound == 6 && i == 87267)
+                    //     cout << "Warning errflag" << ErrFlag[i] << endl;
                     if (ErrFlag[i]) {
                         flag = true;
-                        for (j = 0; j < O; j++)
-                            if ((N[x].V1[i] >> j) % 2 ^ N[I + j].W[i])
+                        for (j = 0; j < O; j++) {
+                            // if (N[x].var == "[39009]" && sub == 1 && cntRound == 6 && i == 87267) {
+                            //     cout << "Warning flag" << (N[x].V1[i] >> j) % 2 << "," << N[I + j].W[i] << endl;
+                            // }
+                            if ((N[x].V1[i] >> j) % 2 ^ N[I + j].W[i]) {
                                 flag = false;
-                        if (flag)
+                            }
+                        }
+                        if (flag) {
                             sum--;
+                            ++decNum;
+                            // if (N[x].var == "[39009]" && sub == 1 && cntRound == 6 && i == 87267)
+                            //     cout << "Warning " << i << endl;
+                            // if (N[x].var == "[39009]" && sub == 1 && cntRound == 6)
+                            //     cout << "Warning " << " round " << cntRound << "," << i << endl;
+                        }
                     } else {
                         sum++;
+                        ++incNum;
                     }
                 } else if (sub != 0 && sub != 1) {
                     if (ErrFlag[i]) {
@@ -2620,6 +2653,10 @@ double MAP::AddError(const int x, const int sub) {
 
 
     }
+    // if (N[x].var == "[39009]" && sub == 1) {
+    //     cout << endl;
+    //     // cout << "Warning: round " <<  cntRound << "," << sum << "," << incNum << "," << decNum << endl;
+    // }
     /*for(int i=0;i<SimValue;i++){
 	if(N[x].I[i]!=N[sub].I[i])
 		sum++;
@@ -2922,6 +2959,9 @@ double MAP::SimError(const int x) {
             if(N[i+I].I[j]!=TI[i][j]){
                 N[i+I].W[j]=true;
                 Flag=true;
+            }
+            else{
+                N[i+I].W[j]=false;
             }
         }
         ErrFlag[j]=Flag;

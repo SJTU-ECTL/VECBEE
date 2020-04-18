@@ -106,10 +106,14 @@ void Simulator_t::Input(string fileName)
         int bitId = cnt % 64;
         for (int i = 0; i < Abc_NtkPiNum(pNtk); ++i) {
             Abc_Obj_t * pObj = Abc_NtkPi(pNtk, i);
-            if (buf[i + 2] == '1')
+            if (buf[i + 2] == '1') {
                 Ckt_SetBit( values[pObj->Id][blockId], bitId );
-            else
+                Ckt_SetBit( tmpValues[pObj->Id][blockId], bitId );
+            }
+            else {
                 Ckt_ResetBit( values[pObj->Id][blockId], bitId );
+                Ckt_ResetBit( tmpValues[pObj->Id][blockId], bitId );
+            }
         }
         ++cnt;
         DASSERT(cnt <= nFrame);
@@ -272,6 +276,38 @@ void Simulator_t::SimulateResub(Abc_Obj_t * pOldObj, void * pResubFunc, Vec_Ptr_
 }
 
 
+void Simulator_t::SimulateSASIMI(Abc_Obj_t * pTS, Abc_Obj_t * pSS)
+{
+    Abc_Obj_t * pObj = nullptr;
+    int i = 0;
+    Vec_Ptr_t * vNodes = Abc_NtkDfs(pNtk, 0);
+    // init value
+    tmpValues[pTS->Id].assign(values[pSS->Id].begin(), values[pSS->Id].end());
+    // internal nodes
+    if (Abc_NtkIsAigLogic(pNtk)) {
+        DASSERT(0);
+    }
+    else if (Abc_NtkIsSopLogic(pNtk)) {
+        DASSERT(0);
+    }
+    else if (Abc_NtkIsMappedLogic(pNtk)) {
+        Vec_PtrForEachEntry(Abc_Obj_t *, vNodes, pObj, i) {
+            if (pObj != pTS)
+                UpdateMapNode(pObj, true);
+        }
+    }
+    else {
+        DASSERT(0);
+    }
+    // primary outputs
+    Abc_NtkForEachPo(pNtk, pObj, i) {
+        Abc_Obj_t * pFanin = Abc_ObjFanin0(pObj);
+        tmpValues[pObj->Id].assign(tmpValues[pFanin->Id].begin(), tmpValues[pFanin->Id].end());
+    }
+    Vec_PtrFree(vNodes);
+}
+
+
 void Simulator_t::UpdateAigNode(Abc_Obj_t * pObj)
 {
     Hop_Man_t * pMan = static_cast <Hop_Man_t *> (pNtk->pManFunc);
@@ -415,7 +451,7 @@ void Simulator_t::UpdateSopNode(Abc_Obj_t * pObj)
 }
 
 
-void Simulator_t::UpdateMapNode(Abc_Obj_t * pObj)
+void Simulator_t::UpdateMapNode(Abc_Obj_t * pObj, bool isTmpValue)
 {
     DASSERT(Abc_ObjIsNode(pObj));
     // skip constant node
@@ -424,6 +460,7 @@ void Simulator_t::UpdateMapNode(Abc_Obj_t * pObj)
     // update sop
     char * pSop = static_cast <char *> ((static_cast <Mio_Gate_t *> (pObj->pData))->pSop);
     int nVars = Abc_SopGetVarNum(pSop);
+    vector <tVec> & tarValues = isTmpValue? tmpValues: values;
     vector <uint64_t> product(nBlock);
     for (char * pCube = pSop; *pCube; pCube += nVars + 3) {
         bool isFirst = true;
@@ -437,22 +474,22 @@ void Simulator_t::UpdateMapNode(Abc_Obj_t * pObj)
                     if (isFirst) {
                         isFirst = false;
                         for (int k = 0; k < nBlock; ++k)
-                            product[k] = ~values[pFanin->Id][k];
+                            product[k] = ~tarValues[pFanin->Id][k];
                     }
                     else {
                         for (int k = 0; k < nBlock; ++k)
-                            product[k] &= ~values[pFanin->Id][k];
+                            product[k] &= ~tarValues[pFanin->Id][k];
                     }
                     break;
                 case '1':
                     if (isFirst) {
                         isFirst = false;
                         for (int k = 0; k < nBlock; ++k)
-                            product[k] = values[pFanin->Id][k];
+                            product[k] = tarValues[pFanin->Id][k];
                     }
                     else {
                         for (int k = 0; k < nBlock; ++k)
-                            product[k] &= values[pFanin->Id][k];
+                            product[k] &= tarValues[pFanin->Id][k];
                     }
                     break;
                 default:
@@ -466,18 +503,18 @@ void Simulator_t::UpdateMapNode(Abc_Obj_t * pObj)
         }
         DASSERT(!isFirst);
         if (pCube == pSop) {
-            values[pObj->Id].assign(product.begin(), product.end());
+            tarValues[pObj->Id].assign(product.begin(), product.end());
         }
         else {
             for (int k = 0; k < nBlock; ++k)
-                values[pObj->Id][k] |= product[k];
+                tarValues[pObj->Id][k] |= product[k];
         }
     }
 
     // complement
     if (Abc_SopIsComplement(pSop)) {
         for (int j = 0; j < nBlock; ++j)
-            values[pObj->Id][j] ^= static_cast <uint64_t> (ULLONG_MAX);
+            tarValues[pObj->Id][j] ^= static_cast <uint64_t> (ULLONG_MAX);
     }
 }
 
@@ -1535,6 +1572,15 @@ double MeasureResubER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, Abc_Obj_t * pO
 }
 
 
+double MeasureSASIMIER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, Abc_Obj_t * pTS, Abc_Obj_t * pSS, bool isCheck)
+{
+    if (isCheck)
+        DASSERT(SmltChecker(pSmlt1, pSmlt2));
+    pSmlt2->SimulateSASIMI(pTS, pSS);
+    return GetER(pSmlt1, pSmlt2, false, true) / static_cast <double> (pSmlt1->GetFrameNum());
+}
+
+
 int GetER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, bool isCheck, bool isResub)
 {
     if (isCheck)
@@ -1548,15 +1594,16 @@ int GetER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, bool isCheck, bool isResub
     int nLastBlock = pSmlt1->GetLastBlockLen();
     vector <tVec> * pValues1 = pSmlt1->GetPValues();
     vector <tVec> * pValues2 = isResub? pSmlt2->GetPTmpValues(): pSmlt2->GetPValues();
+    uint64_t lastBlockMask = 0;
+    for (int i = 0; i < nLastBlock; ++i)
+        Ckt_SetBit(lastBlockMask, i);
     for (int k = 0; k < nBlock; ++k) {
         uint64_t temp = 0;
         for (int i = 0; i < nPo; ++i)
             temp |= (*pValues1)[Abc_NtkPo(pNtk1, i)->Id][k] ^
                     (*pValues2)[Abc_NtkPo(pNtk2, i)->Id][k];
-        if (k == nBlock - 1) {
-            temp >>= (64 - nLastBlock);
-            temp <<= (64 - nLastBlock);
-        }
+        if (k == nBlock - 1)
+            temp &= lastBlockMask;
         ret += Ckt_CountOneNum(temp);
     }
     return ret;
@@ -1566,27 +1613,41 @@ int GetER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, bool isCheck, bool isResub
 bool IOChecker(Abc_Ntk_t * pNtk1, Abc_Ntk_t * pNtk2)
 {
     int nPo = Abc_NtkPoNum(pNtk1);
-    if (nPo != Abc_NtkPoNum(pNtk2))
+    if (nPo != Abc_NtkPoNum(pNtk2)) {
+        DASSERT(0, "#PO is not same");
         return false;
-    for (int i = 0; i < nPo; ++i)
-        if (strcmp(Abc_ObjName(Abc_NtkPo(pNtk1, i)), Abc_ObjName(Abc_NtkPo(pNtk2, i))) != 0)
+    }
+    for (int i = 0; i < nPo; ++i) {
+        if (strcmp(Abc_ObjName(Abc_NtkPo(pNtk1, i)), Abc_ObjName(Abc_NtkPo(pNtk2, i))) != 0) {
+            DASSERT(0, "the i-th PO is not same");
             return false;
+        }
+    }
     int nPi = Abc_NtkPiNum(pNtk1);
-    if (nPi != Abc_NtkPiNum(pNtk2))
+    if (nPi != Abc_NtkPiNum(pNtk2)) {
+        DASSERT(0, "#PI is not same");
         return false;
-    for (int i = 0; i < nPi; ++i)
-        if (strcmp(Abc_ObjName(Abc_NtkPi(pNtk1, i)), Abc_ObjName(Abc_NtkPi(pNtk2, i))) != 0)
+    }
+    for (int i = 0; i < nPi; ++i) {
+        if (strcmp(Abc_ObjName(Abc_NtkPi(pNtk1, i)), Abc_ObjName(Abc_NtkPi(pNtk2, i))) != 0) {
+            DASSERT(0, "the i-th PI is not same");
             return false;
+        }
+    }
     return true;
 }
 
 
 bool SmltChecker(Simulator_t * pSmlt1, Simulator_t * pSmlt2)
 {
-    if (!IOChecker(pSmlt1->GetNetwork(), pSmlt2->GetNetwork()))
+    if (!IOChecker(pSmlt1->GetNetwork(), pSmlt2->GetNetwork())) {
+        DASSERT(0, "POs are not equivalent");
         return false;
-    if (pSmlt1->GetFrameNum() != pSmlt2->GetFrameNum())
+    }
+    if (pSmlt1->GetFrameNum() != pSmlt2->GetFrameNum()) {
+        DASSERT(0, "Simulation rounds are not equal");
         return false;
+    }
     return true;
 }
 

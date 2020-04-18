@@ -17,7 +17,7 @@ include_directories(${PROJECT_SOURCE_DIR}/inc)
 link_directories(${PROJECT_SOURCE_DIR}/abc)
 
 # Add definitions
-add_definitions(-DLIN64 -g -Wall -O3 -std=c++11)
+add_definitions(-DLIN64 -g -Wall -O3 -std=c++17)
 
 # set output path
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
@@ -26,4 +26,4 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 add_executable(sasimi-vecbee ${sources})
 
 # link libraries
-target_link_libraries(sasimi-vecbee -labc -lm -ldl -rdynamic -lreadline -ltermcap -lpthread -lstdc++ -lrt)
+target_link_libraries(sasimi-vecbee -labc -lm -ldl -rdynamic -lreadline -ltermcap -lpthread -lstdc++ -lrt -lstdc++fs)

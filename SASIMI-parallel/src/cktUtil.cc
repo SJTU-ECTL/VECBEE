@@ -270,10 +270,9 @@ void Ckt_PrintHopFunc(Hop_Obj_t * pHopObj, Vec_Ptr_t * vFanins)
 
 void Ckt_WriteBlif(Abc_Ntk_t * pNtk, string fileName)
 {
-    Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
-    Abc_FrameReplaceCurrentNetwork(pAbc, Abc_NtkDup(pNtk));
-    string Command = "write_blif " + fileName;
-    DASSERT(!Cmd_CommandExecute(pAbc, Command.c_str()));
+    Abc_Ntk_t * pTemp = Abc_NtkDup(pNtk);
+    Io_Write(pTemp, const_cast <char *> (fileName.c_str()), IO_FILE_BLIF);
+    Abc_NtkDelete(pTemp);
 }
 
 

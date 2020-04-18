@@ -35,6 +35,7 @@ bool excelsystem(const char *cmdstring) {
 }
 
 float AEMRate;
+int cntRound = 0;
 
 int main(int argc,char **argv) {
     MAP map0; // Chang modify, original circuit
@@ -76,9 +77,10 @@ int main(int argc,char **argv) {
         char outputfile[50] = "./record/test/";
         strcat(outputfile, target);
         strcat(outputfile, "/");
-        printf("Original Area:%lf, Original Delay:%lf, Orignial Gate :%d\n", map.MaxArea, map.MaxDelay,
-               (int) map.QN.size());
+        // printf("Original Area:%lf, Original Delay:%lf, Orignial Gate :%d\n", map.MaxArea, map.MaxDelay,
+        //        (int) map.QN.size());
         while (error <= ERROR) {
+            cout << cntRound++ << endl;
             // random_device rd;
             // unsigned seed = static_cast <unsigned> (rd());
             // map0.RandomInput(seed);
@@ -87,22 +89,40 @@ int main(int argc,char **argv) {
             // map.RandomInput(seed);
             map.SimulateNode();
             map.CollectTI(map0); // Chang modify, change input pattern and get correct output at runtime
+
+            // if (cntRound == 6) {
+            //     for(int i=map.I;i<map.I+map.O;i++){
+            //         int j = 87267;
+            //         cout << "Warning: " << map.N[i].var << "," << map0.N[i].I[j] << "," << map.N[i].I[j] << endl;
+            //     }
+            // }
+
             clock_t tempTime = clock();
             map.FindDeleteNode(error);
             map.findTime += (clock() - tempTime);
             //sumerror=error;
             if (map.TN.empty())
                 break;
+
+            // for (i = 0; i < map.TN.size(); i++) {
+            //     auto & x = map.TN[i];
+            //     auto & N = map.N;
+            //     cout << "(" << N[x.loc].var << "," << N[N[x.loc].sub].var << "," << N[x.loc].inv << "," << N[x.loc].error << "," << x.reducearea << "," << x.P << ")" << endl;
+            // }
+
             del = -1;
             for (i = 0; i < TOPNUM && i < map.TN.size(); i++) {
                 del = map.TN[i].loc;
                 if (del == -1 || map.N[del].sub == -1)
                     break;
                 error = map.SimError(del);
+                // auto & x = map.TN[i];
+                // auto & N = map.N;
+                // cout << "(" << N[x.loc].var << "," << N[N[x.loc].sub].var << "," << N[x.loc].inv << "," << N[x.loc].error << "," << x.reducearea << "," << x.P << ")" << endl;
                 if (error <= ERROR)
                     break;
                 else {
-                    printf("The %d choose is not good\n", i);
+                    // printf("The %d choose is not good\n", i);
                     map.SimulateNode();
                 }
             }
