@@ -43,7 +43,7 @@ public:
     void Simulate();
     void SimulateCutNtks();
     void SimulateResub(Abc_Obj_t * pOldObj, void * pResubFunc, Vec_Ptr_t * vResubFanins);
-    void SimulateSASIMI(Abc_Obj_t * pTS, Abc_Obj_t * pSS);
+    void SimulateSASIMI(Abc_Obj_t * pTS, Abc_Obj_t * pSS, bool isInv);
     void UpdateAigNode(Abc_Obj_t * pObj);
     void UpdateSopNode(Abc_Obj_t * pObj);
     void UpdateMapNode(Abc_Obj_t * pObj, bool isTmpValue = false);
@@ -71,6 +71,7 @@ public:
     inline int GetBlockNum() const {return nBlock;}
     inline int GetLastBlockLen() const {return nLastBlock;}
     inline int GetMaxId() const {return maxId;}
+    inline int UpdateMaxId() {Abc_Obj_t * pObj; int i = 0; maxId = -1; Abc_NtkForEachObj(pNtk, pObj, i) maxId = std::max(maxId, pObj->Id); return maxId; }
     inline std::vector <tVec> * GetPValues() {return &values;}
     inline std::vector <tVec> * GetPTmpValues() {return &tmpValues;}
     inline uint64_t GetValues(Abc_Obj_t * pObj, int blockId) const {DASSERT(pObj->pNtk == pNtk); return values[pObj->Id][blockId];}
@@ -89,7 +90,7 @@ void GetOffset(IN Simulator_t * pSmlt1, IN Simulator_t * pSmlt2, IN bool isCheck
 double GetNMEDFromOffset(IN std::vector < std::vector <int8_t> > & offsets);
 double MeasureER(Abc_Ntk_t * pNtk1, Abc_Ntk_t * pNtk2, int nFrame = 102400, unsigned seed = 314, bool isCheck = true);
 double MeasureResubER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, Abc_Obj_t * pOldObj, void * pResubFunc, Vec_Ptr_t * vResubFanins, bool isCheck = true);
-double MeasureSASIMIER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, Abc_Obj_t * pTS, Abc_Obj_t * pSS, bool isCheck = true);
+double MeasureSASIMIER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, Abc_Obj_t * pTS, Abc_Obj_t * pSS, bool isInv, bool isCheck = true);
 int GetER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, bool isCheck = true, bool isResub = false);
 bool IOChecker(Abc_Ntk_t * pNtk1, Abc_Ntk_t * pNtk2);
 bool SmltChecker(Simulator_t * pSmlt1, Simulator_t * pSmlt2);

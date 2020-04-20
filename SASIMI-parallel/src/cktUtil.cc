@@ -832,6 +832,18 @@ void Ckt_PrintFanins(Abc_Obj_t * pObj)
         cout << Abc_ObjName(pFanin) << ",";
 }
 
+
+void Ckt_ReplaceByName(Abc_Ntk_t * pNtk, std::string tsName, std::string ssName)
+{
+    cout << tsName << "," << ssName << endl;
+    Abc_Obj_t * pTS = Ckt_FindNodeByName(pNtk, const_cast <char *> (tsName.c_str()));
+    Abc_Obj_t * pSS = Ckt_FindNodeByName(pNtk, const_cast <char *> (ssName.c_str()));
+    DASSERT(pTS != nullptr);
+    DASSERT(pSS != nullptr);
+    Abc_ObjReplace(pTS, pSS);
+}
+
+
 int CallSystem(const std::string && cmd)
 {
     pid_t status;

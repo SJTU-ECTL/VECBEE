@@ -14,9 +14,7 @@ Simulator_t::Simulator_t(Abc_Ntk_t * pNtk, int nFrame)
     this->nLastBlock = (nFrame % 64)? (nFrame % 64): 64;
     Abc_Obj_t * pObj = nullptr;
     int i = 0;
-    maxId = -1;
-    Abc_NtkForEachObj(pNtk, pObj, i)
-        maxId = max(maxId, pObj->Id);
+    maxId = UpdateMaxId();
     this->values.resize(maxId + 1);
     this->tmpValues.resize(maxId + 1);
     Abc_NtkForEachObj(pNtk, pObj, i) {
@@ -170,10 +168,16 @@ void Simulator_t::Input(string fileName)
 
 void Simulator_t::Simulate()
 {
+    // check
+    maxId = UpdateMaxId();
+    DASSERT(maxId < static_cast <int> (values.size()));
+
+    // topological sorting
+    Vec_Ptr_t * vNodes = Abc_NtkDfs(pNtk, 0);
+
+    // feed forward
     Abc_Obj_t * pObj = nullptr;
     int i = 0;
-    Vec_Ptr_t * vNodes = Abc_NtkDfs(pNtk, 0);
-    // internal nodes
     if (Abc_NtkIsAigLogic(pNtk)) {
         Vec_PtrForEachEntry(Abc_Obj_t *, vNodes, pObj, i)
             UpdateAigNode(pObj);
@@ -189,7 +193,10 @@ void Simulator_t::Simulate()
     else {
         DASSERT(0);
     }
+
+    // clear up
     Vec_PtrFree(vNodes);
+
     // primary outputs
     Abc_NtkForEachPo(pNtk, pObj, i) {
         Abc_Obj_t * pFanin = Abc_ObjFanin0(pObj);
@@ -276,14 +283,18 @@ void Simulator_t::SimulateResub(Abc_Obj_t * pOldObj, void * pResubFunc, Vec_Ptr_
 }
 
 
-void Simulator_t::SimulateSASIMI(Abc_Obj_t * pTS, Abc_Obj_t * pSS)
+void Simulator_t::SimulateSASIMI(Abc_Obj_t * pTS, Abc_Obj_t * pSS, bool isInv)
 {
-    Abc_Obj_t * pObj = nullptr;
-    int i = 0;
     Vec_Ptr_t * vNodes = Abc_NtkDfs(pNtk, 0);
     // init value
     tmpValues[pTS->Id].assign(values[pSS->Id].begin(), values[pSS->Id].end());
+    if (isInv) {
+        for (int i = 0; i < nBlock; ++i)
+            tmpValues[pTS->Id][i] ^= static_cast <uint64_t> (ULLONG_MAX);
+    }
     // internal nodes
+    Abc_Obj_t * pObj = nullptr;
+    int i = 0;
     if (Abc_NtkIsAigLogic(pNtk)) {
         DASSERT(0);
     }
@@ -1572,11 +1583,11 @@ double MeasureResubER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, Abc_Obj_t * pO
 }
 
 
-double MeasureSASIMIER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, Abc_Obj_t * pTS, Abc_Obj_t * pSS, bool isCheck)
+double MeasureSASIMIER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, Abc_Obj_t * pTS, Abc_Obj_t * pSS, bool isInv, bool isCheck)
 {
     if (isCheck)
         DASSERT(SmltChecker(pSmlt1, pSmlt2));
-    pSmlt2->SimulateSASIMI(pTS, pSS);
+    pSmlt2->SimulateSASIMI(pTS, pSS, isInv);
     return GetER(pSmlt1, pSmlt2, false, true) / static_cast <double> (pSmlt1->GetFrameNum());
 }
 

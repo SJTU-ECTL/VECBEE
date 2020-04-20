@@ -29,6 +29,7 @@ void Ckt_WriteDotNtk(Abc_Ntk_t * pNtk, Vec_Ptr_t * vNodes, Vec_Ptr_t * vNodesSho
 void Ckt_PrintSop(std::string sop);
 void Ckt_PrintNodes(Vec_Ptr_t * vFanins);
 void Ckt_PrintFanins(Abc_Obj_t * pObj);
+void Ckt_ReplaceByName(Abc_Ntk_t * pNtk, std::string tsName, std::string ssName);
 int CallSystem(const std::string && cmd);
 
 

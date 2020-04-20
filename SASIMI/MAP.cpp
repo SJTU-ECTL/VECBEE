@@ -1827,15 +1827,16 @@ double MAP::MeasureWithAEM(int x,double nowerror) {
     double area = 0;
     bool flag;
     //MeasureTwoVote(x);
-    MeasureAdjustVote(x,FLOOR);
+    //MeasureAdjustVote(x,FLOOR);
     nowerror = 0;
-    if(HIGESTORDER <= 64){
-        unsigned long maxvalue = ((unsigned long)1<<HIGESTORDER) - 1;
-        for(i=0; i<SimValue; i++){
-            if(N[x].V1[i] > maxvalue)
-                return 0;
-        }
-    }
+    // if(HIGESTORDER <= 64){
+    //     cout << "Warning" << endl;
+    //     unsigned long maxvalue = ((unsigned long)1<<HIGESTORDER) - 1;
+    //     for(i=0; i<SimValue; i++){
+    //         if(N[x].V1[i] > maxvalue)
+    //             return 0;
+    //     }
+    // }
 
     for (i = 0; i < 2; i++) { //consider 0 and 1
         error = AEMAddError(x, i);
@@ -2418,9 +2419,6 @@ double MAP::MeasureArea(const int x, const int sub) {  //The delay and area shou
     int i,j;
     bool Flag;
     bool subflag=false;
-    if (N[x].var == "[36964]") {
-        cout << N[x].var << endl;
-    }
     for(i=0;i<(int)N[x].mffc.size();i++){
         Flag=true;
         if(N[x].mffc[i]==sub){
@@ -2525,7 +2523,6 @@ double MAP::AddError(const int x, const int sub) {
     //     cout << "Warning: round " <<  cntRound << ",";
     // }
     if(O2max){
-        assert(0);
         for(int i=0;i<SimValue;i++){
             if((N[x].V1[i]||N[x].V2[i]||N[x].V3[i])) {
                 if (N[x].I[i] != N[sub].I[i]) {
@@ -2569,7 +2566,6 @@ double MAP::AddError(const int x, const int sub) {
         }
     }
     else if(Omax){
-        assert(0);
         for(int i=0;i<SimValue;i++) {
             if (N[x].V1[i] || N[x].V2[i]){
                 if(N[x].I[i] != N[sub].I[i]) {

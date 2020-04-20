@@ -67,8 +67,8 @@ int main(int argc,char **argv) {
     //map.PrintInputPattern(printpattern);
 
     if(!AEMFlag) {
-        // map.SimulateNode();  //For error rate
-        // map.EvaluateTI(); // Chang modify, get correct output at runtime
+        map.SimulateNode();  //For error rate
+        map.EvaluateTI(); // Chang modify, get correct output at runtime
         double error = 0, preerror = 0;
         int del = -1;
         int i = 0, j = 0, circle = 0;
@@ -77,16 +77,15 @@ int main(int argc,char **argv) {
         char outputfile[50] = "./record/test/";
         strcat(outputfile, target);
         strcat(outputfile, "/");
-        // printf("Original Area:%lf, Original Delay:%lf, Orignial Gate :%d\n", map.MaxArea, map.MaxDelay,
-        //        (int) map.QN.size());
+        printf("Original Area:%lf, Original Delay:%lf, Orignial Gate :%d\n", map.MaxArea, map.MaxDelay,
+               (int) map.QN.size());
         while (error <= ERROR) {
-            cout << cntRound++ << endl;
-            // random_device rd;
-            // unsigned seed = static_cast <unsigned> (rd());
-            // map0.RandomInput(seed);
+            random_device rd;
+            unsigned seed = static_cast <unsigned> (rd());
+            map0.RandomInput(seed);
             map0.SimulateNode();
             map0.EvaluateTI();
-            // map.RandomInput(seed);
+            map.RandomInput(seed);
             map.SimulateNode();
             map.CollectTI(map0); // Chang modify, change input pattern and get correct output at runtime
 
@@ -179,11 +178,11 @@ int main(int argc,char **argv) {
         while (error <= map.AEMThreshold) {
             random_device rd;
             unsigned seed = static_cast <unsigned> (rd());
-            map0.RandomInput(seed);
+            // map0.RandomInput(seed);
             map0.SimulateNode();
             map0.EvaluateTI();
             map0.EvaluateTrueValue();
-            map.RandomInput(seed);
+            // map.RandomInput(seed);
             map.SimulateNode();
             map.CollectTI(map0);
             map.CollectTrueValue(map0); // Chang modify, change input pattern and get correct output at runtime

@@ -33,7 +33,7 @@ using namespace std;
 // #define AEMRate 0.0000612
 // #define AEMRate 0.0000306
 // #define AEMRate 0.0000153
-#define AEMFlag 0
+#define AEMFlag 1
 #define SimValue 100000
 #define TYPE vector<node>
 #define ITER vector<vector<node>::iterator>
