@@ -1,0 +1,634 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/ksa32.blif
+Line 11: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 12: Skipping line ".default_output_required 0.00 0.00 ".
+Line 13: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 14: Skipping line ".default_output_load 2.00 ".
+Line 15: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mksa32                         :[0m i/o =   64/   33  lat =    0  nd =   513  edge =   1090  area =1128.00  delay =17.80  lev = 14
+--------------- round 1 ---------------
+seed = 2159980757
+[164353] is replaced by [162809] with estimated error 0
+error = 0
+area = 1124
+delay = 17.8
+#gates = 513
+output circuit result/ksa32_1_0_1124_17.8.blif
+time = 3198523 us
+--------------- round 2 ---------------
+seed = 3147699948
+[164351] is replaced by [164349] with estimated error 0
+error = 0
+area = 1120
+delay = 17.8
+#gates = 511
+output circuit result/ksa32_2_0_1120_17.8.blif
+time = 6159365 us
+--------------- round 3 ---------------
+seed = 2478545390
+[164347] is replaced by one with estimated error 0
+error = 0
+area = 1116
+delay = 17.7
+#gates = 509
+output circuit result/ksa32_3_0_1116_17.7.blif
+time = 9115027 us
+--------------- round 4 ---------------
+seed = 3125719836
+[164349] is replaced by one with estimated error 0
+error = 0
+area = 1112
+delay = 17.7
+#gates = 507
+output circuit result/ksa32_4_0_1112_17.7.blif
+time = 11995209 us
+--------------- round 5 ---------------
+seed = 3843416097
+[161059] is replaced by zero with estimated error 1e-05
+error = 1e-05
+area = 1109
+delay = 17.7
+#gates = 506
+output circuit result/ksa32_5_1e-05_1109_17.7.blif
+time = 14778033 us
+--------------- round 6 ---------------
+seed = 756317424
+[164343] is replaced by one with estimated error 5e-05
+error = 5e-05
+area = 1106
+delay = 17.7
+#gates = 505
+output circuit result/ksa32_6_5e-05_1106_17.7.blif
+time = 17557939 us
+--------------- round 7 ---------------
+seed = 3858927210
+[162809] is replaced by one with estimated error 1e-05
+error = 1e-05
+area = 1104
+delay = 17.7
+#gates = 504
+output circuit result/ksa32_7_1e-05_1104_17.7.blif
+time = 20293554 us
+--------------- round 8 ---------------
+seed = 1951968263
+[161060] is replaced by zero with estimated error 3e-05
+error = 3e-05
+area = 1101
+delay = 17.7
+#gates = 503
+output circuit result/ksa32_8_3e-05_1101_17.7.blif
+time = 23017084 us
+--------------- round 9 ---------------
+seed = 1002786295
+[161061] is replaced by zero with estimated error 3e-05
+error = 3e-05
+area = 1098
+delay = 17.7
+#gates = 502
+output circuit result/ksa32_9_3e-05_1098_17.7.blif
+time = 25720096 us
+--------------- round 10 ---------------
+seed = 3944763767
+[161062] is replaced by zero with estimated error 3e-05
+error = 3e-05
+area = 1095
+delay = 17.7
+#gates = 501
+output circuit result/ksa32_10_3e-05_1095_17.7.blif
+time = 28396278 us
+--------------- round 11 ---------------
+seed = 349461651
+[164341] is replaced by one with estimated error 4e-05
+error = 4e-05
+area = 1092
+delay = 17.7
+#gates = 500
+output circuit result/ksa32_11_4e-05_1092_17.7.blif
+time = 31059627 us
+--------------- round 12 ---------------
+seed = 59013685
+[164345] is replaced by one with estimated error 5e-05
+error = 5e-05
+area = 1089
+delay = 17.7
+#gates = 499
+output circuit result/ksa32_12_5e-05_1089_17.7.blif
+time = 33681940 us
+--------------- round 13 ---------------
+seed = 132071150
+[164331] is replaced by one with estimated error 3e-05
+error = 3e-05
+area = 1086
+delay = 17.7
+#gates = 498
+output circuit result/ksa32_13_3e-05_1086_17.7.blif
+time = 36276626 us
+--------------- round 14 ---------------
+seed = 2618475760
+[162831] is replaced by one with estimated error 6e-05
+error = 6e-05
+area = 1084
+delay = 17.7
+#gates = 497
+output circuit result/ksa32_14_6e-05_1084_17.7.blif
+time = 38823328 us
+--------------- round 15 ---------------
+seed = 277644400
+[162796] is replaced by one with estimated error 5e-05
+error = 5e-05
+area = 1082
+delay = 17.7
+#gates = 496
+output circuit result/ksa32_15_5e-05_1082_17.7.blif
+time = 41373039 us
+--------------- round 16 ---------------
+seed = 3761734707
+[162822] is replaced by one with estimated error 8e-05
+error = 8e-05
+area = 1080
+delay = 17.7
+#gates = 495
+output circuit result/ksa32_16_8e-05_1080_17.7.blif
+time = 43892935 us
+--------------- round 17 ---------------
+seed = 1608639567
+[163373] is replaced by n499 with estimated error 6e-05
+error = 6e-05
+area = 1079
+delay = 17.7
+#gates = 494
+output circuit result/ksa32_17_6e-05_1079_17.7.blif
+time = 46409269 us
+--------------- round 18 ---------------
+seed = 189101942
+[162693] is replaced by [162706] with estimated error 5e-05
+error = 5e-05
+area = 1077
+delay = 17.7
+#gates = 493
+output circuit result/ksa32_18_5e-05_1077_17.7.blif
+time = 48902407 us
+--------------- round 19 ---------------
+seed = 2422915760
+[163382] is replaced by n508 with estimated error 0.0001
+error = 0.0001
+area = 1076
+delay = 17.7
+#gates = 492
+output circuit result/ksa32_19_0.0001_1076_17.7.blif
+time = 51381741 us
+--------------- round 20 ---------------
+seed = 3851407208
+[163449] is replaced by n504 with estimated error 6e-05
+error = 6e-05
+area = 1075
+delay = 17.7
+#gates = 491
+output circuit result/ksa32_20_6e-05_1075_17.7.blif
+time = 53829753 us
+--------------- round 21 ---------------
+seed = 1058307464
+[163422] is replaced by n506 with estimated error 8e-05
+error = 8e-05
+area = 1074
+delay = 17.7
+#gates = 490
+output circuit result/ksa32_21_8e-05_1074_17.7.blif
+time = 56262268 us
+--------------- round 22 ---------------
+seed = 2437313048
+[162771] is replaced by [162784] with estimated error 7e-05
+error = 7e-05
+area = 1072
+delay = 17.7
+#gates = 489
+output circuit result/ksa32_22_7e-05_1072_17.7.blif
+time = 58666015 us
+--------------- round 23 ---------------
+seed = 4032482814
+[163457] is replaced by n503 with estimated error 7e-05
+error = 7e-05
+area = 1071
+delay = 17.7
+#gates = 488
+output circuit result/ksa32_23_7e-05_1071_17.7.blif
+time = 61052636 us
+--------------- round 24 ---------------
+seed = 2715647243
+[162823] is replaced by n494 with inverter with estimated error 0.0001
+error = 0.0001
+area = 1069
+delay = 17.7
+#gates = 488
+output circuit result/ksa32_24_0.0001_1069_17.7.blif
+time = 63390149 us
+--------------- round 25 ---------------
+seed = 2655836313
+cout is replaced by n613 with estimated error 5e-05
+error = 5e-05
+area = 1066
+delay = 17.7
+#gates = 487
+output circuit result/ksa32_25_5e-05_1066_17.7.blif
+time = 65709097 us
+--------------- round 26 ---------------
+seed = 2521394005
+[163391] is replaced by n502 with estimated error 9e-05
+error = 9e-05
+area = 1065
+delay = 17.7
+#gates = 486
+output circuit result/ksa32_26_9e-05_1065_17.7.blif
+time = 67997153 us
+--------------- round 27 ---------------
+seed = 948332324
+[162719] is replaced by [162732] with estimated error 6e-05
+error = 6e-05
+area = 1063
+delay = 17.7
+#gates = 485
+output circuit result/ksa32_27_6e-05_1063_17.7.blif
+time = 70261165 us
+--------------- round 28 ---------------
+seed = 254156494
+[163470] is replaced by n491 with estimated error 9e-05
+error = 9e-05
+area = 1062
+delay = 17.7
+#gates = 484
+output circuit result/ksa32_28_9e-05_1062_17.7.blif
+time = 72506214 us
+--------------- round 29 ---------------
+seed = 1529055637
+[163413] is replaced by n507 with estimated error 7e-05
+error = 7e-05
+area = 1061
+delay = 17.7
+#gates = 483
+output circuit result/ksa32_29_7e-05_1061_17.7.blif
+time = 74735820 us
+--------------- round 30 ---------------
+seed = 2349728066
+[163440] is replaced by n505 with estimated error 7e-05
+error = 7e-05
+area = 1060
+delay = 17.7
+#gates = 482
+output circuit result/ksa32_30_7e-05_1060_17.7.blif
+time = 76947548 us
+--------------- round 31 ---------------
+seed = 166269059
+[162797] is replaced by [162810] with estimated error 3e-05
+error = 3e-05
+area = 1057
+delay = 17.7
+#gates = 481
+output circuit result/ksa32_31_3e-05_1057_17.7.blif
+time = 79123607 us
+--------------- round 32 ---------------
+seed = 782276785
+[163431] is replaced by n510 with estimated error 4e-05
+error = 4e-05
+area = 1056
+delay = 17.7
+#gates = 480
+output circuit result/ksa32_32_4e-05_1056_17.7.blif
+time = 81273243 us
+--------------- round 33 ---------------
+seed = 537090550
+[163404] is replaced by n498 with estimated error 7e-05
+error = 7e-05
+area = 1055
+delay = 17.7
+#gates = 479
+output circuit result/ksa32_33_7e-05_1055_17.7.blif
+time = 83400446 us
+--------------- round 34 ---------------
+seed = 1465603721
+[162745] is replaced by [162758] with estimated error 0.00014
+error = 0.00014
+area = 1053
+delay = 17.7
+#gates = 478
+output circuit result/ksa32_34_0.00014_1053_17.7.blif
+time = 85525240 us
+--------------- round 35 ---------------
+seed = 2908622836
+n613 is replaced by [162828] with estimated error 0.00198
+error = 0.00198
+area = 1045
+delay = 17.7
+#gates = 474
+output circuit result/ksa32_35_0.00198_1045_17.7.blif
+time = 87612791 us
+--------------- round 36 ---------------
+seed = 4116748236
+[162551] is replaced by [162549] with estimated error 0.00308
+error = 0.00308
+area = 1039
+delay = 17.7
+#gates = 472
+output circuit result/ksa32_36_0.00308_1039_17.7.blif
+time = 89649772 us
+--------------- round 37 ---------------
+seed = 4245872140
+[163257] is replaced by [164105] with estimated error 0.00324
+error = 0.00324
+area = 1038
+delay = 17.7
+#gates = 471
+output circuit result/ksa32_37_0.00324_1038_17.7.blif
+time = 91666232 us
+--------------- round 38 ---------------
+seed = 1866871463
+[164229] is replaced by [164223] with estimated error 0.00364
+error = 0.00364
+area = 1034
+delay = 17.7
+#gates = 469
+output circuit result/ksa32_38_0.00364_1034_17.7.blif
+time = 93667916 us
+--------------- round 39 ---------------
+seed = 2745332610
+[162562] is replaced by [162560] with estimated error 0.00472
+error = 0.00472
+area = 1028
+delay = 17.7
+#gates = 467
+output circuit result/ksa32_39_0.00472_1028_17.7.blif
+time = 95675568 us
+--------------- round 40 ---------------
+seed = 2182917959
+[163267] is replaced by [164102] with estimated error 0.00466
+error = 0.00466
+area = 1027
+delay = 17.7
+#gates = 466
+output circuit result/ksa32_40_0.00466_1027_17.7.blif
+time = 97644274 us
+--------------- round 41 ---------------
+seed = 3862211363
+[164207] is replaced by [164201] with estimated error 0.00499
+error = 0.00499
+area = 1023
+delay = 17.7
+#gates = 464
+output circuit result/ksa32_41_0.00499_1023_17.7.blif
+time = 99602948 us
+--------------- round 42 ---------------
+seed = 2201876522
+[164211] is replaced by [164067] with estimated error 0.0059
+error = 0.0059
+area = 1019
+delay = 17.7
+#gates = 462
+output circuit result/ksa32_42_0.0059_1019_17.7.blif
+time = 101548836 us
+--------------- round 43 ---------------
+seed = 2689033261
+[164237] is replaced by [164233] with estimated error 0.00736
+error = 0.00736
+area = 1015
+delay = 17.7
+#gates = 460
+output circuit result/ksa32_43_0.00736_1015_17.7.blif
+time = 103476996 us
+--------------- round 44 ---------------
+seed = 3738446886
+[162573] is replaced by [162571] with estimated error 0.0085
+error = 0.0085
+area = 1009
+delay = 17.7
+#gates = 458
+output circuit result/ksa32_44_0.0085_1009_17.7.blif
+time = 105409326 us
+--------------- round 45 ---------------
+seed = 2606626725
+[163277] is replaced by [164099] with estimated error 0.00784
+error = 0.00784
+area = 1008
+delay = 17.7
+#gates = 457
+output circuit result/ksa32_45_0.00784_1008_17.7.blif
+time = 107312216 us
+--------------- round 46 ---------------
+seed = 2493631762
+[162584] is replaced by [162582] with estimated error 0.00909
+error = 0.00909
+area = 1002
+delay = 17.7
+#gates = 455
+output circuit result/ksa32_46_0.00909_1002_17.7.blif
+time = 109202973 us
+--------------- round 47 ---------------
+seed = 2457390081
+[163287] is replaced by [164096] with estimated error 0.00885
+error = 0.00885
+area = 1001
+delay = 17.7
+#gates = 454
+output circuit result/ksa32_47_0.00885_1001_17.7.blif
+time = 111050977 us
+--------------- round 48 ---------------
+seed = 1685997072
+[164219] is replaced by [164215] with estimated error 0.00968
+error = 0.00968
+area = 997
+delay = 17.7
+#gates = 452
+output circuit result/ksa32_48_0.00968_997_17.7.blif
+time = 112894359 us
+--------------- round 49 ---------------
+seed = 2078496732
+[161154] is replaced by [161158] with estimated error 0.01025
+error = 0.01025
+area = 992
+delay = 17.7
+#gates = 450
+output circuit result/ksa32_49_0.01025_992_17.7.blif
+time = 114731342 us
+--------------- round 50 ---------------
+seed = 61874345
+[161157] is replaced by [161166] with estimated error 0.01097
+error = 0.01097
+area = 987
+delay = 15.9
+#gates = 448
+output circuit result/ksa32_50_0.01097_987_15.9.blif
+time = 116537943 us
+--------------- round 51 ---------------
+seed = 3066441672
+[161158] is replaced by [161166] with estimated error 0.01221
+error = 0.01221
+area = 982
+delay = 15.9
+#gates = 446
+output circuit result/ksa32_51_0.01221_982_15.9.blif
+time = 118321215 us
+--------------- round 52 ---------------
+seed = 578917766
+[164153] is replaced by zero with estimated error 0.01377
+error = 0.01377
+area = 978
+delay = 15.9
+#gates = 444
+output circuit result/ksa32_52_0.01377_978_15.9.blif
+time = 120083904 us
+--------------- round 53 ---------------
+seed = 1613943252
+[164157] is replaced by zero with estimated error 0.01437
+error = 0.01437
+area = 974
+delay = 15.9
+#gates = 442
+output circuit result/ksa32_53_0.01437_974_15.9.blif
+time = 121838149 us
+--------------- round 54 ---------------
+seed = 3275066036
+[164161] is replaced by zero with estimated error 0.0146
+error = 0.0146
+area = 970
+delay = 15.9
+#gates = 440
+output circuit result/ksa32_54_0.0146_970_15.9.blif
+time = 123571760 us
+--------------- round 55 ---------------
+seed = 2345776288
+[164165] is replaced by zero with estimated error 0.01511
+error = 0.01511
+area = 966
+delay = 15.9
+#gates = 438
+output circuit result/ksa32_55_0.01511_966_15.9.blif
+time = 125306750 us
+--------------- round 56 ---------------
+seed = 3095961095
+[164233] is replaced by zero with estimated error 0.01611
+error = 0.01611
+area = 962
+delay = 15.9
+#gates = 436
+output circuit result/ksa32_56_0.01611_962_15.9.blif
+time = 127010327 us
+--------------- round 57 ---------------
+seed = 2953058492
+[162810] is replaced by [162806] with estimated error 0.01663
+error = 0.01663
+area = 959
+delay = 15.9
+#gates = 435
+output circuit result/ksa32_57_0.01663_959_15.9.blif
+time = 128697638 us
+--------------- round 58 ---------------
+seed = 3279437643
+[164195] is replaced by zero with estimated error 0.0171
+error = 0.0171
+area = 955
+delay = 15.9
+#gates = 433
+output circuit result/ksa32_58_0.0171_955_15.9.blif
+time = 130334145 us
+--------------- round 59 ---------------
+seed = 882057467
+[161166] is replaced by zero with estimated error 0.01915
+error = 0.01915
+area = 950
+delay = 15.4
+#gates = 431
+output circuit result/ksa32_59_0.01915_950_15.4.blif
+time = 131947265 us
+--------------- round 60 ---------------
+seed = 3254014686
+[164223] is replaced by zero with estimated error 0.02019
+error = 0.02019
+area = 946
+delay = 15.4
+#gates = 429
+output circuit result/ksa32_60_0.02019_946_15.4.blif
+time = 133450077 us
+--------------- round 61 ---------------
+seed = 1647836343
+[162784] is replaced by [162780] with estimated error 0.02051
+error = 0.02051
+area = 944
+delay = 15.4
+#gates = 428
+output circuit result/ksa32_61_0.02051_944_15.4.blif
+time = 134952329 us
+--------------- round 62 ---------------
+seed = 3248269853
+[164201] is replaced by zero with estimated error 0.0211
+error = 0.0211
+area = 940
+delay = 15.4
+#gates = 426
+output circuit result/ksa32_62_0.0211_940_15.4.blif
+time = 136418407 us
+--------------- round 63 ---------------
+seed = 1904120526
+[162706] is replaced by [162702] with estimated error 0.02085
+error = 0.02085
+area = 938
+delay = 15.4
+#gates = 425
+output circuit result/ksa32_63_0.02085_938_15.4.blif
+time = 137871755 us
+--------------- round 64 ---------------
+seed = 2738610464
+[164067] is replaced by zero with estimated error 0.02171
+error = 0.02171
+area = 934
+delay = 15.4
+#gates = 423
+output circuit result/ksa32_64_0.02171_934_15.4.blif
+time = 139308232 us
+--------------- round 65 ---------------
+seed = 4101444829
+[162732] is replaced by [162728] with estimated error 0.02267
+error = 0.02267
+area = 932
+delay = 15.4
+#gates = 422
+output circuit result/ksa32_65_0.02267_932_15.4.blif
+time = 140731222 us
+--------------- round 66 ---------------
+seed = 1120417540
+[164215] is replaced by zero with estimated error 0.02325
+error = 0.02325
+area = 928
+delay = 15.4
+#gates = 420
+output circuit result/ksa32_66_0.02325_928_15.4.blif
+time = 142123721 us
+--------------- round 67 ---------------
+seed = 2336521600
+[162758] is replaced by [162754] with estimated error 0.02291
+error = 0.02291
+area = 926
+delay = 15.4
+#gates = 419
+output circuit result/ksa32_67_0.02291_926_15.4.blif
+time = 143503446 us
+--------------- round 68 ---------------
+seed = 3299317519
+n503 is replaced by n327 with estimated error 0.03755
+error = 0.03755
+area = 917
+delay = 15.4
+#gates = 416
+output circuit result/ksa32_68_0.03755_917_15.4.blif
+time = 144861260 us
+--------------- round 69 ---------------
+seed = 2988370844
+[162740] is replaced by [162727] with estimated error 0.04862
+error = 0.04862
+area = 914
+delay = 15.4
+#gates = 415
+output circuit result/ksa32_69_0.04862_914_15.4.blif
+time = 146182293 us
+--------------- round 70 ---------------
+seed = 2902504253
+exceed error bound

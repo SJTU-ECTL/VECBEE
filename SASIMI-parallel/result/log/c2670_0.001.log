@@ -1,0 +1,144 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/c2670.blif
+Line 30: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 31: Skipping line ".default_output_required 0.00 0.00 ".
+Line 32: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 33: Skipping line ".default_output_load 2.00 ".
+Line 34: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mc2670                         :[0m i/o =  233/  140  lat =    0  nd =   535  edge =   1225  area =1262.00  delay =21.90  lev = 17
+--------------- round 1 ---------------
+seed = 2500294497
+G150 is replaced by one with estimated error 0
+error = 0
+area = 1082
+delay = 21.9
+#gates = 475
+output circuit result/c2670_1_0_1082_21.9.blif
+time = 3392531 us
+--------------- round 2 ---------------
+seed = 3016913532
+G1218 is replaced by [99400] with estimated error 0
+error = 0
+area = 1070
+delay = 21.9
+#gates = 471
+output circuit result/c2670_2_0_1070_21.9.blif
+time = 5516706 us
+--------------- round 3 ---------------
+seed = 436722033
+[99635] is replaced by one with estimated error 0
+error = 0
+area = 1067
+delay = 21.9
+#gates = 470
+output circuit result/c2670_3_0_1067_21.9.blif
+time = 7624917 us
+--------------- round 4 ---------------
+seed = 3541281937
+[101860] is replaced by G303 with estimated error 0
+error = 0
+area = 1063
+delay = 21.9
+#gates = 469
+output circuit result/c2670_4_0_1063_21.9.blif
+time = 9712338 us
+--------------- round 5 ---------------
+seed = 1864396687
+[101864] is replaced by G286 with estimated error 0
+error = 0
+area = 1059
+delay = 21.9
+#gates = 468
+output circuit result/c2670_5_0_1059_21.9.blif
+time = 11782804 us
+--------------- round 6 ---------------
+seed = 3242704297
+[100726] is replaced by [100848] with estimated error 0
+error = 0
+area = 1057
+delay = 21.9
+#gates = 467
+output circuit result/c2670_6_0_1057_21.9.blif
+time = 13855837 us
+--------------- round 7 ---------------
+seed = 1568576539
+[101370] is replaced by [99648] with estimated error 0
+error = 0
+area = 1055
+delay = 21.9
+#gates = 466
+output circuit result/c2670_7_0_1055_21.9.blif
+time = 15919613 us
+--------------- round 8 ---------------
+seed = 570809646
+[101719] is replaced by [101711] with estimated error 1e-05
+error = 1e-05
+area = 1053
+delay = 21.9
+#gates = 465
+output circuit result/c2670_8_1e-05_1053_21.9.blif
+time = 17966365 us
+--------------- round 9 ---------------
+seed = 3249726978
+[101439] is replaced by [99661] with estimated error 1e-05
+error = 1e-05
+area = 1051
+delay = 21.9
+#gates = 464
+output circuit result/c2670_9_1e-05_1051_21.9.blif
+time = 19996661 us
+--------------- round 10 ---------------
+seed = 2570819726
+G311 is replaced by zero with estimated error 0
+error = 0
+area = 1050
+delay = 21.9
+#gates = 463
+output circuit result/c2670_10_0_1050_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 22013862 us
+--------------- round 11 ---------------
+seed = 1458475491
+[99642] is replaced by [101651] with estimated error 0
+error = 0
+area = 1049
+delay = 21.9
+#gates = 462
+output circuit result/c2670_11_0_1049_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 24030625 us
+--------------- round 12 ---------------
+seed = 2832747676
+[101357] is replaced by [99431] with inverter with estimated error 0
+error = 0
+area = 1048
+delay = 21.9
+#gates = 462
+output circuit result/c2670_12_0_1048_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 26046388 us
+--------------- round 13 ---------------
+seed = 2805961300
+[99652] is replaced by [101808] with estimated error 0
+error = 0
+area = 1047
+delay = 21.9
+#gates = 461
+output circuit result/c2670_13_0_1047_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 28060337 us
+--------------- round 14 ---------------
+seed = 490604476
+[101383] is replaced by [99442] with inverter with estimated error 0
+error = 0
+area = 1046
+delay = 21.9
+#gates = 461
+output circuit result/c2670_14_0_1046_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 30069775 us
+--------------- round 15 ---------------
+seed = 262796607
+exceed error bound

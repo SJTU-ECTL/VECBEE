@@ -1,0 +1,337 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/c3540.blif
+Line 7: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 8: Skipping line ".default_output_required 0.00 0.00 ".
+Line 9: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 10: Skipping line ".default_output_load 2.00 ".
+Line 11: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mc3540                         :[0m i/o =   50/   22  lat =    0  nd =   626  edge =   1568  area =1604.00  delay =55.00  lev = 41
+--------------- round 1 ---------------
+seed = 750279684
+[105035] is replaced by [104985] with estimated error 0
+error = 0
+area = 1601
+delay = 55
+#gates = 627
+output circuit result/c3540_1_0_1601_55.blif
+time = 7741730 us
+--------------- round 2 ---------------
+seed = 2368197651
+[105170] is replaced by [143455] with inverter with estimated error 0
+error = 0
+area = 1599
+delay = 55
+#gates = 627
+output circuit result/c3540_2_0_1599_55.blif
+time = 15317985 us
+--------------- round 3 ---------------
+seed = 2337882177
+[106175] is replaced by [104885] with estimated error 0
+error = 0
+area = 1598
+delay = 55
+#gates = 626
+output circuit result/c3540_3_0_1598_55.blif
+time = 22881313 us
+--------------- round 4 ---------------
+seed = 1043379504
+[106662] is replaced by [104886] with estimated error 0
+error = 0
+area = 1597
+delay = 55
+#gates = 625
+output circuit result/c3540_4_0_1597_55.blif
+time = 30384868 us
+--------------- round 5 ---------------
+seed = 3448251578
+[106225] is replaced by [104921] with estimated error 0
+error = 0
+area = 1596
+delay = 55
+#gates = 624
+output circuit result/c3540_5_0_1596_55.blif
+time = 37890715 us
+--------------- round 6 ---------------
+seed = 2775996310
+[106180] is replaced by [104895] with estimated error 0
+error = 0
+area = 1595
+delay = 55
+#gates = 623
+output circuit result/c3540_6_0_1595_55.blif
+time = 45349358 us
+--------------- round 7 ---------------
+seed = 637717405
+[106161] is replaced by [106537] with estimated error 0
+error = 0
+area = 1594
+delay = 55
+#gates = 622
+output circuit result/c3540_7_0_1594_55.blif
+time = 52780331 us
+--------------- round 8 ---------------
+seed = 3486276297
+[106187] is replaced by [104911] with estimated error 0
+error = 0
+area = 1593
+delay = 55
+#gates = 621
+output circuit result/c3540_8_0_1593_55.blif
+time = 60179182 us
+--------------- round 9 ---------------
+seed = 372673061
+[107035] is replaced by [107635] with estimated error 0
+error = 0
+area = 1592
+delay = 55
+#gates = 620
+output circuit result/c3540_9_0_1592_55.blif
+time = 67633221 us
+--------------- round 10 ---------------
+seed = 3378832280
+[104840] is replaced by [104824] with estimated error 0
+error = 0
+area = 1591
+delay = 55
+#gates = 619
+output circuit result/c3540_10_0_1591_55.blif
+time = 74964021 us
+--------------- round 11 ---------------
+seed = 3382886336
+[106628] is replaced by [104912] with estimated error 0
+error = 0
+area = 1590
+delay = 55
+#gates = 618
+output circuit result/c3540_11_0_1590_55.blif
+time = 82326283 us
+--------------- round 12 ---------------
+seed = 555270120
+[107023] is replaced by [105064] with estimated error 8e-05
+error = 8e-05
+area = 1587
+delay = 55
+#gates = 616
+output circuit result/c3540_12_8e-05_1587_55.blif
+time = 89644890 us
+--------------- round 13 ---------------
+seed = 1309595926
+[153634] is replaced by zero with estimated error 0.00025
+error = 0.00025
+area = 1584
+delay = 55
+#gates = 615
+output circuit result/c3540_13_0.00025_1584_55.blif
+time = 96904270 us
+--------------- round 14 ---------------
+seed = 1067128106
+[105071] is replaced by [104949] with estimated error 0.00052
+error = 0.00052
+area = 1581
+delay = 55
+#gates = 614
+output circuit result/c3540_14_0.00052_1581_55.blif
+time = 104171458 us
+--------------- round 15 ---------------
+seed = 575748247
+[104975] is replaced by [104929] with estimated error 0.00083
+error = 0.00083
+area = 1579
+delay = 55
+#gates = 613
+output circuit result/c3540_15_0.00083_1579_55.blif
+time = 111398041 us
+--------------- round 16 ---------------
+seed = 3785742233
+[107554] is replaced by one with estimated error 0.00302
+error = 0.00302
+area = 1565
+delay = 55
+#gates = 608
+output circuit result/c3540_16_0.00302_1565_55.blif
+time = 118625359 us
+--------------- round 17 ---------------
+seed = 3477519343
+[156199] is replaced by [143476] with estimated error 0.00405
+error = 0.00405
+area = 1561
+delay = 55
+#gates = 607
+output circuit result/c3540_17_0.00405_1561_55.blif
+time = 125737781 us
+--------------- round 18 ---------------
+seed = 1189786561
+[106681] is replaced by [108186] with estimated error 0.00455
+error = 0.00455
+area = 1559
+delay = 55
+#gates = 606
+output circuit result/c3540_18_0.00455_1559_55.blif
+time = 132839640 us
+--------------- round 19 ---------------
+seed = 2759381272
+[105067] is replaced by [168819] with estimated error 0.00462
+error = 0.00462
+area = 1556
+delay = 55
+#gates = 605
+output circuit result/c3540_19_0.00462_1556_55.blif
+time = 139858365 us
+--------------- round 20 ---------------
+seed = 225466622
+[106369] is replaced by [102589] with estimated error 0.00479
+error = 0.00479
+area = 1555
+delay = 55
+#gates = 604
+output circuit result/c3540_20_0.00479_1555_55.blif
+time = 146908622 us
+--------------- round 21 ---------------
+seed = 1835197951
+[105186] is replaced by [104999] with estimated error 0.00905
+error = 0.00905
+area = 1542
+delay = 55
+#gates = 600
+output circuit result/c3540_21_0.00905_1542_55.blif
+time = 153916582 us
+--------------- round 22 ---------------
+seed = 1312861852
+[105181] is replaced by [104828] with inverter with estimated error 0.01225
+error = 0.01225
+area = 1535
+delay = 55
+#gates = 598
+output circuit result/c3540_22_0.01225_1535_55.blif
+time = 160850553 us
+--------------- round 23 ---------------
+seed = 2646303793
+[106093] is replaced by one with estimated error 0.01325
+error = 0.01325
+area = 1531
+delay = 55
+#gates = 597
+output circuit result/c3540_23_0.01325_1531_55.blif
+time = 167804243 us
+--------------- round 24 ---------------
+seed = 1980964834
+[105189] is replaced by [105080] with estimated error 0.01573
+error = 0.01573
+area = 1527
+delay = 55
+#gates = 596
+output circuit result/c3540_24_0.01573_1527_55.blif
+time = 174681450 us
+--------------- round 25 ---------------
+seed = 2896079364
+[108186] is replaced by one with estimated error 0.01675
+error = 0.01675
+area = 1524
+delay = 55
+#gates = 595
+output circuit result/c3540_25_0.01675_1524_55.blif
+time = 181538495 us
+--------------- round 26 ---------------
+seed = 1025955477
+[140560] is replaced by [107656] with estimated error 0.02087
+error = 0.02087
+area = 1514
+delay = 55
+#gates = 592
+output circuit result/c3540_26_0.02087_1514_55.blif
+time = 188402714 us
+--------------- round 27 ---------------
+seed = 373494797
+[153711] is replaced by [104776] with estimated error 0.02136
+error = 0.02136
+area = 1512
+delay = 55
+#gates = 591
+output circuit result/c3540_27_0.02136_1512_55.blif
+time = 195156033 us
+--------------- round 28 ---------------
+seed = 307860638
+[153710] is replaced by [104994] with estimated error 0.0219
+error = 0.0219
+area = 1509
+delay = 55
+#gates = 590
+output circuit result/c3540_28_0.0219_1509_55.blif
+time = 201869710 us
+--------------- round 29 ---------------
+seed = 1227169613
+[105198] is replaced by [104822] with estimated error 0.02285
+error = 0.02285
+area = 1506
+delay = 55
+#gates = 589
+output circuit result/c3540_29_0.02285_1506_55.blif
+time = 208554974 us
+--------------- round 30 ---------------
+seed = 3923055680
+[143401] is replaced by 33 with estimated error 0.02321
+error = 0.02321
+area = 1503
+delay = 55
+#gates = 588
+output circuit result/c3540_30_0.02321_1503_55.blif
+time = 215232256 us
+--------------- round 31 ---------------
+seed = 838328165
+[143425] is replaced by [143408] with estimated error 0.0247
+error = 0.0247
+area = 1499
+delay = 55
+#gates = 587
+output circuit result/c3540_31_0.0247_1499_55.blif
+time = 221901314 us
+--------------- round 32 ---------------
+seed = 1594133472
+[105031] is replaced by [105007] with estimated error 0.02657
+error = 0.02657
+area = 1492
+delay = 55
+#gates = 585
+output circuit result/c3540_32_0.02657_1492_55.blif
+time = 228519794 us
+--------------- round 33 ---------------
+seed = 3993457788
+[143424] is replaced by [105003] with estimated error 0.02721
+error = 0.02721
+area = 1488
+delay = 55
+#gates = 584
+output circuit result/c3540_33_0.02721_1488_55.blif
+time = 235104706 us
+--------------- round 34 ---------------
+seed = 3523226860
+[141685] is replaced by [105003] with estimated error 0.02869
+error = 0.02869
+area = 1484
+delay = 55
+#gates = 583
+output circuit result/c3540_34_0.02869_1484_55.blif
+time = 241683360 us
+--------------- round 35 ---------------
+seed = 517157930
+[141231] is replaced by [105003] with estimated error 0.02894
+error = 0.02894
+area = 1480
+delay = 55
+#gates = 582
+output circuit result/c3540_35_0.02894_1480_55.blif
+time = 248291779 us
+--------------- round 36 ---------------
+seed = 1367000444
+[140533] is replaced by zero with estimated error 0.02963
+error = 0.02963
+area = 1478
+delay = 55
+#gates = 581
+output circuit result/c3540_36_0.02963_1478_55.blif
+time = 254847262 us
+--------------- round 37 ---------------
+seed = 666377493
+exceed error bound

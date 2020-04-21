@@ -1,0 +1,220 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/cla32.blif
+Line 11: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 12: Skipping line ".default_output_required 0.00 0.00 ".
+Line 13: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 14: Skipping line ".default_output_load 2.00 ".
+Line 15: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mcla32                         :[0m i/o =   64/   33  lat =    0  nd =   419  edge =    952  area =958.00  delay =38.50  lev = 27
+--------------- round 1 ---------------
+seed = 3694494934
+[1809] is replaced by [3103] with estimated error 0
+error = 0
+area = 928
+delay = 38.5
+#gates = 409
+output circuit result/cla32_1_0_928_38.5.blif
+time = 2662609 us
+--------------- round 2 ---------------
+seed = 794007716
+[1796] is replaced by [3098] with estimated error 0
+error = 0
+area = 917
+delay = 31.6
+#gates = 405
+output circuit result/cla32_2_0_917_31.6.blif
+time = 4939712 us
+--------------- round 3 ---------------
+seed = 3211223742
+[2874] is replaced by [1746] with estimated error 1e-05
+error = 1e-05
+area = 907
+delay = 31.6
+#gates = 401
+output circuit result/cla32_3_1e-05_907_31.6.blif
+time = 7113135 us
+--------------- round 4 ---------------
+seed = 290408645
+[2636] is replaced by [2670] with estimated error 0
+error = 0
+area = 900
+delay = 31.6
+#gates = 398
+output circuit result/cla32_4_0_900_31.6.blif
+time = 9194298 us
+--------------- round 5 ---------------
+seed = 3663915329
+n107 is replaced by [141876] with estimated error 2e-05
+error = 2e-05
+area = 895
+delay = 30.1
+#gates = 396
+output circuit result/cla32_5_2e-05_895_30.1.blif
+time = 11254118 us
+--------------- round 6 ---------------
+seed = 1088119303
+[2641] is replaced by [2576] with estimated error 3e-05
+error = 3e-05
+area = 890
+delay = 30.1
+#gates = 394
+output circuit result/cla32_6_3e-05_890_30.1.blif
+time = 13271779 us
+--------------- round 7 ---------------
+seed = 1396726912
+[2609] is replaced by [1605] with estimated error 7e-05
+error = 7e-05
+area = 885
+delay = 30.1
+#gates = 392
+output circuit result/cla32_7_7e-05_885_30.1.blif
+time = 15257426 us
+--------------- round 8 ---------------
+seed = 13092602
+[2616] is replaced by [2521] with estimated error 7e-05
+error = 7e-05
+area = 879
+delay = 30.1
+#gates = 390
+output circuit result/cla32_8_7e-05_879_30.1.blif
+time = 17231225 us
+--------------- round 9 ---------------
+seed = 3925442234
+[1105] is replaced by n273 with estimated error 0.00016
+error = 0.00016
+area = 874
+delay = 30.1
+#gates = 388
+output circuit result/cla32_9_0.00016_874_30.1.blif
+time = 19189842 us
+--------------- round 10 ---------------
+seed = 1092359233
+[1552] is replaced by [2327] with estimated error 6e-05
+error = 6e-05
+area = 872
+delay = 30.1
+#gates = 387
+output circuit result/cla32_10_6e-05_872_30.1.blif
+time = 21203227 us
+--------------- round 11 ---------------
+seed = 1362351250
+[1771] is replaced by [1781] with estimated error 9e-05
+error = 9e-05
+area = 871
+delay = 30.1
+#gates = 386
+output circuit result/cla32_11_9e-05_871_30.1.blif
+time = 23216937 us
+--------------- round 12 ---------------
+seed = 1678324264
+[2660] is replaced by [2654] with estimated error 8e-05
+error = 8e-05
+area = 870
+delay = 30.1
+#gates = 385
+output circuit result/cla32_12_8e-05_870_30.1.blif
+time = 25154005 us
+--------------- round 13 ---------------
+seed = 2842647520
+[1651] is replaced by [1661] with estimated error 0.0001
+error = 0.0001
+area = 868
+delay = 30.1
+#gates = 384
+output circuit result/cla32_13_0.0001_868_30.1.blif
+time = 27072880 us
+--------------- round 14 ---------------
+seed = 3115923803
+[2750] is replaced by [1670] with estimated error 0.00013
+error = 0.00013
+area = 864
+delay = 30.1
+#gates = 383
+output circuit result/cla32_14_0.00013_864_30.1.blif
+time = 28959373 us
+--------------- round 15 ---------------
+seed = 2274637167
+n279 is replaced by [141889] with estimated error 0.00019
+error = 0.00019
+area = 861
+delay = 30.1
+#gates = 382
+output circuit result/cla32_15_0.00019_861_30.1.blif
+time = 30838512 us
+--------------- round 16 ---------------
+seed = 4254405642
+[1750] is replaced by [3087] with estimated error 0.00066
+error = 0.00066
+area = 854
+delay = 30.1
+#gates = 379
+output circuit result/cla32_16_0.00066_854_30.1.blif
+time = 32674797 us
+--------------- round 17 ---------------
+seed = 281329447
+[1649] is replaced by [1642] with estimated error 0.00107
+error = 0.00107
+area = 850
+delay = 30.1
+#gates = 377
+output circuit result/cla32_17_0.00107_850_30.1.blif
+time = 34451999 us
+--------------- round 18 ---------------
+seed = 4237527950
+[1607] is replaced by [1605] with estimated error 0.00272
+error = 0.00272
+area = 844
+delay = 30.1
+#gates = 374
+output circuit result/cla32_18_0.00272_844_30.1.blif
+time = 36215267 us
+--------------- round 19 ---------------
+seed = 809547202
+[1731] is replaced by [237] with inverter with estimated error 0.00435
+error = 0.00435
+area = 840
+delay = 30.1
+#gates = 372
+output circuit result/cla32_19_0.00435_840_30.1.blif
+time = 37942685 us
+--------------- round 20 ---------------
+seed = 3703208396
+[2885] is replaced by [237] with estimated error 0.00432
+error = 0.00432
+area = 839
+delay = 30.1
+#gates = 371
+output circuit result/cla32_20_0.00432_839_30.1.blif
+time = 39611051 us
+--------------- round 21 ---------------
+seed = 1080201524
+[2482] is replaced by one with estimated error 0.00629
+error = 0.00629
+area = 835
+delay = 30.1
+#gates = 369
+output circuit result/cla32_21_0.00629_835_30.1.blif
+time = 41261291 us
+--------------- round 22 ---------------
+seed = 2876332954
+[2509] is replaced by one with estimated error 0.00638
+error = 0.00638
+area = 832
+delay = 30.1
+#gates = 368
+output circuit result/cla32_22_0.00638_832_30.1.blif
+time = 42919030 us
+--------------- round 23 ---------------
+seed = 51334152
+[2484] is replaced by one with estimated error 0.00971
+error = 0.00971
+area = 829
+delay = 30.1
+#gates = 366
+output circuit result/cla32_23_0.00971_829_30.1.blif
+time = 44543098 us
+--------------- round 24 ---------------
+seed = 1322798667
+exceed error bound

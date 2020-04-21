@@ -1,0 +1,121 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/mtp8.blif
+Line 7: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 8: Skipping line ".default_output_required 0.00 0.00 ".
+Line 9: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 10: Skipping line ".default_output_load 2.00 ".
+Line 11: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mmtp8                          :[0m i/o =   16/   16  lat =    0  nd =   430  edge =   1037  area =1069.00  delay =37.80  lev = 32
+--------------- round 1 ---------------
+seed = 1372048741
+[166469] is replaced by [166345] with estimated error 0
+error = 0
+area = 1065
+delay = 37.8
+#gates = 430
+output circuit result/mtp8_1_0_1065_37.8.blif
+time = 5325993 us
+--------------- round 2 ---------------
+seed = 2626701656
+[167126] is replaced by [167814] with estimated error 0
+error = 0
+area = 1061
+delay = 37.8
+#gates = 429
+output circuit result/mtp8_2_0_1061_37.8.blif
+time = 10498183 us
+--------------- round 3 ---------------
+seed = 2539856474
+[166351] is replaced by y[0] with estimated error 0
+error = 0
+area = 1057
+delay = 37.8
+#gates = 428
+output circuit result/mtp8_3_0_1057_37.8.blif
+time = 15690652 us
+--------------- round 4 ---------------
+seed = 1240280788
+[164857] is replaced by [167660] with estimated error 0
+error = 0
+area = 1054
+delay = 37.8
+#gates = 427
+output circuit result/mtp8_4_0_1054_37.8.blif
+time = 20828921 us
+--------------- round 5 ---------------
+seed = 831228352
+[167340] is replaced by [166399] with estimated error 0
+error = 0
+area = 1052
+delay = 37.8
+#gates = 426
+output circuit result/mtp8_5_0_1052_37.8.blif
+time = 25961129 us
+--------------- round 6 ---------------
+seed = 505196337
+[166406] is replaced by n556 with inverter with estimated error 0
+error = 0
+area = 1050
+delay = 37.8
+#gates = 426
+output circuit result/mtp8_6_0_1050_37.8.blif
+time = 31059985 us
+--------------- round 7 ---------------
+seed = 1390256857
+[166441] is replaced by [168101] with estimated error 0
+error = 0
+area = 1048
+delay = 37.8
+#gates = 425
+output circuit result/mtp8_7_0_1048_37.8.blif
+time = 36176159 us
+--------------- round 8 ---------------
+seed = 2725923468
+[166909] is replaced by [166358] with estimated error 0
+error = 0
+area = 1047
+delay = 37.8
+#gates = 424
+output circuit result/mtp8_8_0_1047_37.8.blif
+time = 41252933 us
+--------------- round 9 ---------------
+seed = 1701575129
+[167033] is replaced by [167132] with estimated error 0
+error = 0
+area = 1046
+delay = 37.8
+#gates = 423
+output circuit result/mtp8_9_0_1046_37.8.blif
+time = 46341260 us
+--------------- round 10 ---------------
+seed = 2002289964
+[166558] is replaced by [166559] with estimated error 0
+error = 0
+area = 1045
+delay = 37.4
+#gates = 422
+output circuit result/mtp8_10_0_1045_37.4.blif
+time = 51403306 us
+--------------- round 11 ---------------
+seed = 3233434190
+[167001] is replaced by [166559] with estimated error 0
+error = 0
+area = 1044
+delay = 37.4
+#gates = 421
+output circuit result/mtp8_11_0_1044_37.4.blif
+time = 56403047 us
+--------------- round 12 ---------------
+seed = 217523309
+n32 is replaced by [166412] with estimated error 0
+error = 0
+area = 1039
+delay = 37.4
+#gates = 419
+output circuit result/mtp8_12_0_1039_37.4.blif
+time = 61382749 us
+--------------- round 13 ---------------
+seed = 3441396904
+exceed error bound
