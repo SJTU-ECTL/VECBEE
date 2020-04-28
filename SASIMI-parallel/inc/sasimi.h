@@ -25,14 +25,18 @@ public:
     void CollectMFFC(IN Simulator_t & appSmlt, OUT std::vector <Vec_Ptr_t *> & vMffcs);
     void FreeMFFC(std::vector <Vec_Ptr_t *> & vMffcs);
     void GetCPM(IN Simulator_t & oriSmlt, IN Simulator_t & appSmlt, OUT std::vector < std::vector <tVec> > & bds);
-    void CollectAllLACs(IN Simulator_t & oriSmlt, IN Simulator_t & appSmlt, IN std::vector < std::vector <tVec> > & bds, IN std::vector <Vec_Ptr_t * > & vMffcs, OUT std::vector <LAC_t> & nodeLACs);
-    void CollectNodeLAC(IN Abc_Obj_t * pObj, IN Simulator_t & appSmlt, IN std::vector <tVec> & isERInc, IN std::vector <tVec> & isERDec, IN std::vector <tVec> & sources, IN std::vector <Vec_Ptr_t * > & vMffcs, IN int baseER, OUT LAC_t & nodeLAC);
+    void CollectAllLACsUnderER(IN Simulator_t & oriSmlt, IN Simulator_t & appSmlt, IN std::vector < std::vector <tVec> > & bds, IN std::vector <Vec_Ptr_t * > & vMffcs, OUT std::vector <LAC_t> & nodeLACs);
+    void CollectAllLACsUnderNMED(IN Simulator_t & oriSmlt, IN Simulator_t & appSmlt, IN std::vector < std::vector <tVec> > & bds, IN std::vector <Vec_Ptr_t * > & vMffcs, OUT std::vector <LAC_t> & nodeLACs);
+    void CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t & appSmlt, IN std::vector <tVec> & isERInc, IN std::vector <tVec> & isERDec, IN std::vector <tVec> & sources, IN std::vector <Vec_Ptr_t * > & vMffcs, IN int baseER, OUT LAC_t & nodeLAC);
+    void CollectNodeLACUnderNMED(IN Abc_Obj_t * pTS, IN Simulator_t & appSmlt, IN std::vector <int64_t> & oriOutputs, IN std::vector <int64_t> & appOutputs, IN tVec & bdNode, IN std::vector <tVec> & sources, IN std::vector <Vec_Ptr_t * > & vMffcs, IN int64_t baseNMED, OUT LAC_t & nodeLAC);
     void SortCandLACs(IN std::vector <LAC_t> & nodeLACs, IN int nFrame, OUT std::vector <LAC_t> & candLACs);
     int ApplyBestLAC(Simulator_t & oriSmlt, Simulator_t & appSmlt, std::vector <LAC_t> & candLACs, int topNum, int cntRound, std::string outPrefix, unsigned seed);
-    void GetDError(IN Simulator_t & appSmlt, IN Abc_Obj_t * pTS, IN Abc_Obj_t * pSS, IN std::vector <tVec> & isERInc, IN std::vector <tVec> & isERDec, OUT std::pair<int, int> & errors);
+    void GetDER(IN Simulator_t & appSmlt, IN Abc_Obj_t * pTS, IN Abc_Obj_t * pSS, IN std::vector <tVec> & isERInc, IN std::vector <tVec> & isERDec, OUT std::pair <int, int> & errors);
+    void GetDNMED(IN Simulator_t & appSmlt, IN std::vector <int64_t> & oriOutputs, IN std::vector <int64_t> & appOutputs, IN std::vector <int64_t> & appOutputsNew, IN Abc_Obj_t * pTS, IN Abc_Obj_t * pSS, OUT std::pair <int64_t, int64_t> & dErrors);
     double GetDArea(Abc_Obj_t * pTS, Abc_Obj_t * pSS, std::vector <Vec_Ptr_t *> & vMffcs);
     void ReplaceObj(Abc_Obj_t * pTS, Abc_Obj_t * pSS);
     void DeleteObj_rec(Abc_Obj_t * pObj);
+    void ReorganizeBD(IN std::vector < std::vector <tVec> > & bds, IN Abc_Obj_t * pObj, OUT tVec & bdNode);
 };
 
 
@@ -50,7 +54,7 @@ public:
     ~LAC_t();
     void Init();
     void Update(Abc_Obj_t * pTS, Abc_Obj_t * pSS, bool isInv, double error, double dArea, double FOM);
-    void Print(int nFrame) const;
+    void Print() const;
     inline Abc_Obj_t * GetTS() const {return pTS;}
     inline Abc_Obj_t * GetSS() const {return pSS;}
     inline bool GetIsInv() const {return isInv;}

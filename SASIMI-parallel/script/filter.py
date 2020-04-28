@@ -3,11 +3,14 @@
 
 import csv
 
-csvRd = csv.reader(open('result/table/ERRaw.csv', encoding='utf-8'))
-erBound = [0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05]
-bestError = [dict(), dict(), dict(), dict(), dict(), dict(), dict()]
-bestArea = [dict(), dict(), dict(), dict(), dict(), dict(), dict()]
-bestDelay = [dict(), dict(), dict(), dict(), dict(), dict(), dict()]
+csvRd = csv.reader(open('result/NMED/table/NMEDRaw.csv', encoding='utf-8'))
+# erBound = [0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05]
+erBound = [0.0000153, 0.0000306, 0.0000612, 0.0001224, 0.0002448, 0.0004896, 0.0009792, 0.0019584]
+for i in range(len(erBound)):
+    erBound[i] *= 100000
+bestError = [dict(), dict(), dict(), dict(), dict(), dict(), dict(), dict()]
+bestArea =  [dict(), dict(), dict(), dict(), dict(), dict(), dict(), dict()]
+bestDelay = [dict(), dict(), dict(), dict(), dict(), dict(), dict(), dict()]
 for row in csvRd:
     if row[0] == 'circuit':
         continue
@@ -15,7 +18,6 @@ for row in csvRd:
     er = float(row[1])
     area = float(row[2])
     delay = float(row[3])
-    # print(circuit, er, area, delay)
     for i in range(len(erBound)):
         if er <= erBound[i]:
             if circuit not in bestArea[i]:

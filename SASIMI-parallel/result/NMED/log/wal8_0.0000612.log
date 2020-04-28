@@ -1,0 +1,395 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/wal8.blif
+Line 9: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 10: Skipping line ".default_output_required 0.00 0.00 ".
+Line 11: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 12: Skipping line ".default_output_load 2.00 ".
+Line 13: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mwal8                          :[0m i/o =   16/   16  lat =    0  nd =   490  edge =   1058  area =1081.00  delay =45.30  lev = 36
+--------------- round 1 ---------------
+seed = 4223297801
+[174797] is replaced by [176053] with estimated error 0
+error = 0
+area = 1078
+delay = 44.7
+#gates = 491
+output circuit appNtk/wal8_1_0_1078_44.7.blif
+time = 55782136 us
+--------------- round 2 ---------------
+seed = 3920270939
+[175875] is replaced by [176013] with estimated error 0
+error = 0
+area = 1075
+delay = 44.1
+#gates = 490
+output circuit appNtk/wal8_2_0_1075_44.1.blif
+time = 112275075 us
+--------------- round 3 ---------------
+seed = 687723548
+[176023] is replaced by [175604] with estimated error 0
+error = 0
+area = 1073
+delay = 44.1
+#gates = 489
+output circuit appNtk/wal8_3_0_1073_44.1.blif
+time = 167575769 us
+--------------- round 4 ---------------
+seed = 1817100810
+[174314] is replaced by n382 with inverter with estimated error 0
+error = 0
+area = 1071
+delay = 44.1
+#gates = 489
+output circuit appNtk/wal8_4_0_1071_44.1.blif
+time = 221781241 us
+--------------- round 5 ---------------
+seed = 664736929
+[175969] is replaced by [174846] with estimated error 0
+error = 0
+area = 1069
+delay = 44.1
+#gates = 488
+output circuit appNtk/wal8_5_0_1069_44.1.blif
+time = 275924259 us
+--------------- round 6 ---------------
+seed = 3015921413
+[174713] is replaced by [174337] with estimated error 0
+error = 0
+area = 1067
+delay = 43.1
+#gates = 487
+output circuit appNtk/wal8_6_0_1067_43.1.blif
+time = 327551224 us
+--------------- round 7 ---------------
+seed = 1670115443
+[174867] is replaced by [175015] with estimated error 0
+error = 0
+area = 1065
+delay = 43.1
+#gates = 486
+output circuit appNtk/wal8_7_0_1065_43.1.blif
+time = 377618110 us
+--------------- round 8 ---------------
+seed = 28307070
+[174864] is replaced by [175953] with estimated error 0
+error = 0
+area = 1063
+delay = 43.1
+#gates = 485
+output circuit appNtk/wal8_8_0_1063_43.1.blif
+time = 428350312 us
+--------------- round 9 ---------------
+seed = 3838499469
+[175768] is replaced by [174261] with estimated error 0
+error = 0
+area = 1061
+delay = 43.1
+#gates = 484
+output circuit appNtk/wal8_9_0_1061_43.1.blif
+time = 478120022 us
+--------------- round 10 ---------------
+seed = 1094658174
+[175759] is replaced by [176137] with estimated error 0
+error = 0
+area = 1059
+delay = 43.1
+#gates = 483
+output circuit appNtk/wal8_10_0_1059_43.1.blif
+time = 529228524 us
+--------------- round 11 ---------------
+seed = 1636129554
+n108 is replaced by [174200] with inverter with estimated error 0
+error = 0
+area = 1057
+delay = 43.1
+#gates = 482
+output circuit appNtk/wal8_11_0_1057_43.1.blif
+time = 580684104 us
+--------------- round 12 ---------------
+seed = 1843222160
+n109 is replaced by [174183] with inverter with estimated error 0
+error = 0
+area = 1055
+delay = 43.1
+#gates = 481
+output circuit appNtk/wal8_12_0_1055_43.1.blif
+time = 631070394 us
+--------------- round 13 ---------------
+seed = 252113802
+[174151] is replaced by n312 with inverter with estimated error 0
+error = 0
+area = 1053
+delay = 43.1
+#gates = 481
+output circuit appNtk/wal8_13_0_1053_43.1.blif
+time = 681907313 us
+--------------- round 14 ---------------
+seed = 1261002015
+[174657] is replaced by [174226] with estimated error 0
+error = 0
+area = 1052
+delay = 43.1
+#gates = 480
+output circuit appNtk/wal8_14_0_1052_43.1.blif
+time = 733321114 us
+--------------- round 15 ---------------
+seed = 2412277971
+[174710] is replaced by [174339] with estimated error 0
+error = 0
+area = 1051
+delay = 43.1
+#gates = 479
+output circuit appNtk/wal8_15_0_1051_43.1.blif
+time = 783763074 us
+--------------- round 16 ---------------
+seed = 196559171
+[174125] is replaced by [174615] with estimated error 1.51113
+error = 1.50857
+area = 1045
+delay = 43.1
+#gates = 476
+output circuit appNtk/wal8_16_1.50857_1045_43.1.blif
+time = 838941082 us
+--------------- round 17 ---------------
+seed = 3987027191
+[174195] is replaced by one with estimated error 1.85733
+error = 1.86831
+area = 1042
+delay = 42.6
+#gates = 474
+output circuit appNtk/wal8_17_1.86831_1042_42.6.blif
+time = 891776885 us
+--------------- round 18 ---------------
+seed = 300866622
+[174120] is replaced by product[1] with estimated error 2.85472
+error = 2.85679
+area = 1025
+delay = 42.6
+#gates = 466
+output circuit appNtk/wal8_18_2.85679_1025_42.6.blif
+time = 942903096 us
+--------------- round 19 ---------------
+seed = 4189870223
+[174109] is replaced by zero with estimated error 2.94449
+error = 2.94618
+area = 1024
+delay = 42.6
+#gates = 465
+output circuit appNtk/wal8_19_2.94618_1024_42.6.blif
+time = 990587334 us
+--------------- round 20 ---------------
+seed = 482066168
+[174108] is replaced by one with estimated error 3.09267
+error = 3.1106
+area = 1023
+delay = 42.6
+#gates = 464
+output circuit appNtk/wal8_20_3.1106_1023_42.6.blif
+time = 1038952964 us
+--------------- round 21 ---------------
+seed = 1203693211
+product[5] is replaced by [176165] with inverter with estimated error 4.76109
+error = 4.7731
+area = 1013
+delay = 42.6
+#gates = 460
+output circuit appNtk/wal8_21_4.7731_1013_42.6.blif
+time = 1087310228 us
+--------------- round 22 ---------------
+seed = 2628935304
+[176247] is replaced by multiplicand[0] with inverter with estimated error 4.8827
+error = 4.88289
+area = 1012
+delay = 42.6
+#gates = 460
+output circuit appNtk/wal8_22_4.88289_1012_42.6.blif
+time = 1133226848 us
+--------------- round 23 ---------------
+seed = 127240451
+product[1] is replaced by [175250] with estimated error 5.56313
+error = 5.54154
+area = 1006
+delay = 42.6
+#gates = 457
+output circuit appNtk/wal8_23_5.54154_1006_42.6.blif
+time = 1181086991 us
+--------------- round 24 ---------------
+seed = 812757268
+[174880] is replaced by [174121] with estimated error 5.56313
+error = 5.53533
+area = 1005
+delay = 42.6
+#gates = 456
+output circuit appNtk/wal8_24_5.53533_1005_42.6.blif
+time = 1227582477 us
+--------------- round 25 ---------------
+seed = 1678480397
+[174197] is replaced by n528 with estimated error 5.63195
+error = 5.5749
+area = 1003
+delay = 42.6
+#gates = 455
+output circuit appNtk/wal8_25_5.5749_1003_42.6.blif
+time = 1273264739 us
+--------------- round 26 ---------------
+seed = 2503592298
+product[0] is replaced by zero with estimated error 5.63195
+error = 5.59744
+area = 1001
+delay = 42.6
+#gates = 454
+output circuit appNtk/wal8_26_5.59744_1001_42.6.blif
+time = 1318741092 us
+--------------- round 27 ---------------
+seed = 1312122233
+[174761] is replaced by n312 with estimated error 5.63195
+error = 5.59533
+area = 999
+delay = 42.6
+#gates = 453
+output circuit appNtk/wal8_27_5.59533_999_42.6.blif
+time = 1363505215 us
+--------------- round 28 ---------------
+seed = 2783871647
+[176241] is replaced by [175043] with estimated error 5.9447
+error = 6.02937
+area = 997
+delay = 42.6
+#gates = 452
+output circuit appNtk/wal8_28_6.02937_997_42.6.blif
+time = 1408529757 us
+--------------- round 29 ---------------
+seed = 2339170702
+product[2] is replaced by multiplicand[0] with estimated error 5.9447
+error = 5.83104
+area = 993
+delay = 42.6
+#gates = 450
+output circuit appNtk/wal8_29_5.83104_993_42.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1452421251 us
+--------------- round 30 ---------------
+seed = 2767982908
+[174113] is replaced by one with estimated error 5.2285
+error = 5.21631
+area = 991
+delay = 42.6
+#gates = 449
+output circuit appNtk/wal8_30_5.21631_991_42.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1496207759 us
+--------------- round 31 ---------------
+seed = 676669841
+[176169] is replaced by [174901] with estimated error 6.07736
+error = 6.11225
+area = 989
+delay = 42.6
+#gates = 448
+output circuit appNtk/wal8_31_6.11225_989_42.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1539838824 us
+--------------- round 32 ---------------
+seed = 733567721
+[174733] is replaced by [174884] with estimated error 6.07736
+error = 6.13349
+area = 988
+delay = 42.6
+#gates = 447
+output circuit appNtk/wal8_32_6.13349_988_42.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1583203805 us
+--------------- round 33 ---------------
+seed = 643900052
+[174620] is replaced by zero with estimated error 6.07736
+error = 6.03143
+area = 987
+delay = 42.6
+#gates = 446
+output circuit appNtk/wal8_33_6.03143_987_42.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1626160884 us
+--------------- round 34 ---------------
+seed = 4160547360
+[174615] is replaced by zero with estimated error 6.07736
+error = 6.097
+area = 986
+delay = 42.6
+#gates = 445
+output circuit appNtk/wal8_34_6.097_986_42.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1669465391 us
+--------------- round 35 ---------------
+seed = 540443606
+[174134] is replaced by one with estimated error 6.07736
+error = 6.10454
+area = 984
+delay = 42.6
+#gates = 444
+output circuit appNtk/wal8_35_6.10454_984_42.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1711748175 us
+--------------- round 36 ---------------
+seed = 3745802378
+[174122] is replaced by one with estimated error 6.07736
+error = 6.04935
+area = 982
+delay = 42.6
+#gates = 443
+output circuit appNtk/wal8_36_6.04935_982_42.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1754678938 us
+--------------- round 37 ---------------
+seed = 388863070
+[174111] is replaced by zero with estimated error 6.07736
+error = 6.12995
+area = 980
+delay = 42.6
+#gates = 442
+output circuit appNtk/wal8_37_6.12995_980_42.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1799260890 us
+--------------- round 38 ---------------
+seed = 1505447312
+[174121] is replaced by one with estimated error 6.07736
+error = 6.16919
+area = 977
+delay = 42.6
+#gates = 441
+output circuit appNtk/wal8_38_6.16919_977_42.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1843976645 us
+--------------- round 39 ---------------
+seed = 2814127250
+[175046] is replaced by zero with estimated error 6.05887
+error = 6.0871
+area = 976
+delay = 42.6
+#gates = 440
+output circuit appNtk/wal8_39_6.0871_976_42.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1885991730 us
+--------------- round 40 ---------------
+seed = 2924963606
+[175051] is replaced by zero with estimated error 6.05887
+error = 6.10295
+area = 975
+delay = 42.6
+#gates = 439
+output circuit appNtk/wal8_40_6.10295_975_42.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1927891348 us
+--------------- round 41 ---------------
+seed = 4036776229
+[174152] is replaced by one with estimated error 6.05887
+error = 6.01863
+area = 973
+delay = 42.6
+#gates = 438
+output circuit appNtk/wal8_41_6.01863_973_42.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1969910603 us
+--------------- round 42 ---------------
+seed = 1054620530
+exceed error bound

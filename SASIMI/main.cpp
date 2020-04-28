@@ -89,25 +89,12 @@ int main(int argc,char **argv) {
             map.SimulateNode();
             map.CollectTI(map0); // Chang modify, change input pattern and get correct output at runtime
 
-            // if (cntRound == 6) {
-            //     for(int i=map.I;i<map.I+map.O;i++){
-            //         int j = 87267;
-            //         cout << "Warning: " << map.N[i].var << "," << map0.N[i].I[j] << "," << map.N[i].I[j] << endl;
-            //     }
-            // }
-
             clock_t tempTime = clock();
             map.FindDeleteNode(error);
             map.findTime += (clock() - tempTime);
             //sumerror=error;
             if (map.TN.empty())
                 break;
-
-            // for (i = 0; i < map.TN.size(); i++) {
-            //     auto & x = map.TN[i];
-            //     auto & N = map.N;
-            //     cout << "(" << N[x.loc].var << "," << N[N[x.loc].sub].var << "," << N[x.loc].inv << "," << N[x.loc].error << "," << x.reducearea << "," << x.P << ")" << endl;
-            // }
 
             del = -1;
             for (i = 0; i < TOPNUM && i < map.TN.size(); i++) {
@@ -176,6 +163,7 @@ int main(int argc,char **argv) {
         printf("Original Area:%lf, Original Delay:%lf, Orignial Gate :%d\n", map.MaxArea, map.MaxDelay,
                (int) map.QN.size());
         while (error <= map.AEMThreshold) {
+            ++cntRound;
             random_device rd;
             unsigned seed = static_cast <unsigned> (rd());
             // map0.RandomInput(seed);
@@ -185,6 +173,7 @@ int main(int argc,char **argv) {
             // map.RandomInput(seed);
             map.SimulateNode();
             map.CollectTI(map0);
+            map.EvaluateTrueValue();
             map.CollectTrueValue(map0); // Chang modify, change input pattern and get correct output at runtime
             clock_t tempTime = clock();
             map.FindDeleteNode(error);

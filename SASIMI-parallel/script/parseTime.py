@@ -5,7 +5,7 @@
 import os
 
 
-for root, _, files in os.walk('./result/log'):
+for root, _, files in os.walk('./result/NMED/log'):
     for name in files:
         fileName = os.path.join(root, name)
         with open(fileName, 'r') as f:

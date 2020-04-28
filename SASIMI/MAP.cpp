@@ -748,11 +748,14 @@ int MAP::FindDeleteNode(double nowerror) {
         }
     }
     std::sort(TN.begin(),TN.end(),SortTN);
-    // int cnt = 0;
-    // for (auto & x : TN) {
-    //     cout << "(" << N[x.loc].var << "," << N[N[x.loc].sub].var << "," << N[x.loc].inv << "," << N[x.loc].error << "," << x.reducearea << "," << x.P << ")" << endl;
-    //     if (++cnt == 10)
-    //         break;
+    // extern int cntRound;
+    // if (cntRound == 11) {
+    //     for (auto & n: TN) {
+    //         int x = n.loc;
+    //         int sub = N[x].sub;
+    //         cout << N[x].var << "," << N[sub].var << "," << N[x].inv << "," << (N[x].inv? N[x].inverterror: N[x].error) << "," << N[x].reducearea << "," << n.P << endl;
+    //     }
+    //     assert(0);
     // }
     return del;
 }
@@ -1826,18 +1829,7 @@ double MAP::MeasureWithAEM(int x,double nowerror) {
     double TemP;
     double area = 0;
     bool flag;
-    //MeasureTwoVote(x);
-    //MeasureAdjustVote(x,FLOOR);
-    nowerror = 0;
-    // if(HIGESTORDER <= 64){
-    //     cout << "Warning" << endl;
-    //     unsigned long maxvalue = ((unsigned long)1<<HIGESTORDER) - 1;
-    //     for(i=0; i<SimValue; i++){
-    //         if(N[x].V1[i] > maxvalue)
-    //             return 0;
-    //     }
-    // }
-
+    // nowerror = 0;
     for (i = 0; i < 2; i++) { //consider 0 and 1
         error = AEMAddError(x, i);
         //error=AccurateMeasureError(x,i);
@@ -1851,7 +1843,11 @@ double MAP::MeasureWithAEM(int x,double nowerror) {
                 N[x].error = error;
                 N[x].reducearea = area;
             }
+            // cout << N[x].var << "," << i << "," << error << ",," << MeasureArea(x, i) << endl;
         }
+        // if (cntRound == 2) {
+        //     cout << N[x].var << "," << i << "," << nowerror << "," << error << "," << AEMThreshold << ",," << MeasureArea(x, i) << endl;
+        // }
     }
     for (i = 0; i < (int) QN.size(); i++){
         if (N[QN[i]].delay <= (N[x].delay) && QN[i] != x) {
@@ -1896,7 +1892,10 @@ double MAP::MeasureWithAEM(int x,double nowerror) {
                             N[x].reducearea = area;
                         }
                     }
-
+                    // extern int cntRound;
+                    // if (cntRound == 11 && N[x].var == "s[2]") {
+                    //     cout << N[x].var << "," << N[QN[i]].var << "," << error << "," << N[x].inverterror << "," << area << endl;
+                    // }
                 }
             }
         }
@@ -1905,9 +1904,13 @@ double MAP::MeasureWithAEM(int x,double nowerror) {
         N[x].P=P;
         return P;
     }
+    extern int cntRound;
     int innum=0;
     for(i=2;i<I;i++){
         innum=i/64;
+        // if (cntRound == 11 && N[x].var == "s[2]") {
+        //     cout << i << "," << N[i].var << "," << ((N[x].inloc[innum]>>(i%64)))%2 << "," << ((N[x].inloc[innum])) << endl;
+        // }
         if(((N[x].inloc[innum]>>(i%64)))%2){
             error=AEMAddError(x,i);
             //error=AccurateMeasureError(x,i);
@@ -1933,7 +1936,9 @@ double MAP::MeasureWithAEM(int x,double nowerror) {
                         N[x].reducearea=area;
                     }
                 }
-
+                // if (cntRound == 11 && N[x].var == "s[2]") {
+                //     cout << N[x].var << "," << N[i].var << "," << error << "," << N[x].inverterror << "," << area << endl;
+                // }
             }
         }
     }
@@ -2516,12 +2521,6 @@ double MAP::AddError(const int x, const int sub) {
     bool flag;
     N[x].inverterror=1;
     int invertsum=0;
-    int incNum = 0;
-    int decNum = 0;
-    extern int cntRound;
-    // if (N[x].var == "[39009]" && sub == 1) {
-    //     cout << "Warning: round " <<  cntRound << ",";
-    // }
     if(O2max){
         for(int i=0;i<SimValue;i++){
             if((N[x].V1[i]||N[x].V2[i]||N[x].V3[i])) {
@@ -2604,33 +2603,20 @@ double MAP::AddError(const int x, const int sub) {
     }
     else{
         for(int i=0;i<SimValue;i++) {
-            // if (N[x].var == "[39009]" && sub == 1 && cntRound == 6 && i == 87267)
-            //     cout << "Warning v" << N[x].V1[i] << endl;
             if (N[x].V1[i]) {
                 if (N[x].I[i] != N[sub].I[i]) {
-                    // if (N[x].var == "[39009]" && sub == 1 && cntRound == 6 && i == 87267)
-                    //     cout << "Warning errflag" << ErrFlag[i] << endl;
                     if (ErrFlag[i]) {
                         flag = true;
                         for (j = 0; j < O; j++) {
-                            // if (N[x].var == "[39009]" && sub == 1 && cntRound == 6 && i == 87267) {
-                            //     cout << "Warning flag" << (N[x].V1[i] >> j) % 2 << "," << N[I + j].W[i] << endl;
-                            // }
                             if ((N[x].V1[i] >> j) % 2 ^ N[I + j].W[i]) {
                                 flag = false;
                             }
                         }
                         if (flag) {
                             sum--;
-                            ++decNum;
-                            // if (N[x].var == "[39009]" && sub == 1 && cntRound == 6 && i == 87267)
-                            //     cout << "Warning " << i << endl;
-                            // if (N[x].var == "[39009]" && sub == 1 && cntRound == 6)
-                            //     cout << "Warning " << " round " << cntRound << "," << i << endl;
                         }
                     } else {
                         sum++;
-                        ++incNum;
                     }
                 } else if (sub != 0 && sub != 1) {
                     if (ErrFlag[i]) {
@@ -2649,14 +2635,6 @@ double MAP::AddError(const int x, const int sub) {
 
 
     }
-    // if (N[x].var == "[39009]" && sub == 1) {
-    //     cout << endl;
-    //     // cout << "Warning: round " <<  cntRound << "," << sum << "," << incNum << "," << decNum << endl;
-    // }
-    /*for(int i=0;i<SimValue;i++){
-	if(N[x].I[i]!=N[sub].I[i])
-		sum++;
-    }*/
     N[x].inverterror=(double)invertsum/SimValue;
     errorTime+=(clock()-tempTime);
     return (double)sum/SimValue;

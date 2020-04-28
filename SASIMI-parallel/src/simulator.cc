@@ -1189,6 +1189,24 @@ multiprecision::int256_t Simulator_t::GetOutput(int lsb, int msb, int frameId, b
 }
 
 
+int64_t Simulator_t::GetOutputFast(int blockId, int bitId) const
+{
+    int lsb = 0;
+    int msb = Abc_NtkPoNum(pNtk) - 1;
+    DASSERT(blockId < nBlock);
+    DASSERT(bitId < 64);
+    DASSERT(Abc_NtkPoNum(pNtk) <= 33, "do not support many POs now");
+    uint64_t ret = 0;
+    for (int k = msb; k >= lsb; --k) {
+        ret <<= 1;
+        Abc_Obj_t * pObj = Abc_NtkPo(pNtk, k);
+        if (GetValue(pObj, blockId, bitId))
+            ++ret;
+    }
+    return ret;
+}
+
+
 void Simulator_t::PrintInputStream(int frameId, bool isReverse) const
 {
     Abc_Obj_t * pObj = nullptr;
@@ -1468,7 +1486,7 @@ double MeasureResubNMED(Simulator_t * pSmlt1, Simulator_t * pSmlt2, Abc_Obj_t * 
 }
 
 
-double GetNMED(Simulator_t * pSmlt1, Simulator_t * pSmlt2, bool isCheck, bool isResub)
+double GetNMED(Simulator_t * pSmlt1, Simulator_t * pSmlt2, bool isCheck, bool isTmpValue)
 {
     if (isCheck)
         DASSERT(SmltChecker(pSmlt1, pSmlt2));
@@ -1477,7 +1495,7 @@ double GetNMED(Simulator_t * pSmlt1, Simulator_t * pSmlt2, bool isCheck, bool is
     bigInt sum(0);
     int nPo = Abc_NtkPoNum(pSmlt1->GetNetwork());
     int nFrame = pSmlt1->GetFrameNum();
-    if (isResub) {
+    if (isTmpValue) {
         for (int k = 0; k < nFrame; ++k)
             sum += (abs(pSmlt1->GetOutput(0, nPo - 1, k, 0) - pSmlt2->GetOutput(0, nPo - 1, k, 1)));
     }
@@ -1485,8 +1503,51 @@ double GetNMED(Simulator_t * pSmlt1, Simulator_t * pSmlt2, bool isCheck, bool is
         for (int k = 0; k < nFrame; ++k)
             sum += (abs(pSmlt1->GetOutput(0, nPo - 1, k, 0) - pSmlt2->GetOutput(0, nPo - 1, k, 0)));
     }
-    bigInt frac = (static_cast <bigInt> (nFrame)) << nPo;;
+    // bigInt frac = (static_cast <bigInt> (nFrame)) << nPo;
+    bigInt frac = (static_cast <bigInt> (1) << nPo) - 1;
     return static_cast <double> (static_cast <bigFlt>(sum) / static_cast <bigFlt>(frac));
+}
+
+
+int64_t GetNMEDFast(Simulator_t * pSmlt1, Simulator_t * pSmlt2, bool isCheck)
+{
+    if (isCheck)
+        DASSERT(SmltChecker(pSmlt1, pSmlt2));
+    int64_t sum = 0;
+    Abc_Ntk_t * pOriNtk = pSmlt1->GetNetwork();
+    Abc_Ntk_t * pAppNtk = pSmlt2->GetNetwork();
+    int nPo = Abc_NtkPoNum(pOriNtk);
+    DASSERT(nPo <= 33, "do not support plenty of POs now");
+    int nFrame = pSmlt1->GetFrameNum();
+    for (int k = 0; k < nFrame; ++k) {
+        int64_t y1 = 0;
+        int64_t y2 = 0;
+        int blockId = k >> 6;
+        int bitId = k % 64;
+        for (int j = nPo - 1; j >= 0; --j) {
+            y1 <<= 1;
+            y2 <<= 1;
+            Abc_Obj_t * pObj = Abc_NtkPo(pOriNtk, j);
+            if (pSmlt1->GetValue(pObj, blockId, bitId))
+                ++y1;
+            pObj = Abc_NtkPo(pAppNtk, j);
+            if (pSmlt2->GetValue(pObj, blockId, bitId))
+                ++y2;
+        }
+        sum += abs(y1 - y2);
+    }
+    return sum;
+}
+
+
+int64_t GetNMEDFast(std::vector <int64_t> & oriOutputs, std::vector <int64_t> & appOutputs)
+{
+    DASSERT(oriOutputs.size() == appOutputs.size());
+    int nFrame = static_cast <int> (oriOutputs.size());
+    int64_t NMED = 0;
+    for (int i = 0; i < nFrame; ++i)
+        NMED += abs(oriOutputs[i] - appOutputs[i]);
+    return NMED;
 }
 
 
@@ -1592,7 +1653,16 @@ double MeasureSASIMIER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, Abc_Obj_t * p
 }
 
 
-int GetER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, bool isCheck, bool isResub)
+double MeasureSASIMINMED(Simulator_t * pSmlt1, Simulator_t * pSmlt2, Abc_Obj_t * pTS, Abc_Obj_t * pSS, bool isInv, bool isCheck)
+{
+    if (isCheck)
+        DASSERT(SmltChecker(pSmlt1, pSmlt2));
+    pSmlt2->SimulateSASIMI(pTS, pSS, isInv);
+    return GetNMED(pSmlt1, pSmlt2, false, true);
+}
+
+
+int GetER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, bool isCheck, bool isTmpValue)
 {
     if (isCheck)
         DASSERT(SmltChecker(pSmlt1, pSmlt2));
@@ -1604,7 +1674,7 @@ int GetER(Simulator_t * pSmlt1, Simulator_t * pSmlt2, bool isCheck, bool isResub
     int nBlock = pSmlt1->GetBlockNum();
     int nLastBlock = pSmlt1->GetLastBlockLen();
     vector <tVec> * pValues1 = pSmlt1->GetPValues();
-    vector <tVec> * pValues2 = isResub? pSmlt2->GetPTmpValues(): pSmlt2->GetPValues();
+    vector <tVec> * pValues2 = isTmpValue? pSmlt2->GetPTmpValues(): pSmlt2->GetPValues();
     uint64_t lastBlockMask = 0;
     for (int i = 0; i < nLastBlock; ++i)
         Ckt_SetBit(lastBlockMask, i);
