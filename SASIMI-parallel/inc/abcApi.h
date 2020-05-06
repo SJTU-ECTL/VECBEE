@@ -30,4 +30,9 @@
 #include "proof/ssw/ssw.h"
 
 
+extern "C" {
+    void Abc_NtkDfsReverse_rec(Abc_Obj_t * pNode, Vec_Ptr_t * vNodes);
+}
+
+
 #endif // ABC_API_H

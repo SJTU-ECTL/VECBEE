@@ -249,6 +249,57 @@ void Simulator_t::SimulateCutNtks()
 }
 
 
+void Simulator_t::SimulateOneCutNtks()
+{
+    Abc_Obj_t * pObj = nullptr;
+    int i = 0;
+    bdCuts.resize(maxId + 1);
+    Abc_NtkForEachNode(pNtk, pObj, i) {
+        if (!Abc_NodeIsConst(pObj)) {
+            // flip the node
+            for (int j = 0; j < nBlock; ++j) {
+                tmpValues[pObj->Id][j] = ~values[pObj->Id][j];
+                // cout << "filp " << Abc_ObjName(pObj) << "," << values[pObj->Id][j] << "," << tmpValues[pObj->Id][j] << endl;
+            }
+            // simulate
+            Abc_NtkIncrementTravId(pNtk);
+            Abc_NodeSetTravIdCurrent(pObj);
+            for (auto & pInner: cutNtks[pObj->Id])
+                Abc_NodeSetTravIdCurrent(pInner);
+            if (Abc_NtkIsAigLogic(pNtk)) {
+                for (auto & pInner: cutNtks[pObj->Id])
+                    UpdateAigObjCutNtk(pInner);
+            }
+            else if (Abc_NtkIsSopLogic(pNtk)) {
+                for (auto & pInner: cutNtks[pObj->Id])
+                    UpdateSopObjCutNtk(pInner);
+            }
+            else if (Abc_NtkIsMappedLogic(pNtk)) {
+                for (auto & pInner: cutNtks[pObj->Id]) {
+                    UpdateMapObjCutNtk(pInner);
+                    // cout << Abc_ObjName(pInner) << " old value " << values[pInner->Id][0] << " new value " << tmpValues[pInner->Id][0] << endl;
+                }
+            }
+            else
+                DASSERT(0);
+            // get boolean difference from the node to its disjoint cuts
+            int nPo = Abc_NtkPoNum(pNtk);
+            bdCuts[pObj->Id].resize(nPo);
+            for (int j = 0; j < nPo; ++j) {
+                Abc_Obj_t * pCutNode = oneCuts[pObj->Id][j];
+                if (pCutNode != nullptr) {
+                    bdCuts[pObj->Id][j].resize(nBlock);
+                    for (int k = 0; k < nBlock; ++k) {
+                        bdCuts[pObj->Id][j][k] = values[pCutNode->Id][k] ^ tmpValues[pCutNode->Id][k];
+                        // cout << Abc_ObjName(pObj) << "," << j << "," << k << "," << bdCuts[pObj->Id][j][k] << endl;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 void Simulator_t::SimulateResub(Abc_Obj_t * pOldObj, void * pResubFunc, Vec_Ptr_t * vResubFanins)
 {
     Abc_Obj_t * pObj = nullptr;
@@ -1323,6 +1374,172 @@ void Simulator_t::BuildAppCutNtks()
 }
 
 
+void Simulator_t::BuildOneCutNtks()
+{
+    DASSERT(flow.empty());
+    DASSERT(oneCuts.empty());
+    DASSERT(cutNtks.empty());
+    flow.resize(maxId + 1);
+    oneCuts.resize(maxId + 1);
+    cutNtks.resize(maxId + 1);
+
+    // update topological id
+    Vec_Ptr_t * vNodes = Abc_NtkDfs(pNtk, 0);
+    Abc_Obj_t * pObj = 0;
+    int i = 0;
+    topoIds.resize(maxId + 1);
+    Vec_PtrForEachEntry(Abc_Obj_t *, vNodes, pObj, i)
+        topoIds[pObj->Id] = i;
+    int topoId = -1;
+    Abc_NtkForEachPi(pNtk, pObj, i)
+        topoIds[pObj->Id] = topoId--;
+    topoId = Vec_PtrSize(vNodes);
+    Abc_NtkForEachPo(pNtk, pObj, i)
+        topoIds[pObj->Id] = topoId++;
+
+    // update sink POs
+    int sinkLen = (Abc_NtkPoNum(pNtk) >> 6) + 1;
+    sinks.resize(maxId + 1);
+    Abc_NtkForEachObj(pNtk, pObj, i)
+        sinks[pObj->Id].resize(sinkLen, 0);
+    Abc_NtkForEachPo(pNtk, pObj, i)
+        Ckt_SetBit(sinks[pObj->Id][i >> 6], i);
+    Vec_PtrForEachEntryReverse(Abc_Obj_t *, vNodes, pObj, i) {
+        Abc_Obj_t * pFanout = nullptr;
+        int j = 0;
+        Abc_ObjForEachFanout(pObj, pFanout, j) {
+            for (int k = 0; k < sinkLen; ++k)
+                sinks[pObj->Id][k] |= sinks[pFanout->Id][k];
+        }
+    }
+    Vec_PtrFree(vNodes);
+
+    // collect one cuts and cut networks
+    Abc_Obj_t * pPo = nullptr;
+    int j = 0;
+    set <Abc_Obj_t *> cutNtkNodes;
+    Abc_NtkForEachNode(pNtk, pObj, i) {
+        if (Abc_NodeIsConst(pObj))
+            continue;
+        UpdateFoCone(pObj);
+        oneCuts[pObj->Id].resize(Abc_NtkPoNum(pNtk));
+        cutNtkNodes.clear();
+        Abc_NtkForEachPo(pNtk, pPo, j) {
+            if (Ckt_GetBit(sinks[pObj->Id][j >> 6], static_cast <uint64_t> (j) & static_cast <uint64_t> (63)))
+                FindOneCut(pObj, j, cutNtkNodes);
+        }
+        SortCutNtkNodes(pObj, cutNtkNodes);
+    }
+}
+
+
+void Simulator_t::UpdateFoCone(Abc_Obj_t * pNode)
+{
+    isInFoCone.resize((maxId >> 6) + 1);
+    fill(isInFoCone.begin(), isInFoCone.end(), 0);
+    DASSERT(pNode->pNtk == pNtk);
+    Abc_NtkIncrementTravId(pNtk);
+    Vec_Ptr_t * vNodes = Vec_PtrAlloc(100);
+    Abc_NodeSetTravIdCurrent(pNode);
+    Abc_Obj_t * pFanout = nullptr;
+    int i = 0;
+    Abc_ObjForEachFanout(pNode, pFanout, i)
+        Abc_NtkDfsReverse_rec(pFanout, vNodes);
+    Vec_PtrForEachEntryReverse(Abc_Obj_t *, vNodes, pFanout, i) {
+        Ckt_SetBit(isInFoCone[pFanout->Id >> 6], static_cast <uint64_t> (pFanout->Id) & static_cast <uint64_t> (63));
+    }
+    Ckt_SetBit(isInFoCone[pNode->Id >> 6], static_cast <uint64_t> (pNode->Id) & static_cast <uint64_t> (63));
+    Vec_PtrFree(vNodes);
+}
+
+
+void Simulator_t::FindOneCut(Abc_Obj_t * pSource, int poId, set <Abc_Obj_t *> & cutNtkNodes)
+{
+    DASSERT(pSource->pNtk == pNtk);
+    Abc_Obj_t * pPo = Abc_NtkPo(pNtk, poId);
+
+    // collect one cut
+    Abc_NtkIncrementTravId(pNtk);
+    Abc_NodeSetTravIdCurrent(pPo);
+    fill(flow.begin(), flow.end(), 0);
+    flow[pSource->Id] = 1.0;
+    oneCuts[pSource->Id][poId] = nullptr;
+    // cout << "Find cut " << Abc_ObjName(pSource) << "," << Abc_ObjName(pPo) << endl;
+    FindOneCut_rec(Abc_ObjFanin0(pPo), pSource, poId, cutNtkNodes);
+    DASSERT(oneCuts[pSource->Id][poId] != nullptr);
+}
+
+
+void Simulator_t::FindOneCut_rec(Abc_Obj_t * pNode, Abc_Obj_t * pSource, int poId, set <Abc_Obj_t *> & cutNtkNodes)
+{
+    assert(!Abc_ObjIsNet(pNode));
+    // if this node is already visited, skip
+    if (Abc_NodeIsTravIdCurrent(pNode))
+        return;
+    if (!Ckt_GetBit(isInFoCone[pNode->Id >> 6], static_cast <uint64_t> (pNode->Id) & static_cast <uint64_t> (63)))
+        return;
+    if (oneCuts[pSource->Id][poId] != nullptr)
+        return;
+    // cout << "visit node " << Abc_ObjName(pNode) << endl;
+    // mark the node as visited
+    Abc_NodeSetTravIdCurrent(pNode);
+    // skip the CI
+    if (Abc_ObjIsCi(pNode) || (Abc_NtkIsStrash(pNode->pNtk) && Abc_AigNodeIsConst(pNode)))
+        return;
+    assert(Abc_ObjIsNode(pNode) || Abc_ObjIsBox(pNode));
+    // visit the transitive fanin of the node
+    Abc_Obj_t * pFanin = nullptr;
+    int i = 0;
+    Abc_ObjForEachFanin(pNode, pFanin, i)
+        FindOneCut_rec(pFanin, pSource, poId, cutNtkNodes);
+    // add the node after the fanins have been added
+    if (oneCuts[pSource->Id][poId] == nullptr) {
+        // cout << "flow from node " << Abc_ObjName(pNode) << endl;
+        Abc_Obj_t * pFanout = nullptr;
+        int foCnt = 0;
+        Abc_ObjForEachFanout(pNode, pFanout, i) {
+            if (Ckt_GetBit(sinks[pFanout->Id][poId >> 6],  static_cast <uint64_t> (poId) & static_cast <uint64_t> (63) )) {
+                ++foCnt;
+            }
+        }
+        Abc_ObjForEachFanout(pNode, pFanout, i) {
+            if (Ckt_GetBit(sinks[pFanout->Id][poId >> 6],  static_cast <uint64_t> (poId) & static_cast <uint64_t> (63) )) {
+                DASSERT(foCnt);
+                flow[pFanout->Id] += flow[pNode->Id] / foCnt;
+                if (abs(flow[pFanout->Id] - 1.0) <= 1e-10) {
+                    oneCuts[pSource->Id][poId] = pFanout;
+                    // cout << "find one cut " << Abc_ObjName(pFanout) << endl;
+                }
+                // cout << "flow to " << Abc_ObjName(pFanout) << "," << flow[pFanout->Id] << endl;
+                if (pFanout != pSource) {
+                    // if (!cutNtkNodes.count(pFanout))
+                    //     cout << "add " << Abc_ObjName(pFanout) << endl;
+                    cutNtkNodes.insert(pFanout);
+                }
+            }
+        }
+
+    }
+}
+
+
+void Simulator_t::SortCutNtkNodes(Abc_Obj_t * pSource, std::set <Abc_Obj_t *> & cutNtkNodes)
+{
+    cutNtks[pSource->Id].assign(cutNtkNodes.begin(), cutNtkNodes.end());
+    sort(cutNtks[pSource->Id].begin(), cutNtks[pSource->Id].end(), [this](const Abc_Obj_t * pObj1, const Abc_Obj_t * pObj2) {
+        if (this->topoIds[pObj1->Id] < this->topoIds[pObj2->Id])
+            return true;
+        DASSERT(this->topoIds[pObj1->Id] > this->topoIds[pObj2->Id]);
+        return false;
+    }
+    );
+    // cout << "source " << Abc_ObjName(pSource) << ":";
+    // for (auto & node: cutNtks[pSource->Id])
+    //     cout << Abc_ObjName(node) << ",";
+    // cout << endl;
+}
+
+
 void Simulator_t::FindDisjointCut(Abc_Obj_t * pObj, list <Abc_Obj_t *> & djCut)
 {
     djCut.clear();
@@ -1425,6 +1642,33 @@ void Simulator_t::UpdateBoolDiff(IN Vec_Ptr_t * vNodes, INOUT vector <tVec> & bd
                 bd[pObj->Id][j] |= bdCuts[pObj->Id][k][j] & bd[pCut->Id][j];
             ++k;
         }
+    }
+}
+
+
+void Simulator_t::UpdateBoolDiffOneCut(IN int poId, IN Vec_Ptr_t * vNodes, INOUT vector <tVec> & bdPo)
+{
+    Abc_Obj_t * pPo = Abc_NtkPo(pNtk, poId);
+    Abc_Obj_t * pObj = nullptr;
+    int i = 0;
+    Abc_NtkForEachPo(pNtk, pObj, i) {
+        if (pObj == pPo)
+            fill(bdPo[pObj->Id].begin(), bdPo[pObj->Id].end(), static_cast <uint64_t> (ULLONG_MAX));
+        else
+            fill(bdPo[pObj->Id].begin(), bdPo[pObj->Id].end(), 0);
+    }
+    Vec_PtrForEachEntryReverse(Abc_Obj_t *, vNodes, pObj, i) {
+        if (Abc_NodeIsConst(pObj))
+            continue;
+        Abc_Obj_t * pCut = oneCuts[pObj->Id][poId];
+        if (pCut != nullptr) {
+            for (int j = 0; j < nBlock; ++j) {
+                bdPo[pObj->Id][j] = bdCuts[pObj->Id][poId][j] & bdPo[pCut->Id][j];
+                // cout << Abc_ObjName(pObj) << "," << j << "," << bdPo[pObj->Id][j] << endl;
+            }
+        }
+        else
+            fill(bdPo[pObj->Id].begin(), bdPo[pObj->Id].end(), 0);
     }
 }
 

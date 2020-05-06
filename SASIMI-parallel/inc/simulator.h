@@ -25,10 +25,13 @@ private:
     int nLastBlock;
     int maxId;
     std::vector <int> topoIds;
+    tVec isInFoCone;
+    std::vector <double> flow;
     std::vector <tVec> values;
     std::vector <tVec> tmpValues;
     std::vector <tVec> sinks;
     std::vector < std::list <Abc_Obj_t *> > djCuts;
+    std::vector < std::vector <Abc_Obj_t *> > oneCuts;
     std::vector < std::vector <Abc_Obj_t *> > cutNtks;
     std::vector < std::vector <tVec> > bdCuts;
 
@@ -42,6 +45,7 @@ public:
     void Input(std::string fileName);
     void Simulate();
     void SimulateCutNtks();
+    void SimulateOneCutNtks();
     void SimulateResub(Abc_Obj_t * pOldObj, void * pResubFunc, Vec_Ptr_t * vResubFanins);
     void SimulateSASIMI(Abc_Obj_t * pTS, Abc_Obj_t * pSS, bool isInv);
     void UpdateAigNode(Abc_Obj_t * pObj);
@@ -61,11 +65,17 @@ public:
     void PrintOutputStream(int frameId = 0, bool isReverse = false) const;
     void BuildCutNtks();
     void BuildAppCutNtks();
+    void BuildOneCutNtks();
+    void UpdateFoCone(Abc_Obj_t * pNode);
+    void FindOneCut(Abc_Obj_t * pSource, int poId, std::set <Abc_Obj_t *> & cutNtkNodes);
+    void FindOneCut_rec(Abc_Obj_t * pNode, Abc_Obj_t * pSource, int poId, std::set <Abc_Obj_t *> & cutNtkNodes);
+    void SortCutNtkNodes(Abc_Obj_t * pSource, std::set <Abc_Obj_t *> & cutNtkNodes);
     void FindDisjointCut(Abc_Obj_t * pObj, std::list <Abc_Obj_t *> & djCut);
     void ExpandCut(Abc_Obj_t * pObj, std::list <Abc_Obj_t *> & djCut);
     Abc_Obj_t * ExpandWhich(std::list <Abc_Obj_t *> & djCut);
     void UpdateBoolDiff(IN Abc_Obj_t * pPo, IN Vec_Ptr_t * vNodes, INOUT std::vector <tVec> & bdPo);
     void UpdateBoolDiff(IN Vec_Ptr_t * vNodes, INOUT std::vector <tVec> & bds);
+    void UpdateBoolDiffOneCut(IN int poId, IN Vec_Ptr_t * vNodes, INOUT std::vector <tVec> & bdPo);
 
     inline Abc_Ntk_t * GetNetwork() const {return pNtk;}
     inline int GetFrameNum() const {return nFrame;}

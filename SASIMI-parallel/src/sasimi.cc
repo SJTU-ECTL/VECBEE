@@ -36,13 +36,15 @@ void SASIMI_Manager_t::GreedySelection(Abc_Ntk_t * pOriNtk, string outPrefix)
     while (error < errorBound) {
         cout << "--------------- round " << ++cntRound << " ---------------" << endl;
         Simulator_t * pAppSmlt = new Simulator_t(pAppNtk, nFrame);
-        unsigned seed = static_cast <unsigned> (rd());
+        // unsigned seed = static_cast <unsigned> (rd());
+        unsigned seed = 314;
         cout << "seed = " << seed << endl;
         oriSmlt.Input();
         oriSmlt.Simulate();
         pAppSmlt->Input();
         pAppSmlt->Simulate();
-        GetCPM(oriSmlt, *pAppSmlt, bds);
+        // GetCPM(oriSmlt, *pAppSmlt, bds);
+        GetCPMOneCut(oriSmlt, *pAppSmlt, bds);
         Abc_NtkDelayTrace(pAppNtk, nullptr, nullptr, 0);
         CollectMFFC(*pAppSmlt, vMffcs);
         if (metricType == Metric_t::ER)
@@ -133,6 +135,59 @@ void SASIMI_Manager_t::GetCPM(IN Simulator_t & oriSmlt, IN Simulator_t & appSmlt
     Abc_Obj_t * pAppPo = nullptr;
     Abc_NtkForEachPo(pAppNtk, pAppPo, i)
         appSmlt.UpdateBoolDiff(pAppPo, vNodes, bds[i]);
+
+    for (int i = 0; i < Abc_NtkPoNum(pAppNtk); ++i) {
+        Abc_Obj_t * pObj = nullptr;
+        int j = 0;
+        Abc_NtkForEachNode(pAppNtk, pObj, j) {
+            // for (int k = 0; k < nBlock; ++k)
+            int k = 0;
+            cout << Abc_ObjName(Abc_NtkPo(pAppNtk, i)) << "," << Abc_ObjName(pObj) << "," << bds[i][pObj->Id][k] << endl;
+        }
+    }
+
+    // clean up
+    Vec_PtrFree(vNodes);
+}
+
+
+void SASIMI_Manager_t::GetCPMOneCut(IN Simulator_t & oriSmlt, IN Simulator_t & appSmlt, OUT vector < vector <tVec> > & bds)
+{
+    // check
+    Abc_Ntk_t * pOriNtk = oriSmlt.GetNetwork();
+    Abc_Ntk_t * pAppNtk = appSmlt.GetNetwork();
+    DASSERT(pOriNtk != pAppNtk);
+    DASSERT(SmltChecker(&oriSmlt, &appSmlt));
+    // get 1-cuts and the corresponding networks
+    appSmlt.BuildOneCutNtks();
+    // simulate networks of disjoint cuts
+    appSmlt.SimulateOneCutNtks();
+    // topological sort
+    Vec_Ptr_t * vNodes = Abc_NtkDfs(pAppNtk, 0);
+    // init boolean difference
+    int nBlock = appSmlt.GetBlockNum();
+    bds.resize(Abc_NtkPoNum(pAppNtk));
+    for (auto & bdPo: bds) {
+        bdPo.resize(appSmlt.GetMaxId() + 1);
+        for (auto & bdObjPo: bdPo)
+            bdObjPo.resize(nBlock);
+    }
+    // compute boolean difference
+    int i = 0;
+    Abc_Obj_t * pAppPo = nullptr;
+    Abc_NtkForEachPo(pAppNtk, pAppPo, i)
+        appSmlt.UpdateBoolDiffOneCut(i, vNodes, bds[i]);
+
+    for (int i = 0; i < Abc_NtkPoNum(pAppNtk); ++i) {
+        Abc_Obj_t * pObj = nullptr;
+        int j = 0;
+        Abc_NtkForEachNode(pAppNtk, pObj, j) {
+            // for (int k = 0; k < nBlock; ++k)
+            int k = 0;
+            cout << Abc_ObjName(Abc_NtkPo(pAppNtk, i)) << "," << Abc_ObjName(pObj) << "," << bds[i][pObj->Id][k] << endl;
+        }
+    }
+
     // clean up
     Vec_PtrFree(vNodes);
 }
