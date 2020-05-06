@@ -36,8 +36,8 @@ void SASIMI_Manager_t::GreedySelection(Abc_Ntk_t * pOriNtk, string outPrefix)
     while (error < errorBound) {
         cout << "--------------- round " << ++cntRound << " ---------------" << endl;
         Simulator_t * pAppSmlt = new Simulator_t(pAppNtk, nFrame);
-        // unsigned seed = static_cast <unsigned> (rd());
-        unsigned seed = 314;
+        unsigned seed = static_cast <unsigned> (rd());
+        // unsigned seed = 314;
         cout << "seed = " << seed << endl;
         oriSmlt.Input();
         oriSmlt.Simulate();
