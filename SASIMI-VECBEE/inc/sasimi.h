@@ -11,6 +11,8 @@ class LAC_t;
 class SASIMI_Manager_t{
 private:
     int nFrame;
+    int maxLevel;
+    int cntRound;
     Metric_t metricType;
     double errorBound;
 
@@ -18,7 +20,7 @@ private:
     SASIMI_Manager_t(const SASIMI_Manager_t &);
 
 public:
-    explicit SASIMI_Manager_t(Abc_Ntk_t * pNtk, int nFrame, Metric_t metricType, double errorBound);
+    explicit SASIMI_Manager_t(Abc_Ntk_t * pNtk, int nFrame, int maxLevel, Metric_t metricType, double errorBound);
     ~SASIMI_Manager_t();
     void GreedySelection(Abc_Ntk_t * pOriNtk, std::string outPrefix);
     void PatchConst(Abc_Ntk_t * pNtk);
@@ -31,7 +33,7 @@ public:
     void CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t & appSmlt, IN std::vector <tVec> & isERInc, IN std::vector <tVec> & isERDec, IN std::vector <tVec> & sources, IN std::vector <Vec_Ptr_t * > & vMffcs, IN int baseER, OUT LAC_t & nodeLAC);
     void CollectNodeLACUnderNMED(IN Abc_Obj_t * pTS, IN Simulator_t & appSmlt, IN std::vector <int64_t> & oriOutputs, IN std::vector <int64_t> & appOutputs, IN tVec & bdNode, IN std::vector <tVec> & sources, IN std::vector <Vec_Ptr_t * > & vMffcs, IN int64_t baseNMED, OUT LAC_t & nodeLAC);
     void SortCandLACs(IN std::vector <LAC_t> & nodeLACs, IN int nFrame, OUT std::vector <LAC_t> & candLACs);
-    int ApplyBestLAC(Simulator_t & oriSmlt, Simulator_t & appSmlt, std::vector <LAC_t> & candLACs, int topNum, int cntRound, std::string outPrefix, unsigned seed);
+    int ApplyBestLAC(Simulator_t & oriSmlt, Simulator_t & appSmlt, std::vector <LAC_t> & candLACs, int topNum, std::string outPrefix, unsigned seed);
     void GetDER(IN Simulator_t & appSmlt, IN Abc_Obj_t * pTS, IN Abc_Obj_t * pSS, IN std::vector <tVec> & isERInc, IN std::vector <tVec> & isERDec, OUT std::pair <int, int> & errors);
     void GetDNMED(IN Simulator_t & appSmlt, IN std::vector <int64_t> & oriOutputs, IN std::vector <int64_t> & appOutputs, IN std::vector <int64_t> & appOutputsNew, IN Abc_Obj_t * pTS, IN Abc_Obj_t * pSS, OUT std::pair <int64_t, int64_t> & dErrors);
     double GetDArea(Abc_Obj_t * pTS, Abc_Obj_t * pSS, std::vector <Vec_Ptr_t *> & vMffcs);

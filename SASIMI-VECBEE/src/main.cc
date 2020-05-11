@@ -17,6 +17,7 @@ parser Cmdline_Parser(int argc, char * argv[])
     option.add <string> ("metricType", '\0', "error metric type, er, nmed", false, "er");
     option.add <float>  ("errorBound", 'e', "error metric upper bound", false, 0.05, range(0.0, 1.0));
     option.add <int>    ("frameNumber", 'f', "simulation round", false, 100000, range(1, INT_MAX));
+    option.add <int>    ("maxLevel", '\0', "max TFO cut level", false, INT_MAX, range(1, INT_MAX));
     option.parse_check(argc, argv);
     return option;
 }
@@ -32,6 +33,7 @@ int main(int argc, char * argv[])
     Metric_t metricType = (option.get <string> ("metricType") == "er")? Metric_t::ER: Metric_t::NMED;
     float errorBound = option.get <float> ("errorBound");
     int frameNumber = option.get <int> ("frameNumber");
+    int maxLevel = option.get <int> ("maxLevel");
 
     // deal with IO
     path inputPath(input);
@@ -61,7 +63,7 @@ int main(int argc, char * argv[])
 
     // sasimi + vecbee
     Abc_Ntk_t * pNtk = Abc_FrameReadNtk(pAbc);
-    SASIMI_Manager_t sasimiMng(pNtk, frameNumber, metricType, errorBound);
+    SASIMI_Manager_t sasimiMng(pNtk, frameNumber, maxLevel, metricType, errorBound);
     sasimiMng.GreedySelection(pNtk, outPrefix.string());
 
     // stop abc

@@ -5,8 +5,8 @@ using namespace std;
 using namespace std::filesystem;
 
 
-SASIMI_Manager_t::SASIMI_Manager_t(Abc_Ntk_t * pNtk, int nFrame, Metric_t metricType, double errorBound):
-    nFrame(nFrame), metricType(metricType), errorBound(errorBound)
+SASIMI_Manager_t::SASIMI_Manager_t(Abc_Ntk_t * pNtk, int nFrame, int maxLevel, Metric_t metricType, double errorBound):
+    nFrame(nFrame), maxLevel(maxLevel), metricType(metricType), errorBound(errorBound)
 {
 }
 
@@ -26,22 +26,23 @@ void SASIMI_Manager_t::GreedySelection(Abc_Ntk_t * pOriNtk, string outPrefix)
 
     // iteration
     double error = 0;
-    int cntRound = 0;
     vector < vector <tVec> > bds; // cpm[PO][obj][frameBlock]
     vector <Vec_Ptr_t *> vMffcs;
     vector <LAC_t> nodeLACs;
     vector <LAC_t> candLACs;
     random_device rd;
     clock_t st = clock();
+    cntRound = 0;
     while (error < errorBound) {
         cout << "--------------- round " << ++cntRound << " ---------------" << endl;
         Simulator_t * pAppSmlt = new Simulator_t(pAppNtk, nFrame);
         unsigned seed = static_cast <unsigned> (rd());
-        // unsigned seed = 314;
+        // unsigned seed = 2531465778;
         cout << "seed = " << seed << endl;
-        oriSmlt.Input();
+        cout << "maxLevel = " << maxLevel << endl;
+        oriSmlt.Input(seed);
         oriSmlt.Simulate();
-        pAppSmlt->Input();
+        pAppSmlt->Input(seed);
         pAppSmlt->Simulate();
         // GetCPM(oriSmlt, *pAppSmlt, bds);
         GetCPMOneCut(oriSmlt, *pAppSmlt, bds);
@@ -53,7 +54,7 @@ void SASIMI_Manager_t::GreedySelection(Abc_Ntk_t * pOriNtk, string outPrefix)
             CollectAllLACsUnderNMED(oriSmlt, *pAppSmlt, bds, vMffcs, nodeLACs);
         FreeMFFC(vMffcs);
         SortCandLACs(nodeLACs, pAppSmlt->GetFrameNum(), candLACs);
-        int res = ApplyBestLAC(oriSmlt, *pAppSmlt, candLACs, 10, cntRound, outPrefix, seed);
+        int res = ApplyBestLAC(oriSmlt, *pAppSmlt, candLACs, 10, outPrefix, seed);
         delete pAppSmlt;
         if (res) {
             cout << "exceed error bound" << endl;
@@ -136,16 +137,6 @@ void SASIMI_Manager_t::GetCPM(IN Simulator_t & oriSmlt, IN Simulator_t & appSmlt
     Abc_NtkForEachPo(pAppNtk, pAppPo, i)
         appSmlt.UpdateBoolDiff(pAppPo, vNodes, bds[i]);
 
-    // for (int i = 0; i < Abc_NtkPoNum(pAppNtk); ++i) {
-    //     Abc_Obj_t * pObj = nullptr;
-    //     int j = 0;
-    //     Abc_NtkForEachNode(pAppNtk, pObj, j) {
-    //         // for (int k = 0; k < nBlock; ++k)
-    //         int k = 0;
-    //         cout << Abc_ObjName(Abc_NtkPo(pAppNtk, i)) << "," << Abc_ObjName(pObj) << "," << bds[i][pObj->Id][k] << endl;
-    //     }
-    // }
-
     // clean up
     Vec_PtrFree(vNodes);
 }
@@ -159,7 +150,7 @@ void SASIMI_Manager_t::GetCPMOneCut(IN Simulator_t & oriSmlt, IN Simulator_t & a
     DASSERT(pOriNtk != pAppNtk);
     DASSERT(SmltChecker(&oriSmlt, &appSmlt));
     // get 1-cuts and the corresponding networks
-    appSmlt.BuildOneCutNtks();
+    appSmlt.BuildOneCutNtks(maxLevel);
     // simulate networks of disjoint cuts
     appSmlt.SimulateOneCutNtks();
     // topological sort
@@ -177,16 +168,6 @@ void SASIMI_Manager_t::GetCPMOneCut(IN Simulator_t & oriSmlt, IN Simulator_t & a
     Abc_Obj_t * pAppPo = nullptr;
     Abc_NtkForEachPo(pAppNtk, pAppPo, i)
         appSmlt.UpdateBoolDiffOneCut(i, vNodes, bds[i]);
-
-    // for (int i = 0; i < Abc_NtkPoNum(pAppNtk); ++i) {
-    //     Abc_Obj_t * pObj = nullptr;
-    //     int j = 0;
-    //     Abc_NtkForEachNode(pAppNtk, pObj, j) {
-    //         // for (int k = 0; k < nBlock; ++k)
-    //         int k = 0;
-    //         cout << Abc_ObjName(Abc_NtkPo(pAppNtk, i)) << "," << Abc_ObjName(pObj) << "," << bds[i][pObj->Id][k] << endl;
-    //     }
-    // }
 
     // clean up
     Vec_PtrFree(vNodes);
@@ -367,6 +348,7 @@ void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t 
             nodeLAC.Update(pTS, pConst0, false, dErrors.first, dArea, tempFOM);
         // cout << Abc_ObjName(pTS) << ",0," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << ",," << dArea << endl;
     }
+    // cout << cntRound << "," << Abc_ObjName(pTS) << ",0," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << "," << endl;
     Abc_Obj_t * pConst1 = Ckt_GetConst(pAppNtk, 1);
     GetDER(appSmlt, pTS, pConst1, isERInc, isERDec, dErrors);
     if (baseER + dErrors.first <= errorBoundInt) {
@@ -376,6 +358,7 @@ void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t 
             nodeLAC.Update(pTS, pConst1, false, dErrors.first, dArea, tempFOM);
         // cout << Abc_ObjName(pTS) << ",1," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << ",," << dArea << endl;
     }
+    // cout << cntRound << "," << Abc_ObjName(pTS) << ",1," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << "," << endl;
 
     // consider other nodes' replacement
     Abc_Obj_t * pSS= nullptr;
@@ -438,6 +421,7 @@ void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t 
             }
             // cout << Abc_ObjName(pTS) << "," << Abc_ObjName(pSS) << "," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << "," << dErrors.second / static_cast <double>(appSmlt.GetFrameNum()) << "," << dArea << endl;
         }
+        // cout << cntRound << "," << Abc_ObjName(pTS) << "," << Abc_ObjName(pSS) << "," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << "," << dErrors.second / static_cast <double>(appSmlt.GetFrameNum()) << endl;
     }
 
     // consider PI replacement
@@ -470,6 +454,7 @@ void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t 
             }
             // cout << Abc_ObjName(pTS) << "," << Abc_ObjName(pSS) << "," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << "," << dErrors.second / static_cast <double>(appSmlt.GetFrameNum()) << "," << dArea << endl;
         }
+        // cout << cntRound << "," << Abc_ObjName(pTS) << "," << Abc_ObjName(pSS) << "," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << "," << dErrors.second / static_cast <double>(appSmlt.GetFrameNum()) << endl;
     }
 }
 
@@ -569,9 +554,6 @@ void SASIMI_Manager_t::CollectNodeLACUnderNMED(IN Abc_Obj_t * pTS, IN Simulator_
                 if ((dErrors.second < 0 && nodeLAC.GetFOM() > tempFOM) || (dErrors.second >= 0 && nodeLAC.GetFOM() >= 0 && nodeLAC.GetFOM() < tempFOM))
                     nodeLAC.Update(pTS, pSS, true, dErrors.second, dArea, tempFOM);
             }
-            // if (cntRound == 11 && string(Abc_ObjName(pTS)) == "s[2]") {
-            //     cout << Abc_ObjName(pTS) << "," << Abc_ObjName(pSS) << "," << dErrors.first << "," << dErrors.second << "," << dArea << endl;
-            // }
         }
     }
 
@@ -586,9 +568,6 @@ void SASIMI_Manager_t::CollectNodeLACUnderNMED(IN Abc_Obj_t * pTS, IN Simulator_
                 break;
             }
         }
-        // if (cntRound == 11 && string(Abc_ObjName(pTS)) == "s[2]") {
-        //     cout << i << "," << Abc_ObjName(pSS) << "," << isSkip << endl;
-        // }
         if (isSkip)
             continue;
         GetDNMED(appSmlt, oriOutputs, appOutputs, appOutputsNew, pTS, pSS, dErrors);
@@ -606,9 +585,6 @@ void SASIMI_Manager_t::CollectNodeLACUnderNMED(IN Abc_Obj_t * pTS, IN Simulator_
                 if ((dErrors.second < 0 && nodeLAC.GetFOM() > tempFOM) || (dErrors.second >= 0 && nodeLAC.GetFOM() >= 0 && nodeLAC.GetFOM() < tempFOM))
                     nodeLAC.Update(pTS, pSS, true, dErrors.second, dArea, tempFOM);
             }
-            // if (cntRound == 11 && string(Abc_ObjName(pTS)) == "s[2]") {
-            //     cout << Abc_ObjName(pTS) << "," << Abc_ObjName(pSS) << "," << dErrors.first << "," << dErrors.second << "," << dArea << endl;
-            // }
         }
     }
 }
@@ -622,17 +598,10 @@ void SASIMI_Manager_t::SortCandLACs(IN std::vector <LAC_t> & nodeLACs, IN int nF
             candLACs.emplace_back(nodeLAC);
     }
     sort(candLACs.begin(), candLACs.end());
-    // if (cntRound == 11) {
-    //     for (auto & candLAC: candLACs) {
-    //         candLAC.Print();
-    //         cout << endl;
-    //     }
-    //     assert(0);
-    // }
 }
 
 
-int SASIMI_Manager_t::ApplyBestLAC(Simulator_t & oriSmlt, Simulator_t & appSmlt, vector <LAC_t> & candLACs, int topNum, int cntRound, string outPrefix, unsigned seed)
+int SASIMI_Manager_t::ApplyBestLAC(Simulator_t & oriSmlt, Simulator_t & appSmlt, vector <LAC_t> & candLACs, int topNum, string outPrefix, unsigned seed)
 {
     if (candLACs.empty())
         return 1;
@@ -642,6 +611,9 @@ int SASIMI_Manager_t::ApplyBestLAC(Simulator_t & oriSmlt, Simulator_t & appSmlt,
     Abc_Obj_t * pSS = nullptr;
     bool isInv = false;
     double error = DBL_MAX;
+    double baseError = (metricType == Metric_t::ER)? GetER(&oriSmlt, &appSmlt) / static_cast <double> (nFrame): GetNMED(&oriSmlt, &appSmlt);
+    double estiError = 0.0;
+
     for (int i = 0; i < topNum && i < static_cast <int> (candLACs.size()); ++i) {
         pTS = candLACs[i].GetTS();
         pSS = candLACs[i].GetSS();
@@ -650,6 +622,13 @@ int SASIMI_Manager_t::ApplyBestLAC(Simulator_t & oriSmlt, Simulator_t & appSmlt,
         DASSERT(pSS != nullptr);
         DASSERT(pTS->pNtk == pAppNtk && pSS->pNtk == pAppNtk);
         error = (metricType == Metric_t::ER)? MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pSS, isInv, true): MeasureSASIMINMED(&oriSmlt, &appSmlt, pTS, pSS, isInv, true);
+        typedef boost::multiprecision::cpp_dec_float_100 bigFlt;
+        typedef boost::multiprecision::int256_t bigInt;
+        estiError = (metricType == Metric_t::ER)?
+            baseError + candLACs[i].GetDError() / static_cast <double> (nFrame):
+            baseError + static_cast <double> (static_cast <bigFlt> (candLACs[i].GetDError()) / static_cast <bigFlt> ((static_cast <bigInt> (1) << Abc_NtkPoNum(pAppNtk)) - 1));
+        if (maxLevel == INT_MAX)
+            DASSERT(abs(error - estiError) < 1e-8);
         if (error <= errorBound)
             break;
     }
@@ -657,9 +636,9 @@ int SASIMI_Manager_t::ApplyBestLAC(Simulator_t & oriSmlt, Simulator_t & appSmlt,
         return 1;
     if (!isInv) {
         if (Abc_ObjIsNode(pSS) && Abc_NodeIsConst0(pSS))
-            cout << Abc_ObjName(pTS) << " is replaced by zero with estimated error " << error << endl;
+            cout << Abc_ObjName(pTS) << " is replaced by zero with estimated error " << estiError << endl;
         else if (Abc_ObjIsNode(pSS) && Abc_NodeIsConst1(pSS))
-            cout << Abc_ObjName(pTS) << " is replaced by one with estimated error " << error << endl;
+            cout << Abc_ObjName(pTS) << " is replaced by one with estimated error " << estiError << endl;
         else
             cout << Abc_ObjName(pTS) << " is replaced by " << Abc_ObjName(pSS) << " with estimated error " << error << endl;
         ReplaceObj(pTS, pSS);
@@ -671,8 +650,8 @@ int SASIMI_Manager_t::ApplyBestLAC(Simulator_t & oriSmlt, Simulator_t & appSmlt,
         ReplaceObj(pTS, pInv);
     }
     double accError = (metricType == Metric_t::ER)? MeasureER(pOriNtk, pAppNtk, nFrame, seed): MeasureNMED(pOriNtk, pAppNtk, nFrame, seed);
-    // DASSERT(accError == error);
     cout << "error = " << accError << endl;
+    DASSERT(accError == error);
     cout << "area = " << Ckt_GetArea(pAppNtk) << endl;
     cout << "delay = " << Ckt_GetDelay(pAppNtk) << endl;
     cout << "#gates = " << Abc_NtkNodeNum(pAppNtk) << endl;
@@ -733,9 +712,6 @@ void SASIMI_Manager_t::GetDNMED(IN Simulator_t & appSmlt, IN vector <int64_t> & 
                 dInvError += abs(appOutputsNew[frameCnt] - oriOutputs[frameCnt]);
             }
             isChanged >>= 1;
-            // if (cntRound == 2 && string(Abc_ObjName(pTS)) == "s[2]" && string(Abc_ObjName(pSS)) == "n123") {
-            //     cout << "Warning: " << frameCnt << "," << oriOutputs[frameCnt] << "," << appOutputs[frameCnt] << "," << appOutputsNew[frameCnt] << endl;
-            // }
             ++frameCnt;
         }
     }

@@ -26,7 +26,7 @@ do
             for error in ${errorBound[*]}
             do
                 echo ${file} ${error}
-                ./sasimi-vecbee -i ${file} -e ${error} > log/${filename}_${error}.log
+                ./sasimi-vecbee -i ${file} -e ${error} --maxLevel 1 > log/${filename}_${error}.log
             done
         fi
     fi

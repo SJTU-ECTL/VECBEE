@@ -1,0 +1,684 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/ksa32.blif
+Line 11: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 12: Skipping line ".default_output_required 0.00 0.00 ".
+Line 13: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 14: Skipping line ".default_output_load 2.00 ".
+Line 15: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mksa32                         :[0m i/o =   64/   33  lat =    0  nd =   513  edge =   1090  area =1128.00  delay =17.80  lev = 14
+--------------- round 1 ---------------
+seed = 2130310376
+maxLevel = 1
+[164353] is replaced by one with estimated error 0
+error = 0
+area = 1124
+delay = 17.8
+#gates = 513
+output circuit appNtk/ksa32_1_0_1124_17.8.blif
+time = 3402237 us
+--------------- round 2 ---------------
+seed = 2870675167
+maxLevel = 1
+[164349] is replaced by [164345] with estimated error 1e-05
+error = 1e-05
+area = 1120
+delay = 17.8
+#gates = 511
+output circuit appNtk/ksa32_2_1e-05_1120_17.8.blif
+time = 6531574 us
+--------------- round 3 ---------------
+seed = 2275149181
+maxLevel = 1
+[164347] is replaced by one with estimated error 5e-05
+error = 5e-05
+area = 1116
+delay = 17.8
+#gates = 509
+output circuit appNtk/ksa32_3_5e-05_1116_17.8.blif
+time = 9662982 us
+--------------- round 4 ---------------
+seed = 2578898788
+maxLevel = 1
+[164351] is replaced by one with estimated error 3e-05
+error = 3e-05
+area = 1112
+delay = 17.7
+#gates = 507
+output circuit appNtk/ksa32_4_3e-05_1112_17.7.blif
+time = 12713731 us
+--------------- round 5 ---------------
+seed = 996245689
+maxLevel = 1
+[161059] is replaced by zero with estimated error 2e-05
+error = 2e-05
+area = 1109
+delay = 17.7
+#gates = 506
+output circuit appNtk/ksa32_5_2e-05_1109_17.7.blif
+time = 15733629 us
+--------------- round 6 ---------------
+seed = 2191840389
+maxLevel = 1
+[161060] is replaced by zero with estimated error 2e-05
+error = 2e-05
+area = 1106
+delay = 17.7
+#gates = 505
+output circuit appNtk/ksa32_6_2e-05_1106_17.7.blif
+time = 18680114 us
+--------------- round 7 ---------------
+seed = 249182963
+maxLevel = 1
+[164343] is replaced by one with estimated error 2e-05
+error = 2e-05
+area = 1103
+delay = 17.7
+#gates = 504
+output circuit appNtk/ksa32_7_2e-05_1103_17.7.blif
+time = 21609522 us
+--------------- round 8 ---------------
+seed = 3906970065
+maxLevel = 1
+[161061] is replaced by zero with estimated error 4e-05
+error = 4e-05
+area = 1100
+delay = 17.7
+#gates = 503
+output circuit appNtk/ksa32_8_4e-05_1100_17.7.blif
+time = 24501480 us
+--------------- round 9 ---------------
+seed = 3365347968
+maxLevel = 1
+[161062] is replaced by zero with estimated error 1e-05
+error = 1e-05
+area = 1097
+delay = 17.7
+#gates = 502
+output circuit appNtk/ksa32_9_1e-05_1097_17.7.blif
+time = 27387913 us
+--------------- round 10 ---------------
+seed = 4026788906
+maxLevel = 1
+[164341] is replaced by one with estimated error 3e-05
+error = 3e-05
+area = 1094
+delay = 17.7
+#gates = 501
+output circuit appNtk/ksa32_10_3e-05_1094_17.7.blif
+time = 30232254 us
+--------------- round 11 ---------------
+seed = 3680071341
+maxLevel = 1
+[164345] is replaced by one with estimated error 1e-05
+error = 1e-05
+area = 1091
+delay = 17.7
+#gates = 500
+output circuit appNtk/ksa32_11_1e-05_1091_17.7.blif
+time = 33059535 us
+--------------- round 12 ---------------
+seed = 728768204
+maxLevel = 1
+[164331] is replaced by one with estimated error 7e-05
+error = 7e-05
+area = 1088
+delay = 17.7
+#gates = 499
+output circuit appNtk/ksa32_12_7e-05_1088_17.7.blif
+time = 35806254 us
+--------------- round 13 ---------------
+seed = 3779427737
+maxLevel = 1
+[162796] is replaced by one with estimated error 2e-05
+error = 2e-05
+area = 1086
+delay = 17.7
+#gates = 498
+output circuit appNtk/ksa32_13_2e-05_1086_17.7.blif
+time = 38520263 us
+--------------- round 14 ---------------
+seed = 1041046491
+maxLevel = 1
+[162831] is replaced by one with estimated error 4e-05
+error = 4e-05
+area = 1084
+delay = 17.7
+#gates = 497
+output circuit appNtk/ksa32_14_4e-05_1084_17.7.blif
+time = 41200267 us
+--------------- round 15 ---------------
+seed = 859504894
+maxLevel = 1
+[162822] is replaced by [162809] with estimated error 5e-05
+error = 5e-05
+area = 1082
+delay = 17.7
+#gates = 496
+output circuit appNtk/ksa32_15_5e-05_1082_17.7.blif
+time = 43911111 us
+--------------- round 16 ---------------
+seed = 576111160
+maxLevel = 1
+[163373] is replaced by n499 with estimated error 6e-05
+error = 6e-05
+area = 1081
+delay = 17.7
+#gates = 495
+output circuit appNtk/ksa32_16_6e-05_1081_17.7.blif
+time = 46565655 us
+--------------- round 17 ---------------
+seed = 1269614567
+maxLevel = 1
+[162693] is replaced by [162706] with estimated error 5e-05
+error = 5e-05
+area = 1079
+delay = 17.7
+#gates = 494
+output circuit appNtk/ksa32_17_5e-05_1079_17.7.blif
+time = 49214705 us
+--------------- round 18 ---------------
+seed = 3856735994
+maxLevel = 1
+[162809] is replaced by one with estimated error 5e-05
+error = 5e-05
+area = 1077
+delay = 17.7
+#gates = 493
+output circuit appNtk/ksa32_18_5e-05_1077_17.7.blif
+time = 51831729 us
+--------------- round 19 ---------------
+seed = 4182439913
+maxLevel = 1
+[163382] is replaced by n508 with estimated error 6e-05
+error = 6e-05
+area = 1076
+delay = 17.7
+#gates = 492
+output circuit appNtk/ksa32_19_6e-05_1076_17.7.blif
+time = 54424003 us
+--------------- round 20 ---------------
+seed = 1142555753
+maxLevel = 1
+[163413] is replaced by n507 with estimated error 0.0001
+error = 0.0001
+area = 1075
+delay = 17.7
+#gates = 491
+output circuit appNtk/ksa32_20_0.0001_1075_17.7.blif
+time = 57012875 us
+--------------- round 21 ---------------
+seed = 226970804
+maxLevel = 1
+[163404] is replaced by n498 with estimated error 5e-05
+error = 5e-05
+area = 1074
+delay = 17.7
+#gates = 490
+output circuit appNtk/ksa32_21_5e-05_1074_17.7.blif
+time = 59577966 us
+--------------- round 22 ---------------
+seed = 3429384691
+maxLevel = 1
+[162745] is replaced by [162758] with estimated error 6e-05
+error = 6e-05
+area = 1072
+delay = 17.7
+#gates = 489
+output circuit appNtk/ksa32_22_6e-05_1072_17.7.blif
+time = 62114616 us
+--------------- round 23 ---------------
+seed = 3821554314
+maxLevel = 1
+[163470] is replaced by n491 with estimated error 0.0001
+error = 0.0001
+area = 1071
+delay = 17.7
+#gates = 488
+output circuit appNtk/ksa32_23_0.0001_1071_17.7.blif
+time = 64626897 us
+--------------- round 24 ---------------
+seed = 642485356
+maxLevel = 1
+[163391] is replaced by n502 with estimated error 4e-05
+error = 4e-05
+area = 1070
+delay = 17.7
+#gates = 487
+output circuit appNtk/ksa32_24_4e-05_1070_17.7.blif
+time = 67119010 us
+--------------- round 25 ---------------
+seed = 3591756475
+maxLevel = 1
+[162719] is replaced by [162732] with estimated error 5e-05
+error = 5e-05
+area = 1068
+delay = 17.7
+#gates = 486
+output circuit appNtk/ksa32_25_5e-05_1068_17.7.blif
+time = 69585144 us
+--------------- round 26 ---------------
+seed = 812265673
+maxLevel = 1
+[163457] is replaced by n503 with estimated error 9e-05
+error = 9e-05
+area = 1067
+delay = 17.7
+#gates = 485
+output circuit appNtk/ksa32_26_9e-05_1067_17.7.blif
+time = 72031742 us
+--------------- round 27 ---------------
+seed = 925855334
+maxLevel = 1
+[162823] is replaced by n494 with inverter with estimated error 6e-05
+error = 6e-05
+area = 1065
+delay = 17.7
+#gates = 485
+output circuit appNtk/ksa32_27_6e-05_1065_17.7.blif
+time = 74460308 us
+--------------- round 28 ---------------
+seed = 2635652328
+maxLevel = 1
+cout is replaced by n613 with estimated error 6e-05
+error = 6e-05
+area = 1062
+delay = 17.7
+#gates = 484
+output circuit appNtk/ksa32_28_6e-05_1062_17.7.blif
+time = 76831147 us
+--------------- round 29 ---------------
+seed = 3748166938
+maxLevel = 1
+[163422] is replaced by n506 with estimated error 6e-05
+error = 6e-05
+area = 1061
+delay = 17.7
+#gates = 483
+output circuit appNtk/ksa32_29_6e-05_1061_17.7.blif
+time = 79188470 us
+--------------- round 30 ---------------
+seed = 2906488150
+maxLevel = 1
+[162771] is replaced by [162784] with estimated error 0.0001
+error = 0.0001
+area = 1059
+delay = 17.7
+#gates = 482
+output circuit appNtk/ksa32_30_0.0001_1059_17.7.blif
+time = 81503711 us
+--------------- round 31 ---------------
+seed = 1357148403
+maxLevel = 1
+[163431] is replaced by n510 with estimated error 7e-05
+error = 7e-05
+area = 1058
+delay = 17.7
+#gates = 481
+output circuit appNtk/ksa32_31_7e-05_1058_17.7.blif
+time = 83791366 us
+--------------- round 32 ---------------
+seed = 4087514932
+maxLevel = 1
+[163449] is replaced by n504 with estimated error 7e-05
+error = 7e-05
+area = 1057
+delay = 17.7
+#gates = 480
+output circuit appNtk/ksa32_32_7e-05_1057_17.7.blif
+time = 86074925 us
+--------------- round 33 ---------------
+seed = 830280201
+maxLevel = 1
+[163440] is replaced by n505 with estimated error 5e-05
+error = 5e-05
+area = 1056
+delay = 17.7
+#gates = 479
+output circuit appNtk/ksa32_33_5e-05_1056_17.7.blif
+time = 88313860 us
+--------------- round 34 ---------------
+seed = 3226386262
+maxLevel = 1
+[162797] is replaced by [162810] with estimated error 2e-05
+error = 2e-05
+area = 1053
+delay = 17.7
+#gates = 478
+output circuit appNtk/ksa32_34_2e-05_1053_17.7.blif
+time = 90508872 us
+--------------- round 35 ---------------
+seed = 2627860426
+maxLevel = 1
+n613 is replaced by [162828] with estimated error 0.00191
+error = 0.00191
+area = 1045
+delay = 17.7
+#gates = 474
+output circuit appNtk/ksa32_35_0.00191_1045_17.7.blif
+time = 92675801 us
+--------------- round 36 ---------------
+seed = 1480969549
+maxLevel = 1
+[162551] is replaced by [162549] with estimated error 0.00287
+error = 0.00287
+area = 1039
+delay = 17.7
+#gates = 472
+output circuit appNtk/ksa32_36_0.00287_1039_17.7.blif
+time = 94790102 us
+--------------- round 37 ---------------
+seed = 301182164
+maxLevel = 1
+[163257] is replaced by [164105] with estimated error 0.0029
+error = 0.0029
+area = 1038
+delay = 17.7
+#gates = 471
+output circuit appNtk/ksa32_37_0.0029_1038_17.7.blif
+time = 96895878 us
+--------------- round 38 ---------------
+seed = 3321277785
+maxLevel = 1
+[162562] is replaced by [162560] with estimated error 0.0041
+error = 0.0041
+area = 1032
+delay = 17.7
+#gates = 469
+output circuit appNtk/ksa32_38_0.0041_1032_17.7.blif
+time = 98979330 us
+--------------- round 39 ---------------
+seed = 2133100878
+maxLevel = 1
+[164102] is replaced by [163267] with estimated error 0.00374
+error = 0.00374
+area = 1031
+delay = 17.7
+#gates = 468
+output circuit appNtk/ksa32_39_0.00374_1031_17.7.blif
+time = 101046108 us
+--------------- round 40 ---------------
+seed = 826686184
+maxLevel = 1
+[162573] is replaced by [162571] with estimated error 0.00488
+error = 0.00488
+area = 1025
+delay = 17.7
+#gates = 466
+output circuit appNtk/ksa32_40_0.00488_1025_17.7.blif
+time = 103100297 us
+--------------- round 41 ---------------
+seed = 3692912833
+maxLevel = 1
+[164099] is replaced by [163277] with estimated error 0.00507
+error = 0.00507
+area = 1024
+delay = 17.7
+#gates = 465
+output circuit appNtk/ksa32_41_0.00507_1024_17.7.blif
+time = 105116520 us
+--------------- round 42 ---------------
+seed = 14824653
+maxLevel = 1
+[164237] is replaced by [164233] with estimated error 0.00556
+error = 0.00556
+area = 1020
+delay = 17.7
+#gates = 463
+output circuit appNtk/ksa32_42_0.00556_1020_17.7.blif
+time = 107121411 us
+--------------- round 43 ---------------
+seed = 1905372546
+maxLevel = 1
+[164211] is replaced by [164067] with estimated error 0.00623
+error = 0.00623
+area = 1016
+delay = 17.7
+#gates = 461
+output circuit appNtk/ksa32_43_0.00623_1016_17.7.blif
+time = 109118457 us
+--------------- round 44 ---------------
+seed = 2697778260
+maxLevel = 1
+[164207] is replaced by [164201] with estimated error 0.00693
+error = 0.00693
+area = 1012
+delay = 17.7
+#gates = 459
+output circuit appNtk/ksa32_44_0.00693_1012_17.7.blif
+time = 111119016 us
+--------------- round 45 ---------------
+seed = 3813757300
+maxLevel = 1
+[161154] is replaced by [161158] with estimated error 0.00851
+error = 0.00851
+area = 1007
+delay = 17.7
+#gates = 457
+output circuit appNtk/ksa32_45_0.00851_1007_17.7.blif
+time = 113092491 us
+--------------- round 46 ---------------
+seed = 463298597
+maxLevel = 1
+[164219] is replaced by [164215] with estimated error 0.0081
+error = 0.0081
+area = 1003
+delay = 17.7
+#gates = 455
+output circuit appNtk/ksa32_46_0.0081_1003_17.7.blif
+time = 115076697 us
+--------------- round 47 ---------------
+seed = 4065276510
+maxLevel = 1
+[162584] is replaced by [162582] with estimated error 0.00961
+error = 0.00961
+area = 997
+delay = 17.7
+#gates = 453
+output circuit appNtk/ksa32_47_0.00961_997_17.7.blif
+time = 117011858 us
+--------------- round 48 ---------------
+seed = 3120303774
+maxLevel = 1
+[164096] is replaced by [163287] with estimated error 0.00997
+error = 0.00997
+area = 996
+delay = 17.7
+#gates = 452
+output circuit appNtk/ksa32_48_0.00997_996_17.7.blif
+time = 118910402 us
+--------------- round 49 ---------------
+seed = 1503800539
+maxLevel = 1
+[161157] is replaced by [161166] with estimated error 0.01066
+error = 0.01066
+area = 991
+delay = 15.9
+#gates = 450
+output circuit appNtk/ksa32_49_0.01066_991_15.9.blif
+time = 120796441 us
+--------------- round 50 ---------------
+seed = 2553365930
+maxLevel = 1
+[164229] is replaced by [164223] with estimated error 0.011
+error = 0.011
+area = 987
+delay = 15.9
+#gates = 448
+output circuit appNtk/ksa32_50_0.011_987_15.9.blif
+time = 122668561 us
+--------------- round 51 ---------------
+seed = 1943957602
+maxLevel = 1
+[161158] is replaced by [161166] with estimated error 0.01239
+error = 0.01239
+area = 982
+delay = 15.9
+#gates = 446
+output circuit appNtk/ksa32_51_0.01239_982_15.9.blif
+time = 124563057 us
+--------------- round 52 ---------------
+seed = 4119775981
+maxLevel = 1
+[164195] is replaced by zero with estimated error 0.01351
+error = 0.01351
+area = 978
+delay = 15.9
+#gates = 444
+output circuit appNtk/ksa32_52_0.01351_978_15.9.blif
+time = 126405730 us
+--------------- round 53 ---------------
+seed = 3450011038
+maxLevel = 1
+[164153] is replaced by zero with estimated error 0.01531
+error = 0.01531
+area = 974
+delay = 15.9
+#gates = 442
+output circuit appNtk/ksa32_53_0.01531_974_15.9.blif
+time = 128228447 us
+--------------- round 54 ---------------
+seed = 3554219171
+maxLevel = 1
+[164165] is replaced by zero with estimated error 0.01455
+error = 0.01455
+area = 970
+delay = 15.9
+#gates = 440
+output circuit appNtk/ksa32_54_0.01455_970_15.9.blif
+time = 130031962 us
+--------------- round 55 ---------------
+seed = 1645219286
+maxLevel = 1
+[164157] is replaced by zero with estimated error 0.01606
+error = 0.01606
+area = 966
+delay = 15.9
+#gates = 438
+output circuit appNtk/ksa32_55_0.01606_966_15.9.blif
+time = 131820316 us
+--------------- round 56 ---------------
+seed = 3280966480
+maxLevel = 1
+[164161] is replaced by zero with estimated error 0.01628
+error = 0.01628
+area = 962
+delay = 15.9
+#gates = 436
+output circuit appNtk/ksa32_56_0.01628_962_15.9.blif
+time = 133600277 us
+--------------- round 57 ---------------
+seed = 1472463253
+maxLevel = 1
+[161166] is replaced by zero with estimated error 0.01757
+error = 0.01757
+area = 957
+delay = 15.4
+#gates = 434
+output circuit appNtk/ksa32_57_0.01757_957_15.4.blif
+time = 135349737 us
+--------------- round 58 ---------------
+seed = 3103790647
+maxLevel = 1
+[164201] is replaced by zero with estimated error 0.01919
+error = 0.01919
+area = 953
+delay = 15.4
+#gates = 432
+output circuit appNtk/ksa32_58_0.01919_953_15.4.blif
+time = 136987910 us
+--------------- round 59 ---------------
+seed = 3101473757
+maxLevel = 1
+[162706] is replaced by [162702] with estimated error 0.0195
+error = 0.0195
+area = 951
+delay = 15.4
+#gates = 431
+output circuit appNtk/ksa32_59_0.0195_951_15.4.blif
+time = 138612965 us
+--------------- round 60 ---------------
+seed = 1276830057
+maxLevel = 1
+[164233] is replaced by zero with estimated error 0.01967
+error = 0.01967
+area = 947
+delay = 15.4
+#gates = 429
+output circuit appNtk/ksa32_60_0.01967_947_15.4.blif
+time = 140206044 us
+--------------- round 61 ---------------
+seed = 170782838
+maxLevel = 1
+[162810] is replaced by [162806] with estimated error 0.02099
+error = 0.02099
+area = 944
+delay = 15.4
+#gates = 428
+output circuit appNtk/ksa32_61_0.02099_944_15.4.blif
+time = 141790975 us
+--------------- round 62 ---------------
+seed = 2550097719
+maxLevel = 1
+[164067] is replaced by zero with estimated error 0.02059
+error = 0.02059
+area = 940
+delay = 15.4
+#gates = 426
+output circuit appNtk/ksa32_62_0.02059_940_15.4.blif
+time = 143326211 us
+--------------- round 63 ---------------
+seed = 2889653816
+maxLevel = 1
+[162732] is replaced by [162728] with estimated error 0.02026
+error = 0.02026
+area = 938
+delay = 15.4
+#gates = 425
+output circuit appNtk/ksa32_63_0.02026_938_15.4.blif
+time = 144838135 us
+--------------- round 64 ---------------
+seed = 1567412360
+maxLevel = 1
+[164215] is replaced by zero with estimated error 0.02275
+error = 0.02275
+area = 934
+delay = 15.4
+#gates = 423
+output circuit appNtk/ksa32_64_0.02275_934_15.4.blif
+time = 146334301 us
+--------------- round 65 ---------------
+seed = 3080753532
+maxLevel = 1
+[162758] is replaced by [162754] with estimated error 0.02219
+error = 0.02219
+area = 932
+delay = 15.4
+#gates = 422
+output circuit appNtk/ksa32_65_0.02219_932_15.4.blif
+time = 147803174 us
+--------------- round 66 ---------------
+seed = 268155119
+maxLevel = 1
+[164223] is replaced by zero with estimated error 0.02349
+error = 0.02349
+area = 928
+delay = 15.4
+#gates = 420
+output circuit appNtk/ksa32_66_0.02349_928_15.4.blif
+time = 149269913 us
+--------------- round 67 ---------------
+seed = 1906783285
+maxLevel = 1
+[162784] is replaced by [162780] with estimated error 0.0228
+error = 0.0228
+area = 926
+delay = 15.4
+#gates = 419
+output circuit appNtk/ksa32_67_0.0228_926_15.4.blif
+time = 150707599 us
+--------------- round 68 ---------------
+seed = 3743804260
+maxLevel = 1
+exceed error bound

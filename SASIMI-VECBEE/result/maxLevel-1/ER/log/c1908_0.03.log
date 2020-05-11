@@ -1,0 +1,480 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/c1908.blif
+Line 7: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 8: Skipping line ".default_output_required 0.00 0.00 ".
+Line 9: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 10: Skipping line ".default_output_load 2.00 ".
+Line 11: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mc1908                         :[0m i/o =   33/   25  lat =    0  nd =   288  edge =    689  area =758.00  delay =37.30  lev = 25
+--------------- round 1 ---------------
+seed = 2863830010
+maxLevel = 1
+[95410] is replaced by [95380] with estimated error 0
+error = 0
+area = 756
+delay = 37.3
+#gates = 289
+output circuit appNtk/c1908_1_0_756_37.3.blif
+time = 2258995 us
+--------------- round 2 ---------------
+seed = 3777526525
+maxLevel = 1
+[95450] is replaced by [95466] with estimated error 0
+error = 0
+area = 754
+delay = 37.3
+#gates = 288
+output circuit appNtk/c1908_2_0_754_37.3.blif
+time = 4393948 us
+--------------- round 3 ---------------
+seed = 2218059388
+maxLevel = 1
+[95278] is replaced by [95292] with estimated error 0
+error = 0
+area = 752
+delay = 37.3
+#gates = 287
+output circuit appNtk/c1908_3_0_752_37.3.blif
+time = 6520217 us
+--------------- round 4 ---------------
+seed = 4213994818
+maxLevel = 1
+[96034] is replaced by [96028] with estimated error 0
+error = 0
+area = 750
+delay = 37.3
+#gates = 286
+output circuit appNtk/c1908_4_0_750_37.3.blif
+time = 8623009 us
+--------------- round 5 ---------------
+seed = 2889767854
+maxLevel = 1
+[95350] is replaced by [95364] with estimated error 0
+error = 0
+area = 748
+delay = 37.3
+#gates = 285
+output circuit appNtk/c1908_5_0_748_37.3.blif
+time = 10717703 us
+--------------- round 6 ---------------
+seed = 2968172572
+maxLevel = 1
+[96037] is replaced by [96028] with estimated error 0
+error = 0
+area = 746
+delay = 37.3
+#gates = 284
+output circuit appNtk/c1908_6_0_746_37.3.blif
+time = 12793553 us
+--------------- round 7 ---------------
+seed = 3104332307
+maxLevel = 1
+[95484] is replaced by [95394] with estimated error 0
+error = 0
+area = 744
+delay = 37.3
+#gates = 283
+output circuit appNtk/c1908_7_0_744_37.3.blif
+time = 14864869 us
+--------------- round 8 ---------------
+seed = 2217533774
+maxLevel = 1
+[95158] is replaced by [95150] with estimated error 0
+error = 0
+area = 742
+delay = 37.3
+#gates = 282
+output circuit appNtk/c1908_8_0_742_37.3.blif
+time = 16931786 us
+--------------- round 9 ---------------
+seed = 770587958
+maxLevel = 1
+[96675] is replaced by [96830] with estimated error 0
+error = 0
+area = 741
+delay = 37.3
+#gates = 281
+output circuit appNtk/c1908_9_0_741_37.3.blif
+time = 19001089 us
+--------------- round 10 ---------------
+seed = 3414285321
+maxLevel = 1
+[95140] is replaced by [96852] with estimated error 0.0001
+error = 0.0001
+area = 738
+delay = 37.3
+#gates = 280
+output circuit appNtk/c1908_10_0.0001_738_37.3.blif
+time = 21047102 us
+--------------- round 11 ---------------
+seed = 2086267101
+maxLevel = 1
+[95116] is replaced by one with estimated error 0.00121
+error = 0.00121
+area = 725
+delay = 37.3
+#gates = 276
+output circuit appNtk/c1908_11_0.00121_725_37.3.blif
+time = 23084397 us
+--------------- round 12 ---------------
+seed = 4140447020
+maxLevel = 1
+[95915] is replaced by [96028] with estimated error 0.00121
+error = 0.00121
+area = 722
+delay = 37.3
+#gates = 275
+output circuit appNtk/c1908_12_0.00121_722_37.3.blif
+time = 25069358 us
+--------------- round 13 ---------------
+seed = 1882832291
+maxLevel = 1
+[96066] is replaced by G871 with estimated error 0.00711
+error = 0.00711
+area = 686
+delay = 37.3
+#gates = 263
+output circuit appNtk/c1908_13_0.00711_686_37.3.blif
+time = 27047796 us
+--------------- round 14 ---------------
+seed = 1714031066
+maxLevel = 1
+[96555] is replaced by one with estimated error 0.00911
+error = 0.00911
+area = 679
+delay = 37.3
+#gates = 261
+output circuit appNtk/c1908_14_0.00911_679_37.3.blif
+time = 28897060 us
+--------------- round 15 ---------------
+seed = 1437260076
+maxLevel = 1
+[96004] is replaced by one with estimated error 0.01075
+error = 0.01075
+area = 673
+delay = 37.3
+#gates = 259
+output circuit appNtk/c1908_15_0.01075_673_37.3.blif
+time = 30724682 us
+--------------- round 16 ---------------
+seed = 755863817
+maxLevel = 1
+G24 is replaced by [95863] with inverter with estimated error 0.01069
+error = 0.01069
+area = 669
+delay = 37.3
+#gates = 258
+output circuit appNtk/c1908_16_0.01069_669_37.3.blif
+time = 32491233 us
+--------------- round 17 ---------------
+seed = 2431911775
+maxLevel = 1
+[95983] is replaced by one with estimated error 0.01266
+error = 0.01266
+area = 661
+delay = 37.3
+#gates = 255
+output circuit appNtk/c1908_17_0.01266_661_37.3.blif
+time = 34263250 us
+--------------- round 18 ---------------
+seed = 3925553473
+maxLevel = 1
+G45 is replaced by [95856] with inverter with estimated error 0.01208
+error = 0.01208
+area = 657
+delay = 37.3
+#gates = 254
+output circuit appNtk/c1908_18_0.01208_657_37.3.blif
+time = 35966838 us
+--------------- round 19 ---------------
+seed = 3024852403
+maxLevel = 1
+[96021] is replaced by one with estimated error 0.01456
+error = 0.01456
+area = 651
+delay = 37.3
+#gates = 252
+output circuit appNtk/c1908_19_0.01456_651_37.3.blif
+time = 37662523 us
+--------------- round 20 ---------------
+seed = 3099645158
+maxLevel = 1
+G39 is replaced by [95925] with inverter with estimated error 0.01345
+error = 0.01345
+area = 647
+delay = 37.3
+#gates = 251
+output circuit appNtk/c1908_20_0.01345_647_37.3.blif
+time = 39302058 us
+--------------- round 21 ---------------
+seed = 4050327805
+maxLevel = 1
+[96000] is replaced by one with estimated error 0.01513
+error = 0.01513
+area = 641
+delay = 37.3
+#gates = 249
+output circuit appNtk/c1908_21_0.01513_641_37.3.blif
+time = 40934790 us
+--------------- round 22 ---------------
+seed = 3285893957
+maxLevel = 1
+G21 is replaced by [95867] with inverter with estimated error 0.01641
+error = 0.01641
+area = 637
+delay = 37.3
+#gates = 248
+output circuit appNtk/c1908_22_0.01641_637_37.3.blif
+time = 42529105 us
+--------------- round 23 ---------------
+seed = 4016316857
+maxLevel = 1
+[96008] is replaced by one with estimated error 0.01784
+error = 0.01784
+area = 631
+delay = 37.3
+#gates = 246
+output circuit appNtk/c1908_23_0.01784_631_37.3.blif
+time = 44111088 us
+--------------- round 24 ---------------
+seed = 25915345
+maxLevel = 1
+G27 is replaced by [95854] with inverter with estimated error 0.01683
+error = 0.01683
+area = 627
+delay = 37.3
+#gates = 245
+output circuit appNtk/c1908_24_0.01683_627_37.3.blif
+time = 45638002 us
+--------------- round 25 ---------------
+seed = 1302889849
+maxLevel = 1
+[95954] is replaced by one with estimated error 0.0192
+error = 0.0192
+area = 621
+delay = 37.3
+#gates = 243
+output circuit appNtk/c1908_25_0.0192_621_37.3.blif
+time = 47168050 us
+--------------- round 26 ---------------
+seed = 3362719315
+maxLevel = 1
+G3 is replaced by [95844] with inverter with estimated error 0.0182
+error = 0.0182
+area = 617
+delay = 37.3
+#gates = 242
+output circuit appNtk/c1908_26_0.0182_617_37.3.blif
+time = 48630305 us
+--------------- round 27 ---------------
+seed = 86290556
+maxLevel = 1
+[96739] is replaced by [96596] with estimated error 0.02078
+error = 0.02078
+area = 610
+delay = 37.3
+#gates = 239
+output circuit appNtk/c1908_27_0.02078_610_37.3.blif
+time = 50090776 us
+--------------- round 28 ---------------
+seed = 1360479116
+maxLevel = 1
+[95970] is replaced by one with estimated error 0.022
+error = 0.022
+area = 603
+delay = 37.3
+#gates = 236
+output circuit appNtk/c1908_28_0.022_603_37.3.blif
+time = 51529591 us
+--------------- round 29 ---------------
+seed = 3239591345
+maxLevel = 1
+[96820] is replaced by [95877] with estimated error 0.02167
+error = 0.02167
+area = 602
+delay = 37.3
+#gates = 235
+output circuit appNtk/c1908_29_0.02167_602_37.3.blif
+time = 52917694 us
+--------------- round 30 ---------------
+seed = 1937620534
+maxLevel = 1
+G12 is replaced by [95862] with inverter with estimated error 0.02278
+error = 0.02278
+area = 598
+delay = 37.3
+#gates = 234
+output circuit appNtk/c1908_30_0.02278_598_37.3.blif
+time = 54294701 us
+--------------- round 31 ---------------
+seed = 2072769929
+maxLevel = 1
+[96025] is replaced by one with estimated error 0.02289
+error = 0.02289
+area = 589
+delay = 37.3
+#gates = 231
+output circuit appNtk/c1908_31_0.02289_589_37.3.blif
+time = 55662405 us
+--------------- round 32 ---------------
+seed = 275369395
+maxLevel = 1
+G42 is replaced by [95908] with inverter with estimated error 0.02426
+error = 0.02426
+area = 585
+delay = 37.3
+#gates = 230
+output circuit appNtk/c1908_32_0.02426_585_37.3.blif
+time = 56967567 us
+--------------- round 33 ---------------
+seed = 3306704069
+maxLevel = 1
+[96028] is replaced by [95914] with estimated error 0.02437
+error = 0.02437
+area = 581
+delay = 37.3
+#gates = 229
+output circuit appNtk/c1908_33_0.02437_581_37.3.blif
+time = 58273086 us
+--------------- round 34 ---------------
+seed = 1460577516
+maxLevel = 1
+[96489] is replaced by G425 with inverter with estimated error 0.02789
+error = 0.02789
+area = 569
+delay = 34.4
+#gates = 225
+output circuit appNtk/c1908_34_0.02789_569_34.4.blif
+time = 59561658 us
+--------------- round 35 ---------------
+seed = 2423594051
+maxLevel = 1
+[96093] is replaced by one with estimated error 0.0273
+error = 0.0273
+area = 566
+delay = 34.4
+#gates = 224
+output circuit appNtk/c1908_35_0.0273_566_34.4.blif
+time = 60800727 us
+--------------- round 36 ---------------
+seed = 4262877604
+maxLevel = 1
+[96087] is replaced by [96085] with estimated error 0.02629
+error = 0.02629
+area = 563
+delay = 34.4
+#gates = 223
+output circuit appNtk/c1908_36_0.02629_563_34.4.blif
+time = 62012865 us
+--------------- round 37 ---------------
+seed = 3224706473
+maxLevel = 1
+[97000] is replaced by [96069] with estimated error 0.02687
+error = 0.02687
+area = 560
+delay = 32.7
+#gates = 222
+output circuit appNtk/c1908_37_0.02687_560_32.7.blif
+time = 63208974 us
+--------------- round 38 ---------------
+seed = 2922940615
+maxLevel = 1
+[96871] is replaced by [96069] with estimated error 0.02695
+error = 0.02695
+area = 559
+delay = 32.7
+#gates = 221
+output circuit appNtk/c1908_38_0.02695_559_32.7.blif
+time = 64389897 us
+--------------- round 39 ---------------
+seed = 488660986
+maxLevel = 1
+[96414] is replaced by [95855] with estimated error 0.02734
+error = 0.02734
+area = 557
+delay = 32.7
+#gates = 220
+output circuit appNtk/c1908_39_0.02734_557_32.7.blif
+time = 65565486 us
+--------------- round 40 ---------------
+seed = 3832317210
+maxLevel = 1
+[95978] is replaced by one with estimated error 0.02854
+error = 0.02854
+area = 553
+delay = 32.7
+#gates = 219
+output circuit appNtk/c1908_40_0.02854_553_32.7.blif
+time = 66716836 us
+--------------- round 41 ---------------
+seed = 4248542956
+maxLevel = 1
+G30 is replaced by G128 with estimated error 0.02786
+error = 0.02786
+area = 550
+delay = 32.7
+#gates = 218
+output circuit appNtk/c1908_41_0.02786_550_32.7.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 67850696 us
+--------------- round 42 ---------------
+seed = 3123986462
+maxLevel = 1
+[95987] is replaced by one with estimated error 0.029
+error = 0.029
+area = 541
+delay = 32.7
+#gates = 215
+output circuit appNtk/c1908_42_0.029_541_32.7.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 68971090 us
+--------------- round 43 ---------------
+seed = 179877392
+maxLevel = 1
+G48 is replaced by [95857] with inverter with estimated error 0.02948
+error = 0.02948
+area = 537
+delay = 32.7
+#gates = 214
+output circuit appNtk/c1908_43_0.02948_537_32.7.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 70033403 us
+--------------- round 44 ---------------
+seed = 1495963173
+maxLevel = 1
+[96076] is replaced by zero with estimated error 0.02883
+error = 0.02883
+area = 533
+delay = 32.7
+#gates = 213
+output circuit appNtk/c1908_44_0.02883_533_32.7.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 71080700 us
+--------------- round 45 ---------------
+seed = 695100883
+maxLevel = 1
+[97068] is replaced by [95847] with estimated error 0.02963
+error = 0.02963
+area = 532
+delay = 31.8
+#gates = 212
+output circuit appNtk/c1908_45_0.02963_532_31.8.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 72127001 us
+--------------- round 46 ---------------
+seed = 303202158
+maxLevel = 1
+[96085] is replaced by [96091] with estimated error 0.02982
+error = 0.02982
+area = 529
+delay = 31.8
+#gates = 211
+output circuit appNtk/c1908_46_0.02982_529_31.8.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 73168441 us
+--------------- round 47 ---------------
+seed = 2075358680
+maxLevel = 1
+exceed error bound

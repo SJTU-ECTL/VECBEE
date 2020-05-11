@@ -1,0 +1,164 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/c3540.blif
+Line 7: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 8: Skipping line ".default_output_required 0.00 0.00 ".
+Line 9: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 10: Skipping line ".default_output_load 2.00 ".
+Line 11: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mc3540                         :[0m i/o =   50/   22  lat =    0  nd =   626  edge =   1568  area =1604.00  delay =55.00  lev = 41
+--------------- round 1 ---------------
+seed = 2421697995
+maxLevel = 1
+[105035] is replaced by [104985] with estimated error 0
+error = 0
+area = 1601
+delay = 55
+#gates = 627
+output circuit appNtk/c3540_1_0_1601_55.blif
+time = 8510066 us
+--------------- round 2 ---------------
+seed = 1442360804
+maxLevel = 1
+[105170] is replaced by [143455] with inverter with estimated error 0
+error = 0
+area = 1599
+delay = 55
+#gates = 627
+output circuit appNtk/c3540_2_0_1599_55.blif
+time = 16765706 us
+--------------- round 3 ---------------
+seed = 3695164470
+maxLevel = 1
+[106225] is replaced by [104921] with estimated error 0
+error = 0
+area = 1598
+delay = 55
+#gates = 626
+output circuit appNtk/c3540_3_0_1598_55.blif
+time = 24960488 us
+--------------- round 4 ---------------
+seed = 3775307437
+maxLevel = 1
+[106187] is replaced by [104911] with estimated error 0
+error = 0
+area = 1597
+delay = 55
+#gates = 625
+output circuit appNtk/c3540_4_0_1597_55.blif
+time = 33121356 us
+--------------- round 5 ---------------
+seed = 897055275
+maxLevel = 1
+[104840] is replaced by [104824] with estimated error 0
+error = 0
+area = 1596
+delay = 55
+#gates = 624
+output circuit appNtk/c3540_5_0_1596_55.blif
+time = 41311573 us
+--------------- round 6 ---------------
+seed = 1718626243
+maxLevel = 1
+[106161] is replaced by [106537] with estimated error 0
+error = 0
+area = 1595
+delay = 55
+#gates = 623
+output circuit appNtk/c3540_6_0_1595_55.blif
+time = 49428283 us
+--------------- round 7 ---------------
+seed = 880601008
+maxLevel = 1
+[106628] is replaced by [104912] with estimated error 0
+error = 0
+area = 1594
+delay = 55
+#gates = 622
+output circuit appNtk/c3540_7_0_1594_55.blif
+time = 57542330 us
+--------------- round 8 ---------------
+seed = 1464010288
+maxLevel = 1
+[106175] is replaced by [104885] with estimated error 0
+error = 0
+area = 1593
+delay = 55
+#gates = 621
+output circuit appNtk/c3540_8_0_1593_55.blif
+time = 65607243 us
+--------------- round 9 ---------------
+seed = 2943097465
+maxLevel = 1
+[106180] is replaced by [104895] with estimated error 0
+error = 0
+area = 1592
+delay = 55
+#gates = 620
+output circuit appNtk/c3540_9_0_1592_55.blif
+time = 73751022 us
+--------------- round 10 ---------------
+seed = 4282491483
+maxLevel = 1
+[106662] is replaced by [104886] with estimated error 0
+error = 0
+area = 1591
+delay = 55
+#gates = 619
+output circuit appNtk/c3540_10_0_1591_55.blif
+time = 81816809 us
+--------------- round 11 ---------------
+seed = 880786290
+maxLevel = 1
+[107035] is replaced by [107635] with estimated error 0
+error = 0
+area = 1590
+delay = 55
+#gates = 618
+output circuit appNtk/c3540_11_0_1590_55.blif
+time = 89902877 us
+--------------- round 12 ---------------
+seed = 1969115369
+maxLevel = 1
+[107023] is replaced by [105064] with estimated error 4e-05
+error = 4e-05
+area = 1587
+delay = 55
+#gates = 616
+output circuit appNtk/c3540_12_4e-05_1587_55.blif
+time = 97941100 us
+--------------- round 13 ---------------
+seed = 4033974742
+maxLevel = 1
+[153634] is replaced by zero with estimated error 0.00027
+error = 0.00027
+area = 1584
+delay = 55
+#gates = 615
+output circuit appNtk/c3540_13_0.00027_1584_55.blif
+time = 105933334 us
+--------------- round 14 ---------------
+seed = 286085457
+maxLevel = 1
+[105071] is replaced by [104949] with estimated error 0.00049
+error = 0.00049
+area = 1581
+delay = 55
+#gates = 614
+output circuit appNtk/c3540_14_0.00049_1581_55.blif
+time = 113919559 us
+--------------- round 15 ---------------
+seed = 969754069
+maxLevel = 1
+[104975] is replaced by [104929] with estimated error 0.00083
+error = 0.00083
+area = 1579
+delay = 55
+#gates = 613
+output circuit appNtk/c3540_15_0.00083_1579_55.blif
+time = 121955941 us
+--------------- round 16 ---------------
+seed = 3847544733
+maxLevel = 1
+exceed error bound
