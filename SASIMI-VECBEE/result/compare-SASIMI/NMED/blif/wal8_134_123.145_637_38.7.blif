@@ -1,0 +1,310 @@
+# Benchmark "wal8" written by ABC on Tue May 12 18:17:38 2020
+.model wal8
+.inputs multiplicand[0] multiplicand[1] multiplicand[2] multiplicand[3] \
+ multiplicand[4] multiplicand[5] multiplicand[6] multiplicand[7] \
+ multiplier[0] multiplier[1] multiplier[2] multiplier[3] multiplier[4] \
+ multiplier[5] multiplier[6] multiplier[7]
+.outputs product[0] product[1] product[2] product[3] product[4] product[5] \
+ product[6] product[7] product[8] product[9] product[10] product[11] \
+ product[12] product[13] product[14] product[15]
+
+.and_gate_delay 1.9
+.default_input_arrival 0 0
+.default_output_required 0 0
+
+
+
+.gate nand2  a=multiplier[2] b=multiplicand[4] O=product[4]
+.gate nand2  a=multiplicand[2] b=multiplier[4] O=new_[174186]_
+.gate inv1   a=new_[174186]_ O=new_[175659]_
+.gate nand2  a=multiplier[3] b=multiplicand[3] O=new_[174187]_
+.gate oai21  a=new_[172888]_ b=new_n540_ c=new_n524_ O=product[6]
+.gate nand2  a=new_n524_ b=product[6] O=new_[175481]_
+.gate nand2  a=multiplier[0] b=multiplicand[7] O=new_[174202]_
+.gate nand2  a=multiplier[2] b=multiplicand[5] O=new_[174203]_
+.gate nor2   a=new_[174202]_ b=new_[174203]_ O=new_[172888]_
+.gate aoi21  a=new_[174202]_ b=new_[174203]_ c=new_[172888]_ O=new_n146_
+.gate xor2a  a=new_n146_ b=new_n525_ O=new_[174205]_
+.gate inv1   a=new_[174205]_ O=new_[175633]_
+.gate inv1   a=new_[174237]_ O=new_[175783]_
+.gate nand2  a=multiplicand[3] b=multiplier[4] O=new_[174207]_
+.gate nand2  a=multiplier[3] b=multiplicand[4] O=new_[174208]_
+.gate inv1   a=new_[174208]_ O=new_[175564]_
+.gate oai22  a=new_[175371]_ b=new_[174208]_ c=new_[175564]_ d=new_[174207]_ O=new_[174209]_
+.gate nand2  a=multiplicand[2] b=multiplier[5] O=new_[174210]_
+.gate nand2  a=new_[174209]_ b=new_[174210]_ O=new_[176115]_
+.gate oai21  a=new_[174209]_ b=new_[174210]_ c=new_[176115]_ O=new_[174211]_
+.gate inv1   a=new_[174211]_ O=new_[175789]_
+.gate oai22  a=new_[175783]_ b=new_[174211]_ c=new_[175789]_ d=new_[174237]_ O=new_[174212]_
+.gate inv1   a=new_[174212]_ O=new_[175636]_
+.gate oai22  a=new_[175633]_ b=new_[174212]_ c=new_[175636]_ d=new_[174205]_ O=new_[174213]_
+.gate inv1   a=new_[174213]_ O=new_[175285]_
+.gate nand2  a=multiplicand[0] b=multiplier[7] O=new_[174216]_
+.gate nand2  a=multiplicand[1] b=multiplier[6] O=new_[174217]_
+.gate nand2  a=new_[175659]_ b=new_[175376]_ O=product[5]
+.gate nand2  a=new_[174217]_ b=new_[175659]_ O=new_[176109]_
+.gate oai21  a=new_[174217]_ b=new_[175659]_ c=new_[176109]_ O=new_[174219]_
+.gate nand2  a=new_[174216]_ b=new_[174219]_ O=new_[176107]_
+.gate oai21  a=new_[174216]_ b=new_[174219]_ c=new_[176107]_ O=new_[174220]_
+.gate inv1   a=new_[174220]_ O=new_[175646]_
+.gate oai22  a=product[6] b=new_[174220]_ c=new_[175646]_ d=new_[175481]_ O=new_[174221]_
+.gate inv1   a=new_[174221]_ O=new_[175288]_
+.gate oai22  a=new_[175285]_ b=new_[174221]_ c=new_[175288]_ d=new_[174213]_ O=product[7]
+.gate oai22  a=new_[175633]_ b=new_n542_ c=new_[175783]_ d=new_[175789]_ O=new_[174245]_
+.gate inv1   a=new_[174245]_ O=new_[175551]_
+.gate nand2  a=multiplicand[1] b=multiplier[7] O=new_[174240]_
+.gate nand2  a=multiplicand[2] b=multiplier[6] O=new_[174241]_
+.gate inv1   a=new_[174209]_ O=new_[175570]_
+.gate nand2  a=new_[175371]_ b=new_[175564]_ O=new_[175933]_
+.gate oai21  a=new_[175570]_ b=new_[174210]_ c=new_[175933]_ O=new_[174242]_
+.gate nand2  a=new_[174241]_ b=new_[174242]_ O=new_[176081]_
+.gate oai21  a=new_[174241]_ b=new_[174242]_ c=new_[176081]_ O=new_[174243]_
+.gate nand2  a=new_[174240]_ b=new_[174243]_ O=new_[176079]_
+.gate oai21  a=new_[174240]_ b=new_[174243]_ c=new_[176079]_ O=new_[174244]_
+.gate inv1   a=new_[174244]_ O=new_[175545]_
+.gate oai22  a=new_[175551]_ b=new_[174244]_ c=new_[175545]_ d=new_[174245]_ O=new_[174246]_
+.gate inv1   a=new_[174246]_ O=new_[175495]_
+.gate nand2  a=multiplier[1] b=multiplicand[7] O=new_[174229]_
+.gate inv1   a=new_[174229]_ O=new_[175713]_
+.gate nand2  a=multiplier[2] b=multiplicand[6] O=new_[174230]_
+.gate inv1   a=new_[174230]_ O=new_[175718]_
+.gate oai22  a=new_[175713]_ b=new_[174230]_ c=new_[175718]_ d=new_[174229]_ O=new_[174231]_
+.gate inv1   a=new_[174231]_ O=new_[175762]_
+.gate and2   a=new_[174202]_ b=new_[174203]_ O=new_n145_
+.gate nand2  a=multiplier[1] b=multiplicand[6] O=new_[174200]_
+.gate oai22  a=new_[174202]_ b=new_[174203]_ c=new_n145_ d=new_[174200]_ O=new_[174237]_
+.gate nand2  a=multiplier[4] b=multiplicand[4] O=new_[174232]_
+.gate inv1   a=new_[174232]_ O=new_[175371]_
+.gate nand2  a=multiplier[3] b=multiplicand[5] O=new_[174233]_
+.gate inv1   a=new_[174233]_ O=new_[175376]_
+.gate oai22  a=new_[175371]_ b=new_[174233]_ c=new_[175376]_ d=new_[174232]_ O=new_[174234]_
+.gate nand2  a=multiplicand[3] b=multiplier[5] O=new_[174235]_
+.gate nand2  a=new_[174234]_ b=new_[174235]_ O=new_[176089]_
+.gate oai21  a=new_[174234]_ b=new_[174235]_ c=new_[176089]_ O=new_[174236]_
+.gate inv1   a=new_[174236]_ O=new_[175771]_
+.gate oai22  a=new_[175783]_ b=new_[174236]_ c=new_[175771]_ d=new_[174237]_ O=new_[174238]_
+.gate inv1   a=new_[174238]_ O=new_[175765]_
+.gate oai22  a=new_[175762]_ b=new_[174238]_ c=new_[175765]_ d=new_[174231]_ O=new_[174239]_
+.gate inv1   a=new_[174239]_ O=new_[175492]_
+.gate oai22  a=new_[175495]_ b=new_[174239]_ c=new_[175492]_ d=new_[174246]_ O=new_[174247]_
+.gate inv1   a=new_[175659]_ O=new_[175509]_
+.gate inv1   a=new_[174219]_ O=new_[175513]_
+.gate oai22  a=new_[175509]_ b=new_[174217]_ c=new_[175513]_ d=new_[174216]_ O=new_[174248]_
+.gate and2   a=product[6] b=new_[175646]_ O=new_n342_
+.gate oai22  a=new_[175285]_ b=new_n342_ c=product[6] d=new_[175646]_ O=new_[174249]_
+.gate or2    a=new_[174248]_ b=new_[174249]_ O=new_[175102]_
+.gate nand2  a=new_[174248]_ b=new_[174249]_ O=new_[175106]_
+.gate nand2  a=new_[175102]_ b=new_[175106]_ O=new_[175100]_
+.gate nand2  a=new_[174247]_ b=new_[175100]_ O=new_[174938]_
+.gate inv1   a=new_[174247]_ O=new_[175098]_
+.gate nand3  a=new_[175106]_ b=new_[175102]_ c=new_[175098]_ O=new_[174940]_
+.gate nand2  a=new_[174938]_ b=new_[174940]_ O=product[8]
+.gate oai22  a=new_n523_ b=new_n523_ c=new_n523_ d=product[8] O=new_[174254]_
+.gate nand2  a=multiplicand[2] b=multiplier[7] O=new_[174264]_
+.gate nand2  a=multiplicand[3] b=multiplier[6] O=new_[174265]_
+.gate inv1   a=new_[174234]_ O=new_[175382]_
+.gate nand2  a=new_[175371]_ b=new_[175376]_ O=new_[175921]_
+.gate oai21  a=new_[175382]_ b=new_[174235]_ c=new_[175921]_ O=new_[174266]_
+.gate nand2  a=new_[174265]_ b=new_[174266]_ O=new_[176059]_
+.gate oai21  a=new_[174265]_ b=new_[174266]_ c=new_[176059]_ O=new_[174267]_
+.gate nand2  a=new_[174264]_ b=new_[174267]_ O=new_[176057]_
+.gate oai21  a=new_[174264]_ b=new_[174267]_ c=new_[176057]_ O=new_[174268]_
+.gate inv1   a=new_[174268]_ O=new_[175537]_
+.gate and2   a=new_[175771]_ b=new_[175783]_ O=new_[172853]_
+.gate oai22  a=new_[175762]_ b=new_[172853]_ c=new_[175771]_ d=new_[175783]_ O=new_[174263]_
+.gate inv1   a=new_[174263]_ O=new_[175531]_
+.gate oai22  a=new_[175537]_ b=new_[174263]_ c=new_[175531]_ d=new_[174268]_ O=new_[174269]_
+.gate inv1   a=new_[174269]_ O=new_[175556]_
+.gate nand2  a=multiplier[3] b=multiplicand[6] O=new_[174256]_
+.gate inv1   a=new_[174256]_ O=new_[175801]_
+.gate nand2  a=multiplicand[4] b=multiplier[5] O=new_[174257]_
+.gate nand2  a=multiplier[4] b=multiplicand[5] O=new_[174258]_
+.gate nand2  a=new_[174257]_ b=new_[174258]_ O=new_[176065]_
+.gate oai21  a=new_[174257]_ b=new_[174258]_ c=new_[176065]_ O=new_[174259]_
+.gate inv1   a=new_[174259]_ O=new_[175846]_
+.gate oai22  a=new_[175801]_ b=new_[174259]_ c=new_[175846]_ d=new_[174256]_ O=new_[174260]_
+.gate nand2  a=new_[175713]_ b=new_[175718]_ O=new_[175596]_
+.gate inv1   a=multiplier[2] O=new_[174114]_
+.gate inv1   a=multiplicand[7] O=new_[174201]_
+.gate oai21  a=new_[174114]_ b=new_[174201]_ c=new_[175596]_ O=new_[175705]_
+.gate nand2  a=new_[175596]_ b=new_[175705]_ O=new_[174261]_
+.gate nand2  a=new_[174260]_ b=new_[174261]_ O=new_[175680]_
+.gate oai21  a=new_[174260]_ b=new_[174261]_ c=new_[175680]_ O=new_[174262]_
+.gate inv1   a=new_[174262]_ O=new_[175525]_
+.gate oai22  a=new_[175556]_ b=new_[174262]_ c=new_[175525]_ d=new_[174269]_ O=new_[174270]_
+.gate inv1   a=new_[174270]_ O=new_[175134]_
+.gate inv1   a=new_[174242]_ O=new_[175364]_
+.gate inv1   a=new_[174243]_ O=new_[175368]_
+.gate oai22  a=new_[175364]_ b=new_[174241]_ c=new_[175368]_ d=new_[174240]_ O=new_[174272]_
+.gate inv1   a=new_[174272]_ O=new_[175140]_
+.gate and2   a=new_[175545]_ b=new_[175551]_ O=new_n345_
+.gate oai22  a=new_[175492]_ b=new_n345_ c=new_[175545]_ d=new_[175551]_ O=new_[174271]_
+.gate inv1   a=new_[174271]_ O=new_[175128]_
+.gate oai22  a=new_[175140]_ b=new_[174271]_ c=new_[175128]_ d=new_[174272]_ O=new_[174273]_
+.gate inv1   a=new_[174273]_ O=new_[175334]_
+.gate oai22  a=new_[175134]_ b=new_[174273]_ c=new_[175334]_ d=new_[174270]_ O=new_[174274]_
+.gate inv1   a=new_[174274]_ O=new_[174955]_
+.gate inv1   a=new_[175102]_ O=new_[175104]_
+.gate oai21  a=new_[175098]_ b=new_[175104]_ c=new_[175106]_ O=new_[174255]_
+.gate inv1   a=new_[174255]_ O=new_[174949]_
+.gate oai22  a=new_[174955]_ b=new_[174255]_ c=new_[174949]_ d=new_[174274]_ O=new_[174275]_
+.gate nand2  a=new_[174254]_ b=new_[174275]_ O=new_[176053]_
+.gate oai21  a=new_[174254]_ b=new_[174275]_ c=new_[176053]_ O=product[9]
+.gate nand2  a=new_[176053]_ b=new_[174274]_ O=new_[174276]_
+.gate inv1   a=new_[174276]_ O=new_[174677]_
+.gate inv1   a=new_[174266]_ O=new_[175154]_
+.gate inv1   a=new_[174267]_ O=new_[175158]_
+.gate oai22  a=new_[175154]_ b=new_[174265]_ c=new_[175158]_ d=new_[174264]_ O=new_[174277]_
+.gate inv1   a=new_[174258]_ O=new_[175795]_
+.gate nor2   a=new_[175795]_ b=new_[175801]_ O=new_n179_
+.gate oai22  a=new_[174256]_ b=new_[174258]_ c=new_n179_ d=new_[174257]_ O=new_[174278]_
+.gate nand2  a=multiplicand[3] b=multiplier[7] O=new_[174279]_
+.gate nand2  a=multiplicand[4] b=multiplier[6] O=new_[174280]_
+.gate nand2  a=new_[174279]_ b=new_[174280]_ O=new_[176045]_
+.gate oai21  a=new_[174279]_ b=new_[174280]_ c=new_[176045]_ O=new_[174281]_
+.gate nand2  a=new_[174278]_ b=new_[174281]_ O=new_[176043]_
+.gate oai21  a=new_[174278]_ b=new_[174281]_ c=new_[176043]_ O=new_[174282]_
+.gate nand2  a=multiplier[4] b=multiplicand[6] O=new_[174284]_
+.gate nand2  a=multiplier[3] b=multiplicand[7] O=new_[174285]_
+.gate or2    a=new_[174284]_ b=new_[174285]_ O=new_[175450]_
+.gate nand2  a=new_[174284]_ b=new_[174285]_ O=new_[175608]_
+.gate nand2  a=new_[175450]_ b=new_[175608]_ O=new_[174286]_
+.gate inv1   a=new_[174286]_ O=new_[175445]_
+.gate nand2  a=multiplier[5] b=multiplicand[5] O=new_[174283]_
+.gate inv1   a=new_[174283]_ O=new_[175440]_
+.gate oai22  a=new_[175445]_ b=new_[174283]_ c=new_[175440]_ d=new_[174286]_ O=new_[174287]_
+.gate nand2  a=new_[175705]_ b=new_[174260]_ O=new_[175594]_
+.gate nand2  a=new_[175594]_ b=new_[175596]_ O=new_[174288]_
+.gate oai21  a=new_[174287]_ b=new_[174288]_ c=new_[176023]_ O=new_[174289]_
+.gate nand2  a=new_[174282]_ b=new_[174289]_ O=new_[175390]_
+.gate oai21  a=new_[174282]_ b=new_[174289]_ c=new_[175390]_ O=new_[174290]_
+.gate nand2  a=new_[174277]_ b=new_[174290]_ O=new_[175339]_
+.gate oai21  a=new_[174277]_ b=new_[174290]_ c=new_[175339]_ O=new_[174291]_
+.gate and2   a=new_[175525]_ b=new_[175531]_ O=new_n359_
+.gate oai22  a=new_[175525]_ b=new_[175531]_ c=new_[175537]_ d=new_n359_ O=new_[174292]_
+.gate nand2  a=new_[174291]_ b=new_[174292]_ O=new_[174962]_
+.gate oai21  a=new_[174291]_ b=new_[174292]_ c=new_[174962]_ O=new_[174293]_
+.gate and2   a=new_[175134]_ b=new_[175128]_ O=new_[172839]_
+.gate oai22  a=new_[175128]_ b=new_[175134]_ c=new_[175140]_ d=new_[172839]_ O=new_[174294]_
+.gate nand2  a=new_[174293]_ b=new_[174294]_ O=new_[174811]_
+.gate oai21  a=new_[174293]_ b=new_[174294]_ c=new_[174811]_ O=new_[174295]_
+.gate inv1   a=new_[174295]_ O=new_[174680]_
+.gate oai22  a=new_[174677]_ b=new_[174295]_ c=new_[174680]_ d=new_[174276]_ O=product[10]
+.gate nand2  a=new_[174276]_ b=new_[174811]_ O=new_[175873]_
+.gate oai21  a=new_[174293]_ b=new_[174294]_ c=new_[175873]_ O=new_[174296]_
+.gate nand2  a=new_[174292]_ b=new_[174290]_ O=new_[174976]_
+.gate oai21  a=new_[174290]_ b=new_[174292]_ c=new_[174277]_ O=new_[176031]_
+.gate nand2  a=new_[174976]_ b=new_[176031]_ O=new_[174297]_
+.gate inv1   a=new_[174297]_ O=new_[174817]_
+.gate inv1   a=new_[174282]_ O=new_[175414]_
+.gate nand2  a=new_[174287]_ b=new_[174288]_ O=new_[176023]_
+.gate oai21  a=new_[175414]_ b=new_[174289]_ c=new_[176023]_ O=new_[174298]_
+.gate nand2  a=new_[175440]_ b=new_[175445]_ O=new_[176025]_
+.gate nand2  a=new_[175450]_ b=new_[176025]_ O=new_[174304]_
+.gate inv1   a=new_[174304]_ O=new_[175215]_
+.gate nand2  a=multiplicand[5] b=multiplier[6] O=new_[174303]_
+.gate inv1   a=new_[174303]_ O=new_[175205]_
+.gate oai22  a=new_[175215]_ b=new_[174303]_ c=new_[175205]_ d=new_[174304]_ O=new_[174305]_
+.gate inv1   a=new_[174305]_ O=new_[175219]_
+.gate nand2  a=multiplicand[4] b=multiplier[7] O=new_[174302]_
+.gate inv1   a=new_[174302]_ O=new_[175210]_
+.gate oai22  a=new_[175219]_ b=new_[174302]_ c=new_[175210]_ d=new_[174305]_ O=new_[174306]_
+.gate inv1   a=new_[174306]_ O=new_[175229]_
+.gate nand2  a=multiplier[5] b=multiplicand[6] O=new_[174300]_
+.gate inv1   a=new_[174300]_ O=new_[175431]_
+.gate nand2  a=multiplier[4] b=multiplicand[7] O=new_[174299]_
+.gate inv1   a=new_[174299]_ O=new_[175426]_
+.gate oai22  a=new_[175431]_ b=new_[174299]_ c=new_[175426]_ d=new_[174300]_ O=new_[174301]_
+.gate inv1   a=new_[174301]_ O=new_[175225]_
+.gate oai22  a=new_[175229]_ b=new_[174301]_ c=new_[175225]_ d=new_[174306]_ O=new_[174307]_
+.gate or2    a=new_[174298]_ b=new_[174307]_ O=new_[175182]_
+.gate nand2  a=new_[174298]_ b=new_[174307]_ O=new_[175394]_
+.gate nand2  a=new_[175182]_ b=new_[175394]_ O=new_[174308]_
+.gate inv1   a=new_[174278]_ O=new_[175579]_
+.gate inv1   a=new_[174280]_ O=new_[175585]_
+.gate nor2   a=new_[175585]_ b=new_[174278]_ O=new_n285_
+.gate oai22  a=new_[175579]_ b=new_[174280]_ c=new_n285_ d=new_[174279]_ O=new_[174309]_
+.gate nand2  a=new_[174308]_ b=new_[174309]_ O=new_[174980]_
+.gate oai21  a=new_[174308]_ b=new_[174309]_ c=new_[174980]_ O=new_[174310]_
+.gate inv1   a=new_[174310]_ O=new_[174823]_
+.gate oai22  a=new_[174817]_ b=new_[174310]_ c=new_[174823]_ d=new_[174297]_ O=new_[174311]_
+.gate nand2  a=new_[174296]_ b=new_[174311]_ O=new_[176013]_
+.gate oai21  a=new_[174296]_ b=new_[174311]_ c=new_[176013]_ O=product[11]
+.gate nand2  a=new_[174817]_ b=new_[174823]_ O=new_[174830]_
+.gate nand2  a=new_[174830]_ b=new_[176013]_ O=new_[174312]_
+.gate inv1   a=new_[174312]_ O=new_[174691]_
+.gate nand2  a=new_[175210]_ b=new_[175219]_ O=new_[175899]_
+.gate oai21  a=new_[175215]_ b=new_[174303]_ c=new_[175899]_ O=new_[174313]_
+.gate nand2  a=multiplier[5] b=multiplicand[7] O=new_[174315]_
+.gate nand2  a=multiplicand[5] b=multiplier[7] O=new_[174316]_
+.gate inv1   a=new_[174316]_ O=new_[175185]_
+.gate nand2  a=multiplier[6] b=multiplicand[6] O=new_[174317]_
+.gate nand2  a=new_[175426]_ b=new_[175431]_ O=new_[174318]_
+.gate nand2  a=new_[174317]_ b=new_[174318]_ O=new_[175438]_
+.gate oai21  a=new_[174317]_ b=new_[174318]_ c=new_[175438]_ O=new_[174319]_
+.gate inv1   a=new_[174319]_ O=new_[175200]_
+.gate oai22  a=new_[175185]_ b=new_[174319]_ c=new_[175200]_ d=new_[174316]_ O=new_[174320]_
+.gate nand2  a=new_[174315]_ b=new_[174320]_ O=new_[176005]_
+.gate oai21  a=new_[174315]_ b=new_[174320]_ c=new_[176005]_ O=new_[174321]_
+.gate inv1   a=new_[174321]_ O=new_[175006]_
+.gate nor2   a=new_[175225]_ b=new_[175229]_ O=new_n382_
+.gate oai22  a=new_[175006]_ b=new_n528_ c=new_n382_ d=new_[174321]_ O=new_[174322]_
+.gate nand2  a=new_[174313]_ b=new_[174322]_ O=new_[176001]_
+.gate oai21  a=new_[174313]_ b=new_[174322]_ c=new_[176001]_ O=new_[174323]_
+.gate inv1   a=new_[174323]_ O=new_[174982]_
+.gate aoi22  a=new_[174309]_ b=new_[175182]_ c=new_[174298]_ d=new_[174307]_ O=new_n463_
+.gate or2    a=new_[174982]_ b=new_n463_ O=new_[174832]_
+.gate nand2  a=new_[174982]_ b=new_n463_ O=new_[174835]_
+.gate nand2  a=new_[174832]_ b=new_[174835]_ O=new_[174325]_
+.gate inv1   a=new_[174325]_ O=new_[174694]_
+.gate oai22  a=new_[174691]_ b=new_[174325]_ c=new_[174694]_ d=new_[174312]_ O=product[12]
+.gate nand2  a=new_[174312]_ b=new_[174832]_ O=new_[175877]_
+.gate nand2  a=new_[174835]_ b=new_[175877]_ O=new_[174326]_
+.gate inv1   a=new_[174326]_ O=new_[174698]_
+.gate nand2  a=new_[175185]_ b=new_[175200]_ O=new_[175987]_
+.gate oai21  a=new_[174317]_ b=new_[174318]_ c=new_[175987]_ O=new_[174327]_
+.gate inv1   a=new_[174315]_ O=new_[175233]_
+.gate nand2  a=new_[174320]_ b=new_[175233]_ O=new_[174331]_
+.gate inv1   a=new_[174331]_ O=new_[175022]_
+.gate nand2  a=multiplicand[6] b=multiplier[7] O=new_[174328]_
+.gate inv1   a=new_[174328]_ O=new_[175027]_
+.gate nand2  a=multiplier[6] b=multiplicand[7] O=new_[174329]_
+.gate inv1   a=new_[174329]_ O=new_[175032]_
+.gate oai22  a=new_[175027]_ b=new_[174329]_ c=new_[175032]_ d=new_[174328]_ O=new_[174330]_
+.gate inv1   a=new_[174330]_ O=new_[175018]_
+.gate oai22  a=new_[175022]_ b=new_[174330]_ c=new_[175018]_ d=new_[174331]_ O=new_[174332]_
+.gate nand2  a=new_[174327]_ b=new_[174332]_ O=new_[175977]_
+.gate oai21  a=new_[174327]_ b=new_[174332]_ c=new_[175977]_ O=new_[174333]_
+.gate inv1   a=new_[174313]_ O=new_[174998]_
+.gate oai22  a=new_[174998]_ b=new_[174322]_ c=new_[175006]_ d=new_n528_ O=new_[174334]_
+.gate nand2  a=new_[174333]_ b=new_[174334]_ O=new_[175969]_
+.gate oai21  a=new_[174333]_ b=new_[174334]_ c=new_[175969]_ O=new_[174335]_
+.gate inv1   a=new_[174335]_ O=new_[174702]_
+.gate oai22  a=new_[174698]_ b=new_[174335]_ c=new_[174702]_ d=new_[174326]_ O=product[13]
+.gate nand2  a=new_[174326]_ b=new_[175969]_ O=new_[175879]_
+.gate nand2  a=new_[174333]_ b=new_[175879]_ O=new_[174336]_
+.gate inv1   a=new_[174336]_ O=new_[174706]_
+.gate nand2  a=multiplicand[7] b=multiplier[7] O=new_[174338]_
+.gate inv1   a=new_[174338]_ O=new_[175015]_
+.gate nand2  a=new_[175027]_ b=new_[175032]_ O=new_[174337]_
+.gate inv1   a=new_[174337]_ O=new_[174859]_
+.gate oai22  a=new_[175015]_ b=new_[174337]_ c=new_[174859]_ d=new_[174338]_ O=new_[174339]_
+.gate inv1   a=new_[174327]_ O=new_[174989]_
+.gate oai22  a=new_[174989]_ b=new_[174332]_ c=new_[175018]_ d=new_[174331]_ O=new_[174340]_
+.gate nand2  a=new_[174339]_ b=new_[174340]_ O=new_[175953]_
+.gate oai21  a=new_[174339]_ b=new_[174340]_ c=new_[175953]_ O=new_[174341]_
+.gate oai22  a=new_[174706]_ b=new_[174341]_ c=new_[174339]_ d=new_[174336]_ O=product[14]
+.gate nand2  a=new_[174336]_ b=new_[175953]_ O=new_[175881]_
+.gate nand2  a=new_[175015]_ b=new_[175881]_ O=new_[174715]_
+.gate nand2  a=new_[174337]_ b=new_[174715]_ O=product[15]
+.gate zero   O=new_n523_
+.gate one    O=new_n524_
+.gate inv1   a=new_[174200]_ O=new_n525_
+.gate inv1   a=new_n382_ O=new_n528_
+.gate inv1   a=new_[174187]_ O=new_n540_
+.gate inv1   a=new_[174211]_ O=new_n542_
+.gate one    O=product[1]
+.gate one    O=product[2]
+.gate buf    a=multiplicand[0] O=product[0]
+.gate buf    a=multiplier[0] O=product[3]
+.end

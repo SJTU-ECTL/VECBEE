@@ -1,0 +1,394 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/wal8.blif
+Line 9: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 10: Skipping line ".default_output_required 0.00 0.00 ".
+Line 11: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 12: Skipping line ".default_output_load 2.00 ".
+Line 13: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mwal8                          :[0m i/o =   16/   16  lat =    0  nd =   490  edge =   1058  area =1081.00  delay =45.30  lev = 36
+--------------- round 1 ---------------
+seed = 1275245369
+maxLevel = 1
+[174797] is replaced by [176053] with estimated error 0
+error = 0
+area = 1078
+delay = 44.7
+#gates = 491
+output circuit appNtk/wal8_1_0_1078_44.7.blif
+time = 46427382 us
+--------------- round 2 ---------------
+seed = 1071656175
+maxLevel = 1
+[175875] is replaced by [176013] with estimated error 0
+error = 0
+area = 1075
+delay = 44.1
+#gates = 490
+output circuit appNtk/wal8_2_0_1075_44.1.blif
+time = 92691429 us
+--------------- round 3 ---------------
+seed = 1107981863
+maxLevel = 1
+[174713] is replaced by [174337] with estimated error 0
+error = 0
+area = 1073
+delay = 43.1
+#gates = 489
+output circuit appNtk/wal8_3_0_1073_43.1.blif
+time = 138803606 us
+--------------- round 4 ---------------
+seed = 1346106216
+maxLevel = 1
+[174867] is replaced by [175015] with estimated error 0
+error = 0
+area = 1071
+delay = 43.1
+#gates = 488
+output circuit appNtk/wal8_4_0_1071_43.1.blif
+time = 184688405 us
+--------------- round 5 ---------------
+seed = 2512258610
+maxLevel = 1
+[174864] is replaced by [175953] with estimated error 0
+error = 0
+area = 1069
+delay = 43.1
+#gates = 487
+output circuit appNtk/wal8_5_0_1069_43.1.blif
+time = 230336162 us
+--------------- round 6 ---------------
+seed = 814788030
+maxLevel = 1
+[174151] is replaced by n312 with inverter with estimated error 0
+error = 0
+area = 1067
+delay = 43.1
+#gates = 487
+output circuit appNtk/wal8_6_0_1067_43.1.blif
+time = 275926083 us
+--------------- round 7 ---------------
+seed = 1609175951
+maxLevel = 1
+[174314] is replaced by n382 with inverter with estimated error 0
+error = 0
+area = 1065
+delay = 43.1
+#gates = 487
+output circuit appNtk/wal8_7_0_1065_43.1.blif
+time = 321415737 us
+--------------- round 8 ---------------
+seed = 3055221481
+maxLevel = 1
+[176023] is replaced by [175604] with estimated error 0
+error = 0
+area = 1063
+delay = 43.1
+#gates = 486
+output circuit appNtk/wal8_8_0_1063_43.1.blif
+time = 367009879 us
+--------------- round 9 ---------------
+seed = 1420507618
+maxLevel = 1
+[175768] is replaced by [174261] with estimated error 0
+error = 0
+area = 1061
+delay = 43.1
+#gates = 485
+output circuit appNtk/wal8_9_0_1061_43.1.blif
+time = 412423858 us
+--------------- round 10 ---------------
+seed = 4140100110
+maxLevel = 1
+[176137] is replaced by [175759] with estimated error 0
+error = 0
+area = 1059
+delay = 43.1
+#gates = 484
+output circuit appNtk/wal8_10_0_1059_43.1.blif
+time = 457810461 us
+--------------- round 11 ---------------
+seed = 53049873
+maxLevel = 1
+n108 is replaced by [174200] with inverter with estimated error 0
+error = 0
+area = 1057
+delay = 43.1
+#gates = 483
+output circuit appNtk/wal8_11_0_1057_43.1.blif
+time = 502761463 us
+--------------- round 12 ---------------
+seed = 2487982897
+maxLevel = 1
+[175969] is replaced by [174846] with estimated error 0
+error = 0
+area = 1055
+delay = 43.1
+#gates = 482
+output circuit appNtk/wal8_12_0_1055_43.1.blif
+time = 547632001 us
+--------------- round 13 ---------------
+seed = 1405976026
+maxLevel = 1
+n109 is replaced by [174183] with inverter with estimated error 0
+error = 0
+area = 1053
+delay = 43.1
+#gates = 481
+output circuit appNtk/wal8_13_0_1053_43.1.blif
+time = 592306144 us
+--------------- round 14 ---------------
+seed = 2886898659
+maxLevel = 1
+[174710] is replaced by [174339] with estimated error 0
+error = 0
+area = 1052
+delay = 43.1
+#gates = 480
+output circuit appNtk/wal8_14_0_1052_43.1.blif
+time = 636776320 us
+--------------- round 15 ---------------
+seed = 4227559964
+maxLevel = 1
+[174657] is replaced by [174226] with estimated error 0
+error = 0
+area = 1051
+delay = 43.1
+#gates = 479
+output circuit appNtk/wal8_15_0_1051_43.1.blif
+time = 681215516 us
+--------------- round 16 ---------------
+seed = 2862522572
+maxLevel = 1
+product[2] is replaced by [176253] with inverter with estimated error 1.13027
+error = 1.13027
+area = 1047
+delay = 43.1
+#gates = 478
+output circuit appNtk/wal8_16_1.13027_1047_43.1.blif
+time = 726135801 us
+--------------- round 17 ---------------
+seed = 2449516312
+maxLevel = 1
+[174109] is replaced by zero with estimated error 1.234
+error = 1.234
+area = 1046
+delay = 43.1
+#gates = 477
+output circuit appNtk/wal8_17_1.234_1046_43.1.blif
+time = 770678587 us
+--------------- round 18 ---------------
+seed = 142965837
+maxLevel = 1
+[174134] is replaced by one with estimated error 1.53478
+error = 1.53478
+area = 1043
+delay = 43.1
+#gates = 475
+output circuit appNtk/wal8_18_1.53478_1043_43.1.blif
+time = 815138945 us
+--------------- round 19 ---------------
+seed = 3878945898
+maxLevel = 1
+[174150] is replaced by one with estimated error 1.5285
+error = 1.5285
+area = 1040
+delay = 43.1
+#gates = 473
+output circuit appNtk/wal8_19_1.5285_1040_43.1.blif
+time = 859181627 us
+--------------- round 20 ---------------
+seed = 3016814956
+maxLevel = 1
+[174638] is replaced by zero with estimated error 1.5218
+error = 1.5218
+area = 1039
+delay = 43.1
+#gates = 472
+output circuit appNtk/wal8_20_1.5218_1039_43.1.blif
+time = 902881550 us
+--------------- round 21 ---------------
+seed = 2965768754
+maxLevel = 1
+product[1] is replaced by [174115] with inverter with estimated error 1.8531
+error = 1.8531
+area = 1034
+delay = 43.1
+#gates = 470
+output circuit appNtk/wal8_21_1.8531_1034_43.1.blif
+time = 946650081 us
+--------------- round 22 ---------------
+seed = 2100667213
+maxLevel = 1
+[174125] is replaced by [174615] with estimated error 3.01187
+error = 3.01187
+area = 1028
+delay = 43.1
+#gates = 467
+output circuit appNtk/wal8_22_3.01187_1028_43.1.blif
+time = 990133896 us
+--------------- round 23 ---------------
+seed = 3680823937
+maxLevel = 1
+[174615] is replaced by [174113] with inverter with estimated error 3.53144
+error = 3.53144
+area = 1023
+delay = 43.1
+#gates = 465
+output circuit appNtk/wal8_23_3.53144_1023_43.1.blif
+time = 1033712905 us
+--------------- round 24 ---------------
+seed = 2794199031
+maxLevel = 1
+[174119] is replaced by zero with estimated error 4.10628
+error = 4.10628
+area = 1013
+delay = 43.1
+#gates = 460
+output circuit appNtk/wal8_24_4.10628_1013_43.1.blif
+time = 1076301360 us
+--------------- round 25 ---------------
+seed = 2305134736
+maxLevel = 1
+[176233] is replaced by [174733] with estimated error 4.28861
+error = 4.28861
+area = 1011
+delay = 43.1
+#gates = 459
+output circuit appNtk/wal8_25_4.28861_1011_43.1.blif
+time = 1118207726 us
+--------------- round 26 ---------------
+seed = 3007746111
+maxLevel = 1
+[174108] is replaced by one with estimated error 4.43745
+error = 4.43745
+area = 1010
+delay = 43.1
+#gates = 458
+output circuit appNtk/wal8_26_4.43745_1010_43.1.blif
+time = 1159851489 us
+--------------- round 27 ---------------
+seed = 3611634685
+maxLevel = 1
+[176241] is replaced by [175043] with estimated error 4.78425
+error = 4.78425
+area = 1008
+delay = 43.1
+#gates = 457
+output circuit appNtk/wal8_27_4.78425_1008_43.1.blif
+time = 1201389280 us
+--------------- round 28 ---------------
+seed = 4050725810
+maxLevel = 1
+n530 is replaced by [175046] with estimated error 4.98758
+error = 4.98758
+area = 1007
+delay = 43.1
+#gates = 456
+output circuit appNtk/wal8_28_4.98758_1007_43.1.blif
+time = 1242802888 us
+--------------- round 29 ---------------
+seed = 1772255273
+maxLevel = 1
+[174901] is replaced by [175069] with estimated error 5.32833
+error = 5.32833
+area = 1006
+delay = 43.1
+#gates = 455
+output circuit appNtk/wal8_29_5.32833_1006_43.1.blif
+time = 1284031233 us
+--------------- round 30 ---------------
+seed = 1892818624
+maxLevel = 1
+[175076] is replaced by n413 with estimated error 5.79493
+error = 5.79493
+area = 1005
+delay = 43.1
+#gates = 454
+output circuit appNtk/wal8_30_5.79493_1005_43.1.blif
+time = 1325047745 us
+--------------- round 31 ---------------
+seed = 157137575
+maxLevel = 1
+n529 is replaced by [172900] with estimated error 5.8585
+error = 5.8585
+area = 1004
+delay = 43.1
+#gates = 453
+output circuit appNtk/wal8_31_5.8585_1004_43.1.blif
+time = 1365846856 us
+--------------- round 32 ---------------
+seed = 2561464216
+maxLevel = 1
+[174777] is replaced by one with estimated error 5.81477
+error = 5.81477
+area = 1002
+delay = 43.1
+#gates = 452
+output circuit appNtk/wal8_32_5.81477_1002_43.1.blif
+time = 1406995449 us
+--------------- round 33 ---------------
+seed = 3785533365
+maxLevel = 1
+[174880] is replaced by [174113] with estimated error 5.83934
+error = 5.83934
+area = 1001
+delay = 43.1
+#gates = 451
+output circuit appNtk/wal8_33_5.83934_1001_43.1.blif
+time = 1448055270 us
+--------------- round 34 ---------------
+seed = 843885635
+maxLevel = 1
+[174195] is replaced by one with estimated error 5.79593
+error = 5.79593
+area = 999
+delay = 41.7
+#gates = 450
+output circuit appNtk/wal8_34_5.79593_999_41.7.blif
+time = 1488761120 us
+--------------- round 35 ---------------
+seed = 245885633
+maxLevel = 1
+product[0] is replaced by zero with estimated error 5.94597
+error = 5.94597
+area = 997
+delay = 41.7
+#gates = 449
+output circuit appNtk/wal8_35_5.94597_997_41.7.blif
+time = 1530895085 us
+--------------- round 36 ---------------
+seed = 1904409293
+maxLevel = 1
+[174115] is replaced by [174216] with estimated error 5.77024
+error = 5.77024
+area = 995
+delay = 41.7
+#gates = 448
+output circuit appNtk/wal8_36_5.77024_995_41.7.blif
+time = 1572725535 us
+--------------- round 37 ---------------
+seed = 2633735370
+maxLevel = 1
+[176253] is replaced by one with estimated error 5.78187
+error = 5.78187
+area = 993
+delay = 41.7
+#gates = 447
+output circuit appNtk/wal8_37_5.78187_993_41.7.blif
+time = 1613153395 us
+--------------- round 38 ---------------
+seed = 4166615693
+maxLevel = 1
+[174122] is replaced by [174152] with estimated error 5.54314
+error = 5.54314
+area = 988
+delay = 41.7
+#gates = 445
+output circuit appNtk/wal8_38_5.54314_988_41.7.blif
+time = 1653705302 us
+--------------- round 39 ---------------
+seed = 1159775615
+maxLevel = 1
+exceed error bound

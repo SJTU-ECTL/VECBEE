@@ -1,0 +1,969 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/mtp8.blif
+Line 7: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 8: Skipping line ".default_output_required 0.00 0.00 ".
+Line 9: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 10: Skipping line ".default_output_load 2.00 ".
+Line 11: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mmtp8                          :[0m i/o =   16/   16  lat =    0  nd =   430  edge =   1037  area =1069.00  delay =37.80  lev = 32
+--------------- round 1 ---------------
+seed = 380918638
+maxLevel = 2147483647
+[166469] is replaced by [166345] with estimated error 0
+error = 0
+area = 1065
+delay = 37.8
+#gates = 430
+output circuit appNtk/mtp8_1_0_1065_37.8.blif
+time = 39439194 us
+--------------- round 2 ---------------
+seed = 3213385195
+maxLevel = 2147483647
+[167126] is replaced by [167814] with estimated error 0
+error = 0
+area = 1061
+delay = 37.8
+#gates = 429
+output circuit appNtk/mtp8_2_0_1061_37.8.blif
+time = 78374396 us
+--------------- round 3 ---------------
+seed = 2294375274
+maxLevel = 2147483647
+[164857] is replaced by [167660] with estimated error 0
+error = 0
+area = 1058
+delay = 37.8
+#gates = 428
+output circuit appNtk/mtp8_3_0_1058_37.8.blif
+time = 117273284 us
+--------------- round 4 ---------------
+seed = 1063101161
+maxLevel = 2147483647
+[166351] is replaced by y[0] with estimated error 0
+error = 0
+area = 1054
+delay = 37.8
+#gates = 427
+output circuit appNtk/mtp8_4_0_1054_37.8.blif
+time = 155915575 us
+--------------- round 5 ---------------
+seed = 4216379257
+maxLevel = 2147483647
+[167340] is replaced by [166399] with estimated error 0
+error = 0
+area = 1052
+delay = 37.8
+#gates = 426
+output circuit appNtk/mtp8_5_0_1052_37.8.blif
+time = 194321871 us
+--------------- round 6 ---------------
+seed = 2511670040
+maxLevel = 2147483647
+[166406] is replaced by n556 with inverter with estimated error 0
+error = 0
+area = 1050
+delay = 37.8
+#gates = 426
+output circuit appNtk/mtp8_6_0_1050_37.8.blif
+time = 232533255 us
+--------------- round 7 ---------------
+seed = 1931612853
+maxLevel = 2147483647
+[168101] is replaced by [166441] with estimated error 0
+error = 0
+area = 1048
+delay = 37.8
+#gates = 425
+output circuit appNtk/mtp8_7_0_1048_37.8.blif
+time = 270781780 us
+--------------- round 8 ---------------
+seed = 4219589489
+maxLevel = 2147483647
+[167001] is replaced by [166559] with estimated error 0
+error = 0
+area = 1047
+delay = 37.8
+#gates = 424
+output circuit appNtk/mtp8_8_0_1047_37.8.blif
+time = 308848892 us
+--------------- round 9 ---------------
+seed = 219949568
+maxLevel = 2147483647
+[166909] is replaced by [166358] with estimated error 0
+error = 0
+area = 1046
+delay = 37.8
+#gates = 423
+output circuit appNtk/mtp8_9_0_1046_37.8.blif
+time = 346747012 us
+--------------- round 10 ---------------
+seed = 2351245774
+maxLevel = 2147483647
+[167033] is replaced by [167132] with estimated error 0
+error = 0
+area = 1045
+delay = 37.8
+#gates = 422
+output circuit appNtk/mtp8_10_0_1045_37.8.blif
+time = 384550313 us
+--------------- round 11 ---------------
+seed = 3751401096
+maxLevel = 2147483647
+[166558] is replaced by [166559] with estimated error 0
+error = 0
+area = 1044
+delay = 37.4
+#gates = 421
+output circuit appNtk/mtp8_11_0_1044_37.4.blif
+time = 422150285 us
+--------------- round 12 ---------------
+seed = 1357070436
+maxLevel = 2147483647
+n32 is replaced by [166412] with estimated error 0
+error = 0
+area = 1039
+delay = 37.4
+#gates = 419
+output circuit appNtk/mtp8_12_0_1039_37.4.blif
+time = 459590937 us
+--------------- round 13 ---------------
+seed = 2674518762
+maxLevel = 2147483647
+[166360] is replaced by [166906] with estimated error 0.759228
+error = 0.759228
+area = 1037
+delay = 37.4
+#gates = 418
+output circuit appNtk/mtp8_13_0.759228_1037_37.4.blif
+time = 497288171 us
+--------------- round 14 ---------------
+seed = 865287397
+maxLevel = 2147483647
+[166359] is replaced by [167132] with estimated error 1.89761
+error = 1.89761
+area = 1033
+delay = 37.4
+#gates = 416
+output circuit appNtk/mtp8_14_1.89761_1033_37.4.blif
+time = 534842184 us
+--------------- round 15 ---------------
+seed = 168983296
+maxLevel = 2147483647
+[166355] is replaced by [166346] with estimated error 2.29227
+error = 2.29227
+area = 1031
+delay = 37.4
+#gates = 415
+output circuit appNtk/mtp8_15_2.29227_1031_37.4.blif
+time = 572097560 us
+--------------- round 16 ---------------
+seed = 3642057111
+maxLevel = 2147483647
+[166368] is replaced by [166509] with estimated error 2.84434
+error = 2.84434
+area = 1026
+delay = 37.4
+#gates = 413
+output circuit appNtk/mtp8_16_2.84434_1026_37.4.blif
+time = 609228082 us
+--------------- round 17 ---------------
+seed = 604510203
+maxLevel = 2147483647
+[168517] is replaced by one with estimated error 3.1303
+error = 3.1303
+area = 1024
+delay = 37.4
+#gates = 412
+output circuit appNtk/mtp8_17_3.1303_1024_37.4.blif
+time = 646133450 us
+--------------- round 18 ---------------
+seed = 1736372681
+maxLevel = 2147483647
+[166906] is replaced by [166902] with estimated error 3.25035
+error = 3.25035
+area = 1023
+delay = 37.4
+#gates = 411
+output circuit appNtk/mtp8_18_3.25035_1023_37.4.blif
+time = 682830964 us
+--------------- round 19 ---------------
+seed = 2780142661
+maxLevel = 2147483647
+[166371] is replaced by [166358] with estimated error 3.9722
+error = 3.9722
+area = 1017
+delay = 37.4
+#gates = 409
+output circuit appNtk/mtp8_19_3.9722_1017_37.4.blif
+time = 719344149 us
+--------------- round 20 ---------------
+seed = 3252663817
+maxLevel = 2147483647
+[166902] is replaced by [166346] with estimated error 4.05319
+error = 4.05319
+area = 1016
+delay = 37.4
+#gates = 408
+output circuit appNtk/mtp8_20_4.05319_1016_37.4.blif
+time = 755505700 us
+--------------- round 21 ---------------
+seed = 567375727
+maxLevel = 2147483647
+n183 is replaced by [166377] with estimated error 4.7791
+error = 4.7791
+area = 1012
+delay = 37.4
+#gates = 407
+output circuit appNtk/mtp8_21_4.7791_1012_37.4.blif
+time = 791598285 us
+--------------- round 22 ---------------
+seed = 3579938237
+maxLevel = 2147483647
+[167040] is replaced by [166509] with estimated error 5.79333
+error = 5.79333
+area = 1008
+delay = 37.4
+#gates = 405
+output circuit appNtk/mtp8_22_5.79333_1008_37.4.blif
+time = 827503499 us
+--------------- round 23 ---------------
+seed = 2462946772
+maxLevel = 2147483647
+[167037] is replaced by [167281] with estimated error 6.37375
+error = 6.37375
+area = 1004
+delay = 37.4
+#gates = 403
+output circuit appNtk/mtp8_23_6.37375_1004_37.4.blif
+time = 863071251 us
+--------------- round 24 ---------------
+seed = 3164271419
+maxLevel = 2147483647
+result[3] is replaced by zero with estimated error 7.60751
+error = 7.60751
+area = 999
+delay = 37.4
+#gates = 401
+output circuit appNtk/mtp8_24_7.60751_999_37.4.blif
+time = 898241852 us
+--------------- round 25 ---------------
+seed = 2267952870
+maxLevel = 2147483647
+[167281] is replaced by [166471] with estimated error 8.21006
+error = 8.21006
+area = 996
+delay = 37.4
+#gates = 400
+output circuit appNtk/mtp8_25_8.21006_996_37.4.blif
+time = 933125587 us
+--------------- round 26 ---------------
+seed = 2536968806
+maxLevel = 2147483647
+[166358] is replaced by [166366] with estimated error 8.72154
+error = 8.72154
+area = 992
+delay = 37.4
+#gates = 399
+output circuit appNtk/mtp8_26_8.72154_992_37.4.blif
+time = 967918904 us
+--------------- round 27 ---------------
+seed = 1092070826
+maxLevel = 2147483647
+[166357] is replaced by y[2] with estimated error 8.72438
+error = 8.72438
+area = 988
+delay = 37.4
+#gates = 398
+output circuit appNtk/mtp8_27_8.72438_988_37.4.blif
+time = 1002604592 us
+--------------- round 28 ---------------
+seed = 1872845410
+maxLevel = 2147483647
+[166363] is replaced by [167528] with inverter with estimated error 8.9933
+error = 8.9933
+area = 984
+delay = 37.4
+#gates = 397
+output circuit appNtk/mtp8_28_8.9933_984_37.4.blif
+time = 1037140303 us
+--------------- round 29 ---------------
+seed = 4182995925
+maxLevel = 2147483647
+[167702] is replaced by [166350] with estimated error 8.96507
+error = 8.96507
+area = 980
+delay = 37.4
+#gates = 396
+output circuit appNtk/mtp8_29_8.96507_980_37.4.blif
+time = 1071474664 us
+--------------- round 30 ---------------
+seed = 337205380
+maxLevel = 2147483647
+[167157] is replaced by [166367] with estimated error 8.95457
+error = 8.95457
+area = 977
+delay = 37.4
+#gates = 394
+output circuit appNtk/mtp8_30_8.95457_977_37.4.blif
+time = 1105694062 us
+--------------- round 31 ---------------
+seed = 878607643
+maxLevel = 2147483647
+result[4] is replaced by [166935] with estimated error 11.342
+error = 11.342
+area = 970
+delay = 37.4
+#gates = 391
+output circuit appNtk/mtp8_31_11.342_970_37.4.blif
+time = 1139680183 us
+--------------- round 32 ---------------
+seed = 635354692
+maxLevel = 2147483647
+[166402] is replaced by [167043] with estimated error 12.796
+error = 12.796
+area = 959
+delay = 37.4
+#gates = 386
+output circuit appNtk/mtp8_32_12.796_959_37.4.blif
+time = 1173088609 us
+--------------- round 33 ---------------
+seed = 2520742382
+maxLevel = 2147483647
+[168573] is replaced by zero with estimated error 12.7529
+error = 12.7529
+area = 956
+delay = 37.4
+#gates = 385
+output circuit appNtk/mtp8_33_12.7529_956_37.4.blif
+time = 1205700976 us
+--------------- round 34 ---------------
+seed = 227873631
+maxLevel = 2147483647
+[166366] is replaced by [166352] with estimated error 13.2303
+error = 13.2303
+area = 952
+delay = 37.4
+#gates = 384
+output circuit appNtk/mtp8_34_13.2303_952_37.4.blif
+time = 1238105505 us
+--------------- round 35 ---------------
+seed = 2463962314
+maxLevel = 2147483647
+[166350] is replaced by [166365] with estimated error 14.752
+error = 14.752
+area = 948
+delay = 37.4
+#gates = 383
+output circuit appNtk/mtp8_35_14.752_948_37.4.blif
+time = 1270475577 us
+--------------- round 36 ---------------
+seed = 1236261824
+maxLevel = 2147483647
+[166352] is replaced by [167814] with estimated error 15.6226
+error = 15.6226
+area = 944
+delay = 37.4
+#gates = 382
+output circuit appNtk/mtp8_36_15.6226_944_37.4.blif
+time = 1302629448 us
+--------------- round 37 ---------------
+seed = 4242448218
+maxLevel = 2147483647
+[166365] is replaced by [166391] with estimated error 16.1404
+error = 16.1404
+area = 940
+delay = 37.4
+#gates = 381
+output circuit appNtk/mtp8_37_16.1404_940_37.4.blif
+time = 1334590720 us
+--------------- round 38 ---------------
+seed = 3535702820
+maxLevel = 2147483647
+n503 is replaced by zero with estimated error 17.0188
+error = 17.0188
+area = 936
+delay = 37.4
+#gates = 380
+output circuit appNtk/mtp8_38_17.0188_936_37.4.blif
+time = 1366397569 us
+--------------- round 39 ---------------
+seed = 204920761
+maxLevel = 2147483647
+[167154] is replaced by one with estimated error 17.8535
+error = 17.8535
+area = 932
+delay = 37.4
+#gates = 378
+output circuit appNtk/mtp8_39_17.8535_932_37.4.blif
+time = 1397994747 us
+--------------- round 40 ---------------
+seed = 4136200166
+maxLevel = 2147483647
+[167149] is replaced by [166373] with inverter with estimated error 20.085
+error = 20.085
+area = 911
+delay = 37.4
+#gates = 370
+output circuit appNtk/mtp8_40_20.085_911_37.4.blif
+time = 1429293278 us
+--------------- round 41 ---------------
+seed = 2813879262
+maxLevel = 2147483647
+[166383] is replaced by [166509] with estimated error 20.4666
+error = 20.4666
+area = 909
+delay = 37.4
+#gates = 369
+output circuit appNtk/mtp8_41_20.4666_909_37.4.blif
+time = 1459418868 us
+--------------- round 42 ---------------
+seed = 181227212
+maxLevel = 2147483647
+[166395] is replaced by [166388] with estimated error 21.3037
+error = 21.3037
+area = 905
+delay = 37.4
+#gates = 368
+output circuit appNtk/mtp8_42_21.3037_905_37.4.blif
+time = 1489405418 us
+--------------- round 43 ---------------
+seed = 3159671327
+maxLevel = 2147483647
+n466 is replaced by [166509] with inverter with estimated error 22.0994
+error = 22.0994
+area = 901
+delay = 37.4
+#gates = 365
+output circuit appNtk/mtp8_43_22.0994_901_37.4.blif
+time = 1519181286 us
+--------------- round 44 ---------------
+seed = 2976397642
+maxLevel = 2147483647
+result[5] is replaced by [164843] with inverter with estimated error 24.9907
+error = 24.9907
+area = 894
+delay = 37.4
+#gates = 363
+output circuit appNtk/mtp8_44_24.9907_894_37.4.blif
+time = 1548661331 us
+--------------- round 45 ---------------
+seed = 956228697
+maxLevel = 2147483647
+[166420] is replaced by n469 with inverter with estimated error 25.1883
+error = 25.1883
+area = 892
+delay = 37.4
+#gates = 363
+output circuit appNtk/mtp8_45_25.1883_892_37.4.blif
+time = 1577756348 us
+--------------- round 46 ---------------
+seed = 2218906980
+maxLevel = 2147483647
+n470 is replaced by [164843] with estimated error 25.1553
+error = 25.1553
+area = 891
+delay = 37.4
+#gates = 362
+output circuit appNtk/mtp8_46_25.1553_891_37.4.blif
+time = 1606848214 us
+--------------- round 47 ---------------
+seed = 236662752
+maxLevel = 2147483647
+result[0] is replaced by zero with estimated error 25.1395
+error = 25.1395
+area = 889
+delay = 37.4
+#gates = 361
+output circuit appNtk/mtp8_47_25.1395_889_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1635801724 us
+--------------- round 48 ---------------
+seed = 979347994
+maxLevel = 2147483647
+[166405] is replaced by [166344] with estimated error 26.2919
+error = 26.2919
+area = 887
+delay = 37.4
+#gates = 360
+output circuit appNtk/mtp8_48_26.2919_887_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1664681737 us
+--------------- round 49 ---------------
+seed = 476718450
+maxLevel = 2147483647
+[164843] is replaced by [167043] with estimated error 35.2148
+error = 35.2148
+area = 872
+delay = 37.4
+#gates = 353
+output circuit appNtk/mtp8_49_35.2148_872_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1693364086 us
+--------------- round 50 ---------------
+seed = 2823630689
+maxLevel = 2147483647
+[167346] is replaced by [166398] with inverter with estimated error 35.1894
+error = 35.1894
+area = 870
+delay = 37.4
+#gates = 353
+output circuit appNtk/mtp8_50_35.1894_870_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1720976942 us
+--------------- round 51 ---------------
+seed = 3233393687
+maxLevel = 2147483647
+[166374] is replaced by n467 with estimated error 35.1551
+error = 35.1551
+area = 866
+delay = 37.4
+#gates = 352
+output circuit appNtk/mtp8_51_35.1551_866_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1748597731 us
+--------------- round 52 ---------------
+seed = 2126710194
+maxLevel = 2147483647
+[166348] is replaced by one with estimated error 35.2395
+error = 35.2395
+area = 863
+delay = 37.4
+#gates = 351
+output circuit appNtk/mtp8_52_35.2395_863_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1776109192 us
+--------------- round 53 ---------------
+seed = 1154199296
+maxLevel = 2147483647
+n471 is replaced by [167549] with estimated error 35.1564
+error = 35.1564
+area = 862
+delay = 37.4
+#gates = 350
+output circuit appNtk/mtp8_53_35.1564_862_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1803612742 us
+--------------- round 54 ---------------
+seed = 2407514938
+maxLevel = 2147483647
+[166377] is replaced by one with estimated error 35.6602
+error = 35.6602
+area = 858
+delay = 37.4
+#gates = 349
+output circuit appNtk/mtp8_54_35.6602_858_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1830944177 us
+--------------- round 55 ---------------
+seed = 3223750400
+maxLevel = 2147483647
+[166399] is replaced by [166411] with estimated error 39.5319
+error = 39.5319
+area = 854
+delay = 37.4
+#gates = 347
+output circuit appNtk/mtp8_55_39.5319_854_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1858709879 us
+--------------- round 56 ---------------
+seed = 2915366558
+maxLevel = 2147483647
+[167543] is replaced by [167314] with estimated error 41.8985
+error = 41.8985
+area = 849
+delay = 37.4
+#gates = 345
+output circuit appNtk/mtp8_56_41.8985_849_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1885545327 us
+--------------- round 57 ---------------
+seed = 1187654685
+maxLevel = 2147483647
+[166440] is replaced by one with estimated error 44.3183
+error = 44.3183
+area = 845
+delay = 37.4
+#gates = 343
+output circuit appNtk/mtp8_57_44.3183_845_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1912035161 us
+--------------- round 58 ---------------
+seed = 498402982
+maxLevel = 2147483647
+[167058] is replaced by one with estimated error 45.5941
+error = 45.5941
+area = 843
+delay = 37.4
+#gates = 342
+output circuit appNtk/mtp8_58_45.5941_843_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1941782199 us
+--------------- round 59 ---------------
+seed = 2214188232
+maxLevel = 2147483647
+[167549] is replaced by [167540] with estimated error 48.4505
+error = 48.4505
+area = 838
+delay = 37.4
+#gates = 340
+output circuit appNtk/mtp8_59_48.4505_838_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1968003254 us
+--------------- round 60 ---------------
+seed = 4080453253
+maxLevel = 2147483647
+[166418] is replaced by [166411] with estimated error 52.3068
+error = 52.3068
+area = 828
+delay = 37.4
+#gates = 336
+output circuit appNtk/mtp8_60_52.3068_828_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 1993789776 us
+--------------- round 61 ---------------
+seed = 2309041480
+maxLevel = 2147483647
+[166392] is replaced by [167814] with estimated error 52.747
+error = 52.747
+area = 824
+delay = 37.4
+#gates = 335
+output circuit appNtk/mtp8_61_52.747_824_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2019039156 us
+--------------- round 62 ---------------
+seed = 833317923
+maxLevel = 2147483647
+[167043] is replaced by [166373] with estimated error 53.2318
+error = 53.2318
+area = 821
+delay = 37.4
+#gates = 333
+output circuit appNtk/mtp8_62_53.2318_821_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2044067738 us
+--------------- round 63 ---------------
+seed = 2641397485
+maxLevel = 2147483647
+[166407] is replaced by [167497] with estimated error 62.2673
+error = 62.2673
+area = 804
+delay = 37.4
+#gates = 326
+output circuit appNtk/mtp8_63_62.2673_804_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2068848050 us
+--------------- round 64 ---------------
+seed = 4077011554
+maxLevel = 2147483647
+[166435] is replaced by n82 with estimated error 68.3243
+error = 68.3243
+area = 797
+delay = 37.4
+#gates = 323
+output circuit appNtk/mtp8_64_68.3243_797_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2092800787 us
+--------------- round 65 ---------------
+seed = 973760836
+maxLevel = 2147483647
+n469 is replaced by zero with estimated error 68.5281
+error = 68.5281
+area = 796
+delay = 37.4
+#gates = 322
+output circuit appNtk/mtp8_65_68.5281_796_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2116299034 us
+--------------- round 66 ---------------
+seed = 962276314
+maxLevel = 2147483647
+[166394] is replaced by [166450] with estimated error 72.0297
+error = 72.0297
+area = 792
+delay = 37.4
+#gates = 321
+output circuit appNtk/mtp8_66_72.0297_792_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2139675150 us
+--------------- round 67 ---------------
+seed = 802136370
+maxLevel = 2147483647
+[166441] is replaced by n368 with estimated error 76.7913
+error = 76.7913
+area = 787
+delay = 37.4
+#gates = 319
+output circuit appNtk/mtp8_67_76.7913_787_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2162911669 us
+--------------- round 68 ---------------
+seed = 202113071
+maxLevel = 2147483647
+[167055] is replaced by one with estimated error 82.5264
+error = 82.5264
+area = 780
+delay = 37.4
+#gates = 317
+output circuit appNtk/mtp8_68_82.5264_780_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2185831930 us
+--------------- round 69 ---------------
+seed = 4259065081
+maxLevel = 2147483647
+result[1] is replaced by zero with estimated error 82.2127
+error = 82.2127
+area = 776
+delay = 37.4
+#gates = 316
+output circuit appNtk/mtp8_69_82.2127_776_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2208116595 us
+--------------- round 70 ---------------
+seed = 3422975838
+maxLevel = 2147483647
+[166391] is replaced by y[5] with estimated error 82.4711
+error = 82.4711
+area = 772
+delay = 37.4
+#gates = 315
+output circuit appNtk/mtp8_70_82.4711_772_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2230334056 us
+--------------- round 71 ---------------
+seed = 1917260867
+maxLevel = 2147483647
+[166419] is replaced by zero with estimated error 82.5401
+error = 82.5401
+area = 770
+delay = 37.4
+#gates = 314
+output circuit appNtk/mtp8_71_82.5401_770_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2252461246 us
+--------------- round 72 ---------------
+seed = 3288575123
+maxLevel = 2147483647
+[168417] is replaced by one with estimated error 82.6863
+error = 82.6863
+area = 768
+delay = 37.4
+#gates = 313
+output circuit appNtk/mtp8_72_82.6863_768_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2274594628 us
+--------------- round 73 ---------------
+seed = 4238419095
+maxLevel = 2147483647
+[168363] is replaced by [166935] with estimated error 82.4926
+error = 82.4926
+area = 766
+delay = 37.4
+#gates = 312
+output circuit appNtk/mtp8_73_82.4926_766_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2296643991 us
+--------------- round 74 ---------------
+seed = 3208426580
+maxLevel = 2147483647
+n368 is replaced by zero with estimated error 84.6011
+error = 84.6011
+area = 755
+delay = 37.4
+#gates = 307
+output circuit appNtk/mtp8_74_84.6011_755_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2318633036 us
+--------------- round 75 ---------------
+seed = 3160298446
+maxLevel = 2147483647
+[167577] is replaced by zero with estimated error 86.3242
+error = 86.3242
+area = 754
+delay = 37.4
+#gates = 306
+output circuit appNtk/mtp8_75_86.3242_754_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2339857665 us
+--------------- round 76 ---------------
+seed = 2525210733
+maxLevel = 2147483647
+[167891] is replaced by [166539] with estimated error 94.1756
+error = 94.1756
+area = 749
+delay = 37.4
+#gates = 304
+output circuit appNtk/mtp8_76_94.1756_749_37.4.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2360941673 us
+--------------- round 77 ---------------
+seed = 4082012095
+maxLevel = 2147483647
+[167897] is replaced by [168271] with estimated error 96.6075
+error = 96.6075
+area = 741
+delay = 35
+#gates = 300
+output circuit appNtk/mtp8_77_96.6075_741_35.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2381747008 us
+--------------- round 78 ---------------
+seed = 2424692540
+maxLevel = 2147483647
+[166432] is replaced by [166454] with inverter with estimated error 104.98
+error = 104.98
+area = 737
+delay = 35
+#gates = 299
+output circuit appNtk/mtp8_78_104.98_737_35.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2402147260 us
+--------------- round 79 ---------------
+seed = 1580229849
+maxLevel = 2147483647
+[168003] is replaced by [166413] with estimated error 113.537
+error = 113.537
+area = 732
+delay = 35
+#gates = 297
+output circuit appNtk/mtp8_79_113.537_732_35.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2422470839 us
+--------------- round 80 ---------------
+seed = 577782648
+maxLevel = 2147483647
+[166413] is replaced by y[6] with estimated error 115.097
+error = 115.097
+area = 728
+delay = 35
+#gates = 296
+output circuit appNtk/mtp8_80_115.097_728_35.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2442583363 us
+--------------- round 81 ---------------
+seed = 2148482202
+maxLevel = 2147483647
+[166426] is replaced by [166390] with estimated error 142.509
+error = 142.509
+area = 715
+delay = 35
+#gates = 292
+output circuit appNtk/mtp8_81_142.509_715_35.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2462588299 us
+--------------- round 82 ---------------
+seed = 3969860144
+maxLevel = 2147483647
+[168361] is replaced by one with estimated error 140.645
+error = 140.645
+area = 713
+delay = 35
+#gates = 291
+output circuit appNtk/mtp8_82_140.645_713_35.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2481936954 us
+--------------- round 83 ---------------
+seed = 249591806
+maxLevel = 2147483647
+[166443] is replaced by [166390] with estimated error 146.947
+error = 146.947
+area = 711
+delay = 35
+#gates = 290
+output circuit appNtk/mtp8_83_146.947_711_35.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2501126675 us
+--------------- round 84 ---------------
+seed = 385359862
+maxLevel = 2147483647
+n472 is replaced by [167503] with estimated error 150.767
+error = 150.767
+area = 710
+delay = 35
+#gates = 289
+output circuit appNtk/mtp8_84_150.767_710_35.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2520113948 us
+--------------- round 85 ---------------
+seed = 2266406497
+maxLevel = 2147483647
+[167132] is replaced by [166345] with estimated error 149.534
+error = 149.534
+area = 709
+delay = 35
+#gates = 288
+output circuit appNtk/mtp8_85_149.534_709_35.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2538820719 us
+--------------- round 86 ---------------
+seed = 3492975216
+maxLevel = 2147483647
+[166346] is replaced by [166345] with estimated error 150.499
+error = 150.499
+area = 707
+delay = 35
+#gates = 287
+output circuit appNtk/mtp8_86_150.499_707_35.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2557538036 us
+--------------- round 87 ---------------
+seed = 3374766267
+maxLevel = 2147483647
+[167814] is replaced by [166912] with estimated error 147.871
+error = 147.871
+area = 706
+delay = 35
+#gates = 286
+output circuit appNtk/mtp8_87_147.871_706_35.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2576118936 us
+--------------- round 88 ---------------
+seed = 17245352
+maxLevel = 2147483647
+[166444] is replaced by [166373] with estimated error 148.517
+error = 148.517
+area = 704
+delay = 35
+#gates = 285
+output circuit appNtk/mtp8_88_148.517_704_35.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2594527862 us
+--------------- round 89 ---------------
+seed = 945997431
+maxLevel = 2147483647
+[167363] is replaced by one with estimated error 149.061
+error = 149.061
+area = 702
+delay = 35
+#gates = 284
+output circuit appNtk/mtp8_89_149.061_702_35.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2612826341 us
+--------------- round 90 ---------------
+seed = 2737747839
+maxLevel = 2147483647
+result[6] is replaced by [166935] with estimated error 148.808
+error = 148.808
+area = 699
+delay = 35
+#gates = 283
+output circuit appNtk/mtp8_90_148.808_699_35.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2630951369 us
+--------------- round 91 ---------------
+seed = 2433510521
+maxLevel = 2147483647
+result[2] is replaced by zero with estimated error 149.369
+error = 149.369
+area = 695
+delay = 35
+#gates = 282
+output circuit appNtk/mtp8_91_149.369_695_35.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 2648897692 us
+--------------- round 92 ---------------
+seed = 3869819883
+maxLevel = 2147483647
+exceed error bound

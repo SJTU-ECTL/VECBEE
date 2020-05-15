@@ -1479,11 +1479,15 @@ void Simulator_t::UpdateFoConeAndLevel(Abc_Obj_t * pPivot)
     fill(level.begin(), level.end(), 0);
     Abc_Obj_t * pFanin = nullptr;
     int j = 0;
-    Vec_PtrForEachEntry(Abc_Obj_t *, vNodes, pObj, i)
+    Vec_PtrForEachEntryReverse(Abc_Obj_t *, vNodes, pObj, i) {
         Abc_ObjForEachFanin(pObj, pFanin, j)
             level[pObj->Id] = max(level[pObj->Id], level[pFanin->Id] + 1);
+        // cout << Abc_ObjName(pObj) << ", level = " << level[pObj->Id] << endl;
+    }
     Abc_NtkForEachPo(pNtk, pObj, i)
         level[pObj->Id] = level[Abc_ObjFanin0(pObj)->Id] + 1;
+    // Abc_NtkForEachObj(pNtk, pObj, i)
+    //     cout << Abc_ObjName(pObj) << ", level = " << level[pObj->Id] << endl;
 
     Vec_PtrFree(vNodes);
 }
@@ -1500,7 +1504,7 @@ void Simulator_t::FindOneCut(Abc_Obj_t * pPivot, int poId, set <Abc_Obj_t *> & c
     fill(flow.begin(), flow.end(), 0);
     flow[pPivot->Id] = 1.0;
     oneCuts[pPivot->Id][poId] = nullptr;
-    // cout << "Find cut " << Abc_ObjName(pPivot) << "," << Abc_ObjName(pPo) << endl;
+    // cout << "find cut " << Abc_ObjName(pPivot) << "," << Abc_ObjName(pPo) << endl;
     FindOneCut_rec(Abc_ObjFanin0(pPo), pPivot, poId, cutNtkNodes, maxLevel);
     // if (oneCuts[pPivot->Id][poId] == nullptr)
     //     cout << "not found" << endl;
@@ -1542,13 +1546,14 @@ void Simulator_t::FindOneCut_rec(Abc_Obj_t * pNode, Abc_Obj_t * pPivot, int poId
         }
         DASSERT(foCnt);
         Abc_ObjForEachFanout(pNode, pFanout, i) {
+            DASSERT(level[pFanout->Id] > level[pPivot->Id]);
             if (level[pFanout->Id] - level[pPivot->Id] > maxLevel)
                 continue;
             if (Ckt_GetBit(sinks[pFanout->Id][poId >> 6],  static_cast <uint64_t> (poId) & static_cast <uint64_t> (63) )) {
                 flow[pFanout->Id] += flow[pNode->Id] / foCnt;
                 if (abs(flow[pFanout->Id] - 1.0) <= 1e-10) {
                     oneCuts[pPivot->Id][poId] = pFanout;
-                    // cout << "find one cut " << Abc_ObjName(pFanout) << " " << Abc_ObjIsPo(pFanout) << endl;
+                    // cout << "find one cut " << Abc_ObjName(pFanout) << "," << maxLevel << "," << endl;
                 }
                 // cout << "flow to " << Abc_ObjName(pFanout) << "," << flow[pFanout->Id] << endl;
                 if (pFanout != pPivot) {
@@ -1730,6 +1735,7 @@ void Simulator_t::UpdateBoolDiffOneCut(IN int poId, IN Vec_Ptr_t * vNodes, INOUT
                         bdPo[pObj->Id][j] |= bdCuts[pObj->Id][k][j] & bdPo[pCut->Id][j];
                     ++k;
                 }
+                // cout << Abc_ObjName(pObj) << "," << poId << "," << "update with tfocut" << endl;
             }
         }
         else {

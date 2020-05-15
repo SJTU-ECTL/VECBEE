@@ -1,0 +1,125 @@
+# Benchmark "ksa32" written by ABC on Tue May 12 11:04:46 2020
+.model ksa32
+.inputs a[0] a[1] a[2] a[3] a[4] a[5] a[6] a[7] a[8] a[9] a[10] a[11] a[12] \
+ a[13] a[14] a[15] a[16] a[17] a[18] a[19] a[20] a[21] a[22] a[23] a[24] \
+ a[25] a[26] a[27] a[28] a[29] a[30] a[31] b[0] b[1] b[2] b[3] b[4] b[5] \
+ b[6] b[7] b[8] b[9] b[10] b[11] b[12] b[13] b[14] b[15] b[16] b[17] b[18] \
+ b[19] b[20] b[21] b[22] b[23] b[24] b[25] b[26] b[27] b[28] b[29] b[30] \
+ b[31]
+.outputs sum[0] sum[1] sum[2] sum[3] sum[4] sum[5] sum[6] sum[7] sum[8] \
+ sum[9] sum[10] sum[11] sum[12] sum[13] sum[14] sum[15] sum[16] sum[17] \
+ sum[18] sum[19] sum[20] sum[21] sum[22] sum[23] sum[24] sum[25] sum[26] \
+ sum[27] sum[28] sum[29] sum[30] sum[31] cout
+
+.and_gate_delay 1.9
+.default_input_arrival 0 0
+.default_output_required 0 0
+
+
+
+.gate oai22  a=a[1] b=new_n612_ c=b[1] d=sum[2] O=new_[162484]_
+.gate nand2  a=new_[162484]_ b=a[7] O=sum[1]
+.gate oai21  a=b[29] b=a[7] c=sum[7] O=sum[10]
+.gate oai21  a=new_[162786]_ b=new_n612_ c=new_[162814]_ O=new_[162584]_
+.gate oai22  a=new_n612_ b=new_[162584]_ c=new_[162747]_ d=new_n612_ O=sum[12]
+.gate aoi21  a=new_[162584]_ b=new_n612_ c=new_n611_ O=sum[8]
+.gate nand2  a=a[21] b=b[21] O=sum[7]
+.gate inv1   a=a[23] O=sum[15]
+.gate nand2  a=a[24] b=b[24] O=sum[24]
+.gate inv1   a=b[25] O=new_[162734]_
+.gate inv1   a=a[25] O=new_[162733]_
+.gate oai22  a=a[25] b=new_[162734]_ c=b[25] d=new_[162733]_ O=new_[162735]_
+.gate inv1   a=new_[162735]_ O=new_[163401]_
+.gate oai22  a=sum[24] b=new_[162735]_ c=new_[163401]_ d=new_[162750]_ O=sum[25]
+.gate nand2  a=a[25] b=b[25] O=new_[162749]_
+.gate oai21  a=new_[163401]_ b=sum[24] c=new_[162749]_ O=new_[162750]_
+.gate aoi21  a=new_n611_ b=new_n611_ c=new_[162750]_ O=new_n302_
+.gate inv1   a=b[26] O=new_[162747]_
+.gate inv1   a=a[26] O=new_[162746]_
+.gate oai22  a=a[26] b=new_[162747]_ c=b[26] d=new_[162746]_ O=new_[162748]_
+.gate inv1   a=new_[162748]_ O=new_[163410]_
+.gate oai22  a=new_n302_ b=new_[162748]_ c=new_[163410]_ d=new_[162750]_ O=sum[26]
+.gate nand2  a=new_[162735]_ b=new_[162748]_ O=new_[162764]_
+.gate nand2  a=a[26] b=b[26] O=sum[11]
+.gate oai21  a=new_[163410]_ b=new_[162749]_ c=sum[11] O=new_[162763]_
+.gate inv1   a=new_[162763]_ O=new_[163607]_
+.gate oai21  a=sum[24] b=new_[162764]_ c=new_[163607]_ O=new_[162765]_
+.gate inv1   a=new_[162765]_ O=new_[163860]_
+.gate inv1   a=b[27] O=new_[162760]_
+.gate inv1   a=a[27] O=new_[162759]_
+.gate oai22  a=a[27] b=new_[162760]_ c=b[27] d=new_[162759]_ O=new_[162761]_
+.gate inv1   a=new_[162761]_ O=new_[163419]_
+.gate oai22  a=new_[163860]_ b=new_[162761]_ c=new_[163419]_ d=new_[162780]_ O=sum[27]
+.gate nand2  a=new_[162748]_ b=new_[162761]_ O=new_[162777]_
+.gate inv1   a=new_[162777]_ O=new_[163759]_
+.gate nand2  a=a[27] b=b[27] O=new_[162775]_
+.gate oai21  a=new_[163419]_ b=sum[11] c=new_[162775]_ O=new_[162776]_
+.gate aoi21  a=new_[162750]_ b=new_[163759]_ c=new_[162776]_ O=new_n305_
+.gate oai21  a=new_n612_ b=new_n611_ c=new_n305_ O=new_[162780]_
+.gate inv1   a=b[28] O=new_[162773]_
+.gate inv1   a=a[28] O=new_[162772]_
+.gate oai22  a=a[28] b=new_[162773]_ c=b[28] d=new_[162772]_ O=new_[162774]_
+.gate inv1   a=new_[162774]_ O=new_[163428]_
+.gate oai22  a=new_n305_ b=new_[162774]_ c=new_[163428]_ d=new_[162780]_ O=sum[28]
+.gate nand2  a=new_[162761]_ b=new_[162774]_ O=new_[162790]_
+.gate or2    a=new_[162764]_ b=new_[162790]_ O=new_[162792]_
+.gate nor2   a=new_[163607]_ b=new_[162790]_ O=new_[161129]_
+.gate nand2  a=a[28] b=b[28] O=sum[9]
+.gate oai21  a=new_[163428]_ b=new_[162775]_ c=sum[9] O=new_[162789]_
+.gate nor2   a=new_[161129]_ b=new_[162789]_ O=new_n329_
+.gate oai21  a=sum[24] b=new_[162792]_ c=new_n329_ O=new_[162793]_
+.gate aoi21  a=a[24] b=new_n611_ c=new_[162793]_ O=new_n505_
+.gate inv1   a=b[29] O=new_[162786]_
+.gate inv1   a=a[29] O=new_[162785]_
+.gate oai22  a=a[29] b=new_[162786]_ c=b[29] d=new_[162785]_ O=new_[162787]_
+.gate inv1   a=new_[162787]_ O=new_[163437]_
+.gate oai22  a=new_n505_ b=new_[162787]_ c=new_[163437]_ d=new_[162806]_ O=sum[29]
+.gate nand2  a=new_[162774]_ b=new_[162787]_ O=new_[162803]_
+.gate inv1   a=new_[162803]_ O=new_[163771]_
+.gate nand2  a=new_[163759]_ b=new_[163771]_ O=new_[162805]_
+.gate nand2  a=a[29] b=b[29] O=new_[162801]_
+.gate oai21  a=new_[163437]_ b=sum[9] c=new_[162801]_ O=new_[162802]_
+.gate aoi21  a=new_[162776]_ b=new_[163771]_ c=new_[162802]_ O=new_n328_
+.gate oai21  a=new_n302_ b=new_[162805]_ c=new_n328_ O=new_[162806]_
+.gate aoi21  a=b[22] b=new_n611_ c=new_[162806]_ O=new_n504_
+.gate inv1   a=b[30] O=new_[162799]_
+.gate inv1   a=a[30] O=sum[6]
+.gate oai22  a=a[30] b=new_[162799]_ c=b[30] d=sum[6] O=new_[162800]_
+.gate inv1   a=new_[162800]_ O=new_[163446]_
+.gate oai22  a=new_n504_ b=new_[162800]_ c=new_[163446]_ d=new_[162806]_ O=sum[30]
+.gate nand2  a=new_[162787]_ b=new_[162800]_ O=new_[162816]_
+.gate or2    a=new_[162790]_ b=new_[162816]_ O=new_[162818]_
+.gate inv1   a=new_[162816]_ O=new_[163779]_
+.gate nand2  a=a[30] b=b[30] O=new_[162814]_
+.gate oai21  a=new_[163446]_ b=new_[162801]_ c=new_[162814]_ O=new_[162815]_
+.gate aoi21  a=new_[162789]_ b=new_[163779]_ c=new_[162815]_ O=new_n327_
+.gate oai21  a=new_[163860]_ b=new_[162818]_ c=new_n327_ O=new_[162819]_
+.gate aoi21  a=b[22] b=new_n611_ c=new_[162819]_ O=new_n503_
+.gate inv1   a=b[31] O=sum[2]
+.gate inv1   a=a[31] O=new_[162811]_
+.gate oai22  a=a[31] b=sum[2] c=b[31] d=new_[162811]_ O=new_[162813]_
+.gate inv1   a=new_[162813]_ O=new_[163454]_
+.gate oai22  a=new_n503_ b=new_[162813]_ c=new_[163454]_ d=cout O=sum[31]
+.gate nand2  a=new_[162800]_ b=new_[162813]_ O=new_[162825]_
+.gate inv1   a=new_[162825]_ O=new_[163785]_
+.gate nand2  a=new_[163771]_ b=new_[163785]_ O=new_[162827]_
+.gate oai22  a=new_[162811]_ b=sum[2] c=new_[163454]_ d=new_[162814]_ O=new_[162824]_
+.gate aoi21  a=new_[162802]_ b=new_[163785]_ c=new_[162824]_ O=new_n304_
+.gate oai21  a=new_n305_ b=new_[162827]_ c=new_n304_ O=cout
+.gate zero   O=new_n611_
+.gate one    O=new_n612_
+.gate inv1   a=sum[11] O=sum[5]
+.gate one    O=sum[0]
+.gate one    O=sum[3]
+.gate one    O=sum[4]
+.gate one    O=sum[13]
+.gate one    O=sum[16]
+.gate one    O=sum[17]
+.gate zero   O=sum[19]
+.gate zero   O=sum[20]
+.gate zero   O=sum[21]
+.gate one    O=sum[23]
+.gate buf    a=a[14] O=sum[14]
+.gate buf    a=b[17] O=sum[18]
+.gate buf    a=a[22] O=sum[22]
+.end

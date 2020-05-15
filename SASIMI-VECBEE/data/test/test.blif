@@ -1,0 +1,13 @@
+.model test
+.inputs in
+.outputs out
+.gate buf a=in O=a
+.gate inv1 a=a O=b
+.gate inv1 a=a O=c
+.gate inv1 a=a O=d
+.gate inv1 a=b O=e
+.gate and2 a=b b=c O=f
+.gate and2 a=c b=d O=g
+.gate inv1 a=d O=h
+.gate nand4 a=e b=f c=g d=h O=out
+.end
