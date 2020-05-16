@@ -1,0 +1,64 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/c880.blif
+Line 12: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 13: Skipping line ".default_output_required 0.00 0.00 ".
+Line 14: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 15: Skipping line ".default_output_load 2.00 ".
+Line 16: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mc880                          :[0m i/o =   60/   26  lat =    0  nd =   224  edge =    542  area =585.00  delay =24.90  lev = 18
+--------------- round 1 ---------------
+seed = 4037158259
+maxLevel = 4
+n244 is replaced by one with estimated error 0.00028
+error = 0.00216
+area = 579
+delay = 24.9
+#gates = 223
+output circuit appNtk/c880_1_0.00216_579_24.9.blif
+time = 2232473 us
+--------------- round 2 ---------------
+seed = 3254983007
+maxLevel = 4
+n235 is replaced by one with estimated error 0.00274
+error = 0.00274
+area = 577
+delay = 24.9
+#gates = 222
+output circuit appNtk/c880_2_0.00274_577_24.9.blif
+time = 4934064 us
+--------------- round 3 ---------------
+seed = 3223064252
+maxLevel = 4
+n155 is replaced by one with estimated error 0.00291
+error = 0.00291
+area = 569
+delay = 24.9
+#gates = 219
+output circuit appNtk/c880_3_0.00291_569_24.9.blif
+time = 7011515 us
+--------------- round 4 ---------------
+seed = 32864800
+maxLevel = 4
+n189 is replaced by zero with estimated error 0.00289
+error = 0.00289
+area = 568
+delay = 24.9
+#gates = 218
+output circuit appNtk/c880_4_0.00289_568_24.9.blif
+time = 10466226 us
+--------------- round 5 ---------------
+seed = 447976506
+maxLevel = 4
+n163 is replaced by zero with estimated error 0.00289
+error = 0.0078
+area = 567
+delay = 24.9
+#gates = 217
+output circuit appNtk/c880_5_0.0078_567_24.9.blif
+time = 13763800 us
+--------------- round 6 ---------------
+seed = 310559469
+maxLevel = 4
+exceed error bound

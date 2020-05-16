@@ -1,0 +1,49 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/rca32.blif
+abc command print_stats
+[1;37mrca32                         :[0m i/o =   64/   33  lat =    0  nd =   298  edge =    585  area =666.00  delay =16.10  lev = 12
+--------------- round 1 ---------------
+seed = 3494807227
+maxLevel = 2
+n356 is replaced by zero with estimated error 5e-05
+error = 5e-05
+area = 661
+delay = 16
+#gates = 298
+output circuit appNtk/rca32_1_5e-05_661_16.blif
+time = 4493018 us
+--------------- round 2 ---------------
+seed = 1607650070
+maxLevel = 2
+n242 is replaced by one with estimated error 0.00198
+error = 0.00198
+area = 656
+delay = 16
+#gates = 296
+output circuit appNtk/rca32_2_0.00198_656_16.blif
+time = 7641650 us
+--------------- round 3 ---------------
+seed = 4045641537
+maxLevel = 2
+n320 is replaced by zero with estimated error 0.00401
+error = 0.00401
+area = 654
+delay = 16
+#gates = 295
+output circuit appNtk/rca32_3_0.00401_654_16.blif
+time = 10257474 us
+--------------- round 4 ---------------
+seed = 1050842944
+maxLevel = 2
+n358 is replaced by n334 with estimated error 0.01938
+error = 0.01938
+area = 651
+delay = 16
+#gates = 294
+output circuit appNtk/rca32_4_0.01938_651_16.blif
+time = 12682434 us
+--------------- round 5 ---------------
+seed = 2245043082
+maxLevel = 2
+exceed error bound

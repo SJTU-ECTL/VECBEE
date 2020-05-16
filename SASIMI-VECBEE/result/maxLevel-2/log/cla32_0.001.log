@@ -1,0 +1,224 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/cla32.blif
+Line 11: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 12: Skipping line ".default_output_required 0.00 0.00 ".
+Line 13: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 14: Skipping line ".default_output_load 2.00 ".
+Line 15: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mcla32                         :[0m i/o =   64/   33  lat =    0  nd =   419  edge =    952  area =958.00  delay =38.50  lev = 27
+--------------- round 1 ---------------
+seed = 230089683
+maxLevel = 2
+n503 is replaced by n491 with estimated error 0
+error = 0
+area = 928
+delay = 38.5
+#gates = 409
+output circuit appNtk/cla32_1_0_928_38.5.blif
+time = 7587222 us
+--------------- round 2 ---------------
+seed = 3733596861
+maxLevel = 2
+n474 is replaced by n463 with estimated error 1e-05
+error = 1e-05
+area = 923
+delay = 36.1
+#gates = 407
+output circuit appNtk/cla32_2_1e-05_923_36.1.blif
+time = 13912143 us
+--------------- round 3 ---------------
+seed = 2825506610
+maxLevel = 2
+n388 is replaced by n413 with estimated error 0
+error = 0
+area = 913
+delay = 36.1
+#gates = 403
+output circuit appNtk/cla32_3_0_913_36.1.blif
+time = 19803136 us
+--------------- round 4 ---------------
+seed = 4029538042
+maxLevel = 2
+n274 is replaced by n291 with estimated error 0
+error = 0
+area = 906
+delay = 36.1
+#gates = 400
+output circuit appNtk/cla32_4_0_906_36.1.blif
+time = 25583313 us
+--------------- round 5 ---------------
+seed = 3536382481
+maxLevel = 2
+n478 is replaced by n488 with estimated error 0
+error = 0
+area = 900
+delay = 31.6
+#gates = 398
+output circuit appNtk/cla32_5_0_900_31.6.blif
+time = 31371655 us
+--------------- round 6 ---------------
+seed = 3328911982
+maxLevel = 2
+n330 is replaced by n327 with estimated error 1e-05
+error = 1e-05
+area = 896
+delay = 31.6
+#gates = 397
+output circuit appNtk/cla32_6_1e-05_896_31.6.blif
+time = 37082892 us
+--------------- round 7 ---------------
+seed = 3438353223
+maxLevel = 2
+n141 is replaced by n133 with estimated error 2e-05
+error = 2e-05
+area = 894
+delay = 31.6
+#gates = 396
+output circuit appNtk/cla32_7_2e-05_894_31.6.blif
+time = 42987340 us
+--------------- round 8 ---------------
+seed = 1311712170
+maxLevel = 2
+n464 is replaced by n488 with estimated error 3e-05
+error = 3e-05
+area = 893
+delay = 30.7
+#gates = 395
+output circuit appNtk/cla32_8_3e-05_893_30.7.blif
+time = 48787130 us
+--------------- round 9 ---------------
+seed = 717115893
+maxLevel = 2
+n463 is replaced by n486 with estimated error 7e-05
+error = 7e-05
+area = 888
+delay = 30.1
+#gates = 393
+output circuit appNtk/cla32_9_7e-05_888_30.1.blif
+time = 54460152 us
+--------------- round 10 ---------------
+seed = 3094258642
+maxLevel = 2
+n264 is replaced by one with estimated error 5e-05
+error = 0.00015
+area = 885
+delay = 30.1
+#gates = 392
+output circuit appNtk/cla32_10_0.00015_885_30.1.blif
+time = 59930731 us
+--------------- round 11 ---------------
+seed = 3867732867
+maxLevel = 2
+n266 is replaced by n220 with estimated error 0.00014
+error = 0.00014
+area = 880
+delay = 30.1
+#gates = 390
+output circuit appNtk/cla32_11_0.00014_880_30.1.blif
+time = 65519266 us
+--------------- round 12 ---------------
+seed = 65368787
+maxLevel = 2
+n269 is replaced by n243 with estimated error 0.0001
+error = 0.0001
+area = 875
+delay = 30.1
+#gates = 388
+output circuit appNtk/cla32_12_0.0001_875_30.1.blif
+time = 71069505 us
+--------------- round 13 ---------------
+seed = 820695549
+maxLevel = 2
+n276 is replaced by zero with estimated error 0.00011
+error = 0.00011
+area = 870
+delay = 30.1
+#gates = 386
+output circuit appNtk/cla32_13_0.00011_870_30.1.blif
+time = 76498467 us
+--------------- round 14 ---------------
+seed = 612488517
+maxLevel = 2
+n285 is replaced by n283 with estimated error 0.00012
+error = 0.00012
+area = 869
+delay = 30.1
+#gates = 385
+output circuit appNtk/cla32_14_0.00012_869_30.1.blif
+time = 82012752 us
+--------------- round 15 ---------------
+seed = 3204670908
+maxLevel = 2
+n284 is replaced by n296 with estimated error 0.00011
+error = 0.00011
+area = 867
+delay = 30.1
+#gates = 384
+output circuit appNtk/cla32_15_0.00011_867_30.1.blif
+time = 87260026 us
+--------------- round 16 ---------------
+seed = 2455837613
+maxLevel = 2
+n447 is replaced by n457 with estimated error 0.00011
+error = 0.00011
+area = 866
+delay = 30.1
+#gates = 383
+output circuit appNtk/cla32_16_0.00011_866_30.1.blif
+time = 92446183 us
+--------------- round 17 ---------------
+seed = 2999828430
+maxLevel = 2
+n384 is replaced by n360 with estimated error 0.00012
+error = 0.00012
+area = 863
+delay = 30.1
+#gates = 382
+output circuit appNtk/cla32_17_0.00012_863_30.1.blif
+time = 97571035 us
+--------------- round 18 ---------------
+seed = 2370821652
+maxLevel = 2
+n334 is replaced by n319 with estimated error 0.00024
+error = 0.00024
+area = 859
+delay = 30.1
+#gates = 380
+output circuit appNtk/cla32_18_0.00024_859_30.1.blif
+time = 102464363 us
+--------------- round 19 ---------------
+seed = 1463053736
+maxLevel = 2
+n385 is replaced by one with estimated error 0.00017
+error = 0.00017
+area = 858
+delay = 30.1
+#gates = 379
+output circuit appNtk/cla32_19_0.00017_858_30.1.blif
+time = 107379303 us
+--------------- round 20 ---------------
+seed = 656533294
+maxLevel = 2
+n446 is replaced by n484 with estimated error 0.0004
+error = 0.0004
+area = 855
+delay = 30.1
+#gates = 378
+output circuit appNtk/cla32_20_0.0004_855_30.1.blif
+time = 112334841 us
+--------------- round 21 ---------------
+seed = 3209771833
+maxLevel = 2
+n304 is replaced by n278 with estimated error 0.00074
+error = 0.00074
+area = 853
+delay = 30.1
+#gates = 377
+output circuit appNtk/cla32_21_0.00074_853_30.1.blif
+time = 117483531 us
+--------------- round 22 ---------------
+seed = 108343803
+maxLevel = 2
+exceed error bound

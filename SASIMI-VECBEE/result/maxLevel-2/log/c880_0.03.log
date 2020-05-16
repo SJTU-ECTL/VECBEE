@@ -1,0 +1,114 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/c880.blif
+Line 12: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 13: Skipping line ".default_output_required 0.00 0.00 ".
+Line 14: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 15: Skipping line ".default_output_load 2.00 ".
+Line 16: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mc880                          :[0m i/o =   60/   26  lat =    0  nd =   224  edge =    542  area =585.00  delay =24.90  lev = 18
+--------------- round 1 ---------------
+seed = 4031914157
+maxLevel = 2
+n155 is replaced by one with estimated error 0.00071
+error = 0.00071
+area = 577
+delay = 24.9
+#gates = 223
+output circuit appNtk/c880_1_0.00071_577_24.9.blif
+time = 2391275 us
+--------------- round 2 ---------------
+seed = 1827733997
+maxLevel = 2
+n235 is replaced by one with estimated error 0.00082
+error = 0.00082
+area = 575
+delay = 24.9
+#gates = 222
+output circuit appNtk/c880_2_0.00082_575_24.9.blif
+time = 5697932 us
+--------------- round 3 ---------------
+seed = 3410230879
+maxLevel = 2
+n189 is replaced by zero with estimated error 0.00055
+error = 0.00055
+area = 574
+delay = 24.9
+#gates = 221
+output circuit appNtk/c880_3_0.00055_574_24.9.blif
+time = 8943477 us
+--------------- round 4 ---------------
+seed = 3085187869
+maxLevel = 2
+n167 is replaced by one with estimated error 0.00167
+error = 0.00997
+area = 566
+delay = 23.9
+#gates = 219
+output circuit appNtk/c880_4_0.00997_566_23.9.blif
+time = 11815649 us
+--------------- round 5 ---------------
+seed = 2186141045
+maxLevel = 2
+n159 is replaced by one with estimated error 0.01102
+error = 0.01235
+area = 560
+delay = 23.9
+#gates = 216
+output circuit appNtk/c880_5_0.01235_560_23.9.blif
+time = 14864006 us
+--------------- round 6 ---------------
+seed = 4155012267
+maxLevel = 2
+n244 is replaced by one with estimated error 0.01335
+error = 0.0138
+area = 551
+delay = 23.9
+#gates = 212
+output circuit appNtk/c880_6_0.0138_551_23.9.blif
+time = 17826858 us
+--------------- round 7 ---------------
+seed = 2446710769
+maxLevel = 2
+n164 is replaced by n105 with inverter with estimated error 0.01951
+error = 0.01951
+area = 548
+delay = 23.1
+#gates = 211
+output circuit appNtk/c880_7_0.01951_548_23.1.blif
+time = 20682750 us
+--------------- round 8 ---------------
+seed = 1286815963
+maxLevel = 2
+n248 is replaced by one with estimated error 0.02118
+error = 0.02603
+area = 546
+delay = 23.1
+#gates = 210
+output circuit appNtk/c880_8_0.02603_546_23.1.blif
+time = 23377938 us
+--------------- round 9 ---------------
+seed = 253116374
+maxLevel = 2
+n313 is replaced by zero with estimated error 0.02683
+error = 0.0261
+area = 545
+delay = 23.1
+#gates = 209
+output circuit appNtk/c880_9_0.0261_545_23.1.blif
+time = 26184500 us
+--------------- round 10 ---------------
+seed = 116775069
+maxLevel = 2
+n160 is replaced by one with estimated error 0.02867
+error = 0.03304
+area = 543
+delay = 23.1
+#gates = 208
+output circuit appNtk/c880_10_0.03304_543_23.1.blif
+time = 28748095 us
+--------------- round 11 ---------------
+seed = 1246208871
+maxLevel = 2
+exceed error bound
