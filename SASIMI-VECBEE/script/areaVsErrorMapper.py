@@ -4,7 +4,7 @@
 import os
 
 
-for root, _, files in os.walk('./result/compare-SASIMI/NMED/blif'):
+for root, _, files in os.walk('./result/maxLevel-4/ER/blif/'):
     for name in files:
         pos0 = name.find('_')
         pos1 = name[pos0 + 1:].find('_')

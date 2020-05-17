@@ -72,7 +72,7 @@ public:
     void UpdateFoConeAndLevel(Abc_Obj_t * pPivot);
     void FindOneCut(Abc_Obj_t * pPivot, int poId, std::set <Abc_Obj_t *> & cutNtkNodes, int maxLevel);
     void FindOneCut_rec(Abc_Obj_t * pNode, Abc_Obj_t * pPivot, int poId, std::set <Abc_Obj_t *> & cutNtkNodes, int maxLevel);
-    void SortCutNtkNodes(Abc_Obj_t * pPivot, std::set <Abc_Obj_t *> & cutNtkNodes);
+    void SortCutNtkNodes(Abc_Obj_t * pPivot, std::set <Abc_Obj_t *> & cutNtkNodes, int maxLevel);
     void FindDisjointCut(Abc_Obj_t * pObj, std::list <Abc_Obj_t *> & djCut);
     void ExpandCut(Abc_Obj_t * pObj, std::list <Abc_Obj_t *> & djCut);
     Abc_Obj_t * ExpandWhich(std::list <Abc_Obj_t *> & djCut);

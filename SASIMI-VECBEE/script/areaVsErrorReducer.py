@@ -3,13 +3,13 @@
 
 import csv
 
-csvRd = csv.reader(open('result/compare-SASIMI/NMED/table/NMEDRaw.csv', encoding='utf-8'))
-# erBound = [0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05]
+csvRd = csv.reader(open('result/maxLevel-4/ER/table/ERRaw.csv', encoding='utf-8'))
+erBound = [0.001, 0.003, 0.005, 0.008, 0.01, 0.03, 0.05]
 # erBound = [0.0000153, 0.0000306, 0.0000612, 0.0001224, 0.0002448, 0.0004896, 0.0009792, 0.0019584]
-erBound = [0.050687623, 0.102554028, 0.25108055, 0.400785855, 0.049508841, 0.152062868, 0.351277014, 0.452652259, 0.050687623, 0.249901768, 0.299410609, 0.451473477, 0.150884086, 0.5021611, 0.298231827, 0.41021611]
-for i in range(len(erBound)):
-    erBound[i] /= 100
-    erBound[i] *= 100000
+# erBound = [0.050687623, 0.102554028, 0.25108055, 0.400785855, 0.049508841, 0.152062868, 0.351277014, 0.452652259, 0.050687623, 0.249901768, 0.299410609, 0.451473477, 0.150884086, 0.5021611, 0.298231827, 0.41021611]
+# for i in range(len(erBound)):
+#     # erBound[i] /= 100
+#     erBound[i] *= 100000
 bestError = [dict() for i in range(len(erBound))]
 bestArea =  [dict() for i in range(len(erBound))]
 bestDelay = [dict() for i in range(len(erBound))]

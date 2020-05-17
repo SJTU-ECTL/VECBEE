@@ -38,8 +38,8 @@ void SASIMI_Manager_t::GreedySelection(Abc_Ntk_t * pOriNtk, string outPrefix)
         // if (cntRound == 4)
         //     break;
         Simulator_t * pAppSmlt = new Simulator_t(pAppNtk, nFrame);
-        unsigned seed = static_cast <unsigned> (rd());
-        // unsigned seed = 2531465778;
+        // unsigned seed = static_cast <unsigned> (rd());
+        unsigned seed = 2531465778;
         cout << "seed = " << seed << endl;
         cout << "maxLevel = " << maxLevel << endl;
         oriSmlt.Input(seed);
@@ -349,12 +349,12 @@ void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t 
     Abc_Obj_t * pConst0 = Ckt_GetConst(pAppNtk, 0);
     pair <int, int> dErrors;
     GetDER(appSmlt, pTS, pConst0, isERInc, isERDec, dErrors);
+    // cout << Abc_ObjName(pTS) << ",0," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << ",," << endl;
     if (baseER + dErrors.first <= errorBoundInt) {
         double dArea = GetDArea(pTS, pConst0, vMffcs);
         double tempFOM = dArea / (dErrors.first + 1e-10);
         if ((dErrors.first < 0 && nodeLAC.GetFOM() > tempFOM) || (dErrors.first >= 0 && nodeLAC.GetFOM() >= 0 && nodeLAC.GetFOM() < tempFOM))
             nodeLAC.Update(pTS, pConst0, false, dErrors.first, dArea, tempFOM);
-        // cout << Abc_ObjName(pTS) << ",0," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << ",," << dArea << endl;
         // ++totLACs;
         // accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pConst0, 0, true);
         // estError = (baseER + dErrors.first) / static_cast <double>(appSmlt.GetFrameNum());
@@ -365,16 +365,15 @@ void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t 
 
     Abc_Obj_t * pConst1 = Ckt_GetConst(pAppNtk, 1);
     GetDER(appSmlt, pTS, pConst1, isERInc, isERDec, dErrors);
+    // cout << Abc_ObjName(pTS) << ",1," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << ",," << endl;
     if (baseER + dErrors.first <= errorBoundInt) {
         double dArea = GetDArea(pTS, pConst1, vMffcs);
         double tempFOM = dArea / (dErrors.first + 1e-10);
         if ((dErrors.first < 0 && nodeLAC.GetFOM() > tempFOM) || (dErrors.first >= 0 && nodeLAC.GetFOM() >= 0 && nodeLAC.GetFOM() < tempFOM))
             nodeLAC.Update(pTS, pConst1, false, dErrors.first, dArea, tempFOM);
-        // cout << Abc_ObjName(pTS) << ",1," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << ",," << dArea << endl;
         // ++totLACs;
         // accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pConst1, 0, true);
         // estError = (baseER + dErrors.first) / static_cast <double>(appSmlt.GetFrameNum());
-        // // cout << accError << "," << estError << endl;
         // if (abs(accError - estError) < 1e-10) ++CP;
         // AERD += abs(accError - estError);
     }
@@ -413,6 +412,7 @@ void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t 
         if (isSkip)
             continue;
         GetDER(appSmlt, pTS, pSS, isERInc, isERDec, dErrors);
+        // cout << Abc_ObjName(pTS) << "," << Abc_ObjName(pSS) << "," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << "," << dErrors.second / static_cast <double>(appSmlt.GetFrameNum()) << endl;
         if (baseER + dErrors.first <= errorBoundInt || (baseER + dErrors.second <= errorBoundInt && Ckt_GetObjArrivalTime(pTS, 3) >= Ckt_GetObjArrivalTime(pSS, 3) +  invDelay * 1000)) {
             double dArea = GetDArea(pTS, pSS, vMffcs);
             if (dErrors.first <= dErrors.second) {
@@ -434,7 +434,6 @@ void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t 
                 // ++totLACs;
                 // accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pSS, 0, true);
                 // estError = (baseER + dErrors.first) / static_cast <double>(appSmlt.GetFrameNum());
-                // // cout << accError << "," << estError << endl;
                 // if (abs(accError - estError) < 1e-10) ++CP;
                 // AERD += abs(accError - estError);
             }
@@ -447,11 +446,9 @@ void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t 
                 // ++totLACs;
                 // accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pSS, 1, true);
                 // estError = (baseER + dErrors.second) / static_cast <double>(appSmlt.GetFrameNum());
-                // // cout << accError << "," << estError << endl;
                 // if (abs(accError - estError) < 1e-10) ++CP;
                 // AERD += abs(accError - estError);
             }
-            // cout << Abc_ObjName(pTS) << "," << Abc_ObjName(pSS) << "," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << "," << dErrors.second / static_cast <double>(appSmlt.GetFrameNum()) << "," << dArea << endl;
         }
     }
 
@@ -469,6 +466,7 @@ void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t 
         if (isSkip)
             continue;
         GetDER(appSmlt, pTS, pSS, isERInc, isERDec, dErrors);
+        // cout << Abc_ObjName(pTS) << "," << Abc_ObjName(pSS) << "," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << "," << dErrors.second / static_cast <double>(appSmlt.GetFrameNum()) << endl;
         if (baseER + dErrors.first <= errorBoundInt || baseER + dErrors.second <= errorBoundInt) {
             double dArea = GetDArea(pTS, pSS, vMffcs);
             if (dErrors.first <= dErrors.second) {
@@ -480,7 +478,6 @@ void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t 
                 // ++totLACs;
                 // accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pSS, 0, true);
                 // estError = (baseER + dErrors.first) / static_cast <double>(appSmlt.GetFrameNum());
-                // // cout << accError << "," << estError << endl;
                 // if (abs(accError - estError) < 1e-10) ++CP;
                 // AERD += abs(accError - estError);
             }
@@ -492,11 +489,9 @@ void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t 
                 // ++totLACs;
                 // accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pSS, 1, true);
                 // estError = (baseER + dErrors.second) / static_cast <double>(appSmlt.GetFrameNum());
-                // // cout << accError << "," << estError << endl;
                 // if (abs(accError - estError) < 1e-10) ++CP;
                 // AERD += abs(accError - estError);
             }
-            // cout << Abc_ObjName(pTS) << "," << Abc_ObjName(pSS) << "," << dErrors.first / static_cast <double>(appSmlt.GetFrameNum()) << "," << dErrors.second / static_cast <double>(appSmlt.GetFrameNum()) << "," << dArea << endl;
         }
     }
     // cout << totLACs << "," << CP / static_cast <double> (totLACs) << "," << AERD / totLACs << endl;
@@ -642,6 +637,10 @@ void SASIMI_Manager_t::SortCandLACs(IN std::vector <LAC_t> & nodeLACs, IN int nF
             candLACs.emplace_back(nodeLAC);
     }
     sort(candLACs.begin(), candLACs.end());
+    // for (auto & candLAC: candLACs) {
+    //     candLAC.Print();
+    //     cout << endl;
+    // }
 }
 
 

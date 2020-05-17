@@ -1445,10 +1445,18 @@ void Simulator_t::BuildOneCutNtks(int maxLevel)
         oneCuts[pObj->Id].resize(Abc_NtkPoNum(pNtk));
         cutNtkNodes.clear();
         Abc_NtkForEachPo(pNtk, pPo, j) {
-            if (Ckt_GetBit(sinks[pObj->Id][j >> 6], static_cast <uint64_t> (j) & static_cast <uint64_t> (63)))
+            if (Ckt_GetBit(sinks[pObj->Id][j >> 6], static_cast <uint64_t> (j) & static_cast <uint64_t> (63))) {
                 FindOneCut(pObj, j, cutNtkNodes, maxLevel);
+                // if (string(Abc_ObjName(pObj)) == "[106336]") {
+                //     cout << "PO " << Abc_ObjName(pPo) << endl;
+                //     if (oneCuts[pObj->Id][j] == nullptr)
+                //         cout << "not found " << endl;
+                //     else
+                //         cout << Abc_ObjName(oneCuts[pObj->Id][j]) << endl;
+                // }
+            }
         }
-        SortCutNtkNodes(pObj, cutNtkNodes);
+        SortCutNtkNodes(pObj, cutNtkNodes, maxLevel);
     }
 }
 
@@ -1504,7 +1512,8 @@ void Simulator_t::FindOneCut(Abc_Obj_t * pPivot, int poId, set <Abc_Obj_t *> & c
     fill(flow.begin(), flow.end(), 0);
     flow[pPivot->Id] = 1.0;
     oneCuts[pPivot->Id][poId] = nullptr;
-    // cout << "find cut " << Abc_ObjName(pPivot) << "," << Abc_ObjName(pPo) << endl;
+    // if (string(Abc_ObjName(pPivot)) == "[106336]")
+    //     cout << "find cut " << Abc_ObjName(pPivot) << "," << Abc_ObjName(pPo) << endl;
     FindOneCut_rec(Abc_ObjFanin0(pPo), pPivot, poId, cutNtkNodes, maxLevel);
     // if (oneCuts[pPivot->Id][poId] == nullptr)
     //     cout << "not found" << endl;
@@ -1522,7 +1531,8 @@ void Simulator_t::FindOneCut_rec(Abc_Obj_t * pNode, Abc_Obj_t * pPivot, int poId
         return;
     if (oneCuts[pPivot->Id][poId] != nullptr)
         return;
-    // cout << "visit node " << Abc_ObjName(pNode) << endl;
+    // if (string(Abc_ObjName(pPivot)) == "[106336]")
+    //     cout << "visit node " << Abc_ObjName(pNode) << endl;
     // mark the node as visited
     Abc_NodeSetTravIdCurrent(pNode);
     // skip the CI
@@ -1536,7 +1546,8 @@ void Simulator_t::FindOneCut_rec(Abc_Obj_t * pNode, Abc_Obj_t * pPivot, int poId
         FindOneCut_rec(pFanin, pPivot, poId, cutNtkNodes, maxLevel);
     // add the node after the fanins have been added
     if (oneCuts[pPivot->Id][poId] == nullptr && level[pNode->Id] - level[pPivot->Id] <= maxLevel - 1) {
-        // cout << "flow from node " << Abc_ObjName(pNode) << endl;
+        // if (string(Abc_ObjName(pPivot)) == "[106336]")
+        //     cout << "flow from node " << Abc_ObjName(pNode) << endl;
         Abc_Obj_t * pFanout = nullptr;
         int foCnt = 0;
         Abc_ObjForEachFanout(pNode, pFanout, i) {
@@ -1544,20 +1555,26 @@ void Simulator_t::FindOneCut_rec(Abc_Obj_t * pNode, Abc_Obj_t * pPivot, int poId
                 ++foCnt;
             }
         }
+        // if (string(Abc_ObjName(pPivot)) == "[106336]")
+        //     cout << "foCnt = " << foCnt << endl;
         DASSERT(foCnt);
         Abc_ObjForEachFanout(pNode, pFanout, i) {
             DASSERT(level[pFanout->Id] > level[pPivot->Id]);
+            // if (string(Abc_ObjName(pPivot)) == "[106336]")
+            //     cout << "fanout " << Abc_ObjName(pFanout) << "," << level[pFanout->Id] << "," << level[pPivot->Id] << "," << maxLevel << endl;
             if (level[pFanout->Id] - level[pPivot->Id] > maxLevel)
                 continue;
             if (Ckt_GetBit(sinks[pFanout->Id][poId >> 6],  static_cast <uint64_t> (poId) & static_cast <uint64_t> (63) )) {
                 flow[pFanout->Id] += flow[pNode->Id] / foCnt;
                 if (abs(flow[pFanout->Id] - 1.0) <= 1e-10) {
                     oneCuts[pPivot->Id][poId] = pFanout;
-                    // cout << "find one cut " << Abc_ObjName(pFanout) << "," << maxLevel << "," << endl;
+                    // if (string(Abc_ObjName(pPivot)) == "[106336]")
+                    //     cout << "find one cut " << Abc_ObjName(pFanout) << "," << maxLevel << "," << endl;
                 }
-                // cout << "flow to " << Abc_ObjName(pFanout) << "," << flow[pFanout->Id] << endl;
+                // if (string(Abc_ObjName(pPivot)) == "[106336]")
+                //     cout << "flow to " << Abc_ObjName(pFanout) << "," << flow[pFanout->Id] << endl;
                 if (pFanout != pPivot) {
-                    // if (!cutNtkNodes.count(pFanout))
+                    // if (string(Abc_ObjName(pPivot)) == "[106336]")
                     //     cout << "add " << Abc_ObjName(pFanout) << " level = " << level[pFanout->Id] - level[pPivot->Id] << " " << Abc_ObjIsPo(pFanout) << endl;
                     cutNtkNodes.insert(pFanout);
                 }
@@ -1567,7 +1584,7 @@ void Simulator_t::FindOneCut_rec(Abc_Obj_t * pNode, Abc_Obj_t * pPivot, int poId
 }
 
 
-void Simulator_t::SortCutNtkNodes(Abc_Obj_t * pPivot, std::set <Abc_Obj_t *> & cutNtkNodes)
+void Simulator_t::SortCutNtkNodes(Abc_Obj_t * pPivot, std::set <Abc_Obj_t *> & cutNtkNodes, int maxLevel)
 {
     // sort by topological order
     cutNtks[pPivot->Id].assign(cutNtkNodes.begin(), cutNtkNodes.end());
@@ -1582,20 +1599,28 @@ void Simulator_t::SortCutNtkNodes(Abc_Obj_t * pPivot, std::set <Abc_Obj_t *> & c
     // compute tfo cut
     int size = cutNtks[pPivot->Id].size();
     DASSERT(size);
-    int maxLevel = level[cutNtks[pPivot->Id][size - 1]->Id] - level[pPivot->Id];
-    set <Abc_Obj_t *> addedElements;
     tfoCuts[pPivot->Id].clear();
-    for (int i = size - 1; i >= 0; --i) {
-        if (level[cutNtks[pPivot->Id][i]->Id] - level[pPivot->Id] != maxLevel)
-            break;
-        tfoCuts[pPivot->Id].emplace_back(cutNtks[pPivot->Id][i]);
-        addedElements.insert(cutNtks[pPivot->Id][i]);
-    }
     for (int i = 0; i < size; ++i) {
-        if (Abc_ObjIsPo(cutNtks[pPivot->Id][i]) && !addedElements.count(cutNtks[pPivot->Id][i])) {
-            tfoCuts[pPivot->Id].emplace_back(cutNtks[pPivot->Id][i]);
+        Abc_Obj_t * pBound = cutNtks[pPivot->Id][i];
+        Abc_Obj_t * pFanout = nullptr;
+        int j = 0;
+        Abc_ObjForEachFanout(pBound, pFanout, j) {
+            if (level[pFanout->Id] - level[pPivot->Id] > maxLevel) {
+                tfoCuts[pPivot->Id].emplace_back(pBound);
+                break;
+            }
         }
     }
+    // if (string(Abc_ObjName(pPivot)) == "[106336]") {
+    //     cout << "cut network" << endl;
+    //     for (auto & cutNtkNode: cutNtks[pPivot->Id]) {
+    //         cout << Abc_ObjName(cutNtkNode) << endl;
+    //     }
+    //     cout << "TFO cut" << endl;
+    //     for (auto & tfoCut: tfoCuts[pPivot->Id]) {
+    //         cout << Abc_ObjName(tfoCut) << endl;
+    //     }
+    // }
 }
 
 
