@@ -1,4 +1,4 @@
-# Benchmark "wal8" written by ABC on Sun May 17 11:58:37 2020
+# Benchmark "wal8" written by ABC on Sun May 17 17:00:32 2020
 .model wal8
 .inputs multiplicand[0] multiplicand[1] multiplicand[2] multiplicand[3] \
  multiplicand[4] multiplicand[5] multiplicand[6] multiplicand[7] \
@@ -119,8 +119,8 @@
 .gate oai22  a=new_n108_ b=new_n133_ c=new_n134_ d=new_n107_ O=new_n135_
 .gate nand2  a=new_n106_ b=new_n135_ O=new_n136_
 .gate oai21  a=new_n106_ b=new_n135_ c=new_n136_ O=new_n137_
-.gate nand2  a=new_n518_ b=new_n137_ O=new_n138_
-.gate oai21  a=new_n518_ b=new_n137_ c=new_n138_ O=new_n139_
+.gate nand2  a=new_n519_ b=new_n137_ O=new_n138_
+.gate oai21  a=new_n519_ b=new_n137_ c=new_n138_ O=new_n139_
 .gate nand2  a=new_n105_ b=new_n139_ O=new_n140_
 .gate oai21  a=new_n105_ b=new_n139_ c=new_n140_ O=product[5]
 .gate inv1   a=new_n135_ O=new_n142_
@@ -443,7 +443,7 @@
 .gate oai21  a=new_n449_ b=new_n457_ c=new_n458_ O=new_n459_
 .gate inv1   a=new_n459_ O=new_n460_
 .gate nor2   a=new_n429_ b=new_n423_ O=new_n461_
-.gate oai22  a=new_n460_ b=new_n519_ c=new_n461_ d=new_n459_ O=new_n462_
+.gate oai22  a=new_n460_ b=new_n518_ c=new_n461_ d=new_n459_ O=new_n462_
 .gate nand2  a=new_n448_ b=new_n462_ O=new_n463_
 .gate oai21  a=new_n448_ b=new_n462_ c=new_n463_ O=new_n464_
 .gate inv1   a=new_n464_ O=new_n465_
@@ -471,7 +471,7 @@
 .gate nand2  a=new_n476_ b=new_n486_ O=new_n487_
 .gate oai21  a=new_n476_ b=new_n486_ c=new_n487_ O=new_n488_
 .gate inv1   a=new_n448_ O=new_n489_
-.gate oai22  a=new_n489_ b=new_n462_ c=new_n460_ d=new_n519_ O=new_n490_
+.gate oai22  a=new_n489_ b=new_n462_ c=new_n460_ d=new_n518_ O=new_n490_
 .gate oai21  a=new_n488_ b=new_n490_ c=new_n494_ O=new_n491_
 .gate inv1   a=new_n491_ O=new_n492_
 .gate oai22  a=new_n474_ b=new_n491_ c=new_n492_ d=new_n473_ O=product[13]
@@ -497,6 +497,6 @@
 .gate nand2  a=new_n511_ b=new_n512_ O=new_n513_
 .gate nand2  a=new_n513_ b=new_n502_ O=new_n514_
 .gate nand2  a=new_n514_ b=new_n513_ O=product[15]
-.gate inv1   a=new_n183_ O=new_n518_
-.gate inv1   a=new_n461_ O=new_n519_
+.gate inv1   a=new_n461_ O=new_n518_
+.gate inv1   a=new_n183_ O=new_n519_
 .end

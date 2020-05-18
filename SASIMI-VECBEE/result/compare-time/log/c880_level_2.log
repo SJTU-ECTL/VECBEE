@@ -1,0 +1,41 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/c880.blif
+Line 12: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 13: Skipping line ".default_output_required 0.00 0.00 ".
+Line 14: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 15: Skipping line ".default_output_load 2.00 ".
+Line 16: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mc880                          :[0m i/o =   60/   26  lat =    0  nd =   224  edge =    542  area =585.00  delay =24.90  lev = 18
+--------------- round 1 ---------------
+seed = 1611774562
+maxLevel = 2
+n235 is replaced by one with estimated error 0.00014
+error = 0.00014
+area = 583
+delay = 24.9
+#gates = 225
+output circuit appNtk/c880_1_0.00014_583_24.9.blif
+time = 3294007 us
+--------------- round 2 ---------------
+seed = 3826727512
+maxLevel = 2
+n155 is replaced by one with estimated error 0.0007
+error = 0.0007
+area = 575
+delay = 24.9
+#gates = 222
+output circuit appNtk/c880_2_0.0007_575_24.9.blif
+time = 5300563 us
+--------------- round 3 ---------------
+seed = 1872659694
+maxLevel = 2
+n189 is replaced by zero with estimated error 0.00077
+error = 0.00077
+area = 574
+delay = 24.9
+#gates = 221
+output circuit appNtk/c880_3_0.00077_574_24.9.blif
+time = 8581152 us
+--------------- round 4 ---------------

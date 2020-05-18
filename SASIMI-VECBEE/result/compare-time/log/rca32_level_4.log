@@ -1,0 +1,36 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/rca32.blif
+abc command print_stats
+[1;37mrca32                         :[0m i/o =   64/   33  lat =    0  nd =   298  edge =    585  area =666.00  delay =16.10  lev = 12
+--------------- round 1 ---------------
+seed = 2899420785
+maxLevel = 4
+n356 is replaced by zero with estimated error 0.00013
+error = 0.00013
+area = 661
+delay = 16
+#gates = 298
+output circuit appNtk/rca32_1_0.00013_661_16.blif
+time = 4712895 us
+--------------- round 2 ---------------
+seed = 2013851736
+maxLevel = 4
+n242 is replaced by one with estimated error 0.00195
+error = 0.00195
+area = 656
+delay = 16
+#gates = 296
+output circuit appNtk/rca32_2_0.00195_656_16.blif
+time = 8003455 us
+--------------- round 3 ---------------
+seed = 2355367298
+maxLevel = 4
+n320 is replaced by zero with estimated error 0.00399
+error = 0.00399
+area = 654
+delay = 16
+#gates = 295
+output circuit appNtk/rca32_3_0.00399_654_16.blif
+time = 10897799 us
+--------------- round 4 ---------------

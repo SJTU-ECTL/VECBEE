@@ -1,0 +1,41 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/c1908.blif
+Line 7: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 8: Skipping line ".default_output_required 0.00 0.00 ".
+Line 9: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 10: Skipping line ".default_output_load 2.00 ".
+Line 11: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mc1908                         :[0m i/o =   33/   25  lat =    0  nd =   288  edge =    689  area =758.00  delay =37.30  lev = 25
+--------------- round 1 ---------------
+seed = 3258085283
+maxLevel = 2
+n248 is replaced by n253 with estimated error 0
+error = 0
+area = 756
+delay = 37.3
+#gates = 289
+output circuit appNtk/c1908_1_0_756_37.3.blif
+time = 6501351 us
+--------------- round 2 ---------------
+seed = 715862946
+maxLevel = 2
+n220 is replaced by n206 with estimated error 0
+error = 0
+area = 754
+delay = 37.3
+#gates = 288
+output circuit appNtk/c1908_2_0_754_37.3.blif
+time = 12421822 us
+--------------- round 3 ---------------
+seed = 3950755274
+maxLevel = 2
+n226 is replaced by n230 with estimated error 0
+error = 0
+area = 752
+delay = 37.3
+#gates = 287
+output circuit appNtk/c1908_3_0_752_37.3.blif
+time = 17865379 us
+--------------- round 4 ---------------

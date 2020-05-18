@@ -4,7 +4,7 @@ abc command read_blif data/su/alu4.blif
 abc command print_stats
 [1;37malu4                          :[0m i/o =   14/    8  lat =    0  nd =  1114  edge =   2789  area =2798.00  delay =12.70  lev = 11
 --------------- round 1 ---------------
-seed = 2531465778
+seed = 2949184384
 maxLevel = 2
 n688 is replaced by n305 with estimated error 0
 error = 0
@@ -12,9 +12,9 @@ area = 2793
 delay = 12.7
 #gates = 1114
 output circuit appNtk/alu4_1_0_2793_12.7.blif
-time = 40823687 us
+time = 39476541 us
 --------------- round 2 ---------------
-seed = 2531465778
+seed = 76561525
 maxLevel = 2
 n900 is replaced by n1129 with estimated error 0
 error = 0
@@ -22,29 +22,29 @@ area = 2789
 delay = 12.7
 #gates = 1112
 output circuit appNtk/alu4_2_0_2789_12.7.blif
-time = 79966141 us
+time = 77495568 us
 --------------- round 3 ---------------
-seed = 2531465778
+seed = 3534025268
 maxLevel = 2
-n1115 is replaced by n441 with estimated error 0
+n409 is replaced by n770 with estimated error 0
 error = 0
 area = 2786
 delay = 12.7
 #gates = 1111
 output circuit appNtk/alu4_3_0_2786_12.7.blif
-time = 118517515 us
+time = 115124373 us
 --------------- round 4 ---------------
-seed = 2531465778
+seed = 1124515821
 maxLevel = 2
-n569 is replaced by n979 with estimated error 0
+n441 is replaced by n1115 with estimated error 0
 error = 0
 area = 2783
 delay = 12.7
 #gates = 1110
 output circuit appNtk/alu4_4_0_2783_12.7.blif
-time = 156831664 us
+time = 151791902 us
 --------------- round 5 ---------------
-seed = 2531465778
+seed = 1081991087
 maxLevel = 2
 n1106 is replaced by n1059 with estimated error 0
 error = 0
@@ -52,278 +52,238 @@ area = 2780
 delay = 12.7
 #gates = 1109
 output circuit appNtk/alu4_5_0_2780_12.7.blif
-time = 195117106 us
+time = 187939192 us
 --------------- round 6 ---------------
-seed = 2531465778
+seed = 2657549893
 maxLevel = 2
-n409 is replaced by n770 with estimated error 0
+n503 is replaced by one with estimated error 0
 error = 0
 area = 2777
 delay = 12.7
-#gates = 1108
-output circuit appNtk/alu4_6_0_2777_12.7.blif
-time = 233400972 us
---------------- round 7 ---------------
-seed = 2531465778
-maxLevel = 2
-n292 is replaced by n574 with estimated error 0
-error = 0
-area = 2775
-delay = 12.7
 #gates = 1107
-output circuit appNtk/alu4_7_0_2775_12.7.blif
-time = 271325331 us
---------------- round 8 ---------------
-seed = 2531465778
+output circuit appNtk/alu4_6_0_2777_12.7.blif
+time = 224626635 us
+--------------- round 7 ---------------
+seed = 2733467693
 maxLevel = 2
-n325 is replaced by n286 with estimated error 0
-error = 0
-area = 2773
+n569 is replaced by one with estimated error 4e-05
+error = 4e-05
+area = 2774
 delay = 12.7
 #gates = 1106
-output circuit appNtk/alu4_8_0_2773_12.7.blif
-time = 307669124 us
---------------- round 9 ---------------
-seed = 2531465778
+output circuit appNtk/alu4_7_4e-05_2774_12.7.blif
+time = 260270089 us
+--------------- round 8 ---------------
+seed = 3626000343
 maxLevel = 2
-n588 is replaced by n327 with estimated error 0
-error = 0
+n513 is replaced by one with estimated error 5e-05
+error = 5e-05
 area = 2771
 delay = 12.7
 #gates = 1105
-output circuit appNtk/alu4_9_0_2771_12.7.blif
-time = 342016497 us
---------------- round 10 ---------------
-seed = 2531465778
+output circuit appNtk/alu4_8_5e-05_2771_12.7.blif
+time = 294493300 us
+--------------- round 9 ---------------
+seed = 4201128269
 maxLevel = 2
-n967 is replaced by n345 with estimated error 0
-error = 0
+n292 is replaced by n574 with estimated error 0.0001
+error = 0.0001
 area = 2769
 delay = 12.7
 #gates = 1104
-output circuit appNtk/alu4_10_0_2769_12.7.blif
-time = 373861801 us
---------------- round 11 ---------------
-seed = 2531465778
+output circuit appNtk/alu4_9_0.0001_2769_12.7.blif
+time = 327165785 us
+--------------- round 10 ---------------
+seed = 1293349908
 maxLevel = 2
-n659 is replaced by n611 with estimated error 0
-error = 0
+n967 is replaced by n345 with estimated error 0.00012
+error = 0.00012
 area = 2767
 delay = 12.7
 #gates = 1103
-output circuit appNtk/alu4_11_0_2767_12.7.blif
-time = 396497826 us
---------------- round 12 ---------------
-seed = 2531465778
+output circuit appNtk/alu4_10_0.00012_2767_12.7.blif
+time = 358873540 us
+--------------- round 11 ---------------
+seed = 1177376860
 maxLevel = 2
-n108 is replaced by n39 with estimated error 0
-error = 0
+n325 is replaced by n286 with estimated error 8e-05
+error = 8e-05
 area = 2765
 delay = 12.7
 #gates = 1102
-output circuit appNtk/alu4_12_0_2765_12.7.blif
-time = 415390409 us
---------------- round 13 ---------------
-seed = 2531465778
+output circuit appNtk/alu4_11_8e-05_2765_12.7.blif
+time = 387091044 us
+--------------- round 12 ---------------
+seed = 4007196415
 maxLevel = 2
-n799 is replaced by n797 with estimated error 0
-error = 0
-area = 2764
-delay = 12.7
-#gates = 1101
-output circuit appNtk/alu4_13_0_2764_12.7.blif
-time = 429783921 us
---------------- round 14 ---------------
-seed = 2531465778
-maxLevel = 2
-n334 is replaced by n408 with estimated error 0
-error = 0
+n659 is replaced by n611 with estimated error 0.00011
+error = 0.00011
 area = 2763
 delay = 12.7
-#gates = 1100
-output circuit appNtk/alu4_14_0_2763_12.7.blif
-time = 448849636 us
---------------- round 15 ---------------
-seed = 2531465778
+#gates = 1101
+output circuit appNtk/alu4_12_0.00011_2763_12.7.blif
+time = 412400259 us
+--------------- round 13 ---------------
+seed = 4263988837
 maxLevel = 2
-n1127 is replaced by one with estimated error 2e-05
-error = 2e-05
-area = 2758
+n613 is replaced by n160 with estimated error 0.00021
+error = 0.00021
+area = 2761
+delay = 12.7
+#gates = 1100
+output circuit appNtk/alu4_13_0.00021_2761_12.7.blif
+time = 432558848 us
+--------------- round 14 ---------------
+seed = 405367020
+maxLevel = 2
+n588 is replaced by n327 with estimated error 0.00021
+error = 0.00021
+area = 2759
+delay = 12.7
+#gates = 1099
+output circuit appNtk/alu4_14_0.00021_2759_12.7.blif
+time = 448792930 us
+--------------- round 15 ---------------
+seed = 2926129145
+maxLevel = 2
+n614 is replaced by n641 with estimated error 0.00022
+error = 0.00022
+area = 2756
 delay = 12.7
 #gates = 1098
-output circuit appNtk/alu4_15_2e-05_2758_12.7.blif
-time = 467206130 us
+output circuit appNtk/alu4_15_0.00022_2756_12.7.blif
+time = 463175564 us
 --------------- round 16 ---------------
-seed = 2531465778
+seed = 107003479
 maxLevel = 2
-n560 is replaced by n134 with estimated error 4e-05
-error = 4e-05
+n108 is replaced by n39 with estimated error 0.00017
+error = 0.00017
 area = 2754
 delay = 12.7
 #gates = 1097
-output circuit appNtk/alu4_16_4e-05_2754_12.7.blif
-time = 482048907 us
+output circuit appNtk/alu4_16_0.00017_2754_12.7.blif
+time = 480507536 us
 --------------- round 17 ---------------
-seed = 2531465778
+seed = 3243116930
 maxLevel = 2
-n317 is replaced by n1076 with estimated error 0.00013
-error = 0.00013
-area = 2745
+n799 is replaced by n797 with estimated error 0.00018
+error = 0.00018
+area = 2753
 delay = 12.7
-#gates = 1094
-output circuit appNtk/alu4_17_0.00013_2745_12.7.blif
-time = 496046974 us
+#gates = 1096
+output circuit appNtk/alu4_17_0.00018_2753_12.7.blif
+time = 501113084 us
 --------------- round 18 ---------------
-seed = 2531465778
+seed = 438990040
+maxLevel = 2
+n334 is replaced by n408 with estimated error 0.00031
+error = 0.00031
+area = 2752
+delay = 12.7
+#gates = 1095
+output circuit appNtk/alu4_18_0.00031_2752_12.7.blif
+time = 515068459 us
+--------------- round 19 ---------------
+seed = 2967117634
 maxLevel = 2
 n858 is replaced by one with estimated error 0.0002
 error = 0.0002
-area = 2738
+area = 2745
+delay = 12.7
+#gates = 1092
+output circuit appNtk/alu4_19_0.0002_2745_12.7.blif
+time = 528295267 us
+--------------- round 20 ---------------
+seed = 2210971720
+maxLevel = 2
+n560 is replaced by n134 with estimated error 0.00022
+error = 0.00022
+area = 2741
 delay = 12.7
 #gates = 1091
-output circuit appNtk/alu4_18_0.0002_2738_12.7.blif
-time = 509119682 us
---------------- round 19 ---------------
-seed = 2531465778
+output circuit appNtk/alu4_20_0.00022_2741_12.7.blif
+time = 548152046 us
+--------------- round 21 ---------------
+seed = 2208703275
 maxLevel = 2
-n559 is replaced by one with estimated error 0.00024
-error = 0.00024
-area = 2734
+n473 is replaced by one with estimated error 0.00038
+error = 0.00038
+area = 2737
 delay = 12.7
 #gates = 1090
-output circuit appNtk/alu4_19_0.00024_2734_12.7.blif
-time = 521809573 us
---------------- round 20 ---------------
-seed = 2531465778
+output circuit appNtk/alu4_21_0.00038_2737_12.7.blif
+time = 562842173 us
+--------------- round 22 ---------------
+seed = 4177602163
 maxLevel = 2
-n496 is replaced by one with estimated error 0.00027
-error = 0.00027
-area = 2731
+n407 is replaced by zero with estimated error 0.00046
+error = 0.00046
+area = 2734
 delay = 12.7
 #gates = 1089
-output circuit appNtk/alu4_20_0.00027_2731_12.7.blif
-time = 534019837 us
---------------- round 21 ---------------
-seed = 2531465778
+output circuit appNtk/alu4_22_0.00046_2734_12.7.blif
+time = 575575750 us
+--------------- round 23 ---------------
+seed = 1941797133
 maxLevel = 2
-n940 is replaced by zero with estimated error 0.00029
-error = 0.00029
-area = 2727
+n1018 is replaced by n258 with estimated error 0.00051
+error = 0.00051
+area = 2732
 delay = 12.7
 #gates = 1088
-output circuit appNtk/alu4_21_0.00029_2727_12.7.blif
-time = 546264861 us
---------------- round 22 ---------------
-seed = 2531465778
-maxLevel = 2
-n629 is replaced by one with estimated error 0.00032
-error = 0.00032
-area = 2724
-delay = 12.7
-#gates = 1087
-output circuit appNtk/alu4_22_0.00032_2724_12.7.blif
-time = 558476647 us
---------------- round 23 ---------------
-seed = 2531465778
-maxLevel = 2
-n507 is replaced by one with estimated error 0.00049
-error = 0.00049
-area = 2709
-delay = 12.7
-#gates = 1081
-output circuit appNtk/alu4_23_0.00049_2709_12.7.blif
-time = 570638193 us
+output circuit appNtk/alu4_23_0.00051_2732_12.7.blif
+time = 589517104 us
 --------------- round 24 ---------------
-seed = 2531465778
+seed = 1699908548
 maxLevel = 2
-n928 is replaced by one with estimated error 0.00049
-error = 0.00049
-area = 2705
+n1127 is replaced by one with estimated error 0.00061
+error = 0.00061
+area = 2727
 delay = 12.7
-#gates = 1080
-output circuit appNtk/alu4_24_0.00049_2705_12.7.blif
-time = 582719914 us
+#gates = 1086
+output circuit appNtk/alu4_24_0.00061_2727_12.7.blif
+time = 602600467 us
 --------------- round 25 ---------------
-seed = 2531465778
+seed = 1622032745
 maxLevel = 2
-n515 is replaced by one with estimated error 0.00067
-error = 0.00067
-area = 2690
+n476 is replaced by one with estimated error 0.00072
+error = 0.00072
+area = 2714
 delay = 12.7
-#gates = 1075
-output circuit appNtk/alu4_25_0.00067_2690_12.7.blif
-time = 594753584 us
+#gates = 1082
+output circuit appNtk/alu4_25_0.00072_2714_12.7.blif
+time = 615283056 us
 --------------- round 26 ---------------
-seed = 2531465778
+seed = 225288651
 maxLevel = 2
-n469 is replaced by one with estimated error 0.00077
-error = 0.00077
-area = 2682
+n507 is replaced by n1077 with estimated error 0.00087
+error = 0.00087
+area = 2702
 delay = 12.7
-#gates = 1072
-output circuit appNtk/alu4_26_0.00077_2682_12.7.blif
-time = 606597118 us
+#gates = 1078
+output circuit appNtk/alu4_26_0.00087_2702_12.7.blif
+time = 627667186 us
 --------------- round 27 ---------------
-seed = 2531465778
+seed = 910794732
 maxLevel = 2
-n950 is replaced by one with estimated error 0.00077
-error = 0.00077
-area = 2680
+n928 is replaced by one with estimated error 0.00075
+error = 0.00075
+area = 2698
 delay = 12.7
-#gates = 1071
-output circuit appNtk/alu4_27_0.00077_2680_12.7.blif
-time = 618365844 us
+#gates = 1077
+output circuit appNtk/alu4_27_0.00075_2698_12.7.blif
+time = 640628437 us
 --------------- round 28 ---------------
-seed = 2531465778
+seed = 1854695414
 maxLevel = 2
-n198 is replaced by n259 with estimated error 0.0008
-error = 0.0008
-area = 2677
+n635 is replaced by one with estimated error 0.00074
+error = 0.00074
+area = 2694
 delay = 12.7
-#gates = 1069
-output circuit appNtk/alu4_28_0.0008_2677_12.7.blif
-time = 630117053 us
+#gates = 1076
+output circuit appNtk/alu4_28_0.00074_2694_12.7.blif
+time = 663581323 us
 --------------- round 29 ---------------
-seed = 2531465778
-maxLevel = 2
-n640 is replaced by n1042 with estimated error 0.00088
-error = 0.00088
-area = 2671
-delay = 12.7
-#gates = 1067
-output circuit appNtk/alu4_29_0.00088_2671_12.7.blif
-time = 641818120 us
---------------- round 30 ---------------
-seed = 2531465778
-maxLevel = 2
-n896 is replaced by zero with estimated error 0.00092
-error = 0.00092
-area = 2668
-delay = 12.7
-#gates = 1066
-output circuit appNtk/alu4_30_0.00092_2668_12.7.blif
-time = 653482472 us
---------------- round 31 ---------------
-seed = 2531465778
-maxLevel = 2
-n497 is replaced by one with estimated error 0.00096
-error = 0.00096
-area = 2665
-delay = 12.7
-#gates = 1065
-output circuit appNtk/alu4_31_0.00096_2665_12.7.blif
-time = 665137102 us
---------------- round 32 ---------------
-seed = 2531465778
-maxLevel = 2
-n343 is replaced by one with estimated error 0.00099
-error = 0.00099
-area = 2663
-delay = 12.7
-#gates = 1064
-output circuit appNtk/alu4_32_0.00099_2663_12.7.blif
-time = 676790377 us
---------------- round 33 ---------------
-seed = 2531465778
+seed = 2256984487
 maxLevel = 2
 exceed error bound

@@ -1,0 +1,41 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/ksa32.blif
+Line 11: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 12: Skipping line ".default_output_required 0.00 0.00 ".
+Line 13: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 14: Skipping line ".default_output_load 2.00 ".
+Line 15: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mksa32                         :[0m i/o =   64/   33  lat =    0  nd =   513  edge =   1090  area =1128.00  delay =17.80  lev = 14
+--------------- round 1 ---------------
+seed = 1725573572
+maxLevel = 99999
+n397 is replaced by one with estimated error 0
+error = 0
+area = 1125
+delay = 17.8
+#gates = 514
+output circuit appNtk/ksa32_1_0_1125_17.8.blif
+time = 9970871 us
+--------------- round 2 ---------------
+seed = 2579448942
+maxLevel = 99999
+n511 is replaced by one with estimated error 1e-05
+error = 1e-05
+area = 1121
+delay = 17.8
+#gates = 512
+output circuit appNtk/ksa32_2_1e-05_1121_17.8.blif
+time = 17032441 us
+--------------- round 3 ---------------
+seed = 2059370670
+maxLevel = 99999
+n472 is replaced by n493 with estimated error 0
+error = 0
+area = 1117
+delay = 17.7
+#gates = 510
+output circuit appNtk/ksa32_3_0_1117_17.7.blif
+time = 18927546 us
+--------------- round 4 ---------------

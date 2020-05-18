@@ -35,11 +35,11 @@ void SASIMI_Manager_t::GreedySelection(Abc_Ntk_t * pOriNtk, string outPrefix)
     cntRound = 0;
     while (error < errorBound) {
         cout << "--------------- round " << ++cntRound << " ---------------" << endl;
-        if (cntRound == 4)
-            break;
+        // if (cntRound == 4)
+        //     break;
         Simulator_t * pAppSmlt = new Simulator_t(pAppNtk, nFrame);
-        // unsigned seed = static_cast <unsigned> (rd());
-        unsigned seed = 2531465778;
+        unsigned seed = static_cast <unsigned> (rd());
+        // unsigned seed = 2531465778;
         cout << "seed = " << seed << endl;
         cout << "maxLevel = " << maxLevel << endl;
         oriSmlt.Input(seed);
@@ -332,11 +332,11 @@ void SASIMI_Manager_t::CollectAllLACsUnderNMED(IN Simulator_t & oriSmlt, IN Simu
 
 void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t & oriSmlt, IN Simulator_t & appSmlt, IN vector <tVec> & isERInc, IN vector <tVec> & isERDec, IN vector <tVec> & sources, IN vector <Vec_Ptr_t *> & vMffcs, IN int baseER, OUT LAC_t & nodeLAC)
 {
-    static int64_t totLACs;
-    static int64_t CP;
-    static double AERD;
-    double accError = 0.0;
-    double estError = 0.0;
+    // static int64_t totLACs;
+    // static int64_t CP;
+    // static double AERD;
+    // double accError = 0.0;
+    // double estError = 0.0;
 
     Abc_Ntk_t * pAppNtk = appSmlt.GetNetwork();
     DASSERT(pAppNtk == pTS->pNtk);
@@ -356,11 +356,11 @@ void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t 
         if ((dErrors.first < 0 && nodeLAC.GetFOM() > tempFOM) || (dErrors.first >= 0 && nodeLAC.GetFOM() >= 0 && nodeLAC.GetFOM() < tempFOM))
             nodeLAC.Update(pTS, pConst0, false, dErrors.first, dArea, tempFOM);
     }
-    ++totLACs;
-    accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pConst0, 0, true);
-    estError = (baseER + dErrors.first) / static_cast <double>(appSmlt.GetFrameNum());
-    if (abs(accError - estError) < 1e-10) ++CP;
-    AERD += abs(accError - estError);
+    // ++totLACs;
+    // accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pConst0, 0, true);
+    // estError = (baseER + dErrors.first) / static_cast <double>(appSmlt.GetFrameNum());
+    // if (abs(accError - estError) < 1e-10) ++CP;
+    // AERD += abs(accError - estError);
 
     Abc_Obj_t * pConst1 = Ckt_GetConst(pAppNtk, 1);
     GetDER(appSmlt, pTS, pConst1, isERInc, isERDec, dErrors);
@@ -371,11 +371,11 @@ void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t 
         if ((dErrors.first < 0 && nodeLAC.GetFOM() > tempFOM) || (dErrors.first >= 0 && nodeLAC.GetFOM() >= 0 && nodeLAC.GetFOM() < tempFOM))
             nodeLAC.Update(pTS, pConst1, false, dErrors.first, dArea, tempFOM);
     }
-    ++totLACs;
-    accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pConst1, 0, true);
-    estError = (baseER + dErrors.first) / static_cast <double>(appSmlt.GetFrameNum());
-    if (abs(accError - estError) < 1e-10) ++CP;
-    AERD += abs(accError - estError);
+    // ++totLACs;
+    // accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pConst1, 0, true);
+    // estError = (baseER + dErrors.first) / static_cast <double>(appSmlt.GetFrameNum());
+    // if (abs(accError - estError) < 1e-10) ++CP;
+    // AERD += abs(accError - estError);
 
     // consider other nodes' replacement
     Abc_Obj_t * pSS= nullptr;
@@ -437,16 +437,16 @@ void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t 
                     nodeLAC.Update(pTS, pSS, true, dErrors.second, dArea, tempFOM);
             }
         }
-        ++totLACs;
-        accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pSS, 0, true);
-        estError = (baseER + dErrors.first) / static_cast <double>(appSmlt.GetFrameNum());
-        if (abs(accError - estError) < 1e-10) ++CP;
-        AERD += abs(accError - estError);
-        ++totLACs;
-        accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pSS, 1, true);
-        estError = (baseER + dErrors.second) / static_cast <double>(appSmlt.GetFrameNum());
-        if (abs(accError - estError) < 1e-10) ++CP;
-        AERD += abs(accError - estError);
+        // ++totLACs;
+        // accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pSS, 0, true);
+        // estError = (baseER + dErrors.first) / static_cast <double>(appSmlt.GetFrameNum());
+        // if (abs(accError - estError) < 1e-10) ++CP;
+        // AERD += abs(accError - estError);
+        // ++totLACs;
+        // accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pSS, 1, true);
+        // estError = (baseER + dErrors.second) / static_cast <double>(appSmlt.GetFrameNum());
+        // if (abs(accError - estError) < 1e-10) ++CP;
+        // AERD += abs(accError - estError);
     }
 
     // consider PI replacement
@@ -479,18 +479,18 @@ void SASIMI_Manager_t::CollectNodeLACUnderER(IN Abc_Obj_t * pTS, IN Simulator_t 
                     nodeLAC.Update(pTS, pSS, true, dErrors.second, dArea, tempFOM);
             }
         }
-        ++totLACs;
-        accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pSS, 0, true);
-        estError = (baseER + dErrors.first) / static_cast <double>(appSmlt.GetFrameNum());
-        if (abs(accError - estError) < 1e-10) ++CP;
-        AERD += abs(accError - estError);
-        ++totLACs;
-        accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pSS, 1, true);
-        estError = (baseER + dErrors.second) / static_cast <double>(appSmlt.GetFrameNum());
-        if (abs(accError - estError) < 1e-10) ++CP;
-        AERD += abs(accError - estError);
+        // ++totLACs;
+        // accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pSS, 0, true);
+        // estError = (baseER + dErrors.first) / static_cast <double>(appSmlt.GetFrameNum());
+        // if (abs(accError - estError) < 1e-10) ++CP;
+        // AERD += abs(accError - estError);
+        // ++totLACs;
+        // accError = MeasureSASIMIER(&oriSmlt, &appSmlt, pTS, pSS, 1, true);
+        // estError = (baseER + dErrors.second) / static_cast <double>(appSmlt.GetFrameNum());
+        // if (abs(accError - estError) < 1e-10) ++CP;
+        // AERD += abs(accError - estError);
     }
-    cout << totLACs << "," << CP / static_cast <double> (totLACs) << "," << AERD / totLACs << endl;
+    // cout << totLACs << "," << CP / static_cast <double> (totLACs) << "," << AERD / totLACs << endl;
 }
 
 

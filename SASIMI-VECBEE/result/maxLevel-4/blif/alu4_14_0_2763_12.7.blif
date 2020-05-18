@@ -1,4 +1,4 @@
-# Benchmark "alu4" written by ABC on Sun May 17 12:52:34 2020
+# Benchmark "alu4" written by ABC on Sun May 17 19:29:01 2020
 .model alu4
 .inputs i_0_ i_1_ i_2_ i_3_ i_4_ i_5_ i_6_ i_7_ i_8_ i_9_ i_10_ i_11_ i_12_ \
  i_13_
@@ -551,7 +551,7 @@
 .gate nand2  a=new_n452_ b=new_n256_ O=new_n561_
 .gate nor2   a=i_13_ b=new_n25_ O=new_n562_
 .gate nand3  a=new_n562_ b=new_n300_ c=new_n43_ O=new_n563_
-.gate nand3  a=new_n1122_ b=new_n563_ c=new_n561_ O=new_n564_
+.gate nand3  a=new_n965_ b=new_n563_ c=new_n561_ O=new_n564_
 .gate nand2  a=new_n56_ b=new_n23_ O=new_n565_
 .gate nor2   a=new_n565_ b=new_n398_ O=new_n566_
 .gate nand4  a=new_n58_ b=i_11_ c=i_10_ d=i_3_ O=new_n567_
@@ -1108,5 +1108,4 @@
 .gate nand4  a=new_n1117_ b=new_n1096_ c=new_n1076_ d=new_n1065_ O=new_n1118_
 .gate nor2   a=new_n1118_ b=new_n1043_ O=new_n1119_
 .gate nand3  a=new_n1119_ b=new_n1002_ c=new_n971_ O=o_7_
-.gate one    O=new_n1122_
 .end

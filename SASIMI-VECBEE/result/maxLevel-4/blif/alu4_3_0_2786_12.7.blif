@@ -1,4 +1,4 @@
-# Benchmark "alu4" written by ABC on Sun May 17 12:43:03 2020
+# Benchmark "alu4" written by ABC on Sun May 17 19:19:07 2020
 .model alu4
 .inputs i_0_ i_1_ i_2_ i_3_ i_4_ i_5_ i_6_ i_7_ i_8_ i_9_ i_10_ i_11_ i_12_ \
  i_13_
@@ -1089,21 +1089,21 @@
 .gate nand2  a=new_n734_ b=new_n40_ O=new_n1099_
 .gate aoi21  a=new_n1099_ b=new_n1098_ c=new_n720_ O=new_n1100_
 .gate oai21  a=new_n1100_ b=new_n1097_ c=new_n80_ O=new_n1101_
-.gate nand2  a=new_n674_ b=i_10_ O=new_n1102_
-.gate inv1   a=new_n1102_ O=new_n1103_
-.gate oai21  a=new_n1055_ b=new_n132_ c=new_n1103_ O=new_n1104_
-.gate nand3  a=new_n1104_ b=new_n1101_ c=new_n1096_ O=new_n1105_
-.gate nand2  a=new_n1105_ b=new_n578_ O=new_n1106_
-.gate nand3  a=new_n29_ b=new_n55_ c=new_n23_ O=new_n1107_
-.gate nor2   a=new_n1107_ b=new_n286_ O=new_n1108_
-.gate oai21  a=new_n1108_ b=new_n1072_ c=new_n987_ O=new_n1109_
-.gate nand3  a=i_7_ b=i_6_ c=i_5_ O=new_n1110_
-.gate nor2   a=new_n1110_ b=new_n408_ O=new_n1111_
+.gate aoi21  a=new_n82_ b=new_n79_ c=new_n36_ O=new_n1102_
+.gate nand2  a=new_n674_ b=i_10_ O=new_n1103_
+.gate inv1   a=new_n1103_ O=new_n1104_
+.gate oai21  a=new_n1102_ b=new_n132_ c=new_n1104_ O=new_n1105_
+.gate nand3  a=new_n1105_ b=new_n1101_ c=new_n1096_ O=new_n1106_
+.gate nand2  a=new_n1106_ b=new_n578_ O=new_n1107_
+.gate nand3  a=new_n29_ b=new_n55_ c=new_n23_ O=new_n1108_
+.gate nor2   a=new_n1108_ b=new_n286_ O=new_n1109_
+.gate oai21  a=new_n1109_ b=new_n1072_ c=new_n987_ O=new_n1110_
+.gate nor2   a=new_n441_ b=new_n408_ O=new_n1111_
 .gate aoi22  a=new_n1111_ b=new_n1056_ c=new_n863_ d=new_n835_ O=new_n1112_
 .gate nand4  a=i_13_ b=new_n56_ c=new_n25_ d=new_n36_ O=new_n1113_
 .gate inv1   a=new_n1113_ O=new_n1114_
 .gate aoi22  a=new_n1114_ b=new_n844_ c=new_n429_ d=new_n509_ O=new_n1115_
-.gate nand3  a=new_n1115_ b=new_n1112_ c=new_n1109_ O=new_n1116_
+.gate nand3  a=new_n1115_ b=new_n1112_ c=new_n1110_ O=new_n1116_
 .gate nor2   a=new_n769_ b=new_n92_ O=new_n1117_
 .gate nand2  a=new_n849_ b=new_n77_ O=new_n1118_
 .gate nand2  a=new_n1118_ b=new_n571_ O=new_n1119_
@@ -1116,7 +1116,7 @@
 .gate aoi22  a=new_n1125_ b=new_n1124_ c=new_n431_ d=new_n311_ O=new_n1126_
 .gate nand3  a=new_n1126_ b=new_n1122_ c=new_n1120_ O=new_n1127_
 .gate oai21  a=new_n1127_ b=new_n1116_ c=new_n155_ O=new_n1128_
-.gate nand4  a=new_n1128_ b=new_n1106_ c=new_n1086_ d=new_n1075_ O=new_n1129_
+.gate nand4  a=new_n1128_ b=new_n1107_ c=new_n1086_ d=new_n1075_ O=new_n1129_
 .gate nor2   a=new_n1129_ b=new_n1053_ O=new_n1130_
 .gate nand3  a=new_n1130_ b=new_n1012_ c=new_n981_ O=o_7_
 .end

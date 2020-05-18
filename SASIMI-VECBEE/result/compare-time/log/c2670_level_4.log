@@ -1,0 +1,41 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/c2670.blif
+Line 30: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 31: Skipping line ".default_output_required 0.00 0.00 ".
+Line 32: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 33: Skipping line ".default_output_load 2.00 ".
+Line 34: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mc2670                         :[0m i/o =  233/  140  lat =    0  nd =   535  edge =   1225  area =1262.00  delay =21.90  lev = 17
+--------------- round 1 ---------------
+seed = 3221417007
+maxLevel = 4
+n678 is replaced by n479 with estimated error 0
+error = 0
+area = 1232
+delay = 21.9
+#gates = 526
+output circuit appNtk/c2670_1_0_1232_21.9.blif
+time = 7628212 us
+--------------- round 2 ---------------
+seed = 65054321
+maxLevel = 4
+n731 is replaced by one with estimated error 0
+error = 0
+area = 1082
+delay = 21.9
+#gates = 475
+output circuit appNtk/c2670_2_0_1082_21.9.blif
+time = 19233982 us
+--------------- round 3 ---------------
+seed = 1188904592
+maxLevel = 4
+n574 is replaced by n621 with estimated error 0
+error = 0
+area = 1070
+delay = 21.9
+#gates = 471
+output circuit appNtk/c2670_3_0_1070_21.9.blif
+time = 22785977 us
+--------------- round 4 ---------------

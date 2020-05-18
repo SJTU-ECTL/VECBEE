@@ -1,0 +1,41 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/cla32.blif
+Line 11: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 12: Skipping line ".default_output_required 0.00 0.00 ".
+Line 13: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 14: Skipping line ".default_output_load 2.00 ".
+Line 15: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mcla32                         :[0m i/o =   64/   33  lat =    0  nd =   419  edge =    952  area =958.00  delay =38.50  lev = 27
+--------------- round 1 ---------------
+seed = 3672025697
+maxLevel = 4
+n501 is replaced by zero with estimated error 0
+error = 0
+area = 952
+delay = 38.5
+#gates = 418
+output circuit appNtk/cla32_1_0_952_38.5.blif
+time = 8214848 us
+--------------- round 2 ---------------
+seed = 271413207
+maxLevel = 4
+n388 is replaced by n413 with estimated error 0
+error = 0
+area = 946
+delay = 38.5
+#gates = 416
+output circuit appNtk/cla32_2_0_946_38.5.blif
+time = 14930128 us
+--------------- round 3 ---------------
+seed = 1786896121
+maxLevel = 4
+n474 is replaced by n463 with estimated error 0
+error = 0
+area = 941
+delay = 36.1
+#gates = 414
+output circuit appNtk/cla32_3_0_941_36.1.blif
+time = 17153434 us
+--------------- round 4 ---------------

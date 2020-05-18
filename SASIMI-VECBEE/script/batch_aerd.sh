@@ -26,7 +26,7 @@ do
             for level in ${levelList[*]}
             do
                 echo ${file} ${level}
-                ./sasimi-vecbee -i ${file} --maxLevel ${level} > log/${filename}_level_${level}.log &
+                ./sasimi-vecbee -i ${file} --maxLevel ${level} > log/${filename}_level_${level}.log
             done
         fi
     fi

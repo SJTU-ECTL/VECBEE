@@ -1,4 +1,4 @@
-# Benchmark "c5315" written by ABC on Sun May 17 12:08:06 2020
+# Benchmark "c5315" written by ABC on Sun May 17 18:05:12 2020
 .model c5315
 .inputs 1 4 11 14 17 20 23 24 25 26 27 31 34 37 40 43 46 49 52 53 54 61 64 \
  67 70 73 76 79 80 81 82 83 86 87 88 91 94 97 100 103 106 109 112 113 114 \
@@ -771,7 +771,7 @@
 .gate aoi21  a=new_n527_ b=new_n530_ c=new_n1043_ O=new_n1044_
 .gate xor2b  a=new_n1042_ b=new_n1044_ O=new_n1045_
 .gate inv1   a=new_n1034_ O=new_n1046_
-.gate aoi22  a=new_n1239_ b=new_n1045_ c=583 d=new_n1046_ O=new_n1047_
+.gate aoi22  a=new_n1240_ b=new_n1045_ c=583 d=new_n1046_ O=new_n1047_
 .gate and2   a=new_n539_ b=583 O=new_n1048_
 .gate oai22  a=new_n1048_ b=new_n632_ c=new_n633_ d=new_n524_ O=new_n1049_
 .gate aoi22  a=new_n736_ b=new_n599_ c=new_n511_ d=new_n510_ O=new_n1050_
@@ -858,7 +858,7 @@
 .gate xor2b  a=new_n1128_ b=new_n1130_ O=new_n1131_
 .gate xnor2b a=new_n1121_ b=new_n1131_ O=new_n1132_
 .gate inv1   a=new_n1119_ O=new_n1133_
-.gate aoi22  a=new_n1240_ b=new_n1132_ c=566 d=new_n1133_ O=new_n1134_
+.gate aoi22  a=new_n1239_ b=new_n1132_ c=566 d=new_n1133_ O=new_n1134_
 .gate nand2  a=new_n688_ b=566 O=new_n1135_
 .gate nand3  a=new_n1135_ b=new_n474_ c=new_n690_ O=new_n1136_
 .gate nand2  a=new_n472_ b=new_n687_ O=new_n1137_
@@ -961,6 +961,6 @@
 .gate nand2  a=new_n1233_ b=137 O=8128
 .gate inv1   a=new_n1054_ O=new_n1237_
 .gate inv1   a=new_n1152_ O=new_n1238_
-.gate inv1   a=583 O=new_n1239_
-.gate inv1   a=566 O=new_n1240_
+.gate inv1   a=566 O=new_n1239_
+.gate inv1   a=583 O=new_n1240_
 .end

@@ -1,4 +1,4 @@
-# Benchmark "mtp8" written by ABC on Sun May 17 11:57:47 2020
+# Benchmark "mtp8" written by ABC on Sun May 17 17:00:09 2020
 .model mtp8
 .inputs x[0] x[1] x[2] x[3] x[4] x[5] x[6] x[7] y[0] y[1] y[2] y[3] y[4] \
  y[5] y[6] y[7]
@@ -174,12 +174,12 @@
 .gate inv1   a=new_n191_ O=new_n192_
 .gate oai22  a=new_n183_ b=new_n191_ c=new_n192_ d=new_n182_ O=new_n193_
 .gate nand2  a=y[0] b=new_n184_ O=new_n194_
-.gate or2    a=new_n126_ b=new_n130_ O=new_n195_
-.gate or2    a=new_n194_ b=new_n195_ O=new_n196_
-.gate or2    a=new_n164_ b=new_n158_ O=new_n197_
-.gate nand2  a=new_n196_ b=new_n197_ O=new_n198_
+.gate or2    a=new_n194_ b=new_n458_ O=new_n195_
+.gate or2    a=new_n164_ b=new_n158_ O=new_n196_
+.gate nand2  a=new_n195_ b=new_n196_ O=new_n197_
+.gate nand2  a=new_n195_ b=new_n196_ O=new_n198_
 .gate nand2  a=new_n193_ b=new_n198_ O=new_n199_
-.gate oai21  a=new_n193_ b=new_n198_ c=new_n199_ O=new_n200_
+.gate oai21  a=new_n193_ b=new_n197_ c=new_n199_ O=new_n200_
 .gate inv1   a=y[7] O=new_n201_
 .gate oai22  a=x[1] b=y[7] c=new_n36_ d=new_n201_ O=new_n202_
 .gate oai22  a=new_n33_ b=new_n202_ c=new_n37_ d=new_n145_ O=new_n203_
@@ -212,7 +212,7 @@
 .gate oai22  a=new_n227_ b=new_n228_ c=new_n229_ d=new_n226_ O=new_n230_
 .gate inv1   a=new_n193_ O=new_n231_
 .gate nor3   a=new_n158_ b=new_n164_ c=new_n231_ O=new_n232_
-.gate oai22  a=new_n183_ b=new_n192_ c=new_n231_ d=new_n196_ O=new_n233_
+.gate oai22  a=new_n183_ b=new_n192_ c=new_n231_ d=new_n195_ O=new_n233_
 .gate or2    a=new_n232_ b=new_n233_ O=new_n234_
 .gate inv1   a=new_n234_ O=new_n235_
 .gate oai22  a=x[5] b=y[4] c=new_n95_ d=new_n113_ O=new_n236_
@@ -435,4 +435,5 @@
 .gate oai21  a=new_n450_ b=new_n451_ c=new_n452_ O=new_n453_
 .gate inv1   a=new_n453_ O=new_n454_
 .gate oai22  a=new_n445_ b=new_n453_ c=new_n444_ d=new_n454_ O=result[15]
+.gate inv1   a=new_n162_ O=new_n458_
 .end
