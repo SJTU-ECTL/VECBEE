@@ -38,8 +38,8 @@ void SASIMI_Manager_t::GreedySelection(Abc_Ntk_t * pOriNtk, string outPrefix)
         // if (cntRound == 4)
         //     break;
         Simulator_t * pAppSmlt = new Simulator_t(pAppNtk, nFrame);
-        unsigned seed = static_cast <unsigned> (rd());
-        // unsigned seed = 2531465778;
+        // unsigned seed = static_cast <unsigned> (rd());
+        unsigned seed = 2531465778;
         cout << "seed = " << seed << endl;
         cout << "maxLevel = " << maxLevel << endl;
         oriSmlt.Input(seed);

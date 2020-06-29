@@ -13,7 +13,8 @@ mkdir log/
 rm -rf appNtk/
 mkdir appNtk/
 
-errorBound=(0.001 0.003 0.005 0.008 0.01 0.03 0.05)
+# errorBound=(0.001 0.003 0.005 0.008 0.01 0.03 0.05)
+errorBound=(0.05)
 
 for file in data/su/*
 do
@@ -26,7 +27,7 @@ do
             for error in ${errorBound[*]}
             do
                 echo ${file} ${error}
-                ./sasimi-vecbee -i ${file} -e ${error} --maxLevel 4 > log/${filename}_${error}.log &
+                ./sasimi-vecbee -i ${file} -e ${error} --maxLevel 999999 > log/${filename}_${error}.log &
             done
         fi
     fi

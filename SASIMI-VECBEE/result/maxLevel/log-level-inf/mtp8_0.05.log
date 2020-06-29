@@ -1,0 +1,174 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/mtp8.blif
+Line 7: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 8: Skipping line ".default_output_required 0.00 0.00 ".
+Line 9: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 10: Skipping line ".default_output_load 2.00 ".
+Line 11: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mmtp8                          :[0m i/o =   16/   16  lat =    0  nd =   430  edge =   1037  area =1069.00  delay =37.80  lev = 32
+--------------- round 1 ---------------
+seed = 2531465778
+maxLevel = 999999
+n272 is replaced by n36 with estimated error 0
+error = 0
+area = 1065
+delay = 37.8
+#gates = 430
+output circuit appNtk/mtp8_1_0_1065_37.8.blif
+time = 9142305 us
+--------------- round 2 ---------------
+seed = 2531465778
+maxLevel = 999999
+n37 is replaced by n273 with estimated error 0
+error = 0
+area = 1061
+delay = 37.8
+#gates = 429
+output circuit appNtk/mtp8_2_0_1061_37.8.blif
+time = 14199070 us
+--------------- round 3 ---------------
+seed = 2531465778
+maxLevel = 999999
+n44 is replaced by y[0] with estimated error 0
+error = 0
+area = 1057
+delay = 37.8
+#gates = 428
+output circuit appNtk/mtp8_3_0_1057_37.8.blif
+time = 18250115 us
+--------------- round 4 ---------------
+seed = 2531465778
+maxLevel = 999999
+n389 is replaced by n403 with estimated error 0
+error = 0
+area = 1054
+delay = 37.8
+#gates = 427
+output circuit appNtk/mtp8_4_0_1054_37.8.blif
+time = 24783030 us
+--------------- round 5 ---------------
+seed = 2531465778
+maxLevel = 999999
+n126 is replaced by n137 with estimated error 0
+error = 0
+area = 1052
+delay = 37.8
+#gates = 426
+output circuit appNtk/mtp8_5_0_1052_37.8.blif
+time = 31032081 us
+--------------- round 6 ---------------
+seed = 2531465778
+maxLevel = 999999
+n202 is replaced by n201 with estimated error 0
+error = 0
+area = 1050
+delay = 37.8
+#gates = 425
+output circuit appNtk/mtp8_6_0_1050_37.8.blif
+time = 37587764 us
+--------------- round 7 ---------------
+seed = 2531465778
+maxLevel = 999999
+n198 is replaced by n165 with inverter with estimated error 0
+error = 0
+area = 1048
+delay = 37.8
+#gates = 425
+output circuit appNtk/mtp8_7_0_1048_37.8.blif
+time = 44206814 us
+--------------- round 8 ---------------
+seed = 2531465778
+maxLevel = 999999
+n82 is replaced by n55 with estimated error 0
+error = 0
+area = 1047
+delay = 37.8
+#gates = 424
+output circuit appNtk/mtp8_8_0_1047_37.8.blif
+time = 49862009 us
+--------------- round 9 ---------------
+seed = 2531465778
+maxLevel = 999999
+n59 is replaced by n54 with estimated error 0
+error = 0
+area = 1046
+delay = 37.8
+#gates = 423
+output circuit appNtk/mtp8_9_0_1046_37.8.blif
+time = 54094995 us
+--------------- round 10 ---------------
+seed = 2531465778
+maxLevel = 999999
+n461 is replaced by n454 with estimated error 0
+error = 0
+area = 1045
+delay = 37.8
+#gates = 422
+output circuit appNtk/mtp8_10_0_1045_37.8.blif
+time = 59127973 us
+--------------- round 11 ---------------
+seed = 2531465778
+maxLevel = 999999
+n452 is replaced by n454 with estimated error 0
+error = 0
+area = 1044
+delay = 37.4
+#gates = 421
+output circuit appNtk/mtp8_11_0_1044_37.4.blif
+time = 63261039 us
+--------------- round 12 ---------------
+seed = 2531465778
+maxLevel = 999999
+n456 is replaced by n147 with estimated error 0
+error = 0
+area = 1039
+delay = 37.4
+#gates = 419
+output circuit appNtk/mtp8_12_0_1039_37.4.blif
+time = 67244158 us
+--------------- round 13 ---------------
+seed = 2531465778
+maxLevel = 999999
+n460 is replaced by n147 with estimated error 0.02334
+error = 0.02334
+area = 1022
+delay = 37.4
+#gates = 414
+output circuit appNtk/mtp8_13_0.02334_1022_37.4.blif
+time = 71708621 us
+--------------- round 14 ---------------
+seed = 2531465778
+maxLevel = 999999
+n199 is replaced by one with estimated error 0.03512
+error = 0.03512
+area = 1016
+delay = 37.4
+#gates = 411
+output circuit appNtk/mtp8_14_0.03512_1016_37.4.blif
+time = 76058873 us
+--------------- round 15 ---------------
+seed = 2531465778
+maxLevel = 999999
+n203 is replaced by n236 with inverter with estimated error 0.03512
+error = 0.03512
+area = 1015
+delay = 37.4
+#gates = 411
+output circuit appNtk/mtp8_15_0.03512_1015_37.4.blif
+time = 80192228 us
+--------------- round 16 ---------------
+seed = 2531465778
+maxLevel = 999999
+n262 is replaced by n36 with estimated error 0.04098
+error = 0.04098
+area = 1014
+delay = 37.4
+#gates = 410
+output circuit appNtk/mtp8_16_0.04098_1014_37.4.blif
+time = 84353701 us
+--------------- round 17 ---------------
+seed = 2531465778
+maxLevel = 999999
+exceed error bound

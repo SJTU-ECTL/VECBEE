@@ -1,0 +1,124 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/c5315.blif
+Line 20: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 21: Skipping line ".default_output_required 0.00 0.00 ".
+Line 22: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 23: Skipping line ".default_output_load 2.00 ".
+Line 24: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mc5315                         :[0m i/o =  178/  123  lat =    0  nd =   968  edge =   2328  area =2451.00  delay =47.50  lev = 33
+--------------- round 1 ---------------
+seed = 2531465778
+maxLevel = 1
+n1088 is replaced by n1071 with estimated error 0.02746
+error = 0.02746
+area = 2427
+delay = 47.5
+#gates = 961
+output circuit appNtk/c5315_1_0.02746_2427_47.5.blif
+time = 13309383 us
+--------------- round 2 ---------------
+seed = 2531465778
+maxLevel = 1
+n1040 is replaced by one with estimated error 0.02746
+error = 0.03412
+area = 2423
+delay = 47.5
+#gates = 959
+output circuit appNtk/c5315_2_0.03412_2423_47.5.blif
+time = 22653555 us
+--------------- round 3 ---------------
+seed = 2531465778
+maxLevel = 1
+n728 is replaced by n727 with estimated error 0.03412
+error = 0.03412
+area = 2420
+delay = 47.5
+#gates = 958
+output circuit appNtk/c5315_3_0.03412_2420_47.5.blif
+time = 31018405 us
+--------------- round 4 ---------------
+seed = 2531465778
+maxLevel = 1
+n755 is replaced by n485 with estimated error 0.03412
+error = 0.03412
+area = 2417
+delay = 47.5
+#gates = 956
+output circuit appNtk/c5315_4_0.03412_2417_47.5.blif
+time = 37814885 us
+--------------- round 5 ---------------
+seed = 2531465778
+maxLevel = 1
+n1038 is replaced by n548 with estimated error 0.04293
+error = 0.04293
+area = 2415
+delay = 46.2
+#gates = 955
+output circuit appNtk/c5315_5_0.04293_2415_46.2.blif
+time = 42875685 us
+--------------- round 6 ---------------
+seed = 2531465778
+maxLevel = 1
+n1116 is replaced by n395 with estimated error 0.04293
+error = 0.04293
+area = 2413
+delay = 46.2
+#gates = 954
+output circuit appNtk/c5315_6_0.04293_2413_46.2.blif
+time = 48359791 us
+--------------- round 7 ---------------
+seed = 2531465778
+maxLevel = 1
+n1266 is replaced by n825 with estimated error 0.04293
+error = 0.04293
+area = 2411
+delay = 46.2
+#gates = 953
+output circuit appNtk/c5315_7_0.04293_2411_46.2.blif
+time = 53450606 us
+--------------- round 8 ---------------
+seed = 2531465778
+maxLevel = 1
+n1260 is replaced by n812 with estimated error 0.04293
+error = 0.04293
+area = 2408
+delay = 46.2
+#gates = 951
+output circuit appNtk/c5315_8_0.04293_2408_46.2.blif
+time = 59163707 us
+--------------- round 9 ---------------
+seed = 2531465778
+maxLevel = 1
+n1183 is replaced by n1182 with inverter with estimated error 0.04293
+error = 0.04293
+area = 2406
+delay = 46.2
+#gates = 951
+output circuit appNtk/c5315_9_0.04293_2406_46.2.blif
+time = 64320353 us
+--------------- round 10 ---------------
+seed = 2531465778
+maxLevel = 1
+n799 is replaced by n534 with estimated error 0.04293
+error = 0.04293
+area = 2405
+delay = 46.2
+#gates = 950
+output circuit appNtk/c5315_10_0.04293_2405_46.2.blif
+time = 69399163 us
+--------------- round 11 ---------------
+seed = 2531465778
+maxLevel = 1
+n1131 is replaced by n638 with estimated error 0.05647
+error = 0.05647
+area = 2404
+delay = 46.2
+#gates = 949
+output circuit appNtk/c5315_11_0.05647_2404_46.2.blif
+time = 74798232 us
+--------------- round 12 ---------------
+seed = 2531465778
+maxLevel = 1
+exceed error bound
