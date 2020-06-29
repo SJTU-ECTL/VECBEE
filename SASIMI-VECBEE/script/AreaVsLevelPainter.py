@@ -5,7 +5,7 @@ import csv
 import matplotlib.pyplot as plt
 import numpy as np
 
-csvRd = csv.reader(open('result/maxLevel-1/ER/table/ERFilter.csv', encoding='utf-8'))
+csvRd = csv.reader(open('result/maxLevel/AreaVsLevelUnderER5e-2.csv', encoding='utf-8'))
 cktList = ['c880', 'c1908', 'c2670', 'RCA32', 'CLA32', 'KSA32']
 arList = np.zeros([4, len(cktList)])
 
