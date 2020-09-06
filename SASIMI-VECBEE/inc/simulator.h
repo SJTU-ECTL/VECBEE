@@ -72,7 +72,8 @@ public:
     void UpdateFoConeAndLevel(Abc_Obj_t * pPivot);
     void FindOneCut(Abc_Obj_t * pPivot, int poId, std::set <Abc_Obj_t *> & cutNtkNodes, int maxLevel);
     void FindOneCut_rec(Abc_Obj_t * pNode, Abc_Obj_t * pPivot, int poId, std::set <Abc_Obj_t *> & cutNtkNodes, int maxLevel);
-    void SortCutNtkNodes(Abc_Obj_t * pPivot, std::set <Abc_Obj_t *> & cutNtkNodes, int maxLevel);
+    void SortCutNtkNodes(Abc_Obj_t * pPivot, std::set <Abc_Obj_t *> & cutNtkNodes);
+    void FindTFOCut(Abc_Obj_t * pPivot, int maxLevel, std::set <Abc_Obj_t *> & cutNtkNodes);
     void FindDisjointCut(Abc_Obj_t * pObj, std::list <Abc_Obj_t *> & djCut);
     void ExpandCut(Abc_Obj_t * pObj, std::list <Abc_Obj_t *> & djCut);
     Abc_Obj_t * ExpandWhich(std::list <Abc_Obj_t *> & djCut);
@@ -99,6 +100,23 @@ public:
 };
 
 
+class Node_t
+{
+private:
+    Abc_Obj_t * pObj;
+    int value;
+
+public:
+    explicit Node_t() {this->pObj = nullptr; this->value = 0;}
+    explicit Node_t(Abc_Obj_t * pObj, int value) {this->pObj = pObj; this->value = value;}
+    ~Node_t() {}
+
+    inline bool operator < (const Node_t & other) const {return this->value > other.value;}
+    inline Abc_Obj_t * GetObj() const {return pObj;}
+    inline int GetValue() const {return value;}
+};
+
+
 double MeasureNMED(Abc_Ntk_t * pNtk1, Abc_Ntk_t * pNtk2, int nFrame, unsigned seed, bool isCheck = true);
 double MeasureMRED(Abc_Ntk_t * pNtk1, Abc_Ntk_t * pNtk2, int nFrame, unsigned seed, bool isCheck = true);
 double MeasureResubNMED(Simulator_t * pSmlt1, Simulator_t * pSmlt2, Abc_Obj_t * pOldObj, void * pResubFunc, Vec_Ptr_t * vResubFanins, bool isCheck = true);
@@ -116,5 +134,7 @@ bool IOChecker(Abc_Ntk_t * pNtk1, Abc_Ntk_t * pNtk2);
 bool SmltChecker(Simulator_t * pSmlt1, Simulator_t * pSmlt2);
 Vec_Ptr_t * Ckt_NtkDfsResub(Abc_Ntk_t * pNtk, Abc_Obj_t * pObjOld, Vec_Ptr_t * vFanins);
 void Ckt_NtkDfsResub_rec(Abc_Obj_t * pNode, Vec_Ptr_t * vNodes, Abc_Obj_t * pObjOld, Vec_Ptr_t * vFanins);
+
+inline std::ostream & operator << (std::ostream & out, const Node_t & node) {out << Abc_ObjName(node.GetObj()) << "(" << node.GetValue() << ")"; return out;}
 
 #endif

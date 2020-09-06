@@ -1,0 +1,355 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/c2670.blif
+Line 30: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 31: Skipping line ".default_output_required 0.00 0.00 ".
+Line 32: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 33: Skipping line ".default_output_load 2.00 ".
+Line 34: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mc2670                         :[0m i/o =  233/  140  lat =    0  nd =   535  edge =   1225  area =1262.00  delay =21.90  lev = 17
+--------------- round 1 ---------------
+seed = 2531465778
+maxLevel = 2
+G150 is replaced by one with estimated error 0
+error = 0
+area = 1082
+delay = 21.9
+#gates = 475
+output circuit appNtk-level-2/c2670_1_0_1082_21.9.blif
+time = 7910909 us
+--------------- round 2 ---------------
+seed = 2531465778
+maxLevel = 2
+G1218 is replaced by [99400] with estimated error 0
+error = 0
+area = 1070
+delay = 21.9
+#gates = 471
+output circuit appNtk-level-2/c2670_2_0_1070_21.9.blif
+time = 25452747 us
+--------------- round 3 ---------------
+seed = 2531465778
+maxLevel = 2
+[99635] is replaced by one with estimated error 0
+error = 0
+area = 1067
+delay = 21.9
+#gates = 470
+output circuit appNtk-level-2/c2670_3_0_1067_21.9.blif
+time = 42438783 us
+--------------- round 4 ---------------
+seed = 2531465778
+maxLevel = 2
+[101860] is replaced by G303 with estimated error 0
+error = 0
+area = 1063
+delay = 21.9
+#gates = 469
+output circuit appNtk-level-2/c2670_4_0_1063_21.9.blif
+time = 60455613 us
+--------------- round 5 ---------------
+seed = 2531465778
+maxLevel = 2
+[101864] is replaced by G286 with estimated error 0
+error = 0
+area = 1059
+delay = 21.9
+#gates = 468
+output circuit appNtk-level-2/c2670_5_0_1059_21.9.blif
+time = 79092388 us
+--------------- round 6 ---------------
+seed = 2531465778
+maxLevel = 2
+[100726] is replaced by [100848] with estimated error 0
+error = 0
+area = 1057
+delay = 21.9
+#gates = 467
+output circuit appNtk-level-2/c2670_6_0_1057_21.9.blif
+time = 95584915 us
+--------------- round 7 ---------------
+seed = 2531465778
+maxLevel = 2
+[101719] is replaced by [101711] with estimated error 0
+error = 0
+area = 1055
+delay = 21.9
+#gates = 466
+output circuit appNtk-level-2/c2670_7_0_1055_21.9.blif
+time = 115141375 us
+--------------- round 8 ---------------
+seed = 2531465778
+maxLevel = 2
+[101370] is replaced by [99648] with estimated error 0
+error = 0
+area = 1053
+delay = 21.9
+#gates = 465
+output circuit appNtk-level-2/c2670_8_0_1053_21.9.blif
+time = 133178189 us
+--------------- round 9 ---------------
+seed = 2531465778
+maxLevel = 2
+[101439] is replaced by [99661] with estimated error 0
+error = 0
+area = 1051
+delay = 21.9
+#gates = 464
+output circuit appNtk-level-2/c2670_9_0_1051_21.9.blif
+time = 150960350 us
+--------------- round 10 ---------------
+seed = 2531465778
+maxLevel = 2
+[101383] is replaced by [99442] with inverter with estimated error 0
+error = 0
+area = 1050
+delay = 21.9
+#gates = 464
+output circuit appNtk-level-2/c2670_10_0_1050_21.9.blif
+time = 169087911 us
+--------------- round 11 ---------------
+seed = 2531465778
+maxLevel = 2
+[99652] is replaced by [101808] with estimated error 0
+error = 0
+area = 1049
+delay = 21.9
+#gates = 463
+output circuit appNtk-level-2/c2670_11_0_1049_21.9.blif
+time = 186276566 us
+--------------- round 12 ---------------
+seed = 2531465778
+maxLevel = 2
+G311 is replaced by zero with estimated error 0
+error = 0
+area = 1048
+delay = 21.9
+#gates = 462
+output circuit appNtk-level-2/c2670_12_0_1048_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 203463007 us
+--------------- round 13 ---------------
+seed = 2531465778
+maxLevel = 2
+[99642] is replaced by [101651] with estimated error 0
+error = 0
+area = 1047
+delay = 21.9
+#gates = 461
+output circuit appNtk-level-2/c2670_13_0_1047_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 220357243 us
+--------------- round 14 ---------------
+seed = 2531465778
+maxLevel = 2
+[101357] is replaced by [99431] with inverter with estimated error 0
+error = 0
+area = 1046
+delay = 21.9
+#gates = 461
+output circuit appNtk-level-2/c2670_14_0_1046_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 236733978 us
+--------------- round 15 ---------------
+seed = 2531465778
+maxLevel = 2
+[101888] is replaced by [99408] with estimated error 0.00116
+error = 0.00116
+area = 1042
+delay = 21.9
+#gates = 460
+output circuit appNtk-level-2/c2670_15_0.00116_1042_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 254313187 us
+--------------- round 16 ---------------
+seed = 2531465778
+maxLevel = 2
+[101052] is replaced by one with estimated error 0.00438
+error = 0.00438
+area = 1036
+delay = 21.9
+#gates = 458
+output circuit appNtk-level-2/c2670_16_0.00438_1036_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 271436862 us
+--------------- round 17 ---------------
+seed = 2531465778
+maxLevel = 2
+G1947 is replaced by [99446] with estimated error 0.00438
+error = 0.00438
+area = 1033
+delay = 21.9
+#gates = 457
+output circuit appNtk-level-2/c2670_17_0.00438_1033_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 287476022 us
+--------------- round 18 ---------------
+seed = 2531465778
+maxLevel = 2
+[101220] is replaced by one with estimated error 0.00705
+error = 0.00705
+area = 1026
+delay = 21.9
+#gates = 454
+output circuit appNtk-level-2/c2670_18_0.00705_1026_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 303298683 us
+--------------- round 19 ---------------
+seed = 2531465778
+maxLevel = 2
+[99700] is replaced by [99409] with estimated error 0.00906
+error = 0.00906
+area = 1022
+delay = 21.9
+#gates = 453
+output circuit appNtk-level-2/c2670_19_0.00906_1022_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 319320594 us
+--------------- round 20 ---------------
+seed = 2531465778
+maxLevel = 2
+[101201] is replaced by one with estimated error 0.01453
+error = 0.01453
+area = 1015
+delay = 21.9
+#gates = 450
+output circuit appNtk-level-2/c2670_20_0.01453_1015_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 334203063 us
+--------------- round 21 ---------------
+seed = 2531465778
+maxLevel = 2
+[101050] is replaced by one with estimated error 0.02062
+error = 0.02062
+area = 1008
+delay = 21.9
+#gates = 448
+output circuit appNtk-level-2/c2670_21_0.02062_1008_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 350317411 us
+--------------- round 22 ---------------
+seed = 2531465778
+maxLevel = 2
+[100934] is replaced by [98018] with estimated error 0.02062
+error = 0.02062
+area = 1007
+delay = 21.9
+#gates = 447
+output circuit appNtk-level-2/c2670_22_0.02062_1007_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 365766338 us
+--------------- round 23 ---------------
+seed = 2531465778
+maxLevel = 2
+G261 is replaced by one with estimated error 0.02401
+error = 0.02401
+area = 1004
+delay = 21.9
+#gates = 446
+output circuit appNtk-level-2/c2670_23_0.02401_1004_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 377673085 us
+--------------- round 24 ---------------
+seed = 2531465778
+maxLevel = 2
+G325 is replaced by zero with estimated error 0.02401
+error = 0.02401
+area = 1003
+delay = 21.9
+#gates = 445
+output circuit appNtk-level-2/c2670_24_0.02401_1003_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 388718650 us
+--------------- round 25 ---------------
+seed = 2531465778
+maxLevel = 2
+[99699] is replaced by [99452] with estimated error 0.02769
+error = 0.02769
+area = 999
+delay = 21.9
+#gates = 444
+output circuit appNtk-level-2/c2670_25_0.02769_999_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 398774398 us
+--------------- round 26 ---------------
+seed = 2531465778
+maxLevel = 2
+[101878] is replaced by G1956 with estimated error 0.02769
+error = 0.02769
+area = 997
+delay = 21.9
+#gates = 443
+output circuit appNtk-level-2/c2670_26_0.02769_997_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 409009459 us
+--------------- round 27 ---------------
+seed = 2531465778
+maxLevel = 2
+[101866] is replaced by [99456] with estimated error 0.03078
+error = 0.03078
+area = 993
+delay = 21.9
+#gates = 442
+output circuit appNtk-level-2/c2670_27_0.03078_993_21.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 417739234 us
+--------------- round 28 ---------------
+seed = 2531465778
+maxLevel = 2
+[99688] is replaced by [99682] with estimated error 0.0335
+error = 0.0335
+area = 990
+delay = 21.8
+#gates = 441
+output circuit appNtk-level-2/c2670_28_0.0335_990_21.8.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 425504376 us
+--------------- round 29 ---------------
+seed = 2531465778
+maxLevel = 2
+[101424] is replaced by one with estimated error 0.03637
+error = 0.03637
+area = 985
+delay = 21.8
+#gates = 439
+output circuit appNtk-level-2/c2670_29_0.03637_985_21.8.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 436992806 us
+--------------- round 30 ---------------
+seed = 2531465778
+maxLevel = 2
+[99683] is replaced by G168 with estimated error 0.03637
+error = 0.03637
+area = 983
+delay = 21.8
+#gates = 438
+output circuit appNtk-level-2/c2670_30_0.03637_983_21.8.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 442541534 us
+--------------- round 31 ---------------
+seed = 2531465778
+maxLevel = 2
+[99686] is replaced by one with estimated error 0.04325
+error = 0.04325
+area = 977
+delay = 21.8
+#gates = 435
+output circuit appNtk-level-2/c2670_31_0.04325_977_21.8.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 447712575 us
+--------------- round 32 ---------------
+seed = 2531465778
+maxLevel = 2
+[101766] is replaced by [99638] with estimated error 0.04942
+error = 0.04942
+area = 972
+delay = 21.8
+#gates = 433
+output circuit appNtk-level-2/c2670_32_0.04942_972_21.8.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 453122365 us
+--------------- round 33 ---------------
+seed = 2531465778
+maxLevel = 2
+exceed error bound

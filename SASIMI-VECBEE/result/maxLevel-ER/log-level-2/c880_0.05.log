@@ -1,0 +1,139 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/c880.blif
+Line 12: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 13: Skipping line ".default_output_required 0.00 0.00 ".
+Line 14: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 15: Skipping line ".default_output_load 2.00 ".
+Line 16: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mc880                          :[0m i/o =   60/   26  lat =    0  nd =   224  edge =    542  area =585.00  delay =24.90  lev = 18
+--------------- round 1 ---------------
+seed = 2531465778
+maxLevel = 2
+[37789] is replaced by one with estimated error 0.00071
+error = 0.00071
+area = 577
+delay = 24.9
+#gates = 223
+output circuit appNtk-level-2/c880_1_0.00071_577_24.9.blif
+time = 2870217 us
+--------------- round 2 ---------------
+seed = 2531465778
+maxLevel = 2
+[38379] is replaced by one with estimated error 0.00071
+error = 0.00071
+area = 575
+delay = 24.9
+#gates = 222
+output circuit appNtk-level-2/c880_2_0.00071_575_24.9.blif
+time = 6597085 us
+--------------- round 3 ---------------
+seed = 2531465778
+maxLevel = 2
+[38447] is replaced by zero with estimated error 0.00071
+error = 0.00071
+area = 574
+delay = 24.9
+#gates = 221
+output circuit appNtk-level-2/c880_3_0.00071_574_24.9.blif
+time = 10163554 us
+--------------- round 4 ---------------
+seed = 2531465778
+maxLevel = 2
+[38719] is replaced by one with estimated error 0.00262
+error = 0.00296
+area = 568
+delay = 24.9
+#gates = 218
+output circuit appNtk-level-2/c880_4_0.00296_568_24.9.blif
+time = 13537188 us
+--------------- round 5 ---------------
+seed = 2531465778
+maxLevel = 2
+[38864] is replaced by one with estimated error 0.0045
+error = 0.00468
+area = 559
+delay = 24.9
+#gates = 214
+output circuit appNtk-level-2/c880_5_0.00468_559_24.9.blif
+time = 16794024 us
+--------------- round 6 ---------------
+seed = 2531465778
+maxLevel = 2
+[39005] is replaced by one with estimated error 0.01291
+error = 0.01449
+area = 551
+delay = 23.9
+#gates = 212
+output circuit appNtk-level-2/c880_6_0.01449_551_23.9.blif
+time = 19495174 us
+--------------- round 7 ---------------
+seed = 2531465778
+maxLevel = 2
+G449gat is replaced by zero with estimated error 0.0218
+error = 0.0218
+area = 546
+delay = 23.9
+#gates = 210
+output circuit appNtk-level-2/c880_7_0.0218_546_23.9.blif
+time = 22383240 us
+--------------- round 8 ---------------
+seed = 2531465778
+maxLevel = 2
+G448gat is replaced by zero with estimated error 0.03311
+error = 0.03311
+area = 538
+delay = 23.9
+#gates = 207
+output circuit appNtk-level-2/c880_8_0.03311_538_23.9.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 25265689 us
+--------------- round 9 ---------------
+seed = 2531465778
+maxLevel = 2
+G294gat is replaced by zero with estimated error 0.03874
+error = 0.03835
+area = 534
+delay = 23.1
+#gates = 205
+output circuit appNtk-level-2/c880_9_0.03835_534_23.1.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 28033140 us
+--------------- round 10 ---------------
+seed = 2531465778
+maxLevel = 2
+[38945] is replaced by one with estimated error 0.0437
+error = 0.0437
+area = 531
+delay = 23.1
+#gates = 204
+output circuit appNtk-level-2/c880_10_0.0437_531_23.1.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 30878101 us
+--------------- round 11 ---------------
+seed = 2531465778
+maxLevel = 2
+G419gat is replaced by [37697] with estimated error 0.04963
+error = 0.04963
+area = 528
+delay = 23.1
+#gates = 202
+output circuit appNtk-level-2/c880_11_0.04963_528_23.1.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 33629118 us
+--------------- round 12 ---------------
+seed = 2531465778
+maxLevel = 2
+G446gat is replaced by one with estimated error 0.04963
+error = 0.04963
+area = 525
+delay = 23.1
+#gates = 201
+output circuit appNtk-level-2/c880_12_0.04963_525_23.1.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 36508748 us
+--------------- round 13 ---------------
+seed = 2531465778
+maxLevel = 2
+exceed error bound

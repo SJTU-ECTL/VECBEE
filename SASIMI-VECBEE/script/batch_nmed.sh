@@ -7,11 +7,14 @@ cmake ..
 make -j4
 cd ..
 
-rm -rf log/
-mkdir log/
+L=4
 
-rm -rf appNtk/
-mkdir appNtk/
+rm -rf log-level-${L}/
+mkdir log-level-${L}/
+
+rm -rf appNtk-level-${L}/
+mkdir appNtk-level-${L}/
+
 
 # errorBound=(0.0000153 0.0000306 0.0000612 0.0001224 0.0002448 0.0004896 0.0009792 0.0019584)
 errorBound=(0.0000153)
@@ -27,7 +30,7 @@ do
             for error in ${errorBound[*]}
             do
                 echo ${file} ${error}
-                ./sasimi-vecbee -i ${file} -e ${error} --metricType nmed --maxLevel 999999 > log/${filename}_${error}.log &
+                ./sasimi-vecbee -i ${file} -e ${error} --metricType nmed -o appNtk-level-${L}/ --maxLevel ${L}  > log-level-${L}/${filename}_${error}.log &
             done
         fi
     fi

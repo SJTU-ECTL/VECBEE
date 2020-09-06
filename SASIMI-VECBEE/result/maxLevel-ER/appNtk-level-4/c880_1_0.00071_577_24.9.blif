@@ -1,0 +1,242 @@
+# Benchmark "c880" written by ABC on Tue Jul 28 14:33:12 2020
+.model c880
+.inputs G1gat G8gat G13gat G17gat G26gat G29gat G36gat G42gat G51gat G55gat \
+ G59gat G68gat G72gat G73gat G74gat G75gat G80gat G85gat G86gat G87gat \
+ G88gat G89gat G90gat G91gat G96gat G101gat G106gat G111gat G116gat G121gat \
+ G126gat G130gat G135gat G138gat G143gat G146gat G149gat G152gat G153gat \
+ G156gat G159gat G165gat G171gat G177gat G183gat G189gat G195gat G201gat \
+ G207gat G210gat G219gat G228gat G237gat G246gat G255gat G259gat G260gat \
+ G261gat G267gat G268gat
+.outputs G388gat G389gat G390gat G391gat G418gat G419gat G420gat G421gat \
+ G422gat G423gat G446gat G447gat G448gat G449gat G450gat G767gat G768gat \
+ G850gat G863gat G864gat G865gat G866gat G874gat G878gat G879gat G880gat
+
+.and_gate_delay 1.9
+.default_input_arrival 0 0
+.default_output_required 0 0
+
+
+
+.gate inv1   a=G42gat O=new_[37677]_
+.gate inv1   a=G29gat O=new_[37678]_
+.gate inv1   a=G75gat O=new_[37679]_
+.gate nor3   a=new_[37677]_ b=new_[37678]_ c=new_[37679]_ O=G388gat
+.gate inv1   a=G80gat O=new_[37681]_
+.gate inv1   a=G36gat O=new_[37682]_
+.gate nor3   a=new_[37681]_ b=new_[37678]_ c=new_[37682]_ O=G389gat
+.gate nand3  a=G42gat b=G29gat c=G36gat O=new_[37685]_
+.gate inv1   a=new_[37685]_ O=G390gat
+.gate and2   a=G85gat b=G86gat O=G391gat
+.gate inv1   a=G1gat O=new_[37688]_
+.gate inv1   a=G8gat O=new_[37689]_
+.gate inv1   a=G13gat O=new_[37691]_
+.gate inv1   a=G17gat O=new_[37692]_
+.gate nor4   a=new_[37688]_ b=new_[37689]_ c=new_[37691]_ d=new_[37692]_ O=G418gat
+.gate nand4  a=G1gat b=G26gat c=G13gat d=G17gat O=new_[37697]_
+.gate inv1   a=new_[37697]_ O=new_[38330]_
+.gate nand2  a=new_[37685]_ b=new_[38330]_ O=G419gat
+.gate nand3  a=G80gat b=G75gat c=G59gat O=G420gat
+.gate nand3  a=G80gat b=G36gat c=G59gat O=G421gat
+.gate nand3  a=G42gat b=G36gat c=G59gat O=G422gat
+.gate or2    a=G87gat b=G88gat O=new_[38334]_
+.gate and2   a=new_[38334]_ b=G90gat O=G423gat
+.gate or2    a=new_[37685]_ b=new_[37697]_ O=G446gat
+.gate nand3  a=G51gat b=G1gat c=G26gat O=new_[37705]_
+.gate inv1   a=new_[37705]_ O=G447gat
+.gate nand4  a=G1gat b=G8gat c=G13gat d=G55gat O=new_[37709]_
+.gate inv1   a=G68gat O=new_[37710]_
+.gate nor3   a=new_[37709]_ b=new_[37678]_ c=new_[37710]_ O=G448gat
+.gate nand3  a=G74gat b=G59gat c=G68gat O=new_[37714]_
+.gate nor2   a=new_[37709]_ b=new_[37714]_ O=G449gat
+.gate and2   a=new_[38334]_ b=G89gat O=G450gat
+.gate inv1   a=G91gat O=new_[37717]_
+.gate inv1   a=G96gat O=new_[37718]_
+.gate aoi22  a=G91gat b=G96gat c=new_[37717]_ d=new_[37718]_ O=new_G357gat_
+.gate inv1   a=G101gat O=new_[37720]_
+.gate inv1   a=G106gat O=new_[37721]_
+.gate aoi22  a=G101gat b=G106gat c=new_[37720]_ d=new_[37721]_ O=new_G360gat_
+.gate xor2b  a=new_G357gat_ b=new_G360gat_ O=new_G460gat_
+.gate xor2b  a=G130gat b=new_G460gat_ O=new_G530gat_
+.gate inv1   a=G111gat O=new_[37726]_
+.gate inv1   a=G116gat O=new_[37727]_
+.gate aoi22  a=G111gat b=G116gat c=new_[37726]_ d=new_[37727]_ O=new_G363gat_
+.gate inv1   a=G121gat O=new_[37729]_
+.gate inv1   a=G126gat O=new_[37730]_
+.gate aoi22  a=G121gat b=G126gat c=new_[37729]_ d=new_[37730]_ O=new_G366gat_
+.gate xor2b  a=new_G363gat_ b=new_G366gat_ O=new_G463gat_
+.gate xor2b  a=G135gat b=new_G463gat_ O=new_G533gat_
+.gate xor2b  a=new_G530gat_ b=new_G533gat_ O=G767gat
+.gate inv1   a=G159gat O=new_[37734]_
+.gate inv1   a=G165gat O=new_[37735]_
+.gate aoi22  a=G159gat b=G165gat c=new_[37734]_ d=new_[37735]_ O=new_G376gat_
+.gate inv1   a=G171gat O=new_[37737]_
+.gate inv1   a=G177gat O=new_[37738]_
+.gate aoi22  a=G171gat b=G177gat c=new_[37737]_ d=new_[37738]_ O=new_G379gat_
+.gate xor2b  a=new_G376gat_ b=new_G379gat_ O=new_G492gat_
+.gate xor2b  a=G130gat b=new_G492gat_ O=new_G544gat_
+.gate inv1   a=G183gat O=new_[37743]_
+.gate inv1   a=G189gat O=new_[37744]_
+.gate aoi22  a=G183gat b=G189gat c=new_[37743]_ d=new_[37744]_ O=new_G382gat_
+.gate inv1   a=G195gat O=new_[37746]_
+.gate inv1   a=G201gat O=new_[37747]_
+.gate aoi22  a=G195gat b=G201gat c=new_[37746]_ d=new_[37747]_ O=new_G385gat_
+.gate xor2b  a=new_G382gat_ b=new_G385gat_ O=new_G495gat_
+.gate xor2b  a=G207gat b=new_G495gat_ O=new_G547gat_
+.gate xor2b  a=new_G544gat_ b=new_G547gat_ O=G768gat
+.gate nand3  a=G80gat b=G29gat c=G75gat O=new_[37756]_
+.gate inv1   a=G55gat O=new_[37707]_
+.gate nor4   a=G268gat b=new_[37756]_ c=new_[37705]_ d=new_[37707]_ O=new_G491gat_
+.gate inv1   a=new_G491gat_ O=new_[38719]_
+.gate nand2  a=G59gat b=G156gat O=new_[39009]_
+.gate nand3  a=new_[39009]_ b=G17gat c=G447gat O=new_[39003]_
+.gate nand2  a=new_[39003]_ b=G1gat O=new_[38927]_
+.gate inv1   a=G59gat O=new_[37698]_
+.gate nor3   a=new_[37677]_ b=new_[37679]_ c=new_[37698]_ O=new_G294gat_
+.gate nand4  a=G1gat b=G8gat c=G17gat d=G51gat O=new_[37767]_
+.gate aoi22  a=new_[37692]_ b=new_[37677]_ c=G42gat d=G17gat O=new_G375gat_
+.gate nand4  a=G59gat b=G156gat c=G447gat d=new_G375gat_ O=new_[39005]_
+.gate oai21  a=new_G294gat_ b=new_[37767]_ c=new_[39005]_ O=new_[38932]_
+.gate aoi22  a=new_[38927]_ b=G153gat c=new_[38932]_ d=G126gat O=new_G543gat_
+.gate nand2  a=new_[38719]_ b=new_G543gat_ O=new_[37770]_
+.gate aoi22  a=G255gat b=G267gat c=new_[37770]_ d=G246gat O=new_G731gat_
+.gate oai21  a=new_[37747]_ b=new_n312_ c=new_G731gat_ O=new_[37790]_
+.gate inv1   a=G210gat O=new_[37751]_
+.gate inv1   a=G219gat O=new_[37752]_
+.gate nand2  a=new_[37770]_ b=G201gat O=new_[37771]_
+.gate or2    a=G201gat b=new_[37770]_ O=new_[38714]_
+.gate nand2  a=new_[37771]_ b=new_[38714]_ O=new_[37772]_
+.gate inv1   a=new_[37772]_ O=new_[38563]_
+.gate inv1   a=G261gat O=new_[37753]_
+.gate oai22  a=G261gat b=new_[38563]_ c=new_[37753]_ d=new_[37772]_ O=new_[37773]_
+.gate oai22  a=new_[37729]_ b=new_[37751]_ c=new_[37752]_ d=new_[37773]_ O=new_[37774]_
+.gate inv1   a=G228gat O=new_[37775]_
+.gate inv1   a=G237gat O=new_[37776]_
+.gate oai22  a=new_[37772]_ b=new_[37775]_ c=new_[37771]_ d=new_[37776]_ O=new_[37777]_
+.gate nor3   a=new_[37790]_ b=new_[37774]_ c=new_[37777]_ O=new_[36964]_
+.gate inv1   a=new_[36964]_ O=G850gat
+.gate aoi22  a=new_[38927]_ b=G143gat c=new_[38932]_ d=G111gat O=new_G540gat_
+.gate nand2  a=new_[38719]_ b=new_G540gat_ O=new_[37793]_
+.gate inv1   a=new_n312_ O=new_[38447]_
+.gate aoi22  a=new_[37793]_ b=G246gat c=G183gat d=new_[38447]_ O=new_G704gat_
+.gate nand2  a=new_[37793]_ b=G183gat O=new_[37795]_
+.gate or2    a=G183gat b=new_[37793]_ O=new_[38732]_
+.gate nand2  a=new_[37795]_ b=new_[38732]_ O=new_[37796]_
+.gate aoi22  a=new_[38927]_ b=G146gat c=new_[38932]_ d=G116gat O=new_G541gat_
+.gate nand2  a=new_[38719]_ b=new_G541gat_ O=new_[37799]_
+.gate nand2  a=new_[37799]_ b=G189gat O=new_[37800]_
+.gate or2    a=G189gat b=new_[37799]_ O=new_[38741]_
+.gate aoi22  a=new_[38927]_ b=G149gat c=new_[38932]_ d=G121gat O=new_G542gat_
+.gate nand2  a=new_[38719]_ b=new_G542gat_ O=new_[37803]_
+.gate or2    a=G195gat b=new_[37803]_ O=new_[38752]_
+.gate nand4  a=new_[38741]_ b=new_[38752]_ c=new_[38714]_ d=G261gat O=new_[38941]_
+.gate nand2  a=new_[37803]_ b=G195gat O=new_[37807]_
+.gate inv1   a=new_[37807]_ O=new_[38621]_
+.gate nand2  a=new_[38741]_ b=new_[38621]_ O=new_[38943]_
+.gate inv1   a=new_[37771]_ O=new_[38574]_
+.gate nand3  a=new_[38574]_ b=new_[38741]_ c=new_[38752]_ O=new_[38945]_
+.gate nand4  a=new_[37800]_ b=new_[38941]_ c=new_[38943]_ d=new_[38945]_ O=new_[37810]_
+.gate inv1   a=new_[37810]_ O=new_[38838]_
+.gate inv1   a=new_[37796]_ O=new_[38585]_
+.gate aoi22  a=new_[37796]_ b=new_[38838]_ c=new_[37810]_ d=new_[38585]_ O=new_G802gat_
+.gate aoi22  a=G106gat b=G210gat c=G219gat d=new_G802gat_ O=new_G826gat_
+.gate oai22  a=new_[37775]_ b=new_[37796]_ c=new_[37776]_ d=new_[37795]_ O=new_[37813]_
+.gate inv1   a=new_[37813]_ O=new_[38361]_
+.gate nand3  a=new_G704gat_ b=new_G826gat_ c=new_[38361]_ O=G863gat
+.gate aoi22  a=G255gat b=G259gat c=new_[37799]_ d=G246gat O=new_G712gat_
+.gate oai21  a=new_[37744]_ b=new_n312_ c=new_G712gat_ O=new_[37825]_
+.gate nand2  a=new_[37800]_ b=new_[38741]_ O=new_[37815]_
+.gate inv1   a=new_[37815]_ O=new_[38599]_
+.gate nand2  a=new_[38752]_ b=new_[38574]_ O=new_[38949]_
+.gate nand3  a=G261gat b=new_[38714]_ c=new_[38752]_ O=new_[38947]_
+.gate nand3  a=new_[38949]_ b=new_[37807]_ c=new_[38947]_ O=new_[37818]_
+.gate inv1   a=new_[37818]_ O=new_[38844]_
+.gate oai22  a=new_[38599]_ b=new_[37818]_ c=new_[38844]_ d=new_[37815]_ O=new_[37819]_
+.gate oai22  a=new_[37726]_ b=new_[37751]_ c=new_[37752]_ d=new_[37819]_ O=new_[37820]_
+.gate oai22  a=new_[37775]_ b=new_[37815]_ c=new_[37776]_ d=new_[37800]_ O=new_[37821]_
+.gate nor3   a=new_[37825]_ b=new_[37820]_ c=new_[37821]_ O=new_[36966]_
+.gate inv1   a=new_[36966]_ O=G864gat
+.gate nand2  a=new_[37807]_ b=new_[38752]_ O=new_[37826]_
+.gate aoi21  a=new_[38714]_ b=G261gat c=new_[38574]_ O=new_G782gat_
+.gate nor2   a=new_G782gat_ b=new_[37826]_ O=new_G793gat_
+.gate aoi21  a=new_[37826]_ b=new_G782gat_ c=new_G793gat_ O=new_G804gat_
+.gate aoi22  a=G116gat b=G210gat c=G219gat d=new_G804gat_ O=new_G828gat_
+.gate inv1   a=new_[37826]_ O=new_[38617]_
+.gate aoi22  a=G228gat b=new_[38617]_ c=G237gat d=new_[38621]_ O=new_G785gat_
+.gate nand2  a=G195gat b=new_[38447]_ O=new_[38379]_
+.gate aoi22  a=G255gat b=G260gat c=new_[37803]_ d=G246gat O=new_G721gat_
+.gate nand4  a=new_G828gat_ b=new_G785gat_ c=new_[38379]_ d=new_G721gat_ O=G865gat
+.gate aoi22  a=G8gat b=G138gat c=new_[38932]_ d=G91gat O=new_G536gat_
+.gate nand3  a=new_[39009]_ b=G447gat c=G55gat O=new_[37838]_
+.gate inv1   a=new_[37838]_ O=new_[38955]_
+.gate nand2  a=G143gat b=new_[38955]_ O=new_[38862]_
+.gate inv1   a=G268gat O=new_[37754]_
+.gate inv1   a=new_[37756]_ O=new_[38925]_
+.gate nand4  a=new_[37754]_ b=new_[38925]_ c=G17gat d=G447gat O=new_[38864]_
+.gate nand3  a=new_G536gat_ b=new_[38862]_ c=new_[38864]_ O=new_[37842]_
+.gate nand2  a=new_[37842]_ b=G159gat O=new_[37843]_
+.gate aoi22  a=G51gat b=G138gat c=new_[38932]_ d=G96gat O=new_G537gat_
+.gate nand2  a=G146gat b=new_[38955]_ O=new_[38888]_
+.gate nand3  a=new_G537gat_ b=new_[38864]_ c=new_[38888]_ O=new_[37846]_
+.gate nand2  a=new_[37846]_ b=G165gat O=new_[37847]_
+.gate or2    a=G165gat b=new_[37846]_ O=new_[38791]_
+.gate aoi22  a=G17gat b=G138gat c=new_[38932]_ d=G101gat O=new_G538gat_
+.gate nand2  a=G149gat b=new_[38955]_ O=new_[38897]_
+.gate nand3  a=new_G538gat_ b=new_[38864]_ c=new_[38897]_ O=new_[37850]_
+.gate nand2  a=new_[37850]_ b=G171gat O=new_[37851]_
+.gate inv1   a=new_[37851]_ O=new_[38690]_
+.gate nand2  a=new_[38791]_ b=new_[38690]_ O=new_[38764]_
+.gate aoi22  a=G138gat b=G152gat c=new_[38932]_ d=G106gat O=new_G539gat_
+.gate nand2  a=G153gat b=new_[38955]_ O=new_[38879]_
+.gate nand3  a=new_G539gat_ b=new_[38864]_ c=new_[38879]_ O=new_[37856]_
+.gate nand2  a=new_[37856]_ b=G177gat O=new_[37857]_
+.gate inv1   a=new_[37857]_ O=new_[38653]_
+.gate or2    a=G171gat b=new_[37850]_ O=new_[38804]_
+.gate nand3  a=new_[38653]_ b=new_[38791]_ c=new_[38804]_ O=new_[38766]_
+.gate or2    a=G177gat b=new_[37856]_ O=new_[38774]_
+.gate nand2  a=new_[38732]_ b=new_[37810]_ O=new_[38963]_
+.gate nand2  a=new_[37795]_ b=new_[38963]_ O=new_[37860]_
+.gate nand4  a=new_[38791]_ b=new_[38804]_ c=new_[38774]_ d=new_[37860]_ O=new_[38768]_
+.gate nand4  a=new_[37847]_ b=new_[38764]_ c=new_[38766]_ d=new_[38768]_ O=new_[37863]_
+.gate or2    a=G159gat b=new_[37842]_ O=new_[38637]_
+.gate nand2  a=new_[37863]_ b=new_[38637]_ O=new_[38495]_
+.gate nand2  a=new_[37843]_ b=new_[38495]_ O=G866gat
+.gate aoi22  a=new_[37856]_ b=G246gat c=G177gat d=new_[38447]_ O=new_G696gat_
+.gate nand2  a=new_[37857]_ b=new_[38774]_ O=new_[37865]_
+.gate inv1   a=new_[37860]_ O=new_[38873]_
+.gate inv1   a=new_[37865]_ O=new_[38643]_
+.gate aoi22  a=new_[37865]_ b=new_[38873]_ c=new_[37860]_ d=new_[38643]_ O=new_G825gat_
+.gate aoi22  a=G101gat b=G210gat c=G219gat d=new_G825gat_ O=new_G845gat_
+.gate aoi22  a=G228gat b=new_[38643]_ c=G237gat d=new_[38653]_ O=new_G772gat_
+.gate nand3  a=new_G696gat_ b=new_G845gat_ c=new_G772gat_ O=G874gat
+.gate aoi22  a=new_[37842]_ b=G246gat c=G159gat d=new_[38447]_ O=new_G669gat_
+.gate nand2  a=new_[37843]_ b=new_[38637]_ O=new_[37871]_
+.gate inv1   a=new_[37863]_ O=new_[38635]_
+.gate inv1   a=new_[37871]_ O=new_[38662]_
+.gate aoi22  a=new_[37871]_ b=new_[38635]_ c=new_[37863]_ d=new_[38662]_ O=new_G842gat_
+.gate aoi22  a=G210gat b=G268gat c=G219gat d=new_G842gat_ O=new_G859gat_
+.gate oai22  a=new_[37775]_ b=new_[37871]_ c=new_[37776]_ d=new_[37843]_ O=new_[37874]_
+.gate inv1   a=new_[37874]_ O=new_[38389]_
+.gate nand3  a=new_G669gat_ b=new_G859gat_ c=new_[38389]_ O=G878gat
+.gate aoi22  a=new_[37846]_ b=G246gat c=G165gat d=new_[38447]_ O=new_G677gat_
+.gate nand2  a=new_[37847]_ b=new_[38791]_ O=new_[37877]_
+.gate nand3  a=new_[37860]_ b=new_[38774]_ c=new_[38804]_ O=new_[38967]_
+.gate aoi21  a=new_[38804]_ b=new_[38653]_ c=new_[38690]_ O=new_[37064]_
+.gate nand2  a=new_[38967]_ b=new_[37064]_ O=new_[37880]_
+.gate inv1   a=new_[37880]_ O=new_[38882]_
+.gate inv1   a=new_[37877]_ O=new_[38669]_
+.gate aoi22  a=new_[37877]_ b=new_[38882]_ c=new_[37880]_ d=new_[38669]_ O=new_G843gat_
+.gate aoi22  a=G91gat b=G210gat c=G219gat d=new_G843gat_ O=new_G860gat_
+.gate oai22  a=new_[37775]_ b=new_[37877]_ c=new_[37776]_ d=new_[37847]_ O=new_[37883]_
+.gate inv1   a=new_[37883]_ O=new_[38395]_
+.gate nand3  a=new_G677gat_ b=new_G860gat_ c=new_[38395]_ O=G879gat
+.gate aoi22  a=new_[37850]_ b=G246gat c=G171gat d=new_[38447]_ O=new_G686gat_
+.gate nand2  a=new_[37851]_ b=new_[38804]_ O=new_[37886]_
+.gate aoi21  a=new_[38774]_ b=new_[37860]_ c=new_[38653]_ O=new_G822gat_
+.gate nor2   a=new_G822gat_ b=new_[37886]_ O=new_G835gat_
+.gate aoi21  a=new_[37886]_ b=new_G822gat_ c=new_G835gat_ O=new_G844gat_
+.gate aoi22  a=G96gat b=G210gat c=G219gat d=new_G844gat_ O=new_G861gat_
+.gate inv1   a=new_[37886]_ O=new_[38686]_
+.gate aoi22  a=G228gat b=new_[38686]_ c=G237gat d=new_[38690]_ O=new_G771gat_
+.gate nand3  a=new_G686gat_ b=new_G861gat_ c=new_G771gat_ O=G880gat
+.gate one    O=new_n312_
+.end

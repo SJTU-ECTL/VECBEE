@@ -1,13 +1,14 @@
 .model test
-.inputs in
-.outputs out
-.gate buf a=in O=a
+.inputs i
+.outputs o1 o2 o3
+.gate buf a=i O=a
 .gate inv1 a=a O=b
 .gate inv1 a=a O=c
-.gate inv1 a=a O=d
-.gate inv1 a=b O=e
-.gate and2 a=b b=c O=f
-.gate and2 a=c b=d O=g
-.gate inv1 a=d O=h
-.gate nand4 a=e b=f c=g d=h O=out
+.gate inv1 a=b O=t
+.gate and2 a=a b=t O=d
+.gate and2 a=c b=d f=e
+.gate buf a=e O=f
+.gate buf a=c O=o1
+.gate buf a=f O=o2
+.gate buf a=a O=o3
 .end

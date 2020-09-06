@@ -1,0 +1,59 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/rca32.blif
+abc command print_stats
+[1;37mrca32                         :[0m i/o =   64/   33  lat =    0  nd =   298  edge =    585  area =666.00  delay =16.10  lev = 12
+--------------- round 1 ---------------
+seed = 2531465778
+maxLevel = 4
+n356 is replaced by zero with estimated error 0.00013
+error = 0.00013
+area = 661
+delay = 16
+#gates = 298
+output circuit appNtk-level-4/rca32_1_0.00013_661_16.blif
+time = 4039041 us
+--------------- round 2 ---------------
+seed = 2531465778
+maxLevel = 4
+n242 is replaced by one with estimated error 0.0021
+error = 0.0021
+area = 656
+delay = 16
+#gates = 296
+output circuit appNtk-level-4/rca32_2_0.0021_656_16.blif
+time = 6581285 us
+--------------- round 3 ---------------
+seed = 2531465778
+maxLevel = 4
+n320 is replaced by zero with estimated error 0.00392
+error = 0.00392
+area = 654
+delay = 16
+#gates = 295
+output circuit appNtk-level-4/rca32_3_0.00392_654_16.blif
+time = 9424351 us
+--------------- round 4 ---------------
+seed = 2531465778
+maxLevel = 4
+n249 is replaced by n247 with estimated error 0.0334
+error = 0.0334
+area = 643
+delay = 16
+#gates = 291
+output circuit appNtk-level-4/rca32_4_0.0334_643_16.blif
+time = 11947232 us
+--------------- round 5 ---------------
+seed = 2531465778
+maxLevel = 4
+n358 is replaced by n334 with estimated error 0.04813
+error = 0.04813
+area = 640
+delay = 16
+#gates = 290
+output circuit appNtk-level-4/rca32_5_0.04813_640_16.blif
+time = 14109975 us
+--------------- round 6 ---------------
+seed = 2531465778
+maxLevel = 4
+exceed error bound

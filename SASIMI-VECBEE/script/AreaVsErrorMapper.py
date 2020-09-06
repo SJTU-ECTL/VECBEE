@@ -4,7 +4,7 @@
 import os
 
 
-for root, _, files in os.walk('./result/maxLevel/appNtk-level-inf/'):
+for root, _, files in os.walk('./result/maxLevel-NMED/appNtk-level-inf/'):
     for name in files:
         pos0 = name.find('_')
         pos1 = name[pos0 + 1:].find('_')

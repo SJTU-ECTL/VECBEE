@@ -1,0 +1,784 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/c3540.blif
+Line 7: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 8: Skipping line ".default_output_required 0.00 0.00 ".
+Line 9: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 10: Skipping line ".default_output_load 2.00 ".
+Line 11: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mc3540                         :[0m i/o =   50/   22  lat =    0  nd =   626  edge =   1568  area =1604.00  delay =55.00  lev = 41
+--------------- round 1 ---------------
+seed = 2531465778
+maxLevel = 1
+[105035] is replaced by [104985] with estimated error 0
+error = 0
+area = 1601
+delay = 55
+#gates = 627
+output circuit appNtk-level-1/c3540_1_0_1601_55.blif
+time = 11067403 us
+--------------- round 2 ---------------
+seed = 2531465778
+maxLevel = 1
+[105170] is replaced by [143455] with inverter with estimated error 0
+error = 0
+area = 1599
+delay = 55
+#gates = 627
+output circuit appNtk-level-1/c3540_2_0_1599_55.blif
+time = 22865221 us
+--------------- round 3 ---------------
+seed = 2531465778
+maxLevel = 1
+[106225] is replaced by [104921] with estimated error 0
+error = 0
+area = 1598
+delay = 55
+#gates = 626
+output circuit appNtk-level-1/c3540_3_0_1598_55.blif
+time = 32863313 us
+--------------- round 4 ---------------
+seed = 2531465778
+maxLevel = 1
+[106628] is replaced by [104912] with estimated error 0
+error = 0
+area = 1597
+delay = 55
+#gates = 625
+output circuit appNtk-level-1/c3540_4_0_1597_55.blif
+time = 42540732 us
+--------------- round 5 ---------------
+seed = 2531465778
+maxLevel = 1
+[106187] is replaced by [104911] with estimated error 0
+error = 0
+area = 1596
+delay = 55
+#gates = 624
+output circuit appNtk-level-1/c3540_5_0_1596_55.blif
+time = 51862887 us
+--------------- round 6 ---------------
+seed = 2531465778
+maxLevel = 1
+[106175] is replaced by [104885] with estimated error 0
+error = 0
+area = 1595
+delay = 55
+#gates = 623
+output circuit appNtk-level-1/c3540_6_0_1595_55.blif
+time = 59428085 us
+--------------- round 7 ---------------
+seed = 2531465778
+maxLevel = 1
+[106662] is replaced by [104886] with estimated error 0
+error = 0
+area = 1594
+delay = 55
+#gates = 622
+output circuit appNtk-level-1/c3540_7_0_1594_55.blif
+time = 70508505 us
+--------------- round 8 ---------------
+seed = 2531465778
+maxLevel = 1
+[107035] is replaced by [107635] with estimated error 0
+error = 0
+area = 1593
+delay = 55
+#gates = 621
+output circuit appNtk-level-1/c3540_8_0_1593_55.blif
+time = 78871152 us
+--------------- round 9 ---------------
+seed = 2531465778
+maxLevel = 1
+[106180] is replaced by [104895] with estimated error 0
+error = 0
+area = 1592
+delay = 55
+#gates = 620
+output circuit appNtk-level-1/c3540_9_0_1592_55.blif
+time = 89823969 us
+--------------- round 10 ---------------
+seed = 2531465778
+maxLevel = 1
+[104840] is replaced by [104824] with estimated error 0
+error = 0
+area = 1591
+delay = 55
+#gates = 619
+output circuit appNtk-level-1/c3540_10_0_1591_55.blif
+time = 100914782 us
+--------------- round 11 ---------------
+seed = 2531465778
+maxLevel = 1
+[106161] is replaced by [106537] with estimated error 0
+error = 0
+area = 1590
+delay = 55
+#gates = 618
+output circuit appNtk-level-1/c3540_11_0_1590_55.blif
+time = 121903806 us
+--------------- round 12 ---------------
+seed = 2531465778
+maxLevel = 1
+[107023] is replaced by [105064] with estimated error 3e-05
+error = 3e-05
+area = 1587
+delay = 55
+#gates = 616
+output circuit appNtk-level-1/c3540_12_3e-05_1587_55.blif
+time = 141370781 us
+--------------- round 13 ---------------
+seed = 2531465778
+maxLevel = 1
+[153634] is replaced by zero with estimated error 0.0003
+error = 0.0003
+area = 1584
+delay = 55
+#gates = 615
+output circuit appNtk-level-1/c3540_13_0.0003_1584_55.blif
+time = 160287730 us
+--------------- round 14 ---------------
+seed = 2531465778
+maxLevel = 1
+[105071] is replaced by [104949] with estimated error 0.00059
+error = 0.00059
+area = 1581
+delay = 55
+#gates = 614
+output circuit appNtk-level-1/c3540_14_0.00059_1581_55.blif
+time = 180476163 us
+--------------- round 15 ---------------
+seed = 2531465778
+maxLevel = 1
+[104975] is replaced by [104940] with estimated error 0.00094
+error = 0.00094
+area = 1579
+delay = 55
+#gates = 613
+output circuit appNtk-level-1/c3540_15_0.00094_1579_55.blif
+time = 199847543 us
+--------------- round 16 ---------------
+seed = 2531465778
+maxLevel = 1
+[107554] is replaced by one with estimated error 0.00363
+error = 0.00343
+area = 1565
+delay = 55
+#gates = 608
+output circuit appNtk-level-1/c3540_16_0.00343_1565_55.blif
+time = 219113111 us
+--------------- round 17 ---------------
+seed = 2531465778
+maxLevel = 1
+[156199] is replaced by [143476] with estimated error 0.00439
+error = 0.00439
+area = 1561
+delay = 55
+#gates = 607
+output circuit appNtk-level-1/c3540_17_0.00439_1561_55.blif
+time = 238126753 us
+--------------- round 18 ---------------
+seed = 2531465778
+maxLevel = 1
+[106681] is replaced by [108186] with estimated error 0.00509
+error = 0.00509
+area = 1559
+delay = 55
+#gates = 606
+output circuit appNtk-level-1/c3540_18_0.00509_1559_55.blif
+time = 258568103 us
+--------------- round 19 ---------------
+seed = 2531465778
+maxLevel = 1
+[105067] is replaced by [168819] with estimated error 0.00514
+error = 0.00514
+area = 1556
+delay = 55
+#gates = 605
+output circuit appNtk-level-1/c3540_19_0.00514_1556_55.blif
+time = 278682159 us
+--------------- round 20 ---------------
+seed = 2531465778
+maxLevel = 1
+[105186] is replaced by [107118] with estimated error 0.00987
+error = 0.00987
+area = 1543
+delay = 55
+#gates = 601
+output circuit appNtk-level-1/c3540_20_0.00987_1543_55.blif
+time = 298274695 us
+--------------- round 21 ---------------
+seed = 2531465778
+maxLevel = 1
+[105181] is replaced by [104828] with inverter with estimated error 0.01187
+error = 0.01187
+area = 1536
+delay = 55
+#gates = 599
+output circuit appNtk-level-1/c3540_21_0.01187_1536_55.blif
+time = 321680166 us
+--------------- round 22 ---------------
+seed = 2531465778
+maxLevel = 1
+[106093] is replaced by one with estimated error 0.0133
+error = 0.0133
+area = 1532
+delay = 55
+#gates = 598
+output circuit appNtk-level-1/c3540_22_0.0133_1532_55.blif
+time = 344946060 us
+--------------- round 23 ---------------
+seed = 2531465778
+maxLevel = 1
+[108186] is replaced by one with estimated error 0.01441
+error = 0.01441
+area = 1529
+delay = 55
+#gates = 597
+output circuit appNtk-level-1/c3540_23_0.01441_1529_55.blif
+time = 366765001 us
+--------------- round 24 ---------------
+seed = 2531465778
+maxLevel = 1
+[153711] is replaced by [104776] with estimated error 0.01519
+error = 0.01519
+area = 1527
+delay = 55
+#gates = 596
+output circuit appNtk-level-1/c3540_24_0.01519_1527_55.blif
+time = 387780399 us
+--------------- round 25 ---------------
+seed = 2531465778
+maxLevel = 1
+[153710] is replaced by [104994] with estimated error 0.01616
+error = 0.01616
+area = 1524
+delay = 55
+#gates = 595
+output circuit appNtk-level-1/c3540_25_0.01616_1524_55.blif
+time = 409391316 us
+--------------- round 26 ---------------
+seed = 2531465778
+maxLevel = 1
+[105198] is replaced by [104822] with estimated error 0.01715
+error = 0.01715
+area = 1521
+delay = 55
+#gates = 594
+output circuit appNtk-level-1/c3540_26_0.01715_1521_55.blif
+time = 430620044 us
+--------------- round 27 ---------------
+seed = 2531465778
+maxLevel = 1
+[143401] is replaced by 33 with estimated error 0.01759
+error = 0.01759
+area = 1518
+delay = 55
+#gates = 593
+output circuit appNtk-level-1/c3540_27_0.01759_1518_55.blif
+time = 451491799 us
+--------------- round 28 ---------------
+seed = 2531465778
+maxLevel = 1
+[143425] is replaced by [143408] with estimated error 0.01889
+error = 0.01889
+area = 1514
+delay = 55
+#gates = 592
+output circuit appNtk-level-1/c3540_28_0.01889_1514_55.blif
+time = 473317997 us
+--------------- round 29 ---------------
+seed = 2531465778
+maxLevel = 1
+[105194] is replaced by [143356] with estimated error 0.02153
+error = 0.02153
+area = 1506
+delay = 55
+#gates = 590
+output circuit appNtk-level-1/c3540_29_0.02153_1506_55.blif
+time = 489590923 us
+--------------- round 30 ---------------
+seed = 2531465778
+maxLevel = 1
+[105031] is replaced by [105007] with estimated error 0.02394
+error = 0.02394
+area = 1499
+delay = 55
+#gates = 588
+output circuit appNtk-level-1/c3540_30_0.02394_1499_55.blif
+time = 502965411 us
+--------------- round 31 ---------------
+seed = 2531465778
+maxLevel = 1
+[143424] is replaced by [105003] with estimated error 0.02503
+error = 0.02503
+area = 1495
+delay = 55
+#gates = 587
+output circuit appNtk-level-1/c3540_31_0.02503_1495_55.blif
+time = 519343313 us
+--------------- round 32 ---------------
+seed = 2531465778
+maxLevel = 1
+[141685] is replaced by [143315] with estimated error 0.02571
+error = 0.02571
+area = 1491
+delay = 55
+#gates = 586
+output circuit appNtk-level-1/c3540_32_0.02571_1491_55.blif
+time = 533512319 us
+--------------- round 33 ---------------
+seed = 2531465778
+maxLevel = 1
+[141231] is replaced by [143378] with estimated error 0.02604
+error = 0.02604
+area = 1487
+delay = 55
+#gates = 585
+output circuit appNtk-level-1/c3540_33_0.02604_1487_55.blif
+time = 542663897 us
+--------------- round 34 ---------------
+seed = 2531465778
+maxLevel = 1
+[141228] is replaced by 33 with estimated error 0.02604
+error = 0.02604
+area = 1484
+delay = 55
+#gates = 584
+output circuit appNtk-level-1/c3540_34_0.02604_1484_55.blif
+time = 550822139 us
+--------------- round 35 ---------------
+seed = 2531465778
+maxLevel = 1
+[140515] is replaced by [143398] with estimated error 0.02877
+error = 0.02877
+area = 1476
+delay = 55
+#gates = 581
+output circuit appNtk-level-1/c3540_35_0.02877_1476_55.blif
+time = 558210451 us
+--------------- round 36 ---------------
+seed = 2531465778
+maxLevel = 1
+[105087] is replaced by [105107] with estimated error 0.02952
+error = 0.02952
+area = 1472
+delay = 55
+#gates = 580
+output circuit appNtk-level-1/c3540_36_0.02952_1472_55.blif
+time = 566100823 us
+--------------- round 37 ---------------
+seed = 2531465778
+maxLevel = 1
+[143398] is replaced by [104996] with estimated error 0.02995
+error = 0.02995
+area = 1468
+delay = 55
+#gates = 579
+output circuit appNtk-level-1/c3540_37_0.02995_1468_55.blif
+time = 572305865 us
+--------------- round 38 ---------------
+seed = 2531465778
+maxLevel = 1
+[149806] is replaced by [143430] with estimated error 0.03081
+error = 0.03081
+area = 1464
+delay = 55
+#gates = 578
+output circuit appNtk-level-1/c3540_38_0.03081_1464_55.blif
+time = 578665891 us
+--------------- round 39 ---------------
+seed = 2531465778
+maxLevel = 1
+[105113] is replaced by [105081] with estimated error 0.03124
+error = 0.03124
+area = 1460
+delay = 55
+#gates = 577
+output circuit appNtk-level-1/c3540_39_0.03124_1460_55.blif
+time = 584853898 us
+--------------- round 40 ---------------
+seed = 2531465778
+maxLevel = 1
+[143469] is replaced by [105003] with estimated error 0.03147
+error = 0.03147
+area = 1456
+delay = 55
+#gates = 576
+output circuit appNtk-level-1/c3540_40_0.03147_1456_55.blif
+time = 591329712 us
+--------------- round 41 ---------------
+seed = 2531465778
+maxLevel = 1
+[105029] is replaced by [105081] with estimated error 0.03161
+error = 0.03161
+area = 1453
+delay = 55
+#gates = 575
+output circuit appNtk-level-1/c3540_41_0.03161_1453_55.blif
+time = 596646396 us
+--------------- round 42 ---------------
+seed = 2531465778
+maxLevel = 1
+[105085] is replaced by [105122] with estimated error 0.03361
+error = 0.03361
+area = 1446
+delay = 55
+#gates = 573
+output circuit appNtk-level-1/c3540_42_0.03361_1446_55.blif
+time = 602493981 us
+--------------- round 43 ---------------
+seed = 2531465778
+maxLevel = 1
+[140549] is replaced by [143408] with estimated error 0.03592
+error = 0.03592
+area = 1437
+delay = 55
+#gates = 570
+output circuit appNtk-level-1/c3540_43_0.03592_1437_55.blif
+time = 608698744 us
+--------------- round 44 ---------------
+seed = 2531465778
+maxLevel = 1
+[140560] is replaced by [104772] with estimated error 0.03689
+error = 0.03689
+area = 1431
+delay = 55
+#gates = 568
+output circuit appNtk-level-1/c3540_44_0.03689_1431_55.blif
+time = 614481169 us
+--------------- round 45 ---------------
+seed = 2531465778
+maxLevel = 1
+[142193] is replaced by [104992] with estimated error 0.03806
+error = 0.03806
+area = 1423
+delay = 55
+#gates = 565
+output circuit appNtk-level-1/c3540_45_0.03806_1423_55.blif
+time = 620002307 us
+--------------- round 46 ---------------
+seed = 2531465778
+maxLevel = 1
+[143287] is replaced by [104917] with estimated error 0.03823
+error = 0.03823
+area = 1419
+delay = 55
+#gates = 564
+output circuit appNtk-level-1/c3540_46_0.03823_1419_55.blif
+time = 625927733 us
+--------------- round 47 ---------------
+seed = 2531465778
+maxLevel = 1
+[148043] is replaced by [104986] with estimated error 0.03867
+error = 0.03867
+area = 1412
+delay = 55
+#gates = 561
+output circuit appNtk-level-1/c3540_47_0.03867_1412_55.blif
+time = 631833015 us
+--------------- round 48 ---------------
+seed = 2531465778
+maxLevel = 1
+[143385] is replaced by [104901] with estimated error 0.03867
+error = 0.03867
+area = 1408
+delay = 55
+#gates = 560
+output circuit appNtk-level-1/c3540_48_0.03867_1408_55.blif
+time = 637530908 us
+--------------- round 49 ---------------
+seed = 2531465778
+maxLevel = 1
+[143397] is replaced by [104992] with estimated error 0.03907
+error = 0.03907
+area = 1401
+delay = 55
+#gates = 558
+output circuit appNtk-level-1/c3540_49_0.03907_1401_55.blif
+time = 643022475 us
+--------------- round 50 ---------------
+seed = 2531465778
+maxLevel = 1
+[143400] is replaced by [104790] with estimated error 0.03914
+error = 0.03914
+area = 1397
+delay = 55
+#gates = 557
+output circuit appNtk-level-1/c3540_50_0.03914_1397_55.blif
+time = 648721460 us
+--------------- round 51 ---------------
+seed = 2531465778
+maxLevel = 1
+[140522] is replaced by [104776] with estimated error 0.03934
+error = 0.03934
+area = 1390
+delay = 55
+#gates = 555
+output circuit appNtk-level-1/c3540_51_0.03934_1390_55.blif
+time = 654766464 us
+--------------- round 52 ---------------
+seed = 2531465778
+maxLevel = 1
+[143468] is replaced by [104996] with estimated error 0.0394
+error = 0.0394
+area = 1386
+delay = 55
+#gates = 554
+output circuit appNtk-level-1/c3540_52_0.0394_1386_55.blif
+time = 660288116 us
+--------------- round 53 ---------------
+seed = 2531465778
+maxLevel = 1
+[105088] is replaced by [105136] with estimated error 0.03943
+error = 0.03943
+area = 1382
+delay = 55
+#gates = 553
+output circuit appNtk-level-1/c3540_53_0.03943_1382_55.blif
+time = 665855299 us
+--------------- round 54 ---------------
+seed = 2531465778
+maxLevel = 1
+[105003] is replaced by one with estimated error 0.04098
+error = 0.04098
+area = 1378
+delay = 55
+#gates = 552
+output circuit appNtk-level-1/c3540_54_0.04098_1378_55.blif
+time = 671386767 us
+--------------- round 55 ---------------
+seed = 2531465778
+maxLevel = 1
+[106451] is replaced by zero with estimated error 0.04098
+error = 0.04098
+area = 1377
+delay = 55
+#gates = 551
+output circuit appNtk-level-1/c3540_55_0.04098_1377_55.blif
+time = 677574967 us
+--------------- round 56 ---------------
+seed = 2531465778
+maxLevel = 1
+[105078] is replaced by [105004] with estimated error 0.04228
+error = 0.04228
+area = 1373
+delay = 55
+#gates = 550
+output circuit appNtk-level-1/c3540_56_0.04228_1373_55.blif
+time = 682851406 us
+--------------- round 57 ---------------
+seed = 2531465778
+maxLevel = 1
+[143315] is replaced by [104988] with estimated error 0.04295
+error = 0.04295
+area = 1369
+delay = 55
+#gates = 549
+output circuit appNtk-level-1/c3540_57_0.04295_1369_55.blif
+time = 688522655 us
+--------------- round 58 ---------------
+seed = 2531465778
+maxLevel = 1
+[105004] is replaced by [107150] with estimated error 0.04332
+error = 0.04332
+area = 1365
+delay = 55
+#gates = 548
+output circuit appNtk-level-1/c3540_58_0.04332_1365_55.blif
+time = 693976954 us
+--------------- round 59 ---------------
+seed = 2531465778
+maxLevel = 1
+[107593] is replaced by [103974] with estimated error 0.04343
+error = 0.04343
+area = 1364
+delay = 55
+#gates = 547
+output circuit appNtk-level-1/c3540_59_0.04343_1364_55.blif
+time = 699851214 us
+--------------- round 60 ---------------
+seed = 2531465778
+maxLevel = 1
+[104988] is replaced by one with estimated error 0.04374
+error = 0.04368
+area = 1361
+delay = 55
+#gates = 546
+output circuit appNtk-level-1/c3540_60_0.04368_1361_55.blif
+time = 705131849 us
+--------------- round 61 ---------------
+seed = 2531465778
+maxLevel = 1
+[107150] is replaced by zero with estimated error 0.04368
+error = 0.04368
+area = 1360
+delay = 55
+#gates = 545
+output circuit appNtk-level-1/c3540_61_0.04368_1360_55.blif
+time = 710654151 us
+--------------- round 62 ---------------
+seed = 2531465778
+maxLevel = 1
+[105135] is replaced by [105107] with estimated error 0.04504
+error = 0.04504
+area = 1356
+delay = 55
+#gates = 544
+output circuit appNtk-level-1/c3540_62_0.04504_1356_55.blif
+time = 716049938 us
+--------------- round 63 ---------------
+seed = 2531465778
+maxLevel = 1
+[143430] is replaced by [104996] with estimated error 0.04574
+error = 0.04574
+area = 1352
+delay = 55
+#gates = 543
+output circuit appNtk-level-1/c3540_63_0.04574_1352_55.blif
+time = 722088825 us
+--------------- round 64 ---------------
+seed = 2531465778
+maxLevel = 1
+[105107] is replaced by [107118] with estimated error 0.0462
+error = 0.0462
+area = 1348
+delay = 55
+#gates = 542
+output circuit appNtk-level-1/c3540_64_0.0462_1348_55.blif
+time = 727544417 us
+--------------- round 65 ---------------
+seed = 2531465778
+maxLevel = 1
+[104996] is replaced by one with estimated error 0.0467
+error = 0.04666
+area = 1345
+delay = 55
+#gates = 541
+output circuit appNtk-level-1/c3540_65_0.04666_1345_55.blif
+time = 732935374 us
+--------------- round 66 ---------------
+seed = 2531465778
+maxLevel = 1
+[107118] is replaced by zero with estimated error 0.04666
+error = 0.04666
+area = 1344
+delay = 55
+#gates = 540
+output circuit appNtk-level-1/c3540_66_0.04666_1344_55.blif
+time = 738643322 us
+--------------- round 67 ---------------
+seed = 2531465778
+maxLevel = 1
+[104987] is replaced by 200 with estimated error 0.04666
+error = 0.04666
+area = 1342
+delay = 55
+#gates = 539
+output circuit appNtk-level-1/c3540_67_0.04666_1342_55.blif
+time = 744220718 us
+--------------- round 68 ---------------
+seed = 2531465778
+maxLevel = 1
+[143476] is replaced by [104998] with estimated error 0.04808
+error = 0.04808
+area = 1338
+delay = 55
+#gates = 538
+output circuit appNtk-level-1/c3540_68_0.04808_1338_55.blif
+time = 749323849 us
+--------------- round 69 ---------------
+seed = 2531465778
+maxLevel = 1
+[105081] is replaced by [105045] with estimated error 0.04883
+error = 0.04883
+area = 1334
+delay = 55
+#gates = 537
+output circuit appNtk-level-1/c3540_69_0.04883_1334_55.blif
+time = 754775392 us
+--------------- round 70 ---------------
+seed = 2531465778
+maxLevel = 1
+[104999] is replaced by [107082] with estimated error 0.04922
+error = 0.04922
+area = 1330
+delay = 55
+#gates = 536
+output circuit appNtk-level-1/c3540_70_0.04922_1330_55.blif
+time = 760353514 us
+--------------- round 71 ---------------
+seed = 2531465778
+maxLevel = 1
+[105045] is replaced by zero with estimated error 0.04947
+error = 0.04947
+area = 1326
+delay = 55
+#gates = 535
+output circuit appNtk-level-1/c3540_71_0.04947_1326_55.blif
+time = 765546806 us
+--------------- round 72 ---------------
+seed = 2531465778
+maxLevel = 1
+[105163] is replaced by [107082] with estimated error 0.04958
+error = 0.04958
+area = 1323
+delay = 55
+#gates = 534
+output circuit appNtk-level-1/c3540_72_0.04958_1323_55.blif
+time = 770191937 us
+--------------- round 73 ---------------
+seed = 2531465778
+maxLevel = 1
+[107643] is replaced by one with estimated error 0.04962
+error = 0.04962
+area = 1321
+delay = 55
+#gates = 533
+output circuit appNtk-level-1/c3540_73_0.04962_1321_55.blif
+time = 774846637 us
+--------------- round 74 ---------------
+seed = 2531465778
+maxLevel = 1
+[107644] is replaced by zero with estimated error 0.04962
+error = 0.04962
+area = 1320
+delay = 55
+#gates = 532
+output circuit appNtk-level-1/c3540_74_0.04962_1320_55.blif
+time = 779656048 us
+--------------- round 75 ---------------
+seed = 2531465778
+maxLevel = 1
+[107196] is replaced by [104998] with estimated error 0.04965
+error = 0.04965
+area = 1318
+delay = 55
+#gates = 531
+output circuit appNtk-level-1/c3540_75_0.04965_1318_55.blif
+time = 784238641 us
+--------------- round 76 ---------------
+seed = 2531465778
+maxLevel = 1
+[104998] is replaced by one with estimated error 0.04976
+error = 0.04975
+area = 1315
+delay = 55
+#gates = 530
+output circuit appNtk-level-1/c3540_76_0.04975_1315_55.blif
+time = 788918022 us
+--------------- round 77 ---------------
+seed = 2531465778
+maxLevel = 1
+[107082] is replaced by zero with estimated error 0.04975
+error = 0.04975
+area = 1314
+delay = 55
+#gates = 529
+output circuit appNtk-level-1/c3540_77_0.04975_1314_55.blif
+time = 793578641 us
+--------------- round 78 ---------------
+seed = 2531465778
+maxLevel = 1
+exceed error bound

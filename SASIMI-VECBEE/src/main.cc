@@ -49,7 +49,7 @@ int main(int argc, char * argv[])
     // read library and circuit
     Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
     ostringstream command("");
-    command << "read data/library/mcnc.genlib";
+    command << "read " << library;
     cout << "abc command " << command.str() << endl;
     DASSERT(!Cmd_CommandExecute(pAbc, command.str().c_str()));
     command.str("");
