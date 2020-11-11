@@ -5,9 +5,10 @@ import csv
 import matplotlib.pyplot as plt
 import numpy as np
 
-csvRd = csv.reader(open('result/maxLevel-ER/AreaVsLevelUnderER5e-2.csv', encoding='utf-8'))
-cktList = ['c880', 'c1908', 'c2670', 'RCA32', 'CLA32', 'KSA32']
-# cktList = ['CLA32', 'KSA32', 'MUL8', 'RCA32', 'WAL8']
+# csvRd = csv.reader(open('result/maxLevel-ER/AreaVsLevelUnderER5e-2.csv', encoding='utf-8'))
+csvRd = csv.reader(open('result/maxLevel-NMED/AreaVsLevelUnderNMED153e-5.csv', encoding='utf-8'))
+# cktList = ['c880', 'c1908', 'c2670', 'RCA32', 'CLA32', 'KSA32']
+cktList = ['CLA32', 'KSA32', 'MUL8', 'RCA32', 'WAL8']
 arList = np.zeros([4, len(cktList)])
 
 for row in csvRd:
@@ -50,7 +51,8 @@ for i in range(len(x)):
     x[i] = x[i] + width
 plt.xticks(fontsize=ftSize)
 plt.yticks(fontsize=ftSize)
-plt.ylabel('Average area ratio', fontsize=ftSize)
+plt.ylabel('Area ratio', fontsize=ftSize)
 plt.legend(loc='upper right', bbox_to_anchor=(1.25, 1), fontsize=ftSize)
 # plt.show()
-plt.savefig('result/figures/differentLevelER.png', dpi=300, bbox_inches='tight')
+# plt.savefig('result/figures/differentLevelER.png', dpi=300, bbox_inches='tight')
+plt.savefig('result/figures/differentLevelNMED.png', dpi=300, bbox_inches='tight')
