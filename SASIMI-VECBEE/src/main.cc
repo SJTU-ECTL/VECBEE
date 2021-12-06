@@ -13,7 +13,7 @@ parser Cmdline_Parser(int argc, char * argv[])
     parser option;
     option.add <string> ("input", 'i', "original circuit file", false, "data/su/c880.blif");
     option.add <string> ("output", 'o', "path to output circuit files", false, "appNtk/");
-    option.add <string> ("library", 'l', "standard cell library", false, "data/genlib/mcnc.genlib");
+    option.add <string> ("library", 'l', "standard cell library", false, "data/library/mcnc.genlib");
     option.add <string> ("metricType", '\0', "error metric type, er, nmed", false, "er");
     option.add <float>  ("errorBound", 'e', "error metric upper bound", false, 0.05, range(0.0, 1.0));
     option.add <int>    ("frameNumber", 'f', "simulation round", false, 100000, range(1, INT_MAX));

@@ -35,11 +35,9 @@ void SASIMI_Manager_t::GreedySelection(Abc_Ntk_t * pOriNtk, string outPrefix)
     cntRound = 0;
     while (error < errorBound) {
         cout << "--------------- round " << ++cntRound << " ---------------" << endl;
-        // if (cntRound == 4)
-        //     break;
         Simulator_t * pAppSmlt = new Simulator_t(pAppNtk, nFrame);
-        // unsigned seed = static_cast <unsigned> (rd());
-        unsigned seed = 2531465778;
+        unsigned seed = static_cast <unsigned> (rd());
+        // unsigned seed = 2531465778;
         cout << "seed = " << seed << endl;
         cout << "maxLevel = " << maxLevel << endl;
         oriSmlt.Input(seed);
@@ -691,9 +689,13 @@ int SASIMI_Manager_t::ApplyBestLAC(Simulator_t & oriSmlt, Simulator_t & appSmlt,
     double accError = (metricType == Metric_t::ER)? MeasureER(pOriNtk, pAppNtk, nFrame, seed): MeasureNMED(pOriNtk, pAppNtk, nFrame, seed);
     cout << "error = " << accError << endl;
     DASSERT(accError == error);
+    double highAccError = (metricType == Metric_t::ER)? MeasureER(pOriNtk, pAppNtk, 1024000, seed): MeasureNMED(pOriNtk, pAppNtk, 1024000, seed);
+    cout << "high accuracy error = " << highAccError << endl;
     cout << "area = " << Ckt_GetArea(pAppNtk) << endl;
     cout << "delay = " << Ckt_GetDelay(pAppNtk) << endl;
     cout << "#gates = " << Abc_NtkNodeNum(pAppNtk) << endl;
+    // if (highAccError > errorBound)
+    //     assert(0);
 
     ostringstream command;
     command << outPrefix << "_" << cntRound << "_" << accError << "_" << Ckt_GetArea(pAppNtk) << "_" << Ckt_GetDelay(pAppNtk) << ".blif";
