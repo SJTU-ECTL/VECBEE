@@ -1509,11 +1509,29 @@ void Simulator_t::FindOneCut(Abc_Obj_t * pPivot, int poId, set <Abc_Obj_t *> & c
     flow[pPivot->Id] = 1.0;
     oneCuts[pPivot->Id][poId] = nullptr;
     FindOneCut_rec(Abc_ObjFanin0(pPo), pPivot, poId, cutNtkNodes, maxLevel);
+    // static int cnt;
+    // static int levelGap;
+    // static int nRec;
     // cout << "one cut for pivot node " << Abc_ObjName(pPivot) << " on PO " << Abc_ObjName(Abc_NtkPo(pPivot->pNtk, poId)) << ":";
     // if (oneCuts[pPivot->Id][poId] == nullptr)
-    //     cout << "not found" << endl;
-    // else
-    //     cout << Abc_ObjName(oneCuts[pPivot->Id][poId]) << endl;
+    //     // cout << "not found" << endl;
+    //     assert(0);
+    // else {
+    //     auto oneCut = oneCuts[pPivot->Id][poId];
+    //     cout << Abc_ObjName(oneCut) << endl;
+    //     ++cnt;
+    //     Abc_NtkLevel(pPivot->pNtk);
+    //     int gap = oneCut->Level - pPivot->Level;
+    //     if (gap <= 0) {
+    //         assert(Abc_ObjIsPo(oneCut));
+    //         gap = 1;
+    //     }
+    //     assert(gap > 0);
+    //     levelGap += gap;
+    //     if (gap > 1)
+    //         ++nRec;
+    //     cout << cnt << "," << levelGap << "," << nRec << "," << levelGap / static_cast <double> (cnt) << "," << nRec / static_cast <double> (cnt) << endl;
+    // }
 }
 
 

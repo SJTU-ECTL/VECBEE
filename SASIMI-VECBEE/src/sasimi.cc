@@ -61,6 +61,7 @@ void SASIMI_Manager_t::GreedySelection(Abc_Ntk_t * pOriNtk, string outPrefix)
             break;
         }
         cout << "time = " << clock() - st << " us" << endl;
+        assert(0);
     }
 
     // clean up
