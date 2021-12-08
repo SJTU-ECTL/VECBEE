@@ -17,8 +17,8 @@ parser Cmdline_Parser(int argc, char * argv[])
     parser option;
     option.add <string> ("file",   'f', "Circuit file",       false, "data/su/c880_rem.blif");
     option.add <string> ("genlib", 'g', "Map libarary file",  false, "data/genlib/mcnc.genlib");
-    option.add <float>  ("error",  'e', "Error rate",         false, 0.05f, range(0.0f, 1.0f));
-    option.add <int>    ("number", 'n', "Frame number",       false, 10000, range(1, INT_MAX));
+    option.add <float>  ("error",  'e', "Error rate",         false, 0.01f, range(0.0f, 1.0f));
+    option.add <int>    ("number", 'n', "Frame number",       false, 100000, range(1, INT_MAX));
     option.parse_check(argc, argv);
     return option;
 }
@@ -46,52 +46,53 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres, string genl
 
     cout << "fileName = " << ckt.GetName() << endl;
     cout << "original #literals = " << ckt.CountLiteralNum() << endl;
+    int round = 0;
+    cout << "--------- round " << round++ << " ---------" << endl;
     auto error = Ckt_SingleSelectionOnce(ckt, cktRef, EThres);
-    cout << "error = " << error / static_cast <double> (number) << endl;
     while (error <= EThres) {
+        cout << "--------- round " << round++ << " ---------" << endl;
         error = Ckt_SingleSelectionOnce(ckt, cktRef, EThres);
-        cout << "error = " << error / static_cast <double> (number) << endl;
     }
 
-    assert(system("if [ ! -d approx ]; then mkdir approx; fi") != -1);
-    string fileName("");
-    fileName += ckt.GetName();
-    fileName += string("_");
-    random_device rd;
-    unsigned seed = static_cast <unsigned> (rd());
-    ckt.GenInputDist(seed);
-    ckt.FeedForward();
-    cktRef.GenInputDist(seed);
-    cktRef.FeedForward();
-    float er = ckt.GetErrorRate(cktRef) / static_cast <float> (number);
-    stringstream str;
-    str << er;
-    fileName += str.str();
-    fileName += string(".blif");
+    // assert(system("if [ ! -d approx ]; then mkdir approx; fi") != -1);
+    // string fileName("");
+    // fileName += ckt.GetName();
+    // fileName += string("_");
+    // random_device rd;
+    // unsigned seed = static_cast <unsigned> (rd());
+    // ckt.GenInputDist(seed);
+    // ckt.FeedForward();
+    // cktRef.GenInputDist(seed);
+    // cktRef.FeedForward();
+    // float er = ckt.GetErrorRate(cktRef) / static_cast <float> (number);
+    // stringstream str;
+    // str << er;
+    // fileName += str.str();
+    // fileName += string(".blif");
 
-    Ckt_Synthesis2(ckt, fileName);
+    // Ckt_Synthesis2(ckt, fileName);
 
-    string command;
-    Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
-    Abc_FrameReplaceCurrentNetwork(pAbc, Abc_NtkDup(ckt.GetAbcNtk()));
-    command = "sweep";
-    assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
-    command = "write approx/" + fileName;
-    assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
-    command = "read approx/" + fileName;
-    assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
+    // string command;
+    // Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
+    // Abc_FrameReplaceCurrentNetwork(pAbc, Abc_NtkDup(ckt.GetAbcNtk()));
+    // command = "sweep";
+    // assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
+    // command = "write approx/" + fileName;
+    // assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
+    // command = "read approx/" + fileName;
+    // assert( Cmd_CommandExecute(pAbc, command.c_str()) == 0 );
 
-    Ckt_Sop_Net_t appCkt(Abc_FrameReadNtk(pAbc), number);
-    cout << "error rate = " << er << endl;
-    cout << "#literals = " << appCkt.CountLiteralNum() << endl;
+    // Ckt_Sop_Net_t appCkt(Abc_FrameReadNtk(pAbc), number);
+    // cout << "error rate = " << er << endl;
+    // cout << "#literals = " << appCkt.CountLiteralNum() << endl;
 
-    FILE * fp = nullptr;
-    assert(fp = fopen("./script/temp.rug", "w"));
-    fprintf(fp, "read_library %s\n", genlib.c_str());
-    fprintf(fp, "read_blif mapped/%s\n", fileName.c_str());
-    fprintf(fp, "print_map_stats\n");
-    fclose(fp);
-    assert(system("sis -f ./script/temp.rug -t none | grep -e \"Most Negative Slack\" -e \"Total Area\"") != -1);
+    // FILE * fp = nullptr;
+    // assert(fp = fopen("./script/temp.rug", "w"));
+    // fprintf(fp, "read_library %s\n", genlib.c_str());
+    // fprintf(fp, "read_blif mapped/%s\n", fileName.c_str());
+    // fprintf(fp, "print_map_stats\n");
+    // fclose(fp);
+    // assert(system("sis -f ./script/temp.rug -t none | grep -e \"Most Negative Slack\" -e \"Total Area\"") != -1);
 }
 
 

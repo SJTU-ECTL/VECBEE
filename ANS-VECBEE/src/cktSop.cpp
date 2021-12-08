@@ -88,6 +88,7 @@ void Ckt_Sop_t::CollectSOP(void)
     int Value, v;
     assert(pSop && !Abc_SopIsExorType(pSop));
     int nVars = Abc_SopGetVarNum(pSop);
+    assert(!Abc_SopIsComplement(pSop));
     SOP.clear();
     Abc_SopForEachCube(pSop, nVars, pCube) {
         string s = "";

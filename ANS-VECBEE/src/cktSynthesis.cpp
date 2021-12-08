@@ -68,7 +68,7 @@ float Ckt_Synthesis2(Abc_Ntk_t * pNtk, string fileName)
     }
     area = Ckt_GetArea(Abc_FrameReadNtk(pAbc));
     delay = Abc_GetArrivalTime(Abc_FrameReadNtk(pAbc));
-    // cout << "area = " << area << endl << "delay = " << delay << endl;
+    cout << "area = " << area << endl << "delay = " << delay << endl;
     assert(system("if [ ! -d mapped ]; then mkdir mapped; fi") != -1);
     Command = string("write_blif mapped/");
     Command += fileName;

@@ -1,0 +1,790 @@
+# Benchmark "i2c" written by ABC on Wed Dec  8 15:11:38 2021
+.model i2c
+.inputs pi000 pi001 pi002 pi003 pi004 pi005 pi006 pi007 pi008 pi009 pi010 \
+ pi011 pi012 pi013 pi014 pi015 pi016 pi017 pi018 pi019 pi020 pi021 pi022 \
+ pi023 pi024 pi025 pi026 pi027 pi028 pi029 pi030 pi031 pi032 pi033 pi034 \
+ pi035 pi036 pi037 pi038 pi039 pi040 pi041 pi042 pi043 pi044 pi045 pi046 \
+ pi047 pi048 pi049 pi050 pi051 pi052 pi053 pi054 pi055 pi056 pi057 pi058 \
+ pi059 pi060 pi061 pi062 pi063 pi064 pi065 pi066 pi067 pi068 pi069 pi070 \
+ pi071 pi072 pi073 pi074 pi075 pi076 pi077 pi078 pi079 pi080 pi081 pi082 \
+ pi083 pi084 pi085 pi086 pi087 pi088 pi089 pi090 pi091 pi092 pi093 pi094 \
+ pi095 pi096 pi097 pi098 pi099 pi100 pi101 pi102 pi103 pi104 pi105 pi106 \
+ pi107 pi108 pi109 pi110 pi111 pi112 pi113 pi114 pi115 pi116 pi117 pi118 \
+ pi119 pi120 pi121 pi122 pi123 pi124 pi125 pi126 pi127 pi128 pi129 pi130 \
+ pi131 pi132 pi133 pi134 pi135 pi136 pi137 pi138 pi139 pi140 pi141 pi142 \
+ pi143 pi144 pi145 pi146
+.outputs po000 po001 po002 po003 po004 po005 po006 po007 po008 po009 po010 \
+ po011 po012 po013 po014 po015 po016 po017 po018 po019 po020 po021 po022 \
+ po023 po024 po025 po026 po027 po028 po029 po030 po031 po032 po033 po034 \
+ po035 po036 po037 po038 po039 po040 po041 po042 po043 po044 po045 po046 \
+ po047 po048 po049 po050 po051 po052 po053 po054 po055 po056 po057 po058 \
+ po059 po060 po061 po062 po063 po064 po065 po066 po067 po068 po069 po070 \
+ po071 po072 po073 po074 po075 po076 po077 po078 po079 po080 po081 po082 \
+ po083 po084 po085 po086 po087 po088 po089 po090 po091 po092 po093 po094 \
+ po095 po096 po097 po098 po099 po100 po101 po102 po103 po104 po105 po106 \
+ po107 po108 po109 po110 po111 po112 po113 po114 po115 po116 po117 po118 \
+ po119 po120 po121 po122 po123 po124 po125 po126 po127 po128 po129 po130 \
+ po131 po132 po133 po134 po135 po136 po137 po138 po139 po140 po141
+.names pi129 pi003 new_n290_
+00 1
+.names pi054 new_n290_ new_n292_
+01 1
+.names pi022 pi005 new_n294_
+00 1
+.names pi021 pi014 new_n298_
+00 1
+.names pi013 new_n298_ new_n299_
+01 0
+.names pi010 pi008 new_n302_
+00 0
+.names new_n302_ new_n299_ new_n303_
+00 1
+.names pi012 pi009 new_n304_
+00 1
+.names pi007 pi004 new_n305_
+00 1
+.names pi006 new_n304_ new_n303_ new_n305_ new_n306_
+0111 0
+.names new_n306_ new_n294_ new_n307_
+01 1
+.names pi016 pi011 new_n308_
+00 1
+.names pi019 pi018 new_n309_
+00 1
+.names new_n309_ new_n308_ new_n310_
+11 0
+.names new_n310_ new_n307_ new_n312_
+01 0
+.names pi017 pi054 new_n315_
+01 1
+.names new_n315_ new_n290_ new_n316_
+11 0
+.names new_n316_ new_n312_ new_n318_
+00 0
+.names new_n292_ new_n318_ pi000 new_n319_
+-00 1
+1-0 1
+.names new_n290_ pi054 new_n321_
+11 0
+.names pi011 pi009 new_n323_
+00 1
+.names new_n323_ new_n294_ new_n324_
+01 1
+10 1
+.names new_n321_ pi056 new_n324_ new_n325_
+001 0
+.names pi007 new_n303_ new_n333_
+01 0
+.names pi006 new_n304_ new_n334_
+01 0
+.names new_n321_ pi022 pi004 new_n337_
+000 0
+.names new_n310_ pi005 new_n315_ new_n339_
+001 0
+.names new_n339_ new_n337_ new_n334_ new_n340_
+000 1
+.names new_n340_ new_n333_ new_n341_
+11 0
+.names new_n341_ new_n325_ new_n342_
+11 0
+.names new_n342_ new_n319_ po015
+00 1
+.names new_n302_ new_n298_ new_n347_
+01 0
+.names new_n310_ pi017 pi005 new_n350_
+001 0
+.names new_n350_ new_n306_ new_n351_
+00 1
+.names new_n304_ pi006 new_n352_
+01 1
+.names new_n352_ new_n333_ new_n355_
+00 1
+.names new_n355_ new_n351_ new_n356_
+00 1
+.names new_n341_ new_n347_ new_n356_ new_n357_
+--0 1
+00- 1
+.names new_n337_ new_n357_ po016
+01 1
+.names pi129 pi082 new_n362_
+01 1
+.names pi044 pi042 pi040 pi038 new_n371_
+0000 0
+.names pi048 pi045 new_n377_
+00 0
+.names pi020 pi015 pi002 new_n379_
+000 1
+.names new_n377_ pi049 pi024 new_n379_ new_n380_
+0001 0
+.names new_n380_ new_n362_ new_n381_
+11 0
+.names pi127 pi122 new_n383_
+11 0
+.names new_n381_ new_n383_ pi129 new_n392_
+-00 1
+0-0 1
+.names po017
+ 0
+.names pi118 pi061 new_n395_
+00 1
+.names pi017 new_n312_ new_n395_ new_n396_
+--0 1
+00- 1
+.names pi129 pi123 new_n398_
+00 1
+.names pi113 new_n398_ pi000 new_n399_
+011 0
+.names pi129 new_n396_ new_n399_ po018
+--0 1
+00- 1
+.names new_n292_ pi004 new_n341_ pi010 po019
+--01 1
+11-- 1
+.names pi059 pi025 new_n402_
+00 1
+.names new_n402_ pi028 new_n403_
+11 0
+.names new_n316_ new_n312_ pi029 new_n405_
+000 0
+.names new_n292_ pi005 new_n405_ new_n403_ po020
+--00 1
+11-- 1
+.names pi059 pi028 pi025 new_n409_
+001 0
+.names new_n292_ pi006 new_n409_ new_n405_ po021
+--00 1
+11-- 1
+.names new_n292_ pi007 new_n341_ pi008 po022
+--01 1
+11-- 1
+.names new_n292_ pi008 new_n341_ pi021 po023
+--01 1
+11-- 1
+.names new_n292_ pi009 new_n414_
+11 0
+.names new_n316_ new_n307_ new_n415_
+01 0
+.names new_n415_ new_n309_ new_n417_
+01 0
+.names pi016 pi011 new_n419_
+01 0
+.names new_n417_ new_n419_ new_n414_ po024
+--0 1
+00- 1
+.names new_n292_ pi010 new_n341_ pi014 po025
+--01 1
+11-- 1
+.names pi022 pi011 new_n424_
+00 1
+.names pi113 new_n292_ new_n424_ new_n321_ po128
+--00 1
+01-- 1
+.names new_n339_ po128 new_n426_
+01 0
+.names new_n292_ pi011 new_n426_ new_n306_ po026
+--00 1
+11-- 1
+.names new_n292_ pi012 new_n428_
+11 0
+.names new_n415_ new_n308_ new_n429_
+01 0
+.names pi019 pi018 new_n431_
+01 0
+.names new_n429_ new_n431_ new_n428_ po027
+--0 1
+00- 1
+.names pi028 pi029 pi054 new_n433_
+011 0
+.names pi054 pi118 new_n433_ new_n402_ new_n435_
+--01 0
+01-- 0
+.names new_n292_ pi013 new_n435_ new_n318_ po028
+--00 1
+11-- 1
+.names new_n292_ pi014 new_n341_ pi013 po029
+--01 1
+11-- 1
+.names po030
+ 0
+.names new_n337_ new_n357_ pi006 new_n447_
+011 0
+.names pi016 new_n292_ new_n447_ po031
+--0 1
+11- 1
+.names pi028 pi025 pi059 new_n450_
+001 0
+.names new_n292_ pi017 new_n450_ new_n405_ po032
+--00 1
+11-- 1
+.names pi011 pi016 new_n453_
+01 0
+.names new_n292_ pi018 new_n453_ new_n417_ po033
+--00 1
+11-- 1
+.names new_n321_ pi017 new_n455_
+01 0
+.names new_n292_ pi019 new_n455_ new_n312_ po034
+--00 1
+11-- 1
+.names po035
+ 0
+.names pi018 pi019 new_n461_
+01 0
+.names new_n292_ pi021 new_n461_ new_n429_ po036
+--00 1
+11-- 1
+.names new_n321_ pi022 new_n463_
+00 0
+.names new_n292_ pi022 new_n463_ new_n351_ po037
+--01 1
+11-- 1
+.names pi129 pi061 new_n467_
+01 0
+.names pi023 pi055 new_n467_ po038
+-00 1
+1-0 1
+.names po039
+ 0
+.names pi027 pi026 new_n476_
+00 1
+.names pi058 pi053 new_n482_
+00 1
+.names new_n482_ new_n476_ new_n290_ new_n483_
+111 0
+.names pi100 pi095 new_n486_
+00 1
+.names pi129 new_n486_ pi097 new_n487_
+--1 1
+00- 1
+.names pi110 pi085 new_n488_
+00 1
+.names new_n483_ new_n487_ new_n488_ new_n489_
+011 0
+.names pi052 pi051 pi039 new_n495_
+000 1
+.names new_n489_ pi096 new_n501_
+01 0
+.names po042
+ 0
+.names po073
+ 0
+.names po040
+ 0
+.names po041
+ 1
+.names po043
+ 0
+.names po044
+ 1
+.names pi060 pi109 new_n529_
+01 0
+.names pi088 pi106 pi129 new_n531_
+--1 1
+01- 1
+.names pi106 new_n529_ new_n531_ po045
+-10 1
+1-0 1
+.names pi109 pi031 new_n535_
+00 0
+.names pi089 pi106 pi129 new_n537_
+--1 1
+01- 1
+.names pi106 new_n535_ new_n537_ po046
+-10 1
+1-0 1
+.names pi031 pi109 new_n539_
+01 0
+.names pi099 pi106 pi129 new_n541_
+--1 1
+01- 1
+.names pi106 new_n539_ new_n541_ po047
+-10 1
+1-0 1
+.names pi109 pi033 new_n544_
+00 0
+.names pi090 pi106 pi129 new_n546_
+--1 1
+01- 1
+.names pi106 new_n544_ new_n546_ po048
+-10 1
+1-0 1
+.names pi033 pi109 new_n548_
+01 0
+.names pi091 pi106 pi129 new_n550_
+--1 1
+01- 1
+.names pi106 new_n548_ new_n550_ po049
+-10 1
+1-0 1
+.names pi109 pi035 new_n553_
+00 0
+.names pi092 pi106 pi129 new_n555_
+--1 1
+01- 1
+.names pi106 new_n553_ new_n555_ po050
+-10 1
+1-0 1
+.names pi109 pi036 new_n558_
+00 0
+.names pi098 pi106 pi129 new_n560_
+--1 1
+01- 1
+.names pi106 new_n558_ new_n560_ po051
+-10 1
+1-0 1
+.names pi036 pi109 new_n562_
+01 0
+.names pi093 pi106 pi129 new_n564_
+--1 1
+01- 1
+.names pi106 new_n562_ new_n564_ po052
+-10 1
+1-0 1
+.names new_n383_ pi082 new_n570_
+00 1
+.names po053
+ 1
+.names pi051 pi109 new_n581_
+01 1
+.names pi052 new_n581_ new_n582_
+01 0
+.names new_n582_ pi039 new_n583_
+11 0
+.names new_n583_ pi106 pi129 po054
+-10 1
+0-0 1
+.names new_n392_ po069
+0 1
+.names pi073 new_n381_ new_n588_
+01 1
+.names new_n392_ new_n588_ po055
+01 0
+.names new_n383_ pi076 new_n591_
+11 0
+.names pi041 new_n383_ new_n591_ new_n592_
+--0 1
+00- 1
+.names new_n362_ new_n371_ pi050 new_n594_
+-00 1
+0-0 1
+.names pi046 new_n594_ pi041 new_n595_
+-01 1
+1-1 1
+.names pi046 pi041 new_n594_ new_n596_
+001 0
+.names new_n596_ pi082 new_n597_
+11 0
+.names new_n595_ new_n597_ pi129 new_n598_
+--1 1
+00- 1
+.names new_n381_ new_n592_ new_n598_ po056
+-00 1
+0-0 1
+.names po057
+ 0
+.names new_n383_ pi077 new_n603_
+11 0
+.names pi043 new_n383_ new_n603_ new_n604_
+--0 1
+00- 1
+.names new_n596_ pi043 new_n605_
+00 1
+.names pi043 new_n596_ pi082 new_n608_
+--0 1
+11- 1
+.names new_n605_ new_n608_ pi129 new_n609_
+--1 1
+00- 1
+.names new_n381_ new_n604_ new_n609_ po058
+-00 1
+0-0 1
+.names pi129 po059
+0 1
+.names pi082 pi048 new_n618_
+11 1
+.names new_n618_ new_n570_ new_n619_
+00 1
+.names po060
+ 0
+.names new_n383_ pi075 new_n625_
+11 0
+.names pi046 new_n383_ new_n625_ new_n626_
+--0 1
+00- 1
+.names new_n594_ pi046 new_n627_
+01 1
+10 1
+.names new_n381_ new_n627_ pi129 new_n628_
+--1 1
+00- 1
+.names new_n381_ new_n626_ new_n628_ po061
+-00 1
+0-0 1
+.names new_n381_ pi129 po062
+00 1
+.names new_n383_ pi048 new_n636_
+00 1
+.names pi062 new_n383_ new_n636_ new_n637_
+-00 1
+0-0 1
+.names new_n637_ new_n381_ new_n638_
+11 0
+.names new_n381_ new_n619_ new_n638_ pi129 po063
+--00 1
+01-- 1
+.names pi024 new_n377_ pi082 new_n640_
+-11 1
+1-1 1
+.names pi129 pi049 new_n641_
+01 1
+.names new_n570_ new_n640_ new_n641_ po064
+-11 1
+1-1 1
+.names po065
+ 0
+.names pi109 pi051 new_n650_
+01 0
+.names new_n581_ pi106 new_n651_
+00 1
+.names new_n650_ new_n651_ pi129 po066
+-00 1
+0-0 1
+.names pi051 pi109 pi052 new_n653_
+--0 1
+01- 1
+.names pi052 new_n581_ pi106 new_n654_
+-00 1
+1-0 1
+.names new_n653_ new_n654_ pi129 po067
+-00 1
+0-0 1
+.names po068
+ 1
+.names pi122 new_n398_ pi114 po070
+011 1
+.names pi116 pi058 new_n662_
+01 0
+.names pi116 pi094 pi026 new_n664_
+111 0
+.names new_n662_ pi094 pi058 new_n664_ po071
+--01 0
+00-- 0
+.names pi116 pi058 new_n668_
+11 0
+.names pi057 new_n668_ new_n670_
+01 0
+.names pi060 new_n668_ new_n670_ po072
+-11 1
+1-1 1
+.names pi059 new_n501_ po074
+01 0
+.names pi122 pi117 new_n674_
+00 1
+.names new_n674_ pi123 new_n675_
+11 0
+.names new_n674_ pi060 new_n675_ po075
+--0 1
+01- 1
+.names pi129 pi122 pi114 pi123 po076
+0001 1
+.names pi137 pi136 new_n682_
+01 1
+.names pi133 pi132 new_n684_
+11 1
+.names pi129 pi131 new_n684_ new_n685_
+011 0
+.names new_n685_ pi138 new_n682_ new_n686_
+001 1
+.names new_n686_ pi129 new_n687_
+00 1
+.names pi140 new_n686_ new_n687_ pi062 po077
+--11 0
+01-- 0
+.names pi142 new_n686_ new_n687_ pi063 po078
+--11 0
+01-- 0
+.names pi139 new_n686_ new_n687_ pi064 po079
+--11 0
+01-- 0
+.names pi146 new_n686_ new_n687_ pi065 po080
+--11 0
+01-- 0
+.names new_n685_ pi138 new_n696_
+00 1
+.names pi137 pi136 new_n697_
+00 1
+.names new_n697_ new_n696_ new_n698_
+11 0
+.names pi129 new_n698_ new_n700_
+01 1
+.names new_n698_ pi143 new_n700_ pi066 po081
+--11 0
+00-- 0
+.names new_n698_ pi139 new_n700_ pi067 po082
+--11 0
+00-- 0
+.names pi141 new_n686_ new_n687_ pi068 po083
+--11 0
+01-- 0
+.names pi143 new_n686_ new_n687_ pi069 po084
+--11 0
+01-- 0
+.names pi144 new_n686_ new_n687_ pi070 po085
+--11 0
+01-- 0
+.names pi145 new_n686_ new_n687_ pi071 po086
+--11 0
+01-- 0
+.names new_n698_ pi140 new_n700_ pi072 po087
+--11 0
+00-- 0
+.names new_n698_ pi141 new_n700_ pi073 po088
+--11 0
+00-- 0
+.names new_n698_ pi142 new_n700_ pi074 po089
+--11 0
+00-- 0
+.names new_n698_ pi144 new_n700_ pi075 po090
+--11 0
+00-- 0
+.names new_n698_ pi145 new_n700_ pi076 po091
+--11 0
+00-- 0
+.names new_n698_ pi146 new_n700_ pi077 po092
+--11 0
+00-- 0
+.names pi136 pi137 new_n718_
+01 1
+.names new_n718_ new_n696_ new_n719_
+11 0
+.names pi129 new_n719_ new_n720_
+01 0
+.names new_n719_ pi142 new_n720_ pi078 po093
+--01 1
+01-- 1
+.names new_n719_ pi143 new_n720_ pi079 po094
+--01 1
+01-- 1
+.names new_n719_ pi144 new_n720_ pi080 po095
+--01 1
+01-- 1
+.names pi129 new_n719_ pi081 new_n726_
+011 0
+.names new_n719_ pi145 new_n726_ po096
+--0 1
+01- 1
+.names new_n719_ new_n362_ new_n728_
+11 0
+.names new_n719_ pi146 new_n728_ po097
+--0 1
+01- 1
+.names pi072 pi138 pi136 new_n731_
+-10 1
+0-0 1
+.names pi119 pi138 new_n731_ new_n732_
+--0 1
+01- 1
+.names pi089 pi138 new_n734_
+01 0
+.names new_n734_ pi136 pi137 new_n736_
+-00 1
+0-0 1
+.names pi087 pi136 pi138 new_n738_
+-10 1
+1-0 1
+.names pi031 pi136 new_n738_ new_n739_
+--0 1
+01- 1
+.names pi136 pi138 new_n741_
+01 1
+.names pi115 new_n741_ pi137 new_n742_
+-01 1
+1-1 1
+.names new_n736_ new_n732_ new_n742_ new_n739_ po098
+--11 0
+11-- 0
+.names new_n719_ pi141 new_n720_ pi084 po099
+--01 1
+01-- 1
+.names new_n483_ pi116 pi085 new_n746_
+001 0
+.names new_n746_ new_n501_ po100
+11 0
+.names new_n719_ pi139 new_n720_ pi086 po101
+--01 1
+01-- 1
+.names new_n719_ pi140 new_n720_ pi087 po102
+--01 1
+01-- 1
+.names pi137 pi136 new_n752_
+11 1
+.names new_n752_ new_n696_ new_n753_
+11 0
+.names pi129 new_n753_ new_n754_
+01 0
+.names new_n753_ pi139 new_n754_ pi088 po103
+--01 1
+01-- 1
+.names new_n753_ pi140 new_n754_ pi089 po104
+--01 1
+01-- 1
+.names new_n753_ pi142 new_n754_ pi090 po105
+--01 1
+01-- 1
+.names new_n753_ pi143 new_n754_ pi091 po106
+--01 1
+01-- 1
+.names new_n753_ pi144 new_n754_ pi092 po107
+--01 1
+01-- 1
+.names new_n753_ pi146 new_n754_ pi093 po108
+--01 1
+01-- 1
+.names new_n697_ pi138 pi082 new_n766_
+111 0
+.names new_n766_ new_n685_ new_n768_
+00 0
+.names pi129 new_n768_ pi094 new_n769_
+011 0
+.names new_n768_ pi142 new_n769_ po109
+--0 1
+01- 1
+.names pi143 pi095 new_n768_ po110
+-11 1
+1-0 1
+.names pi146 pi096 new_n768_ po111
+-11 1
+1-0 1
+.names pi145 pi097 new_n768_ po112
+-11 1
+1-0 1
+.names new_n753_ pi145 new_n754_ pi098 po113
+--01 1
+01-- 1
+.names new_n753_ pi141 new_n754_ pi099 po114
+--01 1
+01-- 1
+.names pi144 pi100 new_n768_ po115
+-11 1
+1-0 1
+.names pi136 pi082 new_n783_
+00 0
+.names pi037 pi136 new_n783_ new_n784_
+--0 1
+01- 1
+.names new_n741_ pi096 new_n784_ pi138 new_n785_
+--00 1
+11-- 1
+.names new_n785_ pi137 po116
+11 1
+.names po117
+ 1
+.names po118
+ 1
+.names po119
+ 1
+.names po120
+ 0
+.names po121
+ 1
+.names po122
+ 0
+.names pi086 new_n718_ pi138 new_n842_
+-00 1
+0-0 1
+.names new_n682_ pi088 new_n718_ pi111 new_n850_
+--11 0
+11-- 0
+.names new_n850_ pi138 new_n842_ po123
+-00 1
+0-0 1
+.names pi026 new_n495_ pi027 new_n853_
+--0 1
+00- 1
+.names new_n290_ pi116 new_n854_
+11 0
+.names new_n854_ new_n476_ new_n855_
+00 1
+.names new_n855_ new_n853_ po124
+11 1
+.names pi058 pi053 new_n857_
+11 0
+.names new_n854_ new_n482_ new_n857_ po125
+001 1
+.names pi111 new_n766_ new_n685_ new_n861_
+-00 1
+1-0 1
+.names pi139 new_n766_ new_n861_ po126
+-11 1
+1-1 1
+.names new_n685_ pi112 new_n864_
+00 0
+.names new_n766_ pi141 new_n864_ new_n768_ po127
+--11 0
+00-- 0
+.names new_n398_ po129
+0 1
+.names new_n685_ pi115 new_n867_
+00 0
+.names new_n766_ pi140 new_n867_ new_n768_ po130
+--11 0
+00-- 0
+.names new_n304_ new_n305_ new_n321_ po131
+-00 1
+0-0 1
+.names pi129 pi122 po132
+01 0
+.names new_n435_ pi129 po133
+00 1
+.names new_n486_ pi129 po134
+00 1
+.names pi120 pi110 pi003 new_n873_
+000 1
+.names new_n873_ pi129 pi111 po135
+000 1
+.names pi129 pi120 pi081 po136
+011 1
+.names pi134 pi129 po137
+00 0
+.names pi135 pi129 po138
+00 0
+.names pi129 pi057 po139
+01 1
+.names pi096 pi125 pi003 new_n882_
+-00 1
+1-0 1
+.names new_n882_ pi129 po140
+00 1
+.names pi126 new_n684_ po141
+01 1
+.names pi108 po000
+1 1
+.names pi083 po001
+1 1
+.names pi104 po002
+1 1
+.names pi103 po003
+1 1
+.names pi102 po004
+1 1
+.names pi105 po005
+1 1
+.names pi107 po006
+1 1
+.names pi101 po007
+1 1
+.names pi126 po008
+1 1
+.names pi121 po009
+1 1
+.names pi001 po010
+1 1
+.names pi000 po011
+1 1
+.names pi130 po013
+1 1
+.names pi128 po014
+1 1
+.names po012
+ 1
+.end

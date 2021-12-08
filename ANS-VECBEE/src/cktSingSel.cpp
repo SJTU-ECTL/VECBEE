@@ -60,6 +60,7 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
     // simulate base network
     random_device rd;
     unsigned seed = static_cast <unsigned>(rd());
+    cout << "seed = " << seed << endl;
     cktRef.GenInputDist(seed);
     ckt.GenInputDist(seed);
     cktRef.FeedForward();
@@ -73,7 +74,7 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
         pCktObj->GetCutNtk()->FeedForwardCutNtk();
     }
 
-    // t = clock();
+    t = clock();
     // init BD
     for (auto & pCktObj : pOrderedObjs) {
         pCktObj->ResizeBD();
@@ -129,6 +130,7 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
     }
     cout << "Get boolean difference time = " << clock() - t << endl;
     // find the best candidate
+    t = clock();
     res.score = -FLT_MAX;
     for (auto & candi : candis) {
         float newER = static_cast <float> (baseError + candi.addedER);
@@ -143,6 +145,7 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
             res.score = score;
         }
     }
+    cout << "Get error time = " << clock() - t << endl;
 }
 
 
@@ -246,7 +249,13 @@ void Ckt_BuildCutNtksFast(Ckt_Sop_Net_t & ckt, vector <Ckt_Sop_t *> & pOrderedOb
         // ckt.SetAllUnvisited2();
         // Ckt_ObjFindCut(*pCktObj, cut);
         cut.clear();
-        Ckt_ObjExpand(*pCktObj, cut);
+        // Ckt_ObjExpand(*pCktObj, cut);
+        auto & cktObj = *pCktObj;
+        for (int i = 0; i < cktObj.GetFanoutNum(); ++i) {
+            Ckt_Sop_t * pCktFo = cktObj.GetFanout(i);
+            if (!pCktFo->IsDanggling())
+                cut.emplace_back(pCktFo);
+        }
         // Ckt_CollectVisited(pOrderedObjs, subNtk);
         subNtk.clear();
         for (auto & cutEle: cut)
@@ -370,10 +379,11 @@ float Ckt_SingleSelectionOnce(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, int E
 {
     // find best approximate simplified expression
     Ckt_Sing_Sel_Candi_t bestASE;
-    static int tt;
+    static long long tt;
     clock_t t = clock();
     Ckt_BatchErrorEstimation(ckt, cktRef, bestASE);
     tt += clock() - t;
+    cout << "runtime = " << tt / 1000000.0 << endl;
 
     // change function
     if (bestASE.pCktObj == nullptr) {
@@ -384,22 +394,31 @@ float Ckt_SingleSelectionOnce(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, int E
         // cout << "Added error of best ASE = " << bestASE.addedER << endl;
         // cout << "New error of best ASE = " << bestASE.newER << endl;
         Ckt_Sing_Sel_Info_t rplInfo;
-        if (bestASE.newER <= EThres) {
-            bestASE.pCktObj->ReplaceBy(bestASE.SOP, bestASE.type, rplInfo);
-            // // verify correctness of batch error estimation
-            // vector <Ckt_Sop_t *> pOrderedObjs;
-            // ckt.SortObjects(pOrderedObjs);
-            // ckt.FeedForward(pOrderedObjs);
-            // int newError = ckt.GetErrorRate(cktRef);
-            // cout << "Best ASE = " << bestASE << "\t" << "newError = " << newError << endl;
-            // assert(newError == bestASE.newER);
-            // // measure area and delay
-            // Ckt_Synthesis2(ckt);
+        // Ckt_Sop_Net_t backCkt(ckt);
+        if (bestASE.newER > EThres)
+            cout << "estimated error exceeds error bound" << endl;
+        Abc_Ntk_t * pBackNet = Abc_NtkDup(ckt.GetAbcNtk());
+        bestASE.pCktObj->ReplaceBy(bestASE.SOP, bestASE.type, rplInfo);
+
+        // verify correctness of batch error estimation
+        vector <Ckt_Sop_t *> pOrderedObjs;
+        ckt.SortObjects(pOrderedObjs);
+        ckt.FeedForward(pOrderedObjs);
+        int newError = ckt.GetErrorRate(cktRef);
+        cout << "Best ASE = " << bestASE << "\t" << "newError = " << newError << "\t" << "estError = " << bestASE.newER << endl;
+
+        if (newError > EThres) {
+            ostringstream oss;
+            oss << pBackNet->pName << "_back.blif";
+            cout << "final approximate circuit is: " << oss.str() << endl;
+            Ckt_Synthesis2(pBackNet, oss.str());
         }
-        else {
-            cout << "single selection time = " << tt / 1000000.0 << endl;
-        }
-        return bestASE.newER;
+        Abc_NtkDelete(pBackNet);
+
+        for (auto & pCktObj : pOrderedObjs)
+            pCktObj->GetLiteralsNum();
+        cout << "#literals = " << ckt.CountLiteralNum() << endl;
+        return newError;
     }
 }
 

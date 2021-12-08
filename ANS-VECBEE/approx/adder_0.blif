@@ -1,0 +1,401 @@
+# Benchmark "adder" written by ABC on Wed Dec  8 13:56:53 2021
+.model adder
+.inputs a[0] a[1] a[2] a[3] a[4] a[5] a[6] a[7] a[8] a[9] a[10] a[11] a[12] \
+ a[13] a[14] a[15] a[16] a[17] a[18] a[19] a[20] a[21] a[22] a[23] a[24] \
+ a[25] a[26] a[27] a[28] a[29] a[30] a[31] a[32] a[33] a[34] a[35] a[36] \
+ a[37] a[38] a[39] a[40] a[41] a[42] a[43] a[44] a[45] a[46] a[47] a[48] \
+ a[49] a[50] a[51] a[52] a[53] a[54] a[55] a[56] a[57] a[58] a[59] a[60] \
+ a[61] a[62] a[63] a[64] a[65] a[66] a[67] a[68] a[69] a[70] a[71] a[72] \
+ a[73] a[74] a[75] a[76] a[77] a[78] a[79] a[80] a[81] a[82] a[83] a[84] \
+ a[85] a[86] a[87] a[88] a[89] a[90] a[91] a[92] a[93] a[94] a[95] a[96] \
+ a[97] a[98] a[99] a[100] a[101] a[102] a[103] a[104] a[105] a[106] a[107] \
+ a[108] a[109] a[110] a[111] a[112] a[113] a[114] a[115] a[116] a[117] \
+ a[118] a[119] a[120] a[121] a[122] a[123] a[124] a[125] a[126] a[127] b[0] \
+ b[1] b[2] b[3] b[4] b[5] b[6] b[7] b[8] b[9] b[10] b[11] b[12] b[13] b[14] \
+ b[15] b[16] b[17] b[18] b[19] b[20] b[21] b[22] b[23] b[24] b[25] b[26] \
+ b[27] b[28] b[29] b[30] b[31] b[32] b[33] b[34] b[35] b[36] b[37] b[38] \
+ b[39] b[40] b[41] b[42] b[43] b[44] b[45] b[46] b[47] b[48] b[49] b[50] \
+ b[51] b[52] b[53] b[54] b[55] b[56] b[57] b[58] b[59] b[60] b[61] b[62] \
+ b[63] b[64] b[65] b[66] b[67] b[68] b[69] b[70] b[71] b[72] b[73] b[74] \
+ b[75] b[76] b[77] b[78] b[79] b[80] b[81] b[82] b[83] b[84] b[85] b[86] \
+ b[87] b[88] b[89] b[90] b[91] b[92] b[93] b[94] b[95] b[96] b[97] b[98] \
+ b[99] b[100] b[101] b[102] b[103] b[104] b[105] b[106] b[107] b[108] \
+ b[109] b[110] b[111] b[112] b[113] b[114] b[115] b[116] b[117] b[118] \
+ b[119] b[120] b[121] b[122] b[123] b[124] b[125] b[126] b[127]
+.outputs f[0] f[1] f[2] f[3] f[4] f[5] f[6] f[7] f[8] f[9] f[10] f[11] \
+ f[12] f[13] f[14] f[15] f[16] f[17] f[18] f[19] f[20] f[21] f[22] f[23] \
+ f[24] f[25] f[26] f[27] f[28] f[29] f[30] f[31] f[32] f[33] f[34] f[35] \
+ f[36] f[37] f[38] f[39] f[40] f[41] f[42] f[43] f[44] f[45] f[46] f[47] \
+ f[48] f[49] f[50] f[51] f[52] f[53] f[54] f[55] f[56] f[57] f[58] f[59] \
+ f[60] f[61] f[62] f[63] f[64] f[65] f[66] f[67] f[68] f[69] f[70] f[71] \
+ f[72] f[73] f[74] f[75] f[76] f[77] f[78] f[79] f[80] f[81] f[82] f[83] \
+ f[84] f[85] f[86] f[87] f[88] f[89] f[90] f[91] f[92] f[93] f[94] f[95] \
+ f[96] f[97] f[98] f[99] f[100] f[101] f[102] f[103] f[104] f[105] f[106] \
+ f[107] f[108] f[109] f[110] f[111] f[112] f[113] f[114] f[115] f[116] \
+ f[117] f[118] f[119] f[120] f[121] f[122] f[123] f[124] f[125] f[126] \
+ f[127] cOut
+.names b[0] a[0] f[0]
+01 1
+10 1
+.names b[0] a[0] new_n387_
+11 0
+.names b[1] a[1] new_n388_
+11 0
+.names new_n388_ new_n387_ f[1]
+01 1
+10 1
+.names new_n388_ new_n387_ f[2]
+11 0
+.names a[3] f[3]
+0 1
+.names b[4] a[4] f[4]
+11 0
+.names b[5] a[5] new_n418_
+11 1
+.names b[5] a[5] new_n420_
+00 1
+.names new_n420_ new_n418_ f[5]
+00 0
+.names b[6] a[6] new_n427_
+11 1
+.names b[6] a[6] new_n429_
+00 1
+.names new_n429_ new_n427_ f[6]
+00 0
+.names b[7] a[7] new_n436_
+11 1
+.names b[7] a[7] new_n438_
+00 1
+.names new_n438_ new_n436_ f[7]
+00 0
+.names b[8] a[8] new_n445_
+11 1
+.names b[8] a[8] new_n447_
+00 1
+.names new_n447_ new_n445_ f[8]
+00 0
+.names b[9] a[9] new_n454_
+11 1
+.names b[9] a[9] new_n456_
+00 1
+.names new_n456_ new_n454_ f[9]
+00 0
+.names b[10] a[10] new_n463_
+11 1
+.names b[10] a[10] new_n465_
+00 1
+.names new_n465_ new_n463_ f[10]
+00 0
+.names a[11] f[11]
+0 1
+.names b[12] a[12] new_n480_
+11 1
+.names b[12] a[12] new_n482_
+00 1
+.names new_n482_ new_n480_ f[12]
+00 0
+.names a[13] f[13]
+0 1
+.names b[14] a[14] f[14]
+11 0
+.names a[15] f[15]
+0 1
+.names b[16] a[16] f[16]
+00 0
+.names a[17] f[17]
+0 1
+.names b[18] a[18] f[18]
+11 0
+.names a[19] f[19]
+0 1
+.names b[20] a[20] f[20]
+00 0
+.names a[21] f[21]
+0 1
+.names b[22] a[22] f[22]
+11 0
+.names a[23] f[23]
+0 1
+.names b[24] a[24] f[24]
+00 0
+.names a[25] f[25]
+0 1
+.names b[26] a[26] f[26]
+11 0
+.names a[27] f[27]
+0 1
+.names b[28] a[28] f[28]
+00 0
+.names a[29] f[29]
+0 1
+.names b[30] a[30] f[30]
+11 0
+.names a[31] f[31]
+0 1
+.names b[32] a[32] f[32]
+00 0
+.names a[33] f[33]
+0 1
+.names b[34] a[34] f[34]
+11 0
+.names a[35] f[35]
+0 1
+.names b[36] a[36] f[36]
+00 0
+.names a[37] f[37]
+0 1
+.names b[38] a[38] f[38]
+11 0
+.names a[39] f[39]
+0 1
+.names b[40] a[40] f[40]
+00 0
+.names a[41] f[41]
+0 1
+.names b[42] a[42] f[42]
+11 0
+.names a[43] f[43]
+0 1
+.names b[44] a[44] f[44]
+00 0
+.names a[45] f[45]
+0 1
+.names b[46] a[46] f[46]
+11 0
+.names a[47] f[47]
+0 1
+.names b[48] a[48] f[48]
+00 0
+.names a[49] f[49]
+0 1
+.names b[50] a[50] f[50]
+11 0
+.names a[51] f[51]
+0 1
+.names b[52] a[52] f[52]
+00 0
+.names a[53] f[53]
+0 1
+.names b[54] a[54] f[54]
+11 0
+.names a[55] f[55]
+0 1
+.names b[56] a[56] f[56]
+00 0
+.names a[57] f[57]
+0 1
+.names b[58] a[58] f[58]
+11 0
+.names a[59] f[59]
+0 1
+.names b[60] a[60] f[60]
+00 0
+.names a[61] f[61]
+0 1
+.names b[62] a[62] f[62]
+11 0
+.names a[63] f[63]
+0 1
+.names b[64] a[64] f[64]
+00 0
+.names a[65] f[65]
+0 1
+.names b[66] a[66] f[66]
+11 0
+.names a[67] f[67]
+0 1
+.names b[68] a[68] f[68]
+00 0
+.names a[69] f[69]
+0 1
+.names b[70] a[70] f[70]
+11 0
+.names a[71] f[71]
+0 1
+.names b[72] a[72] f[72]
+00 0
+.names a[73] f[73]
+0 1
+.names b[74] a[74] f[74]
+11 0
+.names a[75] f[75]
+0 1
+.names b[76] a[76] f[76]
+00 0
+.names a[77] f[77]
+0 1
+.names b[78] a[78] f[78]
+11 0
+.names a[79] f[79]
+0 1
+.names b[80] a[80] f[80]
+00 0
+.names a[81] f[81]
+0 1
+.names b[82] a[82] f[82]
+11 0
+.names a[83] f[83]
+0 1
+.names b[84] a[84] f[84]
+00 0
+.names a[85] f[85]
+0 1
+.names b[86] a[86] f[86]
+11 0
+.names a[87] f[87]
+0 1
+.names f[88]
+ 0
+.names a[89] f[89]
+0 1
+.names b[90] a[90] new_n1142_
+11 1
+.names b[90] a[90] new_n1143_
+00 1
+.names new_n1143_ new_n1142_ f[90]
+00 1
+.names a[91] f[91]
+0 1
+.names b[92] a[92] new_n1161_
+11 1
+.names b[92] a[92] new_n1162_
+00 1
+.names new_n1162_ new_n1161_ f[92]
+00 1
+.names a[93] f[93]
+0 1
+.names b[94] a[94] new_n1180_
+11 1
+.names b[94] a[94] new_n1181_
+00 1
+.names new_n1181_ new_n1180_ f[94]
+00 1
+.names a[95] f[95]
+0 1
+.names b[96] a[96] new_n1199_
+11 1
+.names b[96] a[96] new_n1200_
+00 1
+.names new_n1200_ new_n1199_ f[96]
+00 1
+.names a[97] f[97]
+0 1
+.names b[98] a[98] new_n1218_
+11 1
+.names b[98] a[98] new_n1219_
+00 1
+.names new_n1219_ new_n1218_ f[98]
+00 1
+.names a[99] f[99]
+0 1
+.names b[100] a[100] new_n1237_
+11 1
+.names b[100] a[100] new_n1238_
+00 1
+.names new_n1238_ new_n1237_ f[100]
+00 1
+.names a[101] f[101]
+0 1
+.names b[102] a[102] new_n1256_
+11 1
+.names b[102] a[102] new_n1257_
+00 1
+.names new_n1257_ new_n1256_ f[102]
+00 1
+.names a[103] f[103]
+0 1
+.names b[104] a[104] new_n1275_
+11 1
+.names b[104] a[104] new_n1276_
+00 1
+.names new_n1276_ new_n1275_ f[104]
+00 1
+.names a[105] f[105]
+0 1
+.names b[106] a[106] new_n1294_
+11 1
+.names b[106] a[106] new_n1295_
+00 1
+.names new_n1295_ new_n1294_ f[106]
+00 1
+.names a[107] f[107]
+0 1
+.names b[108] a[108] new_n1313_
+11 1
+.names b[108] a[108] new_n1314_
+00 1
+.names new_n1314_ new_n1313_ f[108]
+00 1
+.names a[109] f[109]
+0 1
+.names b[110] a[110] new_n1332_
+11 1
+.names b[110] a[110] new_n1333_
+00 1
+.names new_n1333_ new_n1332_ f[110]
+00 1
+.names a[111] f[111]
+0 1
+.names b[112] a[112] new_n1351_
+11 1
+.names b[112] a[112] new_n1352_
+00 1
+.names new_n1352_ new_n1351_ f[112]
+00 1
+.names a[113] f[113]
+0 1
+.names b[114] a[114] new_n1370_
+11 1
+.names b[114] a[114] new_n1371_
+00 1
+.names new_n1371_ new_n1370_ f[114]
+00 1
+.names a[115] f[115]
+0 1
+.names b[116] a[116] new_n1389_
+11 1
+.names b[116] a[116] new_n1390_
+00 1
+.names new_n1390_ new_n1389_ f[116]
+00 1
+.names a[117] f[117]
+0 1
+.names b[118] a[118] new_n1408_
+11 1
+.names b[118] a[118] new_n1409_
+00 1
+.names new_n1409_ new_n1408_ f[118]
+00 1
+.names a[119] f[119]
+0 1
+.names b[120] a[120] new_n1427_
+11 1
+.names b[120] a[120] new_n1428_
+00 1
+.names new_n1428_ new_n1427_ f[120]
+00 1
+.names a[121] f[121]
+0 1
+.names b[122] a[122] new_n1446_
+11 1
+.names b[122] a[122] new_n1447_
+00 1
+.names new_n1447_ new_n1446_ f[122]
+00 1
+.names a[123] f[123]
+0 1
+.names b[124] a[124] new_n1465_
+11 1
+.names b[124] a[124] new_n1466_
+00 1
+.names new_n1466_ new_n1465_ f[124]
+00 1
+.names a[125] f[125]
+0 1
+.names b[126] a[126] f[126]
+11 0
+.names f[127]
+ 0
+.names cOut
+ 0
+.end
