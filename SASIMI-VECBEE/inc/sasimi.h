@@ -3,6 +3,7 @@
 
 
 #include "simulator.h"
+#include <boost/timer/progress_display.hpp>
 
 
 class LAC_t;

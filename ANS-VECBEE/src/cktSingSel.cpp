@@ -38,7 +38,7 @@ ostream & operator << (ostream & os, const Ckt_Sing_Sel_Candi_t & candi)
 
 void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_Sing_Sel_Candi_t & res)
 {
-    // clock_t t = clock();
+    clock_t t = clock();
     assert(&ckt != &cktRef);
     assert(ckt.GetAbcNtk() != cktRef.GetAbcNtk());
     assert(Ckt_HasSamePo(ckt, cktRef));
@@ -48,14 +48,15 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
     // get candidiates
     vector <Ckt_Sing_Sel_Candi_t> candis;
     Ckt_GetALCs(ckt, pOrderedObjs, candis);
+    cout << "#candidates = " << candis.size() << endl;
     if (candis.empty()) {
         cout << "Warning: no more ASE candidates" << endl;
         res.pCktObj = nullptr;
         return;
     }
     // build cut networks
-    Ckt_BuildCutNtks(ckt, pOrderedObjs);
-    // cout << "Build cut network time = " << clock() - t << endl;
+    Ckt_BuildCutNtksFast(ckt, pOrderedObjs);
+    cout << "Build cut network time = " << clock() - t << endl;
     // simulate base network
     random_device rd;
     unsigned seed = static_cast <unsigned>(rd());
@@ -126,7 +127,7 @@ void Ckt_BatchErrorEstimation(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, Ckt_S
         candi.addedER += pCktObj->GetIncER(isCorrect, values);
         candi.addedER -= pCktObj->GetDecER(isCorrect, values);
     }
-    // cout << "Get boolean difference time = " << clock() - t << endl;
+    cout << "Get boolean difference time = " << clock() - t << endl;
     // find the best candidate
     res.score = -FLT_MAX;
     for (auto & candi : candis) {
@@ -223,6 +224,33 @@ void Ckt_BuildCutNtks(Ckt_Sop_Net_t & ckt, vector <Ckt_Sop_t *> & pOrderedObjs)
         ckt.SetAllUnvisited2();
         Ckt_ObjFindCut(*pCktObj, cut);
         Ckt_CollectVisited(pOrderedObjs, subNtk);
+        pCktObj->SetCutNtk(Ckt_CreateNtkFrom(*pCktObj, subNtk, cut));
+    }
+}
+
+
+void Ckt_BuildCutNtksFast(Ckt_Sop_Net_t & ckt, vector <Ckt_Sop_t *> & pOrderedObjs)
+{
+    // clear cut networks
+    ckt.ClearCutNtks();
+    // update fanout cone information
+    // ckt.UpdateFoCone();
+    // find cuts and sub-networks
+    list <Ckt_Sop_t *> cut;
+    list <Ckt_Sop_t *> subNtk;
+
+    // Ckt_ClearCutNtks(ckt);
+    for (auto & pCktObj : pOrderedObjs) {
+        if (pCktObj->IsPI() || pCktObj->IsPO() || pCktObj->IsConst())
+            continue;
+        // ckt.SetAllUnvisited2();
+        // Ckt_ObjFindCut(*pCktObj, cut);
+        cut.clear();
+        Ckt_ObjExpand(*pCktObj, cut);
+        // Ckt_CollectVisited(pOrderedObjs, subNtk);
+        subNtk.clear();
+        for (auto & cutEle: cut)
+            subNtk.emplace_back(cutEle);
         pCktObj->SetCutNtk(Ckt_CreateNtkFrom(*pCktObj, subNtk, cut));
     }
 }

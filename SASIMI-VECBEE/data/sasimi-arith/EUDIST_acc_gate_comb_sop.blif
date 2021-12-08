@@ -1,0 +1,2011 @@
+# Benchmark "EUDIST" written by ABC on Tue Dec  7 20:45:43 2021
+.model EUDIST
+.inputs x0[0] x0[1] x0[2] x0[3] x0[4] x0[5] x0[6] x0[7] y0[0] y0[1] y0[2] \
+ y0[3] y0[4] y0[5] y0[6] y0[7] x1[0] x1[1] x1[2] x1[3] x1[4] x1[5] x1[6] \
+ x1[7] y1[0] y1[1] y1[2] y1[3] y1[4] y1[5] y1[6] y1[7]
+.outputs out[0] out[1] out[2] out[3] out[4] out[5] out[6] out[7] out[8] \
+ out[9] out[10] out[11] out[12] out[13] out[14] out[15]
+.names new_DP_OP_24J9_122_7450/n29_ new_DP_OP_24J9_122_7450/n22_ \
+ new_DP_OP_24J9_122_7450/n3_ new_DP_OP_24J9_122_7450/n2_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n29_ new_DP_OP_24J9_122_7450/n22_ \
+ new_DP_OP_24J9_122_7450/n3_ out[14]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n135_ new_DP_OP_24J9_122_7450/n133_ \
+ new_DP_OP_24J9_122_7450/n11_ new_DP_OP_24J9_122_7450/n10_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n135_ new_DP_OP_24J9_122_7450/n133_ \
+ new_DP_OP_24J9_122_7450/n11_ out[6]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n165_ new_DP_OP_24J9_122_7450/n14_ \
+ new_DP_OP_24J9_122_7450/n163_ new_DP_OP_24J9_122_7450/n13_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n165_ new_DP_OP_24J9_122_7450/n14_ \
+ new_DP_OP_24J9_122_7450/n163_ out[3]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n559_ new_DP_OP_24J9_122_7450/n594_ out[1]
+11 1
+.names new_DP_OP_24J9_122_7450/n559_ new_DP_OP_24J9_122_7450/n594_ out[0]
+10 1
+01 1
+.names y0[1] new_n57_ new_DP_OP_24J9_122_7450/n488_ \
+ new_DP_OP_24J9_122_7450/n487_
+1-1 1
+-11 1
+11- 1
+.names y0[1] new_n57_ new_DP_OP_24J9_122_7450/n488_ \
+ new_DP_OP_24J9_122_7450/n560_
+100 1
+010 1
+111 1
+001 1
+.names y0[2] new_n60_ new_DP_OP_24J9_122_7450/n487_ \
+ new_DP_OP_24J9_122_7450/n486_
+1-1 1
+-11 1
+11- 1
+.names y0[2] new_n60_ new_DP_OP_24J9_122_7450/n487_ \
+ new_DP_OP_24J9_122_7450/n561_
+100 1
+010 1
+111 1
+001 1
+.names y0[3] new_DP_OP_24J9_122_7450/n493_ new_DP_OP_24J9_122_7450/n486_ \
+ new_DP_OP_24J9_122_7450/n485_
+1-1 1
+-11 1
+11- 1
+.names y0[3] new_DP_OP_24J9_122_7450/n493_ new_DP_OP_24J9_122_7450/n486_ \
+ new_DP_OP_24J9_122_7450/n562_
+100 1
+010 1
+111 1
+001 1
+.names y0[4] new_n64_ new_DP_OP_24J9_122_7450/n485_ \
+ new_DP_OP_24J9_122_7450/n484_
+1-1 1
+-11 1
+11- 1
+.names y0[4] new_n64_ new_DP_OP_24J9_122_7450/n485_ \
+ new_DP_OP_24J9_122_7450/n563_
+100 1
+010 1
+111 1
+001 1
+.names y0[5] new_DP_OP_24J9_122_7450/n491_ new_DP_OP_24J9_122_7450/n484_ \
+ new_DP_OP_24J9_122_7450/n483_
+1-1 1
+-11 1
+11- 1
+.names y0[5] new_DP_OP_24J9_122_7450/n491_ new_DP_OP_24J9_122_7450/n484_ \
+ new_DP_OP_24J9_122_7450/n564_
+100 1
+010 1
+111 1
+001 1
+.names y1[1] new_DP_OP_24J9_122_7450/n479_ new_DP_OP_24J9_122_7450/n472_ \
+ new_DP_OP_24J9_122_7450/n471_
+1-1 1
+-11 1
+11- 1
+.names y1[1] new_DP_OP_24J9_122_7450/n479_ new_DP_OP_24J9_122_7450/n472_ \
+ new_DP_OP_24J9_122_7450/n551_
+100 1
+010 1
+111 1
+001 1
+.names y1[2] new_DP_OP_24J9_122_7450/n478_ new_DP_OP_24J9_122_7450/n471_ \
+ new_DP_OP_24J9_122_7450/n470_
+1-1 1
+-11 1
+11- 1
+.names y1[2] new_DP_OP_24J9_122_7450/n478_ new_DP_OP_24J9_122_7450/n471_ \
+ new_DP_OP_24J9_122_7450/n552_
+100 1
+010 1
+111 1
+001 1
+.names y1[3] new_n62_ new_DP_OP_24J9_122_7450/n470_ \
+ new_DP_OP_24J9_122_7450/n469_
+1-1 1
+-11 1
+11- 1
+.names y1[3] new_n62_ new_DP_OP_24J9_122_7450/n470_ \
+ new_DP_OP_24J9_122_7450/n553_
+100 1
+010 1
+111 1
+001 1
+.names y1[4] new_DP_OP_24J9_122_7450/n476_ new_DP_OP_24J9_122_7450/n469_ \
+ new_DP_OP_24J9_122_7450/n468_
+1-1 1
+-11 1
+11- 1
+.names y1[4] new_DP_OP_24J9_122_7450/n476_ new_DP_OP_24J9_122_7450/n469_ \
+ new_DP_OP_24J9_122_7450/n554_
+100 1
+010 1
+111 1
+001 1
+.names y1[5] new_n65_ new_DP_OP_24J9_122_7450/n468_ \
+ new_DP_OP_24J9_122_7450/n467_
+1-1 1
+-11 1
+11- 1
+.names y1[5] new_n65_ new_DP_OP_24J9_122_7450/n468_ \
+ new_DP_OP_24J9_122_7450/n555_
+100 1
+010 1
+111 1
+001 1
+.names y0[6] new_DP_OP_24J9_122_7450/n490_ new_DP_OP_24J9_122_7450/n483_ \
+ new_DP_OP_24J9_122_7450/n482_
+1-1 1
+-11 1
+11- 1
+.names y0[6] new_DP_OP_24J9_122_7450/n490_ new_DP_OP_24J9_122_7450/n483_ \
+ new_DP_OP_24J9_122_7450/n565_
+100 1
+010 1
+111 1
+001 1
+.names y1[6] new_n67_ new_DP_OP_24J9_122_7450/n467_ \
+ new_DP_OP_24J9_122_7450/n466_
+1-1 1
+-11 1
+11- 1
+.names y1[6] new_n67_ new_DP_OP_24J9_122_7450/n467_ \
+ new_DP_OP_24J9_122_7450/n556_
+100 1
+010 1
+111 1
+001 1
+.names x0[1] new_n41_ new_DP_OP_24J9_122_7450/n520_ \
+ new_DP_OP_24J9_122_7450/n519_
+1-1 1
+-11 1
+11- 1
+.names x0[1] new_n41_ new_DP_OP_24J9_122_7450/n520_ \
+ new_DP_OP_24J9_122_7450/n595_
+100 1
+010 1
+111 1
+001 1
+.names x0[2] new_n44_ new_DP_OP_24J9_122_7450/n519_ \
+ new_DP_OP_24J9_122_7450/n518_
+1-1 1
+-11 1
+11- 1
+.names x0[2] new_n44_ new_DP_OP_24J9_122_7450/n519_ \
+ new_DP_OP_24J9_122_7450/n596_
+100 1
+010 1
+111 1
+001 1
+.names x0[3] new_DP_OP_24J9_122_7450/n525_ new_DP_OP_24J9_122_7450/n518_ \
+ new_DP_OP_24J9_122_7450/n517_
+1-1 1
+-11 1
+11- 1
+.names x0[3] new_DP_OP_24J9_122_7450/n525_ new_DP_OP_24J9_122_7450/n518_ \
+ new_DP_OP_24J9_122_7450/n597_
+100 1
+010 1
+111 1
+001 1
+.names x0[4] new_n48_ new_DP_OP_24J9_122_7450/n517_ \
+ new_DP_OP_24J9_122_7450/n516_
+1-1 1
+-11 1
+11- 1
+.names x0[4] new_n48_ new_DP_OP_24J9_122_7450/n517_ \
+ new_DP_OP_24J9_122_7450/n598_
+100 1
+010 1
+111 1
+001 1
+.names x0[5] new_DP_OP_24J9_122_7450/n523_ new_DP_OP_24J9_122_7450/n516_ \
+ new_DP_OP_24J9_122_7450/n515_
+1-1 1
+-11 1
+11- 1
+.names x0[5] new_DP_OP_24J9_122_7450/n523_ new_DP_OP_24J9_122_7450/n516_ \
+ new_DP_OP_24J9_122_7450/n599_
+100 1
+010 1
+111 1
+001 1
+.names x1[1] new_DP_OP_24J9_122_7450/n511_ new_DP_OP_24J9_122_7450/n504_ \
+ new_DP_OP_24J9_122_7450/n503_
+1-1 1
+-11 1
+11- 1
+.names x1[1] new_DP_OP_24J9_122_7450/n511_ new_DP_OP_24J9_122_7450/n504_ \
+ new_DP_OP_24J9_122_7450/n586_
+100 1
+010 1
+111 1
+001 1
+.names x1[2] new_DP_OP_24J9_122_7450/n510_ new_DP_OP_24J9_122_7450/n503_ \
+ new_DP_OP_24J9_122_7450/n502_
+1-1 1
+-11 1
+11- 1
+.names x1[2] new_DP_OP_24J9_122_7450/n510_ new_DP_OP_24J9_122_7450/n503_ \
+ new_DP_OP_24J9_122_7450/n587_
+100 1
+010 1
+111 1
+001 1
+.names x1[3] new_n46_ new_DP_OP_24J9_122_7450/n502_ \
+ new_DP_OP_24J9_122_7450/n501_
+1-1 1
+-11 1
+11- 1
+.names x1[3] new_n46_ new_DP_OP_24J9_122_7450/n502_ \
+ new_DP_OP_24J9_122_7450/n588_
+100 1
+010 1
+111 1
+001 1
+.names x1[4] new_DP_OP_24J9_122_7450/n508_ new_DP_OP_24J9_122_7450/n501_ \
+ new_DP_OP_24J9_122_7450/n500_
+1-1 1
+-11 1
+11- 1
+.names x1[4] new_DP_OP_24J9_122_7450/n508_ new_DP_OP_24J9_122_7450/n501_ \
+ new_DP_OP_24J9_122_7450/n589_
+100 1
+010 1
+111 1
+001 1
+.names x1[5] new_n49_ new_DP_OP_24J9_122_7450/n500_ \
+ new_DP_OP_24J9_122_7450/n499_
+1-1 1
+-11 1
+11- 1
+.names x1[5] new_n49_ new_DP_OP_24J9_122_7450/n500_ \
+ new_DP_OP_24J9_122_7450/n590_
+100 1
+010 1
+111 1
+001 1
+.names x0[6] new_DP_OP_24J9_122_7450/n522_ new_DP_OP_24J9_122_7450/n515_ \
+ new_DP_OP_24J9_122_7450/n514_
+1-1 1
+-11 1
+11- 1
+.names x0[6] new_DP_OP_24J9_122_7450/n522_ new_DP_OP_24J9_122_7450/n515_ \
+ new_DP_OP_24J9_122_7450/n600_
+100 1
+010 1
+111 1
+001 1
+.names x1[6] new_n51_ new_DP_OP_24J9_122_7450/n499_ \
+ new_DP_OP_24J9_122_7450/n498_
+1-1 1
+-11 1
+11- 1
+.names x1[6] new_n51_ new_DP_OP_24J9_122_7450/n499_ \
+ new_DP_OP_24J9_122_7450/n591_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n67_ new_DP_OP_24J9_122_7450/n343_ \
+ new_DP_OP_24J9_122_7450/n198_ new_DP_OP_24J9_122_7450/n51_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n67_ new_DP_OP_24J9_122_7450/n343_ \
+ new_DP_OP_24J9_122_7450/n198_ new_DP_OP_24J9_122_7450/n52_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n431_ new_DP_OP_24J9_122_7450/n286_ \
+ new_DP_OP_24J9_122_7450/n328_ new_DP_OP_24J9_122_7450/n49_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n431_ new_DP_OP_24J9_122_7450/n286_ \
+ new_DP_OP_24J9_122_7450/n328_ new_DP_OP_24J9_122_7450/n50_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n197_ new_DP_OP_24J9_122_7450/n40_ new_n186_ \
+ new_DP_OP_24J9_122_7450/n37_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n197_ new_DP_OP_24J9_122_7450/n40_ new_n186_ \
+ new_DP_OP_24J9_122_7450/n38_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n51_ new_DP_OP_24J9_122_7450/n49_ \
+ new_DP_OP_24J9_122_7450/n38_ new_DP_OP_24J9_122_7450/n33_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n51_ new_DP_OP_24J9_122_7450/n49_ \
+ new_DP_OP_24J9_122_7450/n38_ new_DP_OP_24J9_122_7450/n34_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n432_ new_DP_OP_24J9_122_7450/n287_ \
+ new_DP_OP_24J9_122_7450/n116_
+11 1
+.names new_DP_OP_24J9_122_7450/n432_ new_DP_OP_24J9_122_7450/n287_ \
+ new_DP_OP_24J9_122_7450/n117_
+10 1
+01 1
+.names new_n190_ new_n188_ new_DP_OP_24J9_122_7450/n116_ \
+ new_DP_OP_24J9_122_7450/n100_
+1-1 1
+-11 1
+11- 1
+.names new_n190_ new_n188_ new_DP_OP_24J9_122_7450/n116_ \
+ new_DP_OP_24J9_122_7450/n101_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n100_ new_DP_OP_24J9_122_7450/n208_ \
+ new_DP_OP_24J9_122_7450/n353_ new_DP_OP_24J9_122_7450/n81_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n100_ new_DP_OP_24J9_122_7450/n208_ \
+ new_DP_OP_24J9_122_7450/n353_ new_DP_OP_24J9_122_7450/n82_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n338_ new_DP_OP_24J9_122_7450/n192_ \
+ new_DP_OP_24J9_122_7450/n184_ new_DP_OP_24J9_122_7450/n79_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n338_ new_DP_OP_24J9_122_7450/n192_ \
+ new_DP_OP_24J9_122_7450/n184_ new_DP_OP_24J9_122_7450/n80_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n207_ new_DP_OP_24J9_122_7450/n352_ \
+ new_DP_OP_24J9_122_7450/n191_ new_DP_OP_24J9_122_7450/n65_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n207_ new_DP_OP_24J9_122_7450/n352_ \
+ new_DP_OP_24J9_122_7450/n191_ new_DP_OP_24J9_122_7450/n66_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n81_ new_DP_OP_24J9_122_7450/n79_ \
+ new_DP_OP_24J9_122_7450/n66_ new_DP_OP_24J9_122_7450/n59_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n81_ new_DP_OP_24J9_122_7450/n79_ \
+ new_DP_OP_24J9_122_7450/n66_ new_DP_OP_24J9_122_7450/n60_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n68_ new_DP_OP_24J9_122_7450/n344_ \
+ new_DP_OP_24J9_122_7450/n337_ new_DP_OP_24J9_122_7450/n63_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n68_ new_DP_OP_24J9_122_7450/n344_ \
+ new_DP_OP_24J9_122_7450/n337_ new_DP_OP_24J9_122_7450/n64_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n182_ new_DP_OP_24J9_122_7450/n65_ \
+ new_DP_OP_24J9_122_7450/n63_ new_DP_OP_24J9_122_7450/n47_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n182_ new_DP_OP_24J9_122_7450/n65_ \
+ new_DP_OP_24J9_122_7450/n63_ new_DP_OP_24J9_122_7450/n48_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n199_ new_DP_OP_24J9_122_7450/n329_ \
+ new_DP_OP_24J9_122_7450/n183_ new_DP_OP_24J9_122_7450/n61_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n199_ new_DP_OP_24J9_122_7450/n329_ \
+ new_DP_OP_24J9_122_7450/n183_ new_DP_OP_24J9_122_7450/n62_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n362_ new_DP_OP_24J9_122_7450/n217_ \
+ new_DP_OP_24J9_122_7450/n193_ new_DP_OP_24J9_122_7450/n98_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n362_ new_DP_OP_24J9_122_7450/n217_ \
+ new_DP_OP_24J9_122_7450/n193_ new_DP_OP_24J9_122_7450/n99_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n330_ new_DP_OP_24J9_122_7450/n83_ \
+ new_DP_OP_24J9_122_7450/n98_ new_DP_OP_24J9_122_7450/n77_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n330_ new_DP_OP_24J9_122_7450/n83_ \
+ new_DP_OP_24J9_122_7450/n98_ new_DP_OP_24J9_122_7450/n78_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n64_ new_DP_OP_24J9_122_7450/n62_ \
+ new_DP_OP_24J9_122_7450/n77_ new_DP_OP_24J9_122_7450/n57_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n64_ new_DP_OP_24J9_122_7450/n62_ \
+ new_DP_OP_24J9_122_7450/n77_ new_DP_OP_24J9_122_7450/n58_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n59_ new_DP_OP_24J9_122_7450/n48_ \
+ new_DP_OP_24J9_122_7450/n57_ new_DP_OP_24J9_122_7450/n43_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n59_ new_DP_OP_24J9_122_7450/n48_ \
+ new_DP_OP_24J9_122_7450/n57_ new_DP_OP_24J9_122_7450/n44_
+100 1
+010 1
+111 1
+001 1
+.names new_n187_ new_DP_OP_24J9_122_7450/n327_ \
+ new_DP_OP_24J9_122_7450/n181_ new_DP_OP_24J9_122_7450/n35_
+1-1 1
+-11 1
+11- 1
+.names new_n187_ new_DP_OP_24J9_122_7450/n327_ \
+ new_DP_OP_24J9_122_7450/n181_ new_DP_OP_24J9_122_7450/n36_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n61_ new_DP_OP_24J9_122_7450/n52_ \
+ new_DP_OP_24J9_122_7450/n50_ new_DP_OP_24J9_122_7450/n45_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n61_ new_DP_OP_24J9_122_7450/n52_ \
+ new_DP_OP_24J9_122_7450/n50_ new_DP_OP_24J9_122_7450/n46_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n36_ new_DP_OP_24J9_122_7450/n47_ \
+ new_DP_OP_24J9_122_7450/n45_ new_DP_OP_24J9_122_7450/n31_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n36_ new_DP_OP_24J9_122_7450/n47_ \
+ new_DP_OP_24J9_122_7450/n45_ new_DP_OP_24J9_122_7450/n32_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n34_ new_DP_OP_24J9_122_7450/n43_ \
+ new_DP_OP_24J9_122_7450/n32_ new_DP_OP_24J9_122_7450/n29_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n34_ new_DP_OP_24J9_122_7450/n43_ \
+ new_DP_OP_24J9_122_7450/n32_ new_DP_OP_24J9_122_7450/n30_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n326_ new_DP_OP_24J9_122_7450/n180_ \
+ new_DP_OP_24J9_122_7450/n37_ new_DP_OP_24J9_122_7450/n25_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n326_ new_DP_OP_24J9_122_7450/n180_ \
+ new_DP_OP_24J9_122_7450/n37_ new_DP_OP_24J9_122_7450/n26_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n35_ new_DP_OP_24J9_122_7450/n28_ \
+ new_DP_OP_24J9_122_7450/n26_ new_DP_OP_24J9_122_7450/n23_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n35_ new_DP_OP_24J9_122_7450/n28_ \
+ new_DP_OP_24J9_122_7450/n26_ new_DP_OP_24J9_122_7450/n24_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n33_ new_DP_OP_24J9_122_7450/n24_ \
+ new_DP_OP_24J9_122_7450/n31_ new_DP_OP_24J9_122_7450/n21_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n33_ new_DP_OP_24J9_122_7450/n24_ \
+ new_DP_OP_24J9_122_7450/n31_ new_DP_OP_24J9_122_7450/n22_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n209_ new_DP_OP_24J9_122_7450/n354_ \
+ new_DP_OP_24J9_122_7450/n174_ new_DP_OP_24J9_122_7450/n96_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n209_ new_DP_OP_24J9_122_7450/n354_ \
+ new_DP_OP_24J9_122_7450/n174_ new_DP_OP_24J9_122_7450/n97_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n357_ new_DP_OP_24J9_122_7450/n212_ \
+ new_DP_OP_24J9_122_7450/n142_
+11 1
+.names new_DP_OP_24J9_122_7450/n357_ new_DP_OP_24J9_122_7450/n212_ \
+ new_DP_OP_24J9_122_7450/n143_
+10 1
+01 1
+.names new_DP_OP_24J9_122_7450/n142_ new_DP_OP_24J9_122_7450/n211_ \
+ new_DP_OP_24J9_122_7450/n356_ new_DP_OP_24J9_122_7450/n130_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n142_ new_DP_OP_24J9_122_7450/n211_ \
+ new_DP_OP_24J9_122_7450/n356_ new_DP_OP_24J9_122_7450/n131_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n355_ new_DP_OP_24J9_122_7450/n210_ \
+ new_DP_OP_24J9_122_7450/n130_ new_DP_OP_24J9_122_7450/n114_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n355_ new_DP_OP_24J9_122_7450/n210_ \
+ new_DP_OP_24J9_122_7450/n130_ new_DP_OP_24J9_122_7450/n115_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n339_ new_DP_OP_24J9_122_7450/n101_ \
+ new_DP_OP_24J9_122_7450/n114_ new_DP_OP_24J9_122_7450/n94_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n339_ new_DP_OP_24J9_122_7450/n101_ \
+ new_DP_OP_24J9_122_7450/n114_ new_DP_OP_24J9_122_7450/n95_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n331_ new_DP_OP_24J9_122_7450/n185_ \
+ new_DP_OP_24J9_122_7450/n320_ new_DP_OP_24J9_122_7450/n92_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n331_ new_DP_OP_24J9_122_7450/n185_ \
+ new_DP_OP_24J9_122_7450/n320_ new_DP_OP_24J9_122_7450/n93_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n96_ new_DP_OP_24J9_122_7450/n94_ \
+ new_DP_OP_24J9_122_7450/n92_ new_DP_OP_24J9_122_7450/n75_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n96_ new_DP_OP_24J9_122_7450/n94_ \
+ new_DP_OP_24J9_122_7450/n92_ new_DP_OP_24J9_122_7450/n76_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n82_ new_DP_OP_24J9_122_7450/n80_ \
+ new_DP_OP_24J9_122_7450/n78_ new_DP_OP_24J9_122_7450/n73_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n82_ new_DP_OP_24J9_122_7450/n80_ \
+ new_DP_OP_24J9_122_7450/n78_ new_DP_OP_24J9_122_7450/n74_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n75_ new_DP_OP_24J9_122_7450/n60_ \
+ new_DP_OP_24J9_122_7450/n73_ new_DP_OP_24J9_122_7450/n55_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n75_ new_DP_OP_24J9_122_7450/n60_ \
+ new_DP_OP_24J9_122_7450/n73_ new_DP_OP_24J9_122_7450/n56_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n46_ new_DP_OP_24J9_122_7450/n55_ \
+ new_DP_OP_24J9_122_7450/n44_ new_DP_OP_24J9_122_7450/n41_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n46_ new_DP_OP_24J9_122_7450/n55_ \
+ new_DP_OP_24J9_122_7450/n44_ new_DP_OP_24J9_122_7450/n42_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n117_ new_DP_OP_24J9_122_7450/n332_ \
+ new_DP_OP_24J9_122_7450/n186_ new_DP_OP_24J9_122_7450/n112_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n117_ new_DP_OP_24J9_122_7450/n332_ \
+ new_DP_OP_24J9_122_7450/n186_ new_DP_OP_24J9_122_7450/n113_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n363_ new_DP_OP_24J9_122_7450/n218_ \
+ new_DP_OP_24J9_122_7450/n340_ new_DP_OP_24J9_122_7450/n110_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n363_ new_DP_OP_24J9_122_7450/n218_ \
+ new_DP_OP_24J9_122_7450/n340_ new_DP_OP_24J9_122_7450/n111_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n112_ new_DP_OP_24J9_122_7450/n110_ \
+ new_DP_OP_24J9_122_7450/n99_ new_DP_OP_24J9_122_7450/n90_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n112_ new_DP_OP_24J9_122_7450/n110_ \
+ new_DP_OP_24J9_122_7450/n99_ new_DP_OP_24J9_122_7450/n91_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n288_ new_DP_OP_24J9_122_7450/n433_ \
+ new_DP_OP_24J9_122_7450/n160_
+11 1
+.names new_DP_OP_24J9_122_7450/n288_ new_DP_OP_24J9_122_7450/n433_ \
+ new_DP_OP_24J9_122_7450/n161_
+10 1
+01 1
+.names new_n185_ new_n189_ new_DP_OP_24J9_122_7450/n160_ \
+ new_DP_OP_24J9_122_7450/n152_
+1-1 1
+-11 1
+11- 1
+.names new_n185_ new_n189_ new_DP_OP_24J9_122_7450/n160_ \
+ new_DP_OP_24J9_122_7450/n153_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n152_ new_DP_OP_24J9_122_7450/n143_ \
+ new_DP_OP_24J9_122_7450/n204_ new_DP_OP_24J9_122_7450/n140_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n152_ new_DP_OP_24J9_122_7450/n143_ \
+ new_DP_OP_24J9_122_7450/n204_ new_DP_OP_24J9_122_7450/n141_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n348_ new_DP_OP_24J9_122_7450/n203_ \
+ new_DP_OP_24J9_122_7450/n140_ new_DP_OP_24J9_122_7450/n128_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n348_ new_DP_OP_24J9_122_7450/n203_ \
+ new_DP_OP_24J9_122_7450/n140_ new_DP_OP_24J9_122_7450/n129_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n194_ new_DP_OP_24J9_122_7450/n128_ \
+ new_DP_OP_24J9_122_7450/n115_ new_DP_OP_24J9_122_7450/n108_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n194_ new_DP_OP_24J9_122_7450/n128_ \
+ new_DP_OP_24J9_122_7450/n115_ new_DP_OP_24J9_122_7450/n109_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n108_ new_DP_OP_24J9_122_7450/n97_ \
+ new_DP_OP_24J9_122_7450/n93_ new_DP_OP_24J9_122_7450/n88_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n108_ new_DP_OP_24J9_122_7450/n97_ \
+ new_DP_OP_24J9_122_7450/n93_ new_DP_OP_24J9_122_7450/n89_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n90_ new_DP_OP_24J9_122_7450/n88_ \
+ new_DP_OP_24J9_122_7450/n76_ new_DP_OP_24J9_122_7450/n71_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n90_ new_DP_OP_24J9_122_7450/n88_ \
+ new_DP_OP_24J9_122_7450/n76_ new_DP_OP_24J9_122_7450/n72_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n58_ new_DP_OP_24J9_122_7450/n71_ \
+ new_DP_OP_24J9_122_7450/n56_ new_DP_OP_24J9_122_7450/n53_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n58_ new_DP_OP_24J9_122_7450/n71_ \
+ new_DP_OP_24J9_122_7450/n56_ new_DP_OP_24J9_122_7450/n54_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n349_ new_DP_OP_24J9_122_7450/n342_ \
+ new_DP_OP_24J9_122_7450/n196_ new_DP_OP_24J9_122_7450/n138_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n349_ new_DP_OP_24J9_122_7450/n342_ \
+ new_DP_OP_24J9_122_7450/n196_ new_DP_OP_24J9_122_7450/n139_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n131_ new_DP_OP_24J9_122_7450/n364_ \
+ new_DP_OP_24J9_122_7450/n138_ new_DP_OP_24J9_122_7450/n126_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n131_ new_DP_OP_24J9_122_7450/n364_ \
+ new_DP_OP_24J9_122_7450/n138_ new_DP_OP_24J9_122_7450/n127_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n219_ new_DP_OP_24J9_122_7450/n321_ \
+ new_DP_OP_24J9_122_7450/n341_ new_DP_OP_24J9_122_7450/n124_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n219_ new_DP_OP_24J9_122_7450/n321_ \
+ new_DP_OP_24J9_122_7450/n341_ new_DP_OP_24J9_122_7450/n125_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n126_ new_DP_OP_24J9_122_7450/n124_ \
+ new_DP_OP_24J9_122_7450/n113_ new_DP_OP_24J9_122_7450/n106_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n126_ new_DP_OP_24J9_122_7450/n124_ \
+ new_DP_OP_24J9_122_7450/n113_ new_DP_OP_24J9_122_7450/n107_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n95_ new_DP_OP_24J9_122_7450/n106_ \
+ new_DP_OP_24J9_122_7450/n91_ new_DP_OP_24J9_122_7450/n86_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n95_ new_DP_OP_24J9_122_7450/n106_ \
+ new_DP_OP_24J9_122_7450/n91_ new_DP_OP_24J9_122_7450/n87_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n74_ new_DP_OP_24J9_122_7450/n86_ \
+ new_DP_OP_24J9_122_7450/n72_ new_DP_OP_24J9_122_7450/n69_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n74_ new_DP_OP_24J9_122_7450/n86_ \
+ new_DP_OP_24J9_122_7450/n72_ new_DP_OP_24J9_122_7450/n70_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n351_ new_DP_OP_24J9_122_7450/n206_ \
+ new_DP_OP_24J9_122_7450/n161_ new_DP_OP_24J9_122_7450/n158_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n351_ new_DP_OP_24J9_122_7450/n206_ \
+ new_DP_OP_24J9_122_7450/n161_ new_DP_OP_24J9_122_7450/n159_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n366_ new_DP_OP_24J9_122_7450/n221_ \
+ new_DP_OP_24J9_122_7450/n158_ new_DP_OP_24J9_122_7450/n150_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n366_ new_DP_OP_24J9_122_7450/n221_ \
+ new_DP_OP_24J9_122_7450/n158_ new_DP_OP_24J9_122_7450/n151_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n365_ new_DP_OP_24J9_122_7450/n220_ \
+ new_DP_OP_24J9_122_7450/n150_ new_DP_OP_24J9_122_7450/n136_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n365_ new_DP_OP_24J9_122_7450/n220_ \
+ new_DP_OP_24J9_122_7450/n150_ new_DP_OP_24J9_122_7450/n137_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n175_ new_DP_OP_24J9_122_7450/n195_ \
+ new_DP_OP_24J9_122_7450/n136_ new_DP_OP_24J9_122_7450/n122_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n175_ new_DP_OP_24J9_122_7450/n195_ \
+ new_DP_OP_24J9_122_7450/n136_ new_DP_OP_24J9_122_7450/n123_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n122_ new_DP_OP_24J9_122_7450/n111_ \
+ new_DP_OP_24J9_122_7450/n109_ new_DP_OP_24J9_122_7450/n104_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n122_ new_DP_OP_24J9_122_7450/n111_ \
+ new_DP_OP_24J9_122_7450/n109_ new_DP_OP_24J9_122_7450/n105_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n224_ new_DP_OP_24J9_122_7450/n369_ \
+ new_DP_OP_24J9_122_7450/n170_
+11 1
+.names new_DP_OP_24J9_122_7450/n224_ new_DP_OP_24J9_122_7450/n369_ \
+ new_DP_OP_24J9_122_7450/n171_
+10 1
+01 1
+.names new_DP_OP_24J9_122_7450/n170_ new_DP_OP_24J9_122_7450/n368_ \
+ new_DP_OP_24J9_122_7450/n223_ new_DP_OP_24J9_122_7450/n166_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n170_ new_DP_OP_24J9_122_7450/n368_ \
+ new_DP_OP_24J9_122_7450/n223_ new_DP_OP_24J9_122_7450/n167_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n367_ new_DP_OP_24J9_122_7450/n222_ \
+ new_DP_OP_24J9_122_7450/n166_ new_DP_OP_24J9_122_7450/n156_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n367_ new_DP_OP_24J9_122_7450/n222_ \
+ new_DP_OP_24J9_122_7450/n166_ new_DP_OP_24J9_122_7450/n157_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n322_ new_DP_OP_24J9_122_7450/n176_ \
+ new_DP_OP_24J9_122_7450/n156_ new_DP_OP_24J9_122_7450/n148_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n322_ new_DP_OP_24J9_122_7450/n176_ \
+ new_DP_OP_24J9_122_7450/n156_ new_DP_OP_24J9_122_7450/n149_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n350_ new_DP_OP_24J9_122_7450/n205_ \
+ new_DP_OP_24J9_122_7450/n153_ new_DP_OP_24J9_122_7450/n146_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n350_ new_DP_OP_24J9_122_7450/n205_ \
+ new_DP_OP_24J9_122_7450/n153_ new_DP_OP_24J9_122_7450/n147_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n148_ new_DP_OP_24J9_122_7450/n146_ \
+ new_DP_OP_24J9_122_7450/n141_ new_DP_OP_24J9_122_7450/n134_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n148_ new_DP_OP_24J9_122_7450/n146_ \
+ new_DP_OP_24J9_122_7450/n141_ new_DP_OP_24J9_122_7450/n135_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n129_ new_DP_OP_24J9_122_7450/n134_ \
+ new_DP_OP_24J9_122_7450/n127_ new_DP_OP_24J9_122_7450/n120_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n129_ new_DP_OP_24J9_122_7450/n134_ \
+ new_DP_OP_24J9_122_7450/n127_ new_DP_OP_24J9_122_7450/n121_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n151_ new_DP_OP_24J9_122_7450/n149_ \
+ new_DP_OP_24J9_122_7450/n147_ new_DP_OP_24J9_122_7450/n144_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n151_ new_DP_OP_24J9_122_7450/n149_ \
+ new_DP_OP_24J9_122_7450/n147_ new_DP_OP_24J9_122_7450/n145_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n139_ new_DP_OP_24J9_122_7450/n137_ \
+ new_DP_OP_24J9_122_7450/n144_ new_DP_OP_24J9_122_7450/n132_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n139_ new_DP_OP_24J9_122_7450/n137_ \
+ new_DP_OP_24J9_122_7450/n144_ new_DP_OP_24J9_122_7450/n133_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n125_ new_DP_OP_24J9_122_7450/n123_ \
+ new_DP_OP_24J9_122_7450/n132_ new_DP_OP_24J9_122_7450/n118_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n125_ new_DP_OP_24J9_122_7450/n123_ \
+ new_DP_OP_24J9_122_7450/n132_ new_DP_OP_24J9_122_7450/n119_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n120_ new_DP_OP_24J9_122_7450/n107_ \
+ new_DP_OP_24J9_122_7450/n118_ new_DP_OP_24J9_122_7450/n102_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n120_ new_DP_OP_24J9_122_7450/n107_ \
+ new_DP_OP_24J9_122_7450/n118_ new_DP_OP_24J9_122_7450/n103_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n104_ new_DP_OP_24J9_122_7450/n89_ \
+ new_DP_OP_24J9_122_7450/n102_ new_DP_OP_24J9_122_7450/n84_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n104_ new_DP_OP_24J9_122_7450/n89_ \
+ new_DP_OP_24J9_122_7450/n102_ new_DP_OP_24J9_122_7450/n85_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n177_ new_DP_OP_24J9_122_7450/n323_ \
+ new_DP_OP_24J9_122_7450/n215_ new_DP_OP_24J9_122_7450/n164_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n177_ new_DP_OP_24J9_122_7450/n323_ \
+ new_DP_OP_24J9_122_7450/n215_ new_DP_OP_24J9_122_7450/n165_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n369_ new_DP_OP_24J9_122_7450/n224_ \
+ new_DP_OP_24J9_122_7450/n172_ new_DP_OP_24J9_122_7450/n168_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n369_ new_DP_OP_24J9_122_7450/n224_ \
+ new_DP_OP_24J9_122_7450/n172_ new_DP_OP_24J9_122_7450/n169_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n360_ new_DP_OP_24J9_122_7450/n168_ \
+ new_DP_OP_24J9_122_7450/n167_ new_DP_OP_24J9_122_7450/n162_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n360_ new_DP_OP_24J9_122_7450/n168_ \
+ new_DP_OP_24J9_122_7450/n167_ new_DP_OP_24J9_122_7450/n163_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n164_ new_DP_OP_24J9_122_7450/n159_ \
+ new_DP_OP_24J9_122_7450/n162_ new_DP_OP_24J9_122_7450/n154_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n164_ new_DP_OP_24J9_122_7450/n159_ \
+ new_DP_OP_24J9_122_7450/n162_ new_DP_OP_24J9_122_7450/n155_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n41_ new_DP_OP_24J9_122_7450/n30_ \
+ new_DP_OP_24J9_122_7450/n4_ new_DP_OP_24J9_122_7450/n3_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n41_ new_DP_OP_24J9_122_7450/n30_ \
+ new_DP_OP_24J9_122_7450/n4_ out[13]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n53_ new_DP_OP_24J9_122_7450/n42_ \
+ new_DP_OP_24J9_122_7450/n5_ new_DP_OP_24J9_122_7450/n4_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n53_ new_DP_OP_24J9_122_7450/n42_ \
+ new_DP_OP_24J9_122_7450/n5_ out[12]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n69_ new_DP_OP_24J9_122_7450/n54_ \
+ new_DP_OP_24J9_122_7450/n6_ new_DP_OP_24J9_122_7450/n5_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n69_ new_DP_OP_24J9_122_7450/n54_ \
+ new_DP_OP_24J9_122_7450/n6_ out[11]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n84_ new_DP_OP_24J9_122_7450/n70_ \
+ new_DP_OP_24J9_122_7450/n7_ new_DP_OP_24J9_122_7450/n6_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n84_ new_DP_OP_24J9_122_7450/n70_ \
+ new_DP_OP_24J9_122_7450/n7_ out[10]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n87_ new_DP_OP_24J9_122_7450/n85_ \
+ new_DP_OP_24J9_122_7450/n8_ new_DP_OP_24J9_122_7450/n7_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n87_ new_DP_OP_24J9_122_7450/n85_ \
+ new_DP_OP_24J9_122_7450/n8_ out[9]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n105_ new_DP_OP_24J9_122_7450/n103_ \
+ new_DP_OP_24J9_122_7450/n9_ new_DP_OP_24J9_122_7450/n8_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n105_ new_DP_OP_24J9_122_7450/n103_ \
+ new_DP_OP_24J9_122_7450/n9_ out[8]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n121_ new_DP_OP_24J9_122_7450/n119_ \
+ new_DP_OP_24J9_122_7450/n10_ new_DP_OP_24J9_122_7450/n9_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n121_ new_DP_OP_24J9_122_7450/n119_ \
+ new_DP_OP_24J9_122_7450/n10_ out[7]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n154_ new_DP_OP_24J9_122_7450/n12_ \
+ new_DP_OP_24J9_122_7450/n145_ new_DP_OP_24J9_122_7450/n11_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n154_ new_DP_OP_24J9_122_7450/n12_ \
+ new_DP_OP_24J9_122_7450/n145_ out[5]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n157_ new_DP_OP_24J9_122_7450/n13_ \
+ new_DP_OP_24J9_122_7450/n155_ new_DP_OP_24J9_122_7450/n12_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n157_ new_DP_OP_24J9_122_7450/n13_ \
+ new_DP_OP_24J9_122_7450/n155_ out[4]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n171_ new_DP_OP_24J9_122_7450/n15_ \
+ new_DP_OP_24J9_122_7450/n169_ new_DP_OP_24J9_122_7450/n14_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n171_ new_DP_OP_24J9_122_7450/n15_ \
+ new_DP_OP_24J9_122_7450/n169_ out[2]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n39_ new_DP_OP_24J9_122_7450/n334_ \
+ new_DP_OP_24J9_122_7450/n188_ new_DP_OP_24J9_122_7450/n27_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n39_ new_DP_OP_24J9_122_7450/n334_ \
+ new_DP_OP_24J9_122_7450/n188_ new_DP_OP_24J9_122_7450/n28_
+100 1
+010 1
+111 1
+001 1
+.names x0[7] new_DP_OP_24J9_122_7450/n521_ new_DP_OP_24J9_122_7450/n514_ \
+ new_DP_OP_24J9_122_7450/n513_
+1-1 1
+-11 1
+11- 1
+.names x0[7] new_DP_OP_24J9_122_7450/n521_ new_DP_OP_24J9_122_7450/n514_ \
+ new_DP_OP_24J9_122_7450/n601_
+100 1
+010 1
+111 1
+001 1
+.names x1[7] new_n54_ new_DP_OP_24J9_122_7450/n498_ \
+ new_DP_OP_24J9_122_7450/n497_
+1-1 1
+-11 1
+11- 1
+.names x1[7] new_n54_ new_DP_OP_24J9_122_7450/n498_ \
+ new_DP_OP_24J9_122_7450/n592_
+100 1
+010 1
+111 1
+001 1
+.names y1[7] new_n70_ new_DP_OP_24J9_122_7450/n466_ \
+ new_DP_OP_24J9_122_7450/n465_
+1-1 1
+-11 1
+11- 1
+.names y1[7] new_n70_ new_DP_OP_24J9_122_7450/n466_ \
+ new_DP_OP_24J9_122_7450/n557_
+100 1
+010 1
+111 1
+001 1
+.names y0[7] new_DP_OP_24J9_122_7450/n489_ new_DP_OP_24J9_122_7450/n482_ \
+ new_DP_OP_24J9_122_7450/n481_
+1-1 1
+-11 1
+11- 1
+.names y0[7] new_DP_OP_24J9_122_7450/n489_ new_DP_OP_24J9_122_7450/n482_ \
+ new_DP_OP_24J9_122_7450/n566_
+100 1
+010 1
+111 1
+001 1
+.names y1[0] new_n58_ new_n57_ y0[1] new_n59_
+00-- 1
+--11 1
+.names y1[2] new_n60_
+0 1
+.names y1[4] new_n64_
+0 1
+.names x1[1] new_n41_
+0 1
+.names y0[3] new_n62_
+0 1
+.names y0[5] new_n65_
+0 1
+.names x1[0] new_n42_ new_n41_ x0[1] new_n43_
+00-- 1
+--11 1
+.names x1[2] new_n44_
+0 1
+.names x1[4] new_n48_
+0 1
+.names x0[5] new_n49_
+0 1
+.names y1[1] new_n57_
+0 1
+.names y1[5] new_n66_ new_n65_ new_n69_
+0-0 1
+00- 1
+-00 1
+.names y0[4] new_n64_ new_n63_ new_n66_
+0-0 1
+00- 1
+-00 1
+.names y1[3] new_n62_ new_n61_ new_n63_
+0-0 1
+00- 1
+-00 1
+.names y0[2] new_n60_ new_n59_ new_n61_
+0-0 1
+00- 1
+-00 1
+.names y0[6] new_n67_
+0 1
+.names y0[7] new_n70_
+0 1
+.names x0[3] new_n46_
+0 1
+.names x0[2] new_DP_OP_24J9_122_7450/n510_
+0 1
+.names y0[2] new_DP_OP_24J9_122_7450/n478_
+0 1
+.names x0[4] new_DP_OP_24J9_122_7450/n508_
+0 1
+.names y0[4] new_DP_OP_24J9_122_7450/n476_
+0 1
+.names x0[1] new_DP_OP_24J9_122_7450/n511_
+0 1
+.names new_n83_ x1[0] new_DP_OP_24J9_122_7450/n504_
+00 0
+.names x0[0] new_n83_
+0 1
+.names new_n84_ x0[0] new_DP_OP_24J9_122_7450/n520_
+00 0
+.names y1[3] new_DP_OP_24J9_122_7450/n493_
+0 1
+.names new_DP_OP_24J9_122_7450/n594_ new_n97_ new_n87_
+01 0
+.names new_DP_OP_24J9_122_7450/n559_ new_n95_ new_n88_
+01 0
+.names new_n92_ new_n128_ new_n159_
+11 1
+00 1
+.names new_n93_ new_n175_ new_n177_
+11 1
+00 1
+.names new_n123_ new_n95_ new_n96_
+11 1
+00 1
+.names new_n134_ new_n133_ new_n149_
+11 1
+00 1
+.names new_n92_ new_n133_ new_n158_
+11 1
+00 1
+.names new_n172_ new_n179_ new_n148_
+00 1
+.names new_n152_ new_n161_ new_n147_
+00 1
+.names new_n132_ new_n131_ new_n135_
+11 1
+00 1
+.names new_n92_ new_n95_ new_n157_
+11 1
+00 1
+.names new_n93_ new_n97_ new_n174_
+11 1
+00 1
+.names y1[5] new_DP_OP_24J9_122_7450/n491_
+0 1
+.names new_n130_ new_n132_ new_DP_OP_24J9_122_7450/n432_
+10 1
+01 1
+.names x1[5] new_DP_OP_24J9_122_7450/n523_
+0 1
+.names x1[5] new_n50_ new_n49_ new_n53_
+0-0 1
+00- 1
+-00 1
+.names x0[4] new_n48_ new_n47_ new_n50_
+0-0 1
+00- 1
+-00 1
+.names x1[3] new_n46_ new_n45_ new_n47_
+0-0 1
+00- 1
+-00 1
+.names x0[2] new_n44_ new_n43_ new_n45_
+0-0 1
+00- 1
+-00 1
+.names x0[6] new_n51_
+0 1
+.names x0[7] new_n54_
+0 1
+.names y1[6] new_DP_OP_24J9_122_7450/n490_
+0 1
+.names y1[7] new_DP_OP_24J9_122_7450/n489_
+0 1
+.names new_n129_ new_n134_ new_DP_OP_24J9_122_7450/n287_
+10 1
+01 1
+.names new_n178_ new_n180_ new_n174_ new_DP_OP_24J9_122_7450/n352_
+--1 1
+11- 1
+.names new_n160_ new_n162_ new_n157_ new_DP_OP_24J9_122_7450/n207_
+--1 1
+11- 1
+.names new_n154_ new_n152_ new_n149_ new_n150_ \
+ new_DP_OP_24J9_122_7450/n191_
+--00 1
+00-- 1
+.names new_n129_ new_n133_ new_n154_
+11 1
+00 1
+.names new_n130_ new_n131_ new_n173_
+11 1
+00 1
+.names new_n147_ new_n148_ new_DP_OP_24J9_122_7450/n67_
+00 0
+.names new_n86_ y0[0] new_DP_OP_24J9_122_7450/n488_
+00 0
+.names y0[1] new_DP_OP_24J9_122_7450/n479_
+0 1
+.names new_n85_ y1[0] new_DP_OP_24J9_122_7450/n472_
+00 0
+.names y0[0] new_n85_
+0 1
+.names y1[7] y0[7] new_n71_
+01 0
+.names new_n69_ new_n68_ y1[6] new_n67_ new_n72_
+00-- 1
+--11 1
+.names y0[6] y1[6] new_n68_
+10 1
+.names new_n78_ new_n77_
+0 1
+.names x1[3] new_DP_OP_24J9_122_7450/n525_
+0 1
+.names new_DP_OP_24J9_122_7450/n596_ new_n82_ new_DP_OP_24J9_122_7450/n587_ \
+ new_n81_ new_n124_
+--11 1
+11-- 1
+.names new_n93_ new_n124_ new_DP_OP_24J9_122_7450/n433_
+10 1
+01 1
+.names new_DP_OP_24J9_122_7450/n561_ new_n78_ new_DP_OP_24J9_122_7450/n552_ \
+ new_n77_ new_n123_
+--11 1
+11-- 1
+.names new_n92_ new_n123_ new_DP_OP_24J9_122_7450/n288_
+10 1
+01 1
+.names new_DP_OP_24J9_122_7450/n598_ new_n82_ new_DP_OP_24J9_122_7450/n589_ \
+ new_n81_ new_n132_
+--11 1
+11-- 1
+.names new_DP_OP_24J9_122_7450/n563_ new_n78_ new_DP_OP_24J9_122_7450/n554_ \
+ new_n77_ new_n134_
+--11 1
+11-- 1
+.names new_DP_OP_24J9_122_7450/n595_ new_n82_ new_DP_OP_24J9_122_7450/n586_ \
+ new_n81_ new_n73_
+--11 1
+11-- 1
+.names new_DP_OP_24J9_122_7450/n562_ new_n78_ new_DP_OP_24J9_122_7450/n553_ \
+ new_n77_ new_n92_
+--11 1
+11-- 1
+.names new_DP_OP_24J9_122_7450/n594_ new_n130_ new_n112_
+01 0
+.names new_n130_ new_n113_
+0 1
+.names new_DP_OP_24J9_122_7450/n559_ new_n129_ new_n110_
+01 0
+.names new_DP_OP_24J9_122_7450/n594_ new_n130_ new_n106_
+11 1
+00 1
+.names new_n73_ new_n130_ new_n121_
+11 1
+00 1
+.names new_n74_ new_n129_ new_n169_
+11 1
+00 1
+.names new_n160_ new_n189_
+0 1
+.names new_n178_ new_n185_
+0 1
+.names new_n161_ new_n162_ new_DP_OP_24J9_122_7450/n212_
+00 1
+.names new_n179_ new_n180_ new_DP_OP_24J9_122_7450/n357_
+00 1
+.names new_DP_OP_24J9_122_7450/n594_ new_n131_ new_n119_
+01 0
+.names new_n131_ new_n120_
+0 1
+.names new_DP_OP_24J9_122_7450/n594_ new_n131_ new_n118_
+11 1
+00 1
+.names new_n74_ new_n128_ new_n165_
+11 1
+00 1
+.names new_n123_ new_n129_ new_n156_
+11 1
+00 1
+.names new_n124_ new_n130_ new_n122_
+11 1
+00 1
+.names new_n93_ new_n130_ new_n181_
+11 1
+00 1
+.names new_n92_ new_n129_ new_n163_
+11 1
+00 1
+.names new_n73_ new_n175_ new_n114_
+11 1
+00 1
+.names new_n181_ new_n180_ new_n179_ new_n178_ \
+ new_DP_OP_24J9_122_7450/n356_
+--00 1
+00-- 1
+.names new_n163_ new_n162_ new_n161_ new_n160_ \
+ new_DP_OP_24J9_122_7450/n211_
+--00 1
+00-- 1
+.names new_DP_OP_24J9_122_7450/n559_ new_n133_ new_n116_
+01 0
+.names new_n133_ new_n117_
+0 1
+.names new_n123_ new_n133_ new_n151_
+11 1
+00 1
+.names new_n74_ new_n133_ new_n126_
+11 1
+00 1
+.names new_n73_ new_n131_ new_n125_
+11 1
+00 1
+.names new_n74_ new_n95_ new_n164_
+11 1
+00 1
+.names new_n73_ new_n97_ new_n182_
+11 1
+00 1
+.names new_n124_ new_n131_ new_n127_
+11 1
+00 1
+.names new_n93_ new_n131_ new_n176_
+11 1
+00 1
+.names new_n159_ new_n162_ new_n163_ new_n160_ \
+ new_DP_OP_24J9_122_7450/n210_
+--00 1
+00-- 1
+.names new_n177_ new_n180_ new_n181_ new_n178_ \
+ new_DP_OP_24J9_122_7450/n355_
+--00 1
+00-- 1
+.names new_n171_ new_n188_
+0 1
+.names new_n155_ new_n190_
+0 1
+.names new_n166_ new_n168_ new_n164_ new_DP_OP_24J9_122_7450/n217_
+--1 1
+11- 1
+.names new_n184_ new_n183_ new_n182_ new_DP_OP_24J9_122_7450/n362_
+--1 1
+11- 1
+.names new_n158_ new_n152_ new_n151_ new_n150_ \
+ new_DP_OP_24J9_122_7450/n193_
+--00 1
+00-- 1
+.names new_DP_OP_24J9_122_7450/n559_ new_n136_ \
+ new_DP_OP_24J9_122_7450/n186_
+10 1
+.names new_DP_OP_24J9_122_7450/n594_ new_n137_ \
+ new_DP_OP_24J9_122_7450/n332_
+10 1
+.names new_n137_ new_n87_ new_DP_OP_24J9_122_7450/n320_
+00 1
+.names new_n137_ new_n182_ new_DP_OP_24J9_122_7450/n331_
+00 1
+.names new_n136_ new_n164_ new_DP_OP_24J9_122_7450/n185_
+00 1
+.names new_n176_ new_n180_ new_n177_ new_n178_ \
+ new_DP_OP_24J9_122_7450/n354_
+--00 1
+00-- 1
+.names new_n158_ new_n162_ new_n159_ new_n160_ \
+ new_DP_OP_24J9_122_7450/n209_
+--00 1
+00-- 1
+.names new_n136_ new_n88_ new_DP_OP_24J9_122_7450/n174_
+00 1
+.names new_n136_ new_n96_ new_DP_OP_24J9_122_7450/n184_
+00 1
+.names new_n149_ new_n152_ new_n158_ new_n150_ \
+ new_DP_OP_24J9_122_7450/n192_
+--00 1
+00-- 1
+.names new_n135_ new_n172_ new_n176_ new_n138_ \
+ new_DP_OP_24J9_122_7450/n338_
+--00 1
+00-- 1
+.names new_n176_ new_n178_ new_n174_ new_n180_ \
+ new_DP_OP_24J9_122_7450/n353_
+--00 1
+00-- 1
+.names new_n158_ new_n160_ new_n157_ new_n162_ \
+ new_DP_OP_24J9_122_7450/n208_
+--00 1
+00-- 1
+.names new_n148_ new_n147_ new_DP_OP_24J9_122_7450/n83_
+11 1
+00 1
+.names new_n137_ new_n91_ new_DP_OP_24J9_122_7450/n330_
+00 1
+.names new_n124_ new_n97_ new_n91_
+11 1
+00 1
+.names new_n173_ new_n179_ new_n172_ new_n171_ \
+ new_DP_OP_24J9_122_7450/n344_
+--00 1
+00-- 1
+.names new_DP_OP_24J9_122_7450/n67_ new_DP_OP_24J9_122_7450/n68_
+0 1
+.names new_n173_ new_n172_ new_n135_ new_n138_ \
+ new_DP_OP_24J9_122_7450/n337_
+--00 1
+00-- 1
+.names new_n154_ new_n161_ new_n152_ new_n155_ \
+ new_DP_OP_24J9_122_7450/n199_
+--00 1
+00-- 1
+.names new_n136_ new_n157_ new_DP_OP_24J9_122_7450/n183_
+00 1
+.names new_n137_ new_n174_ new_DP_OP_24J9_122_7450/n329_
+00 1
+.names new_n131_ new_n175_ new_DP_OP_24J9_122_7450/n431_
+10 1
+01 1
+.names new_n133_ new_n128_ new_DP_OP_24J9_122_7450/n286_
+10 1
+01 1
+.names new_DP_OP_24J9_122_7450/n564_ new_n78_ new_DP_OP_24J9_122_7450/n555_ \
+ new_n77_ new_n129_
+--11 1
+11-- 1
+.names new_DP_OP_24J9_122_7450/n599_ new_n82_ new_DP_OP_24J9_122_7450/n590_ \
+ new_n81_ new_n130_
+--11 1
+11-- 1
+.names new_n93_ new_n132_ new_n179_
+11 1
+00 1
+.names new_DP_OP_24J9_122_7450/n432_ new_n179_ new_n171_
+11 0
+.names x1[6] new_DP_OP_24J9_122_7450/n522_
+0 1
+.names x1[7] x0[7] new_n55_
+01 0
+.names new_n53_ new_n52_ x1[6] new_n51_ new_n56_
+00-- 1
+--11 1
+.names x0[6] x1[6] new_n52_
+10 1
+.names new_n82_ new_n81_
+0 1
+.names x1[7] new_DP_OP_24J9_122_7450/n521_
+0 1
+.names new_DP_OP_24J9_122_7450/n566_ new_n78_ new_DP_OP_24J9_122_7450/n557_ \
+ new_n77_ new_n133_
+--11 1
+11-- 1
+.names new_DP_OP_24J9_122_7450/n565_ new_n78_ new_DP_OP_24J9_122_7450/n556_ \
+ new_n77_ new_n128_
+--11 1
+11-- 1
+.names new_n76_ new_n78_ new_n75_ new_n77_ new_n95_
+--11 1
+11-- 1
+.names new_DP_OP_24J9_122_7450/n465_ new_n75_
+0 1
+.names new_DP_OP_24J9_122_7450/n481_ new_n76_
+0 1
+.names new_DP_OP_24J9_122_7450/n601_ new_n82_ new_DP_OP_24J9_122_7450/n592_ \
+ new_n81_ new_n131_
+--11 1
+11-- 1
+.names new_n92_ new_n134_ new_n161_
+11 1
+00 1
+.names new_DP_OP_24J9_122_7450/n287_ new_n161_ new_n155_
+11 0
+.names new_n130_ new_n97_ new_n170_
+11 1
+00 1
+.names new_n129_ new_n95_ new_n153_
+11 1
+00 1
+.names new_n136_ new_n94_ new_DP_OP_24J9_122_7450/n182_
+00 1
+.names new_n134_ new_n95_ new_n94_
+11 1
+00 1
+.names new_n137_ new_n98_ new_DP_OP_24J9_122_7450/n328_
+00 1
+.names new_n132_ new_n97_ new_n98_
+11 1
+00 1
+.names new_n154_ new_n155_ new_n153_ new_n161_ \
+ new_DP_OP_24J9_122_7450/n198_
+--00 1
+00-- 1
+.names new_n173_ new_n171_ new_n170_ new_n179_ \
+ new_DP_OP_24J9_122_7450/n343_
+--00 1
+00-- 1
+.names x1[0] new_n84_
+0 1
+.names y1[0] new_n86_
+0 1
+.names new_DP_OP_24J9_122_7450/n560_ new_n78_ new_DP_OP_24J9_122_7450/n551_ \
+ new_n77_ new_n74_
+--11 1
+11-- 1
+.names new_n180_ new_n183_ new_DP_OP_24J9_122_7450/n369_
+00 1
+.names new_n162_ new_n168_ new_DP_OP_24J9_122_7450/n224_
+00 1
+.names new_DP_OP_24J9_122_7450/n597_ new_n82_ new_DP_OP_24J9_122_7450/n588_ \
+ new_n81_ new_n93_
+--11 1
+11-- 1
+.names new_DP_OP_24J9_122_7450/n559_ new_n92_ new_n103_
+01 0
+.names new_n92_ new_n104_
+0 1
+.names new_n73_ new_n124_ new_n180_
+11 1
+00 1
+.names new_DP_OP_24J9_122_7450/n433_ new_n180_ new_n178_
+11 0
+.names new_DP_OP_24J9_122_7450/n594_ new_n93_ new_n101_
+01 0
+.names new_n93_ new_n102_
+0 1
+.names new_n74_ new_n123_ new_n162_
+11 1
+00 1
+.names new_DP_OP_24J9_122_7450/n288_ new_n162_ new_n160_
+11 0
+.names new_DP_OP_24J9_122_7450/n559_ new_n92_ new_n100_
+11 1
+00 1
+.names new_n73_ new_n93_ new_n108_
+11 1
+00 1
+.names new_n73_ new_n132_ new_n109_
+11 1
+00 1
+.names new_n74_ new_n134_ new_n167_
+11 1
+00 1
+.names new_n107_ new_n168_ new_n162_ new_n166_ \
+ new_DP_OP_24J9_122_7450/n223_
+--00 1
+00-- 1
+.names new_n108_ new_n183_ new_n180_ new_n184_ \
+ new_DP_OP_24J9_122_7450/n368_
+--00 1
+00-- 1
+.names new_DP_OP_24J9_122_7450/n559_ new_n168_
+0 1
+.names new_DP_OP_24J9_122_7450/n594_ new_n73_ new_n184_
+01 0
+.names new_DP_OP_24J9_122_7450/n594_ new_n183_
+0 1
+.names new_n74_ new_n92_ new_n107_
+11 1
+00 1
+.names new_n121_ new_n183_ new_n109_ new_n184_ \
+ new_DP_OP_24J9_122_7450/n366_
+--00 1
+00-- 1
+.names new_n169_ new_n168_ new_n167_ new_n166_ \
+ new_DP_OP_24J9_122_7450/n221_
+--00 1
+00-- 1
+.names new_DP_OP_24J9_122_7450/n594_ new_n179_ \
+ new_DP_OP_24J9_122_7450/n351_
+10 1
+.names new_DP_OP_24J9_122_7450/n559_ new_n161_ \
+ new_DP_OP_24J9_122_7450/n206_
+10 1
+.names new_n114_ new_n183_ new_n121_ new_n184_ \
+ new_DP_OP_24J9_122_7450/n365_
+--00 1
+00-- 1
+.names new_n165_ new_n168_ new_n169_ new_n166_ \
+ new_DP_OP_24J9_122_7450/n220_
+--00 1
+00-- 1
+.names new_DP_OP_24J9_122_7450/n559_ new_n152_ \
+ new_DP_OP_24J9_122_7450/n196_
+10 1
+.names new_n122_ new_n179_ new_n121_ new_n171_ \
+ new_DP_OP_24J9_122_7450/n349_
+--00 1
+00-- 1
+.names new_DP_OP_24J9_122_7450/n594_ new_n172_ \
+ new_DP_OP_24J9_122_7450/n342_
+10 1
+.names new_n155_ new_n111_ new_n110_ new_n161_ \
+ new_DP_OP_24J9_122_7450/n176_
+--00 1
+00-- 1
+.names new_n171_ new_n113_ new_n112_ new_n179_ \
+ new_DP_OP_24J9_122_7450/n322_
+--00 1
+00-- 1
+.names new_n129_ new_n111_
+0 1
+.names new_n169_ new_n161_ new_n105_ new_n155_ \
+ new_DP_OP_24J9_122_7450/n205_
+--00 1
+00-- 1
+.names new_n121_ new_n179_ new_n106_ new_n171_ \
+ new_DP_OP_24J9_122_7450/n350_
+--00 1
+00-- 1
+.names new_DP_OP_24J9_122_7450/n559_ new_n129_ new_n105_
+11 1
+00 1
+.names new_n156_ new_n161_ new_n169_ new_n155_ \
+ new_DP_OP_24J9_122_7450/n204_
+--00 1
+00-- 1
+.names new_n126_ new_n168_ new_n165_ new_n166_ \
+ new_DP_OP_24J9_122_7450/n219_
+--00 1
+00-- 1
+.names new_n125_ new_n172_ new_n118_ new_n138_ \
+ new_DP_OP_24J9_122_7450/n341_
+--00 1
+00-- 1
+.names new_n138_ new_n120_ new_n119_ new_n172_ \
+ new_DP_OP_24J9_122_7450/n321_
+--00 1
+00-- 1
+.names new_n163_ new_n161_ new_n156_ new_n155_ \
+ new_DP_OP_24J9_122_7450/n203_
+--00 1
+00-- 1
+.names new_n181_ new_n179_ new_n122_ new_n171_ \
+ new_DP_OP_24J9_122_7450/n348_
+--00 1
+00-- 1
+.names new_n125_ new_n183_ new_n114_ new_n184_ \
+ new_DP_OP_24J9_122_7450/n364_
+--00 1
+00-- 1
+.names new_n126_ new_n152_ new_n115_ new_n150_ \
+ new_DP_OP_24J9_122_7450/n195_
+--00 1
+00-- 1
+.names new_n150_ new_n117_ new_n116_ new_n152_ \
+ new_DP_OP_24J9_122_7450/n175_
+--00 1
+00-- 1
+.names new_DP_OP_24J9_122_7450/n559_ new_n133_ new_n115_
+11 1
+00 1
+.names new_n151_ new_n152_ new_n126_ new_n150_ \
+ new_DP_OP_24J9_122_7450/n194_
+--00 1
+00-- 1
+.names new_n125_ new_n184_ new_n182_ new_n183_ \
+ new_DP_OP_24J9_122_7450/n363_
+--00 1
+00-- 1
+.names new_n126_ new_n166_ new_n164_ new_n168_ \
+ new_DP_OP_24J9_122_7450/n218_
+--00 1
+00-- 1
+.names new_n127_ new_n172_ new_n125_ new_n138_ \
+ new_DP_OP_24J9_122_7450/n340_
+--00 1
+00-- 1
+.names new_n176_ new_n172_ new_n127_ new_n138_ \
+ new_DP_OP_24J9_122_7450/n339_
+--00 1
+00-- 1
+.names new_DP_OP_24J9_122_7450/n431_ new_n172_ new_n138_
+11 0
+.names new_DP_OP_24J9_122_7450/n286_ new_n152_ new_n150_
+11 0
+.names new_n129_ new_n128_ new_n152_
+11 1
+00 1
+.names new_n130_ new_n175_ new_n172_
+11 1
+00 1
+.names new_n171_ new_n179_ new_n170_ new_DP_OP_24J9_122_7450/n39_
+--1 1
+11- 1
+.names new_DP_OP_24J9_122_7450/n600_ new_n82_ new_DP_OP_24J9_122_7450/n591_ \
+ new_n81_ new_n175_
+--11 1
+11-- 1
+.names new_n80_ new_n82_ new_n79_ new_n81_ new_n97_
+--11 1
+11-- 1
+.names new_DP_OP_24J9_122_7450/n513_ new_n80_
+0 1
+.names new_DP_OP_24J9_122_7450/n497_ new_n79_
+0 1
+.names new_n95_ new_n133_ new_n136_
+11 1
+00 1
+.names new_n128_ new_n95_ new_n89_
+11 1
+00 1
+.names new_n97_ new_n131_ new_n137_
+11 1
+00 1
+.names new_DP_OP_24J9_122_7450/n39_ new_DP_OP_24J9_122_7450/n40_
+0 1
+.names new_n155_ new_n161_ new_n153_ new_DP_OP_24J9_122_7450/n197_
+--1 1
+11- 1
+.names new_n138_ new_n186_
+0 1
+.names new_n150_ new_n187_
+0 1
+.names new_n136_ new_n153_ new_DP_OP_24J9_122_7450/n181_
+00 1
+.names new_n137_ new_n170_ new_DP_OP_24J9_122_7450/n327_
+00 1
+.names y0[0] new_n86_ new_DP_OP_24J9_122_7450/n559_
+11 1
+00 1
+.names new_DP_OP_24J9_122_7450/n559_ new_n74_ new_n166_
+01 0
+.names new_n184_ new_DP_OP_24J9_122_7450/n172_
+0 1
+.names new_n108_ new_n180_ new_n99_ new_n178_ new_DP_OP_24J9_122_7450/n360_
+--00 1
+00-- 1
+.names new_DP_OP_24J9_122_7450/n594_ new_n93_ new_n99_
+11 1
+00 1
+.names new_n107_ new_n162_ new_n100_ new_n160_ \
+ new_DP_OP_24J9_122_7450/n215_
+--00 1
+00-- 1
+.names new_n178_ new_n102_ new_n101_ new_n180_ \
+ new_DP_OP_24J9_122_7450/n323_
+--00 1
+00-- 1
+.names new_n160_ new_n104_ new_n103_ new_n162_ \
+ new_DP_OP_24J9_122_7450/n177_
+--00 1
+00-- 1
+.names new_n167_ new_n168_ new_n107_ new_n166_ \
+ new_DP_OP_24J9_122_7450/n222_
+--00 1
+00-- 1
+.names new_n109_ new_n183_ new_n108_ new_n184_ \
+ new_DP_OP_24J9_122_7450/n367_
+--00 1
+00-- 1
+.names new_n136_ new_n152_ new_DP_OP_24J9_122_7450/n188_
+00 1
+.names new_n137_ new_n172_ new_DP_OP_24J9_122_7450/n334_
+00 1
+.names new_n137_ new_n90_ new_DP_OP_24J9_122_7450/n326_
+00 1
+.names new_n136_ new_n89_ new_DP_OP_24J9_122_7450/n180_
+00 1
+.names new_n175_ new_n97_ new_n90_
+11 1
+00 1
+.names new_n166_ new_DP_OP_24J9_122_7450/n15_
+0 1
+.names x0[0] new_n84_ new_DP_OP_24J9_122_7450/n594_
+11 1
+00 1
+.names x0[1] new_n41_ x0[0] new_n42_
+--0 1
+00- 1
+.names new_n56_ new_n55_ x1[7] new_n54_ new_n82_
+--11 0
+11-- 0
+.names y0[1] new_n57_ y0[0] new_n58_
+--0 1
+00- 1
+.names new_n72_ new_n71_ y1[7] new_n70_ new_n78_
+--11 0
+11-- 0
+.names new_n136_ new_n143_
+0 1
+.names new_n150_ new_n152_ new_n136_ new_n141_
+--1 1
+11- 1
+.names new_n137_ new_n140_
+0 1
+.names new_n138_ new_n172_ new_n137_ new_n139_
+-00 1
+0-0 1
+.names new_n141_ new_n140_ new_n139_ new_n142_
+100 1
+010 1
+111 1
+001 1
+.names new_n143_ new_DP_OP_24J9_122_7450/n27_ new_n142_ new_n144_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n25_ new_n144_ new_DP_OP_24J9_122_7450/n23_ \
+ new_n145_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_24J9_122_7450/n21_ new_n145_ new_n146_
+10 1
+01 1
+.names new_n146_ new_DP_OP_24J9_122_7450/n2_ out[15]
+10 1
+01 1
+.end

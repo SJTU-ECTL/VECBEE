@@ -1,0 +1,656 @@
+# Benchmark "SAD" written by ABC on Wed Dec  8 02:29:34 2021
+.model SAD
+.inputs x0[0] x0[1] x0[2] x0[3] x0[4] x0[5] x0[6] x0[7] x0[8] x0[9] x0[10] \
+ x0[11] y0[0] y0[1] y0[2] y0[3] y0[4] y0[5] y0[6] y0[7] y0[8] y0[9] y0[10] \
+ y0[11] x1[0] x1[1] x1[2] x1[3] x1[4] x1[5] x1[6] x1[7] x1[8] x1[9] x1[10] \
+ x1[11] y1[0] y1[1] y1[2] y1[3] y1[4] y1[5] y1[6] y1[7] y1[8] y1[9] y1[10] \
+ y1[11]
+.outputs out[0] out[1] out[2] out[3] out[4] out[5] out[6] out[7] out[8] \
+ out[9] out[10] out[11] out[12]
+.names new_DP_OP_22J2_122_9644/n18_ new_DP_OP_22J2_122_9644/n15_ \
+ new_DP_OP_22J2_122_9644/n3_ new_DP_OP_22J2_122_9644/n2_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_22J2_122_9644/n18_ new_DP_OP_22J2_122_9644/n15_ \
+ new_DP_OP_22J2_122_9644/n3_ out[11]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_22J2_122_9644/n22_ new_DP_OP_22J2_122_9644/n19_ \
+ new_DP_OP_22J2_122_9644/n4_ new_DP_OP_22J2_122_9644/n3_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_22J2_122_9644/n22_ new_DP_OP_22J2_122_9644/n19_ \
+ new_DP_OP_22J2_122_9644/n4_ out[10]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_22J2_122_9644/n26_ new_DP_OP_22J2_122_9644/n23_ \
+ new_DP_OP_22J2_122_9644/n5_ new_DP_OP_22J2_122_9644/n4_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_22J2_122_9644/n26_ new_DP_OP_22J2_122_9644/n23_ \
+ new_DP_OP_22J2_122_9644/n5_ out[9]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_22J2_122_9644/n30_ new_DP_OP_22J2_122_9644/n27_ \
+ new_DP_OP_22J2_122_9644/n6_ new_DP_OP_22J2_122_9644/n5_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_22J2_122_9644/n30_ new_DP_OP_22J2_122_9644/n27_ \
+ new_DP_OP_22J2_122_9644/n6_ out[8]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_22J2_122_9644/n34_ new_DP_OP_22J2_122_9644/n31_ \
+ new_DP_OP_22J2_122_9644/n7_ new_DP_OP_22J2_122_9644/n6_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_22J2_122_9644/n34_ new_DP_OP_22J2_122_9644/n31_ \
+ new_DP_OP_22J2_122_9644/n7_ out[7]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_22J2_122_9644/n38_ new_DP_OP_22J2_122_9644/n35_ \
+ new_DP_OP_22J2_122_9644/n8_ new_DP_OP_22J2_122_9644/n7_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_22J2_122_9644/n38_ new_DP_OP_22J2_122_9644/n35_ \
+ new_DP_OP_22J2_122_9644/n8_ out[6]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_22J2_122_9644/n42_ new_DP_OP_22J2_122_9644/n39_ \
+ new_DP_OP_22J2_122_9644/n9_ new_DP_OP_22J2_122_9644/n8_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_22J2_122_9644/n42_ new_DP_OP_22J2_122_9644/n39_ \
+ new_DP_OP_22J2_122_9644/n9_ out[5]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_22J2_122_9644/n46_ new_DP_OP_22J2_122_9644/n43_ \
+ new_DP_OP_22J2_122_9644/n10_ new_DP_OP_22J2_122_9644/n9_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_22J2_122_9644/n46_ new_DP_OP_22J2_122_9644/n43_ \
+ new_DP_OP_22J2_122_9644/n10_ out[4]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_22J2_122_9644/n50_ new_DP_OP_22J2_122_9644/n47_ \
+ new_DP_OP_22J2_122_9644/n11_ new_DP_OP_22J2_122_9644/n10_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_22J2_122_9644/n50_ new_DP_OP_22J2_122_9644/n47_ \
+ new_DP_OP_22J2_122_9644/n11_ out[3]
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_22J2_122_9644/n53_ new_DP_OP_22J2_122_9644/n51_ \
+ new_DP_OP_22J2_122_9644/n12_ new_DP_OP_22J2_122_9644/n11_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_22J2_122_9644/n53_ new_DP_OP_22J2_122_9644/n51_ \
+ new_DP_OP_22J2_122_9644/n12_ out[2]
+100 1
+010 1
+111 1
+001 1
+.names new_C1/Z_9_ new_C3/Z_9_ new_n144_ new_DP_OP_22J2_122_9644/n24_
+1-1 1
+-11 1
+11- 1
+.names new_C1/Z_9_ new_C3/Z_9_ new_n144_ new_DP_OP_22J2_122_9644/n25_
+100 1
+010 1
+111 1
+001 1
+.names new_C1/Z_10_ new_C3/Z_10_ new_n143_ new_DP_OP_22J2_122_9644/n20_
+1-1 1
+-11 1
+11- 1
+.names new_C1/Z_10_ new_C3/Z_10_ new_n143_ new_DP_OP_22J2_122_9644/n21_
+100 1
+010 1
+111 1
+001 1
+.names new_n138_ new_DP_OP_22J2_122_9644/n24_ new_DP_OP_22J2_122_9644/n21_ \
+ new_DP_OP_22J2_122_9644/n18_
+1-1 1
+-11 1
+11- 1
+.names new_n138_ new_DP_OP_22J2_122_9644/n24_ new_DP_OP_22J2_122_9644/n21_ \
+ new_DP_OP_22J2_122_9644/n19_
+100 1
+010 1
+111 1
+001 1
+.names new_n137_ new_DP_OP_22J2_122_9644/n20_ new_DP_OP_22J2_122_9644/n17_ \
+ new_DP_OP_22J2_122_9644/n14_
+1-1 1
+-11 1
+11- 1
+.names new_n137_ new_DP_OP_22J2_122_9644/n20_ new_DP_OP_22J2_122_9644/n17_ \
+ new_DP_OP_22J2_122_9644/n15_
+100 1
+010 1
+111 1
+001 1
+.names new_C1/Z_8_ new_C3/Z_8_ new_n145_ new_DP_OP_22J2_122_9644/n28_
+1-1 1
+-11 1
+11- 1
+.names new_C1/Z_8_ new_C3/Z_8_ new_n145_ new_DP_OP_22J2_122_9644/n29_
+100 1
+010 1
+111 1
+001 1
+.names new_n139_ new_DP_OP_22J2_122_9644/n28_ new_DP_OP_22J2_122_9644/n25_ \
+ new_DP_OP_22J2_122_9644/n22_
+1-1 1
+-11 1
+11- 1
+.names new_n139_ new_DP_OP_22J2_122_9644/n28_ new_DP_OP_22J2_122_9644/n25_ \
+ new_DP_OP_22J2_122_9644/n23_
+100 1
+010 1
+111 1
+001 1
+.names new_C1/Z_7_ new_C3/Z_7_ new_n131_ new_DP_OP_22J2_122_9644/n32_
+1-1 1
+-11 1
+11- 1
+.names new_C1/Z_7_ new_C3/Z_7_ new_n131_ new_DP_OP_22J2_122_9644/n33_
+100 1
+010 1
+111 1
+001 1
+.names new_n140_ new_DP_OP_22J2_122_9644/n32_ new_DP_OP_22J2_122_9644/n29_ \
+ new_DP_OP_22J2_122_9644/n26_
+1-1 1
+-11 1
+11- 1
+.names new_n140_ new_DP_OP_22J2_122_9644/n32_ new_DP_OP_22J2_122_9644/n29_ \
+ new_DP_OP_22J2_122_9644/n27_
+100 1
+010 1
+111 1
+001 1
+.names new_C1/Z_6_ new_C3/Z_6_ new_n132_ new_DP_OP_22J2_122_9644/n36_
+1-1 1
+-11 1
+11- 1
+.names new_C1/Z_6_ new_C3/Z_6_ new_n132_ new_DP_OP_22J2_122_9644/n37_
+100 1
+010 1
+111 1
+001 1
+.names new_n141_ new_DP_OP_22J2_122_9644/n36_ new_DP_OP_22J2_122_9644/n33_ \
+ new_DP_OP_22J2_122_9644/n30_
+1-1 1
+-11 1
+11- 1
+.names new_n141_ new_DP_OP_22J2_122_9644/n36_ new_DP_OP_22J2_122_9644/n33_ \
+ new_DP_OP_22J2_122_9644/n31_
+100 1
+010 1
+111 1
+001 1
+.names new_C1/Z_5_ new_C3/Z_5_ new_n133_ new_DP_OP_22J2_122_9644/n40_
+1-1 1
+-11 1
+11- 1
+.names new_C1/Z_5_ new_C3/Z_5_ new_n133_ new_DP_OP_22J2_122_9644/n41_
+100 1
+010 1
+111 1
+001 1
+.names new_n124_ new_DP_OP_22J2_122_9644/n40_ new_DP_OP_22J2_122_9644/n37_ \
+ new_DP_OP_22J2_122_9644/n34_
+1-1 1
+-11 1
+11- 1
+.names new_n124_ new_DP_OP_22J2_122_9644/n40_ new_DP_OP_22J2_122_9644/n37_ \
+ new_DP_OP_22J2_122_9644/n35_
+100 1
+010 1
+111 1
+001 1
+.names new_C1/Z_4_ new_C3/Z_4_ new_n134_ new_DP_OP_22J2_122_9644/n44_
+1-1 1
+-11 1
+11- 1
+.names new_C1/Z_4_ new_C3/Z_4_ new_n134_ new_DP_OP_22J2_122_9644/n45_
+100 1
+010 1
+111 1
+001 1
+.names new_n125_ new_DP_OP_22J2_122_9644/n44_ new_DP_OP_22J2_122_9644/n41_ \
+ new_DP_OP_22J2_122_9644/n38_
+1-1 1
+-11 1
+11- 1
+.names new_n125_ new_DP_OP_22J2_122_9644/n44_ new_DP_OP_22J2_122_9644/n41_ \
+ new_DP_OP_22J2_122_9644/n39_
+100 1
+010 1
+111 1
+001 1
+.names new_C1/Z_3_ new_C3/Z_3_ new_n135_ new_DP_OP_22J2_122_9644/n48_
+1-1 1
+-11 1
+11- 1
+.names new_C1/Z_3_ new_C3/Z_3_ new_n135_ new_DP_OP_22J2_122_9644/n49_
+100 1
+010 1
+111 1
+001 1
+.names new_n126_ new_DP_OP_22J2_122_9644/n48_ new_DP_OP_22J2_122_9644/n45_ \
+ new_DP_OP_22J2_122_9644/n42_
+1-1 1
+-11 1
+11- 1
+.names new_n126_ new_DP_OP_22J2_122_9644/n48_ new_DP_OP_22J2_122_9644/n45_ \
+ new_DP_OP_22J2_122_9644/n43_
+100 1
+010 1
+111 1
+001 1
+.names new_C1/Z_2_ new_C3/Z_2_ new_n136_ new_DP_OP_22J2_122_9644/n52_
+1-1 1
+-11 1
+11- 1
+.names new_C1/Z_2_ new_C3/Z_2_ new_n136_ new_DP_OP_22J2_122_9644/n53_
+100 1
+010 1
+111 1
+001 1
+.names new_n127_ new_DP_OP_22J2_122_9644/n52_ new_DP_OP_22J2_122_9644/n49_ \
+ new_DP_OP_22J2_122_9644/n46_
+1-1 1
+-11 1
+11- 1
+.names new_n127_ new_DP_OP_22J2_122_9644/n52_ new_DP_OP_22J2_122_9644/n49_ \
+ new_DP_OP_22J2_122_9644/n47_
+100 1
+010 1
+111 1
+001 1
+.names new_C1/Z_0_ new_C3/Z_0_ new_DP_OP_22J2_122_9644/n58_
+11 1
+.names new_C1/Z_0_ new_C3/Z_0_ new_DP_OP_22J2_122_9644/n59_
+10 1
+01 1
+.names new_n123_ new_n130_ new_DP_OP_22J2_122_9644/n58_ \
+ new_DP_OP_22J2_122_9644/n54_
+1-1 1
+-11 1
+11- 1
+.names new_n123_ new_n130_ new_DP_OP_22J2_122_9644/n58_ \
+ new_DP_OP_22J2_122_9644/n55_
+100 1
+010 1
+111 1
+001 1
+.names new_n128_ new_DP_OP_22J2_122_9644/n56_ new_DP_OP_22J2_122_9644/n54_ \
+ new_DP_OP_22J2_122_9644/n50_
+1-1 1
+-11 1
+11- 1
+.names new_n128_ new_DP_OP_22J2_122_9644/n56_ new_DP_OP_22J2_122_9644/n54_ \
+ new_DP_OP_22J2_122_9644/n51_
+100 1
+010 1
+111 1
+001 1
+.names new_DP_OP_22J2_122_9644/n57_ new_DP_OP_22J2_122_9644/n13_ \
+ new_DP_OP_22J2_122_9644/n55_ new_DP_OP_22J2_122_9644/n12_
+1-1 1
+-11 1
+11- 1
+.names new_DP_OP_22J2_122_9644/n57_ new_DP_OP_22J2_122_9644/n13_ \
+ new_DP_OP_22J2_122_9644/n55_ out[1]
+100 1
+010 1
+111 1
+001 1
+.names new_n122_ new_n129_ new_DP_OP_22J2_122_9644/n59_ \
+ new_DP_OP_22J2_122_9644/n13_
+1-1 1
+-11 1
+11- 1
+.names new_n122_ new_n129_ new_DP_OP_22J2_122_9644/n59_ out[0]
+100 1
+010 1
+111 1
+001 1
+.names new_C1/Z_11_ new_C3/Z_11_ new_n142_ new_DP_OP_22J2_122_9644/n16_
+1-1 1
+-11 1
+11- 1
+.names new_C1/Z_11_ new_C3/Z_11_ new_n142_ new_DP_OP_22J2_122_9644/n17_
+100 1
+010 1
+111 1
+001 1
+.names x0[1] new_n66_ new_n65_ new_n67_
+0-0 1
+00- 1
+-00 1
+.names x1[1] new_n65_
+0 1
+.names x0[0] x1[0] new_n66_
+10 1
+.names y0[1] new_n90_ new_n89_ new_n91_
+0-0 1
+00- 1
+-00 1
+.names y1[1] new_n89_
+0 1
+.names y0[0] y1[0] new_n90_
+10 1
+.names x0[3] new_n70_ new_n69_ new_n72_
+0-0 1
+00- 1
+-00 1
+.names x1[3] new_n70_
+0 1
+.names x1[2] new_n68_ new_n67_ new_n69_
+0-0 1
+00- 1
+-00 1
+.names x0[2] new_n68_
+0 1
+.names y0[3] new_n94_ new_n93_ new_n96_
+0-0 1
+00- 1
+-00 1
+.names y1[3] new_n94_
+0 1
+.names y1[2] new_n92_ new_n91_ new_n93_
+0-0 1
+00- 1
+-00 1
+.names y0[2] new_n92_
+0 1
+.names x0[5] new_n74_ new_n73_ new_n75_
+0-0 1
+00- 1
+-00 1
+.names x1[5] new_n73_
+0 1
+.names x1[4] new_n72_ new_n71_ new_n74_
+0-0 1
+00- 1
+-00 1
+.names x0[4] new_n71_
+0 1
+.names y0[5] new_n98_ new_n97_ new_n99_
+0-0 1
+00- 1
+-00 1
+.names y1[5] new_n97_
+0 1
+.names y1[4] new_n96_ new_n95_ new_n98_
+0-0 1
+00- 1
+-00 1
+.names y0[4] new_n95_
+0 1
+.names x0[7] new_n78_ new_n77_ new_n80_
+0-0 1
+00- 1
+-00 1
+.names x1[7] new_n78_
+0 1
+.names x1[6] new_n76_ new_n75_ new_n77_
+0-0 1
+00- 1
+-00 1
+.names x0[6] new_n76_
+0 1
+.names y0[7] new_n102_ new_n101_ new_n104_
+0-0 1
+00- 1
+-00 1
+.names y1[7] new_n102_
+0 1
+.names y1[6] new_n100_ new_n99_ new_n101_
+0-0 1
+00- 1
+-00 1
+.names y0[6] new_n100_
+0 1
+.names x0[9] new_n83_
+0 1
+.names x0[10] new_n86_
+0 1
+.names new_n82_ new_n81_ new_n85_
+00 1
+.names x1[9] new_n83_ new_n82_
+00 1
+.names x1[8] new_n80_ new_n79_ new_n81_
+0-0 1
+00- 1
+-00 1
+.names x0[8] new_n79_
+0 1
+.names y0[9] new_n107_
+0 1
+.names y0[10] new_n110_
+0 1
+.names new_n106_ new_n105_ new_n109_
+00 1
+.names y1[9] new_n107_ new_n106_
+00 1
+.names y1[8] new_n104_ new_n103_ new_n105_
+0-0 1
+00- 1
+-00 1
+.names y0[8] new_n103_
+0 1
+.names x0[11] new_n119_
+0 1
+.names x1[11] new_n120_
+0 1
+.names y0[11] new_n116_
+0 1
+.names y1[11] new_n117_
+0 1
+.names x1[10] new_n86_ new_n119_ x1[11] new_n87_
+--00 1
+00-- 1
+.names new_n85_ new_n84_ new_n88_
+00 1
+.names new_n86_ x1[10] new_n83_ x1[9] new_n84_
+--11 1
+11-- 1
+.names y1[10] new_n110_ new_n116_ y1[11] new_n111_
+--00 1
+00-- 1
+.names new_n109_ new_n108_ new_n112_
+00 1
+.names new_n110_ y1[10] new_n107_ y1[9] new_n108_
+--11 1
+11-- 1
+.names new_n113_ new_n114_ new_DP_OP_22J2_122_9644/n56_
+00 0
+.names y1[11] y0[11] new_C3/Z_11_
+00 0
+.names x1[11] x0[11] new_C1/Z_11_
+00 0
+.names new_n114_ new_n113_ new_DP_OP_22J2_122_9644/n57_
+11 1
+00 1
+.names new_n88_ new_n87_ x0[11] new_n120_ new_n118_
+--00 1
+00-- 1
+.names x1[0] x0[0] new_n118_ new_n129_
+1-0 0
+-11 0
+.names new_n112_ new_n111_ y0[11] new_n117_ new_n115_
+--00 1
+00-- 1
+.names y1[0] y0[0] new_n115_ new_n122_
+1-0 0
+-11 0
+.names x1[1] x0[1] new_n118_ new_n130_
+1-0 0
+-11 0
+.names y1[1] y0[1] new_n115_ new_n123_
+1-0 0
+-11 0
+.names y0[1] y1[1] new_n115_ new_n113_
+1-0 1
+-11 1
+.names x0[1] x1[1] new_n118_ new_n114_
+1-0 1
+-11 1
+.names y1[2] y0[2] new_n115_ new_n128_
+1-0 0
+-11 0
+.names x1[2] x0[2] new_n118_ new_n136_
+1-0 0
+-11 0
+.names y1[3] y0[3] new_n115_ new_n127_
+1-0 0
+-11 0
+.names x1[3] x0[3] new_n118_ new_n135_
+1-0 0
+-11 0
+.names y1[4] y0[4] new_n115_ new_n126_
+1-0 0
+-11 0
+.names x1[4] x0[4] new_n118_ new_n134_
+1-0 0
+-11 0
+.names y1[5] y0[5] new_n115_ new_n125_
+1-0 0
+-11 0
+.names x1[5] x0[5] new_n118_ new_n133_
+1-0 0
+-11 0
+.names y1[6] y0[6] new_n115_ new_n124_
+1-0 0
+-11 0
+.names x1[6] x0[6] new_n118_ new_n132_
+1-0 0
+-11 0
+.names y1[7] y0[7] new_n115_ new_n141_
+1-0 0
+-11 0
+.names x1[7] x0[7] new_n118_ new_n131_
+1-0 0
+-11 0
+.names y1[8] y0[8] new_n115_ new_n140_
+1-0 0
+-11 0
+.names x1[8] x0[8] new_n118_ new_n145_
+1-0 0
+-11 0
+.names y1[9] y0[9] new_n115_ new_n139_
+1-0 0
+-11 0
+.names x1[10] x0[10] new_n118_ new_n143_
+1-0 0
+-11 0
+.names x1[9] x0[9] new_n118_ new_n144_
+1-0 0
+-11 0
+.names y1[10] y0[10] new_n115_ new_n138_
+1-0 0
+-11 0
+.names y0[0] y1[0] new_n115_ new_C3/Z_0_
+1-0 1
+-11 1
+.names x0[0] x1[0] new_n118_ new_C1/Z_0_
+1-0 1
+-11 1
+.names y0[2] y1[2] new_n115_ new_C3/Z_2_
+1-0 1
+-11 1
+.names x0[2] x1[2] new_n118_ new_C1/Z_2_
+1-0 1
+-11 1
+.names y0[3] y1[3] new_n115_ new_C3/Z_3_
+1-0 1
+-11 1
+.names x0[3] x1[3] new_n118_ new_C1/Z_3_
+1-0 1
+-11 1
+.names y0[4] y1[4] new_n115_ new_C3/Z_4_
+1-0 1
+-11 1
+.names x0[4] x1[4] new_n118_ new_C1/Z_4_
+1-0 1
+-11 1
+.names y0[5] y1[5] new_n115_ new_C3/Z_5_
+1-0 1
+-11 1
+.names x0[5] x1[5] new_n118_ new_C1/Z_5_
+1-0 1
+-11 1
+.names y0[6] y1[6] new_n115_ new_C3/Z_6_
+1-0 1
+-11 1
+.names x0[6] x1[6] new_n118_ new_C1/Z_6_
+1-0 1
+-11 1
+.names y0[7] y1[7] new_n115_ new_C3/Z_7_
+1-0 1
+-11 1
+.names x0[7] x1[7] new_n118_ new_C1/Z_7_
+1-0 1
+-11 1
+.names y0[8] y1[8] new_n115_ new_C3/Z_8_
+1-0 1
+-11 1
+.names x0[8] x1[8] new_n118_ new_C1/Z_8_
+1-0 1
+-11 1
+.names y0[10] y1[10] new_n115_ new_C3/Z_10_
+1-0 1
+-11 1
+.names x0[10] x1[10] new_n118_ new_C1/Z_10_
+1-0 1
+-11 1
+.names y0[9] y1[9] new_n115_ new_C3/Z_9_
+1-0 1
+-11 1
+.names x0[9] x1[9] new_n118_ new_C1/Z_9_
+1-0 1
+-11 1
+.names new_n117_ new_n116_ new_n115_ new_n137_
+1-0 1
+-11 1
+.names new_n120_ new_n119_ new_n118_ new_n142_
+1-0 1
+-11 1
+.names new_DP_OP_22J2_122_9644/n14_ new_DP_OP_22J2_122_9644/n16_ new_n121_
+10 1
+01 1
+.names new_n121_ new_DP_OP_22J2_122_9644/n2_ out[12]
+10 1
+01 1
+.end

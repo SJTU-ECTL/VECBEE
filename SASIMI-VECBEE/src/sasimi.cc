@@ -25,7 +25,6 @@ void SASIMI_Manager_t::GreedySelection(Abc_Ntk_t * pOriNtk, string outPrefix)
     Simulator_t oriSmlt(pOriNtk, nFrame);
 
     // iteration
-    double error = 0;
     vector < vector <tVec> > bds; // cpm[PO][obj][frameBlock]
     vector <Vec_Ptr_t *> vMffcs;
     vector <LAC_t> nodeLACs;
@@ -33,7 +32,7 @@ void SASIMI_Manager_t::GreedySelection(Abc_Ntk_t * pOriNtk, string outPrefix)
     random_device rd;
     clock_t st = clock();
     cntRound = 0;
-    while (error < errorBound) {
+    while (1) {
         cout << "--------------- round " << ++cntRound << " ---------------" << endl;
         Simulator_t * pAppSmlt = new Simulator_t(pAppNtk, nFrame);
         unsigned seed = static_cast <unsigned> (rd());
@@ -61,7 +60,6 @@ void SASIMI_Manager_t::GreedySelection(Abc_Ntk_t * pOriNtk, string outPrefix)
             break;
         }
         cout << "time = " << clock() - st << " us" << endl;
-        assert(0);
     }
 
     // clean up
@@ -320,11 +318,13 @@ void SASIMI_Manager_t::CollectAllLACsUnderNMED(IN Simulator_t & oriSmlt, IN Simu
     // collect one LAC for each node
     int64_t baseNMED = GetNMEDFast(oriOutputs, appOutputs);
     tVec bdNode(nFrame, 0);
+    boost::timer::progress_display pd(Abc_NtkNodeNum(pAppNtk));
     Abc_NtkForEachNode(pAppNtk, pObj, i) {
         if (!Abc_NodeIsConst(pObj)) {
             ReorganizeBD(bds, pObj, bdNode); // cpm[PO][obj][frameBlock] -> cpm[frame][POBlock]
             CollectNodeLACUnderNMED(pObj, appSmlt, oriOutputs, appOutputs, bdNode, sources, vMffcs, baseNMED, nodeLACs[pObj->Id]);
         }
+        ++pd;
     }
 }
 
@@ -690,7 +690,7 @@ int SASIMI_Manager_t::ApplyBestLAC(Simulator_t & oriSmlt, Simulator_t & appSmlt,
     double accError = (metricType == Metric_t::ER)? MeasureER(pOriNtk, pAppNtk, nFrame, seed): MeasureNMED(pOriNtk, pAppNtk, nFrame, seed);
     cout << "error = " << accError << endl;
     DASSERT(accError == error);
-    double highAccError = (metricType == Metric_t::ER)? MeasureER(pOriNtk, pAppNtk, 1024000, seed): MeasureNMED(pOriNtk, pAppNtk, 1024000, seed);
+    double highAccError = (metricType == Metric_t::ER)? MeasureER(pOriNtk, pAppNtk, 1000000, seed): MeasureNMED(pOriNtk, pAppNtk, 1000000, seed);
     cout << "high accuracy error = " << highAccError << endl;
     cout << "area = " << Ckt_GetArea(pAppNtk) << endl;
     cout << "delay = " << Ckt_GetDelay(pAppNtk) << endl;

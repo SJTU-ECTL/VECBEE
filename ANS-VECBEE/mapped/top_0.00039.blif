@@ -1,0 +1,56 @@
+# Benchmark "top" written by ABC on Wed Dec  8 00:10:48 2021
+.model top
+.inputs pi00 pi01 pi02 pi03 pi04 pi05 pi06 pi07 pi08 pi09 pi10 pi11 pi12 \
+ pi13 pi14 pi15 pi16 pi17 pi18 pi19 pi20 pi21 pi22 pi23 pi24 pi25 pi26 pi27 \
+ pi28 pi29 pi30 pi31 pi32 pi33 pi34 pi35 pi36 pi37 pi38 pi39 pi40 pi41 pi42 \
+ pi43 pi44 pi45 pi46 pi47 pi48 pi49 pi50 pi51 pi52 pi53 pi54 pi55 pi56 pi57 \
+ pi58 pi59
+.outputs po00 po01 po02 po03 po04 po05 po06 po07 po08 po09 po10 po11 po12 \
+ po13 po14 po15 po16 po17 po18 po19 po20 po21 po22 po23 po24 po25 po26 po27 \
+ po28 po29
+
+.and_gate_delay 1.9
+.default_input_arrival 0 0
+.default_output_required 0 0
+
+
+
+.gate nand2  a=pi24 b=pi23 O=new_n92_
+.gate nand2  a=pi27 b=pi25 O=new_n93_
+.gate nor2   a=new_n93_ b=new_n92_ O=new_n94_
+.gate nand2  a=pi29 b=pi28 O=new_n95_
+.gate nor2   a=pi22 b=pi21 O=new_n96_
+.gate nor2   a=new_n96_ b=new_n95_ O=new_n97_
+.gate nand2  a=pi27 b=pi26 O=new_n98_
+.gate nor2   a=new_n98_ b=new_n95_ O=new_n99_
+.gate aoi21  a=new_n97_ b=new_n94_ c=new_n99_ O=po01
+.gate zero   O=po00
+.gate zero   O=po02
+.gate zero   O=po03
+.gate zero   O=po04
+.gate zero   O=po05
+.gate zero   O=po06
+.gate zero   O=po07
+.gate zero   O=po08
+.gate zero   O=po09
+.gate zero   O=po10
+.gate zero   O=po11
+.gate zero   O=po12
+.gate zero   O=po13
+.gate zero   O=po14
+.gate zero   O=po15
+.gate zero   O=po16
+.gate zero   O=po17
+.gate zero   O=po18
+.gate zero   O=po19
+.gate zero   O=po20
+.gate zero   O=po21
+.gate zero   O=po22
+.gate zero   O=po23
+.gate zero   O=po24
+.gate zero   O=po25
+.gate zero   O=po26
+.gate zero   O=po27
+.gate zero   O=po28
+.gate zero   O=po29
+.end

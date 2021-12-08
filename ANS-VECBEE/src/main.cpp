@@ -45,7 +45,13 @@ void Execute_Sop_Net(Abc_Ntk_t * pAbcNtk, int number, float ERThres, string genl
     int EThres = static_cast <int> (ERThres * number);
 
     cout << "fileName = " << ckt.GetName() << endl;
-    while (Ckt_SingleSelectionOnce(ckt, cktRef, EThres) <= EThres);
+    cout << "original #literals = " << ckt.CountLiteralNum() << endl;
+    auto error = Ckt_SingleSelectionOnce(ckt, cktRef, EThres);
+    cout << "error = " << error / static_cast <double> (number) << endl;
+    while (error <= EThres) {
+        error = Ckt_SingleSelectionOnce(ckt, cktRef, EThres);
+        cout << "error = " << error / static_cast <double> (number) << endl;
+    }
 
     assert(system("if [ ! -d approx ]; then mkdir approx; fi") != -1);
     string fileName("");
