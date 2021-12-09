@@ -1,4 +1,4 @@
-# Benchmark "priority" written by ABC on Thu Dec  9 21:56:24 2021
+# Benchmark "priority" written by ABC on Thu Dec  9 23:18:35 2021
 .model priority
 .inputs pi000 pi001 pi002 pi003 pi004 pi005 pi006 pi007 pi008 pi009 pi010 \
  pi011 pi012 pi013 pi014 pi015 pi016 pi017 pi018 pi019 pi020 pi021 pi022 \
@@ -153,11 +153,11 @@
 .names pi007 new_n205_
 0 1
 .names pi004 new_n206_
-- 0
+0 1
 .names pi001 new_n207_
 - 0
 .names pi003 new_n208_
-- 0
+0 1
 .names pi002 new_n207_ new_n208_ new_n209_
 --- 0
 .names new_n209_ new_n206_ pi005 new_n210_
@@ -271,7 +271,7 @@
 .names new_n263_ new_n152_ pi113 new_n264_
 --- 0
 .names new_n264_ pi114 new_n151_ new_n265_
---- 0
+--0 1
 .names new_n265_ new_n150_ pi117 new_n266_
 --- 0
 .names new_n266_ pi118 new_n149_ new_n267_
@@ -300,7 +300,7 @@
 .names pi117 new_n278_
 0 1
 .names new_n278_ new_n150_ new_n279_
--- 0
+-- 1
 .names pi115 pi114 new_n280_
 -- 0
 .names new_n280_ new_n281_

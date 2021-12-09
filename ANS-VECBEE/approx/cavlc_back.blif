@@ -1,4 +1,4 @@
-# Benchmark "cavlc" written by ABC on Thu Dec  9 21:56:09 2021
+# Benchmark "cavlc" written by ABC on Thu Dec  9 23:18:22 2021
 .model cavlc
 .inputs pi0 pi1 pi2 pi3 pi4 pi5 pi6 pi7 pi8 pi9
 .outputs po00 po01 po02 po03 po04 po05 po06 po07 po08 po09 po10
@@ -144,7 +144,7 @@
 -0- 1
 --0 1
 .names new_n74_ new_n71_ pi1 new_n75_
---- 0
+0-0 1
 .names pi3 pi1 new_n76_
 00 1
 .names new_n76_ new_n77_
@@ -271,7 +271,7 @@
 00- 1
 .names pi5 new_n93_ new_n60_ new_n121_
 --0 1
-0-- 1
+00- 1
 .names new_n33_ pi5 new_n122_
 00 1
 .names new_n122_ new_n87_ new_n123_
@@ -395,10 +395,7 @@
 --0 1
 00- 1
 .names new_n164_ new_n162_ new_n81_ new_n93_ new_n165_
-0--- 1
--0-- 1
---0- 1
----0 1
+---- 1
 .names new_n165_ new_n166_
 - 0
 .names new_n166_ new_n161_ new_n152_ new_n167_
@@ -494,6 +491,8 @@
 00- 1
 .names new_n196_ new_n68_ new_n195_ new_n34_ new_n197_
 0--- 1
+-00- 1
+-0-0 1
 .names new_n33_ pi2 new_n198_
 0- 1
 -0 1
@@ -615,7 +614,8 @@
 0-0 1
 -0- 1
 .names new_n220_ new_n108_ new_n72_ new_n48_ new_n239_
-0--- 1
+0--0 1
+-0-0 1
 .names pi9 pi8 pi2 new_n240_
 0-- 1
 -0- 1
@@ -650,10 +650,7 @@
 --0 1
 00- 1
 .names new_n35_ new_n67_ pi1 pi0 new_n252_
-0--- 1
--0-- 1
---0- 1
----0 1
+---- 1
 .names new_n252_ new_n251_ new_n242_ new_n253_
 0-- 1
 -0- 1
@@ -730,7 +727,8 @@
 --0 1
 00- 1
 .names new_n241_ new_n246_ new_n275_ new_n276_
---0 1
+0-0 1
+-00 1
 .names new_n264_ new_n277_
 0 1
 .names pi9 pi8 pi2 new_n278_
@@ -756,9 +754,7 @@
 --0- 1
 ---0 1
 .names new_n249_ new_n56_ new_n43_ new_n285_
-0-- 1
--0- 1
---0 1
+--- 1
 .names pi5 pi2 new_n286_
 00 1
 .names new_n286_ new_n287_
@@ -943,8 +939,7 @@
 --0 1
 00- 1
 .names new_n80_ new_n47_ new_n33_ new_n346_
-0-0 1
--00 1
+--- 0
 .names new_n346_ new_n345_ new_n347_
 0- 1
 -0 1
@@ -980,8 +975,7 @@
 -0- 1
 --0 1
 .names new_n128_ new_n33_ new_n54_ new_n34_ new_n358_
---0- 1
----0 1
+---- 1
 .names new_n358_ new_n87_ new_n357_ new_n359_
 --0 1
 00- 1
@@ -1073,7 +1067,8 @@
 0- 1
 -0 1
 .names new_n62_ new_n87_ new_n388_ new_n389_
---- 0
+0-0 1
+-00 1
 .names new_n277_ new_n110_ pi3 new_n390_
 0-0 1
 -00 1
@@ -1095,11 +1090,8 @@
 00- 1
 .names new_n136_ new_n154_ new_n140_ new_n397_
 --0 1
-00- 1
 .names new_n397_ new_n87_ new_n373_ new_n199_ new_n398_
 0--- 1
--00- 1
--0-0 1
 .names new_n398_ new_n396_ new_n376_ new_n372_ new_n399_
 0--- 1
 -0-- 1
@@ -1118,10 +1110,7 @@
 0- 1
 -0 1
 .names new_n264_ new_n403_ new_n76_ new_n48_ new_n404_
-0--- 1
--0-- 1
---0- 1
----0 1
+---- 1
 .names new_n404_ pi7 new_n405_
 11 1
 .names new_n39_ new_n41_ new_n406_
@@ -1183,7 +1172,10 @@
 0- 1
 -0 1
 .names new_n424_ new_n423_ new_n384_ pi5 new_n425_
----- 1
+0--- 1
+-0-- 1
+--0- 1
+---0 1
 .names new_n425_ new_n422_ new_n426_
 0- 1
 -0 1

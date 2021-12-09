@@ -1,4 +1,4 @@
-# Benchmark "arbiter" written by ABC on Thu Dec  9 21:56:37 2021
+# Benchmark "arbiter" written by ABC on Thu Dec  9 23:18:47 2021
 .model arbiter
 .inputs pi000 pi001 pi002 pi003 pi004 pi005 pi006 pi007 pi008 pi009 pi010 \
  pi011 pi012 pi013 pi014 pi015 pi016 pi017 pi018 pi019 pi020 pi021 pi022 \
@@ -392,7 +392,7 @@
 --0 1
 00- 1
 .names new_n538_ new_n537_ new_n541_ new_n542_
---0 1
+--- 0
 .names new_n542_ new_n543_
 0 1
 .names pi127 new_n544_
@@ -416,11 +416,11 @@
 .names pi210 pi209 new_n552_
 00 1
 .names pi213 pi202 new_n553_
-0- 1
+00 1
 .names new_n553_ new_n552_ new_n551_ new_n550_ new_n554_
-0--- 1
+---- 1
 .names new_n554_ new_n549_ pi206 new_n555_
-0-- 1
+000 1
 .names pi201 new_n556_
 0 1
 .names pi198 new_n557_
@@ -729,7 +729,7 @@
 .names new_n688_ new_n689_
 0 1
 .names new_n687_ new_n597_ new_n689_ new_n690_
---- 0
+--- 1
 .names pi170 new_n691_
 0 1
 .names new_n691_ pi042 pi043 new_n692_
@@ -1075,7 +1075,7 @@
 .names new_n549_ pi206 new_n833_
 00 1
 .names new_n550_ pi075 pi076 new_n834_
---- 0
+--- 1
 .names pi078 pi077 new_n835_
 00 1
 .names new_n834_ pi204 new_n835_ new_n836_
@@ -1097,15 +1097,18 @@
 .names pi212 new_n843_
 0 1
 .names new_n843_ pi084 pi085 new_n844_
---- 1
+0-0 1
+-00 1
 .names new_n844_ new_n845_
 0 1
 .names new_n842_ new_n809_ new_n845_ new_n846_
---- 1
+0-0 1
+-00 1
 .names new_n846_ new_n847_
 0 1
 .names new_n847_ new_n830_ pi086 new_n848_
---0 1
+0-0 1
+-00 1
 .names new_n848_ new_n849_
 0 1
 .names new_n849_ new_n811_ pi087 new_n850_
@@ -1244,7 +1247,9 @@
 0- 1
 -0 1
 .names new_n907_ new_n898_ new_n893_ new_n908_
---- 0
+0-- 1
+-0- 1
+--0 1
 .names new_n866_ new_n808_ new_n908_ new_n909_
 --- 0
 .names pi236 new_n910_
@@ -1564,7 +1569,7 @@
 .names pi164 pi157 new_n1031_
 00 1
 .names new_n1031_ new_n1015_ new_n608_ new_n595_ new_n1032_
----- 1
+---0 1
 .names new_n1032_ new_n1033_
 0 1
 .names new_n1033_ new_n1026_ new_n693_ new_n1034_
@@ -2103,7 +2108,7 @@
 .names new_n1239_ new_n789_ new_n1240_
 00 1
 .names new_n1240_ new_n929_ new_n927_ new_n803_ new_n1241_
----- 0
+---- 1
 .names new_n1241_ new_n937_ new_n1242_
 00 1
 .end

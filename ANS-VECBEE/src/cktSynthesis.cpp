@@ -90,7 +90,7 @@ void OutputBlif(Abc_Ntk_t * pNtk, string fileName, bool isSynthMap)
         for (int i = 0; i < 10; ++i) {
             Command = string("balance; rewrite; refactor; balance; rewrite; rewrite -z; balance; refactor -z; rewrite -z; balance");
             assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
-            Command = string("map;");
+            Command = string("map -a;");
             assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
         }
         area = Ckt_GetArea(Abc_FrameReadNtk(pAbc));

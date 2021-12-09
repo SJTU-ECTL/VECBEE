@@ -1,4 +1,4 @@
-# Benchmark "priority" written by ABC on Thu Dec  9 21:56:24 2021
+# Benchmark "priority" written by ABC on Thu Dec  9 23:18:35 2021
 .model priority
 .inputs pi000 pi001 pi002 pi003 pi004 pi005 pi006 pi007 pi008 pi009 pi010 \
  pi011 pi012 pi013 pi014 pi015 pi016 pi017 pi018 pi019 pi020 pi021 pi022 \
@@ -22,11 +22,10 @@
 .gate inv1   a=pi125 O=new_n137_
 .gate inv1   a=pi127 O=new_n138_
 .gate oai21  a=pi126 b=new_n137_ c=new_n138_ O=po0
-.gate inv1   a=pi124 O=new_n140_
-.gate nand2  a=new_n137_ b=new_n140_ O=new_n141_
-.gate nor2   a=pi127 b=pi126 O=new_n142_
-.gate nand2  a=new_n142_ b=new_n141_ O=po1
-.gate nand3  a=new_n142_ b=new_n137_ c=new_n140_ O=po2
+.gate nor2   a=pi127 b=pi126 O=new_n140_
+.gate oai21  a=pi125 b=pi124 c=new_n140_ O=po1
+.gate nor2   a=pi125 b=pi124 O=new_n142_
+.gate nand2  a=new_n142_ b=new_n140_ O=po2
 .gate one    O=po3
 .gate one    O=po4
 .gate one    O=po5

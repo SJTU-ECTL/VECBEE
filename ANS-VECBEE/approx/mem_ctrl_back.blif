@@ -1,4 +1,4 @@
-# Benchmark "mem_ctrl" written by ABC on Thu Dec  9 22:23:55 2021
+# Benchmark "mem_ctrl" written by ABC on Thu Dec  9 23:48:32 2021
 .model mem_ctrl
 .inputs pi0000 pi0001 pi0002 pi0003 pi0004 pi0005 pi0006 pi0007 pi0008 \
  pi0009 pi0010 pi0011 pi0012 pi0013 pi0014 pi0015 pi0016 pi0017 pi0018 \
@@ -3206,11 +3206,17 @@
 .names pi0111 pi0082 new_n3456_
 00 1
 .names new_n3456_ new_n3455_ new_n3454_ new_n3453_ new_n3457_
----- 0
+0--- 1
+-0-- 1
+--0- 1
+---0 1
 .names new_n3457_ new_n3452_ new_n3448_ new_n3458_
 000 1
 .names new_n3458_ new_n3444_ new_n3437_ new_n3433_ new_n3459_
----- 0
+0--- 1
+-0-- 1
+--0- 1
+---0 1
 .names pi0110 pi0047 new_n3460_
 00 1
 .names pi0091 pi0058 new_n3461_
@@ -3316,7 +3322,8 @@
 --0 1
 00- 1
 .names new_n3505_ new_n3498_ new_n3503_ new_n3506_
---- 0
+0-0 1
+-00 1
 .names new_n3506_ new_n3496_ new_n3507_
 0- 1
 -0 1
@@ -4387,8 +4394,7 @@
 .names new_n3911_ new_n3912_
 0 1
 .names new_n3582_ new_n3555_ new_n3912_ new_n3913_
-0-0 1
--00 1
+--- 0
 .names new_n3913_ new_n3700_ new_n3914_
 11 1
 .names new_n3914_ new_n3910_ new_n3908_ new_n3915_
@@ -4925,8 +4931,7 @@
 .names pi1139 new_n4098_
 0 1
 .names new_n3846_ new_n4079_ new_n3833_ new_n4098_ new_n4099_
---0- 1
---0- 1
+0-0- 1
 ---0 1
 .names new_n4099_ new_n4097_ new_n3845_ new_n4100_
 0-- 1
@@ -5255,7 +5260,8 @@
 0-0 1
 -00 1
 .names new_n3846_ pi0938 new_n3833_ pi1135 new_n4213_
-0-0- 1
+--0- 1
+--0- 1
 ---0 1
 .names new_n4213_ new_n4212_ new_n4214_
 0- 1
@@ -5275,8 +5281,7 @@
 .names pi0930 new_n4220_
 0 1
 .names new_n3846_ new_n4220_ new_n3837_ po1130 new_n4221_
---0- 1
---0- 1
+0-0- 1
 ---0 1
 .names new_n4221_ new_n4219_ new_n4217_ new_n4222_
 0-- 1
@@ -7193,8 +7198,7 @@
 .names new_n4535_ new_n3879_ new_n4923_
 00 1
 .names new_n4923_ pi0149 new_n4840_ new_n3879_ new_n4924_
-0-0- 1
---0- 1
+---- 0
 .names pi0164 new_n4925_
 0 1
 .names pi0169 new_n4926_
@@ -14401,10 +14405,7 @@
 .names new_n7506_ new_n4692_ new_n7520_
 00 1
 .names new_n7520_ pi0464 new_n7519_ pi0633 new_n7521_
-0-0- 1
--00- 1
-0--0 1
--0-0 1
+---- 1
 .names pi1138 pi1137 pi1136 new_n7522_
 000 1
 .names new_n7522_ new_n7523_
@@ -14892,7 +14893,10 @@
 --0 1
 00- 1
 .names new_n7635_ pi0411 new_n7540_ pi0706 new_n7683_
----- 1
+0-0- 1
+-00- 1
+0--0 1
+-0-0 1
 .names new_n7549_ pi0788 new_n7543_ pi0637 new_n7684_
 0-0- 1
 -00- 1
@@ -15191,7 +15195,10 @@
 --0 1
 00- 1
 .names new_n7540_ new_n5906_ new_n7514_ pi0345 new_n7774_
----- 1
+0-0- 1
+-00- 1
+0--0 1
+-0-0 1
 .names new_n7526_ pi0848 new_n7519_ pi0610 new_n7775_
 0-0- 1
 -00- 1
@@ -15646,10 +15653,7 @@
 .names new_n7931_ new_n7932_
 0 1
 .names new_n7529_ pi0400 new_n7519_ pi0644 new_n7933_
-0-0- 1
--00- 1
-0--0 1
--0-0 1
+---- 1
 .names new_n7520_ new_n7934_
 0 1
 .names new_n7678_ new_n7934_ pi0751 new_n7935_
