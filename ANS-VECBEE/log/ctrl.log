@@ -1,50 +1,87 @@
 fileName = ctrl
 original #literals = 205
+--------- round 0 ---------
 #candidates = 708
-Build cut network time = 8024
-seed = 3016172560
-Get boolean difference time = 51848
-Get error time = 51
-runtime = 0.086489
+Build cut network time = 7156
+seed = 1670185993
+Get boolean difference time = 4360
+Get error time = 30
+runtime = 0.016585
 Best ASE = n46	0-0-|-00-|0--0|	INTER	0	newError = 0	estError = 0
 #literals = 203
---------- round 0 ---------
+--------- round 1 ---------
 #candidates = 571
-Build cut network time = 4942
-seed = 2999055681
-Get boolean difference time = 37452
-Get error time = 57
-runtime = 0.161966
+Build cut network time = 4789
+seed = 2131692697
+Get boolean difference time = 3296
+Get error time = 25
+runtime = 0.028872
 Best ASE = n87	0--|--0|	INTER	0	newError = 0	estError = 0
 #literals = 202
---------- round 1 ---------
-#candidates = 567
-Build cut network time = 5143
-seed = 1291852968
-Get boolean difference time = 33141
-Get error time = 22
-runtime = 0.233223
-Best ASE = n87		CONST1	755	newError = 755	estError = 755
-#literals = 200
 --------- round 2 ---------
-#candidates = 563
-Build cut network time = 4003
-seed = 3141675728
-Get boolean difference time = 30074
-Get error time = 21
-runtime = 0.300986
-Best ASE = n113	--0|	INTER	0	newError = 751	estError = 751
-#literals = 198
+#candidates = 567
+Build cut network time = 5064
+seed = 1519007427
+Get boolean difference time = 3287
+Get error time = 26
+runtime = 0.04154
+Best ASE = n115		CONST1	84	newError = 84	estError = 84
+#literals = 200
 --------- round 3 ---------
-#candidates = 557
-Build cut network time = 3914
-seed = 1077602018
-Get boolean difference time = 36697
-Get error time = 21
-runtime = 0.374605
+#candidates = 563
+Build cut network time = 5394
+seed = 2930518442
+Get boolean difference time = 3361
+Get error time = 24
+runtime = 0.054642
+Best ASE = n108	--0|	INTER	78	newError = 164	estError = 164
+#literals = 197
+--------- round 4 ---------
+#candidates = 550
+Build cut network time = 5643
+seed = 3453891954
+Get boolean difference time = 3311
+Get error time = 30
+runtime = 0.067952
+Best ASE = n89		CONST1	143	newError = 303	estError = 303
+#literals = 193
+--------- round 5 ---------
+#candidates = 534
+Build cut network time = 5127
+seed = 3252133455
+Get boolean difference time = 2943
+Get error time = 14
+runtime = 0.080604
+Best ASE = n88		CONST0	0	newError = 305	estError = 305
+#literals = 191
+--------- round 6 ---------
+#candidates = 530
+Build cut network time = 4536
+seed = 3864314436
+Get boolean difference time = 2919
+Get error time = 17
+runtime = 0.093709
+Best ASE = n87		CONST0	0	newError = 291	estError = 291
+#literals = 189
+--------- round 7 ---------
+#candidates = 526
+Build cut network time = 4870
+seed = 1024458168
+Get boolean difference time = 2874
+Get error time = 13
+runtime = 0.107052
+Best ASE = n113	--0|	INTER	0	newError = 290	estError = 290
+#literals = 187
+--------- round 8 ---------
+#candidates = 520
+Build cut network time = 3986
+seed = 1698740346
+Get boolean difference time = 2797
+Get error time = 13
+runtime = 0.11936
 estimated error exceeds error bound
-Best ASE = n108	--0|	INTER	740	newError = 1499	estError = 1499
-final approximate circuit is: ctrl_back.blif
-area = 183
-delay = 7.2
-#literals = 195
+Best ASE = n114		CONST1	306	newError = 588	estError = 588
+output approximate circuit: ctrl_back.blif
+area = 181
+delay = 4.9
+#literals = 183

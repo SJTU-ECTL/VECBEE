@@ -40,40 +40,8 @@ float Ckt_Synthesis2(Ckt_Sop_Net_t & ckt, string fileName)
         // area = min(area, Ckt_GetArea(Abc_FrameReadNtk(pAbc)));
     }
     float area = Ckt_GetArea(Abc_FrameReadNtk(pAbc));
-    float delay = Abc_GetArrivalTime(Abc_FrameReadNtk(pAbc));
+    // float delay = Abc_GetArrivalTime(Abc_FrameReadNtk(pAbc));
     // cout << "area = " << area << endl << "delay = " << delay << endl;
-    assert(system("if [ ! -d mapped ]; then mkdir mapped; fi") != -1);
-    Command = string("write_blif mapped/");
-    Command += fileName;
-    assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
-
-    return area;
-}
-
-
-float Ckt_Synthesis2(Abc_Ntk_t * pNtk, string fileName)
-{
-    string Command;
-    string ntkName(pNtk->pName);
-    float area, delay;
-
-    Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
-    Abc_FrameReplaceCurrentNetwork(pAbc, Abc_NtkDup(pNtk));
-
-    assert(system("if [ ! -d approx ]; then mkdir approx; fi") != -1);
-    Command = string("write_blif approx/");
-    Command += fileName;
-    assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
-
-    for (int i = 0; i < 10; ++i) {
-        Command = string("balance; rewrite; refactor; balance; rewrite; rewrite -z; balance; refactor -z; rewrite -z; balance");
-        assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
-        Command = string("map -a;");
-        assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
-    }
-    area = Ckt_GetArea(Abc_FrameReadNtk(pAbc));
-    delay = Abc_GetArrivalTime(Abc_FrameReadNtk(pAbc));
-    cout << "area = " << area << endl << "delay = " << delay << endl;
     assert(system("if [ ! -d mapped ]; then mkdir mapped; fi") != -1);
     Command = string("write_blif mapped/");
     Command += fileName;
@@ -101,6 +69,38 @@ float Ckt_Synthesis3(Ckt_Sop_Net_t & ckt)
     float delay = Abc_GetArrivalTime(Abc_FrameReadNtk(pAbc));
     cout << "area = " << area << " delay = " << delay << endl;
     return area;
+}
+
+
+void OutputBlif(Abc_Ntk_t * pNtk, string fileName, bool isSynthMap)
+{
+    string Command;
+    string ntkName(pNtk->pName);
+    float area, delay;
+
+    Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
+    Abc_FrameReplaceCurrentNetwork(pAbc, Abc_NtkDup(pNtk));
+
+    assert(system("if [ ! -d approx ]; then mkdir approx; fi") != -1);
+    Command = string("write_blif approx/");
+    Command += fileName;
+    assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+
+    if (isSynthMap) {
+        for (int i = 0; i < 10; ++i) {
+            Command = string("balance; rewrite; refactor; balance; rewrite; rewrite -z; balance; refactor -z; rewrite -z; balance");
+            assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+            Command = string("map;");
+            assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+        }
+        area = Ckt_GetArea(Abc_FrameReadNtk(pAbc));
+        delay = Abc_GetArrivalTime(Abc_FrameReadNtk(pAbc));
+        cout << "area = " << area << endl << "delay = " << delay << endl;
+        assert(system("if [ ! -d mapped ]; then mkdir mapped; fi") != -1);
+        Command = string("write_blif mapped/");
+        Command += fileName;
+        assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+    }
 }
 
 

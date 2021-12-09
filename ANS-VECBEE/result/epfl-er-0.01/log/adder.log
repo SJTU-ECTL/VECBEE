@@ -1,0 +1,42 @@
+fileName = adder
+original #literals = 2462
+--------- round 0 ---------
+#candidates = 6626
+Build cut network time = 56019
+seed = 2518361359
+Get boolean difference time = 159640
+Get error time = 83
+runtime = 0.287626
+Best ASE = n529	0-0-|-0--|0--0|	INTER	138	newError = 138	estError = 138
+#literals = 2459
+--------- round 1 ---------
+#candidates = 6461
+Build cut network time = 35004
+seed = 2827750975
+Get boolean difference time = 157226
+Get error time = 97
+runtime = 0.551219
+Best ASE = n529	0---|-0--|	INTER	128	newError = 271	estError = 271
+#literals = 2456
+--------- round 2 ---------
+#candidates = 6434
+Build cut network time = 34868
+seed = 325726313
+Get boolean difference time = 157113
+Get error time = 68
+runtime = 0.814832
+Best ASE = n530	--0|0--|	INTER	0	newError = 278	estError = 278
+#literals = 2455
+--------- round 3 ---------
+#candidates = 6430
+Build cut network time = 36224
+seed = 989824365
+Get boolean difference time = 157536
+Get error time = 81
+runtime = 1.07995
+estimated error exceeds error bound
+Best ASE = n591		CONST1	675	newError = 994	estError = 994
+final approximate circuit is: adder_back.blif
+area = 2563
+delay = 200.4
+#literals = 2452

@@ -410,8 +410,8 @@ float Ckt_SingleSelectionOnce(Ckt_Sop_Net_t & ckt, Ckt_Sop_Net_t & cktRef, int E
         if (newError > EThres) {
             ostringstream oss;
             oss << pBackNet->pName << "_back.blif";
-            cout << "final approximate circuit is: " << oss.str() << endl;
-            Ckt_Synthesis2(pBackNet, oss.str());
+            cout << "output approximate circuit: " << oss.str() << endl;
+            OutputBlif(pBackNet, oss.str(), true);
         }
         Abc_NtkDelete(pBackNet);
 
