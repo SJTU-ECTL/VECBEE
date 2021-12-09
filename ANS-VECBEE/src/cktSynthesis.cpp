@@ -60,6 +60,11 @@ float Ckt_Synthesis2(Abc_Ntk_t * pNtk, string fileName)
     Abc_Frame_t * pAbc = Abc_FrameGetGlobalFrame();
     Abc_FrameReplaceCurrentNetwork(pAbc, Abc_NtkDup(pNtk));
 
+    assert(system("if [ ! -d approx ]; then mkdir approx; fi") != -1);
+    Command = string("write_blif approx/");
+    Command += fileName;
+    assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );
+
     for (int i = 0; i < 10; ++i) {
         Command = string("balance; rewrite; refactor; balance; rewrite; rewrite -z; balance; refactor -z; rewrite -z; balance");
         assert( !Cmd_CommandExecute(pAbc, Command.c_str()) );

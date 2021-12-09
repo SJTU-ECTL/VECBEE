@@ -9,31 +9,26 @@ ckts = [
 'cavlc',
 'ctrl',
 'dec',
-# 'div',
+'div',
 'i2c',
 'int2float',
+'log2',
 'max',
-# 'mem',
-# 'multiplier',
-'priority',
-'router',
-'sin'
-# 'sqrt',
-# 'square',
-# 'voter'
-]
-cktsHard = [
-'div',
 'mem',
 'multiplier',
+'priority',
+'router',
+'sin',
 'sqrt',
 'square',
 'voter'
 ]
 
-for ckt in cktsHard:
-    # cmd = 'sis -x -c \"read_library ../genlib/mcnc.genlib; read_blif ' + ckt + '_gate.blif; print_map_stats; print_delay -a\" | grep -A1 -e \"Area\" -e \"using\"'
+for ckt in ckts:
+    cmd = 'sis -x -c \"read_library data/genlib/mcnc.genlib; read_blif mapped/' + ckt + '_back.blif; print_map_stats; print_delay -a -p 1\" | grep -e \"Area\" -e \"arrival\"'
+    # cmd = 'sis -x -c \"read_library data/genlib/mcnc.genlib; read_blif mapped/' + ckt + '_small_delay.blif; print_map_stats; print_delay -a -p 1\" | grep -e \"Area\" -e \"arrival\"'
+    # cmd = 'sis -x -c \"read_library data/genlib/mcnc.genlib; read_blif data/epfl/' + ckt + '_gate.blif; print_map_stats; print_delay -a -p 1\" | grep -e \"Area\" -e \"arrival\"'
     # cmd = 'sis -x -c \"read_blif ' + ckt + '_gate_sop.blif; write_blif ' + ckt + '.blif\"'
-    cmd = './main -f data/epfl/' + ckt + '.blif > log/' + ckt + '.log &'
+    # cmd = './main -f data/epfl/' + ckt + '.blif > log/' + ckt + '.log &'
     print(cmd)
     os.system(cmd)
