@@ -62,9 +62,10 @@ int main(int argc, char * argv[])
     DASSERT(!Cmd_CommandExecute(pAbc, command.str().c_str()));
 
     // sasimi + vecbee
-    Abc_Ntk_t * pNtk = Abc_FrameReadNtk(pAbc);
+    Abc_Ntk_t * pNtk = Abc_NtkDup(Abc_FrameReadNtk(pAbc));
     SASIMI_Manager_t sasimiMng(pNtk, frameNumber, maxLevel, metricType, errorBound);
     sasimiMng.GreedySelection(pNtk, outPrefix.string());
+    Abc_NtkDelete(pNtk);
 
     // stop abc
     Abc_Stop();

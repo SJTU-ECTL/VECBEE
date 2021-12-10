@@ -1,0 +1,83 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/c7552.blif
+Line 21: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 22: Skipping line ".default_output_required 0.00 0.00 ".
+Line 23: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 24: Skipping line ".default_output_load 2.00 ".
+Line 25: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mc7552                         :[0m i/o =  207/  108  lat =    0  nd =  1125  edge =   2605  area =2756.00  delay =69.40  lev = 50
+--------------- round 1 ---------------
+seed = 4174349445
+maxLevel = 2147483647
+size of nodeLACs = 1443
+size of candLACs = 18
+n1169 is replaced by one with estimated error 0
+error = 0
+high accuracy error = 0
+area = 2747
+delay = 69.4
+#gates = 1124
+output circuit appNtk/c7552_1_0_2747_69.4.blif
+time = 109259524 us
+--------------- round 2 ---------------
+seed = 494958507
+maxLevel = 2147483647
+size of nodeLACs = 1443
+size of candLACs = 15
+mismatch error: 0, 0.00012
+n823 is replaced by zero with estimated error 0.00012
+error = 0
+high accuracy error = 0
+area = 2745
+delay = 69.4
+#gates = 1123
+output circuit appNtk/c7552_2_0_2745_69.4.blif
+time = 218066155 us
+--------------- round 3 ---------------
+seed = 3989240772
+maxLevel = 2147483647
+size of nodeLACs = 1443
+size of candLACs = 14
+mismatch error: 0.03144, 0.032
+mismatch error: 0, 0.00297
+n772 is replaced by one with estimated error 0.00297
+error = 0
+high accuracy error = 6e-06
+area = 2740
+delay = 69.4
+#gates = 1121
+output circuit appNtk/c7552_3_0_2740_69.4.blif
+time = 335218836 us
+--------------- round 4 ---------------
+seed = 2483331622
+maxLevel = 2147483647
+size of nodeLACs = 1443
+size of candLACs = 12
+mismatch error: 0.03205, 0.03207
+mismatch error: 0.00518, 0.0465
+n670 is replaced by n667 with estimated error 0.00518
+error = 0.00518
+high accuracy error = 0.004961
+area = 2734
+delay = 69.4
+#gates = 1119
+output circuit appNtk/c7552_4_0.00518_2734_69.4.blif
+time = 482009330 us
+--------------- round 5 ---------------
+seed = 3752925206
+maxLevel = 2147483647
+size of nodeLACs = 1443
+size of candLACs = 8
+mismatch error: 0.03704, 0.03729
+mismatch error: 0.04032, 0.04052
+mismatch error: 0.03522, 0.03538
+mismatch error: 0.03601, 0.03616
+mismatch error: 0.02928, 0.02949
+n1129 is replaced by n866 with estimated error 0.02928
+error = 0.02928
+high accuracy error = 0.029014
+area = 2732
+delay = 69.4
+#gates = 1118

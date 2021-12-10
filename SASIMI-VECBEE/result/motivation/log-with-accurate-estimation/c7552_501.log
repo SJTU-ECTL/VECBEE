@@ -1,0 +1,443 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/su/c7552.blif
+Line 21: Skipping line ".default_input_arrival 0.00 0.00 ".
+Line 22: Skipping line ".default_output_required 0.00 0.00 ".
+Line 23: Skipping line ".default_input_drive 0.10 0.10 ".
+Line 24: Skipping line ".default_output_load 2.00 ".
+Line 25: Skipping line ".default_max_input_load 999.00 ".
+abc command print_stats
+[1;37mc7552                         :[0m i/o =  207/  108  lat =    0  nd =  1125  edge =   2605  area =2756.00  delay =69.40  lev = 50
+--------------- round 1 ---------------
+seed = 399296378
+maxLevel = 2147483647
+n850 is replaced by n438 with estimated error 0
+error = 0
+high accuracy error = 6.6e-05
+area = 2730
+delay = 69.4
+#gates = 1117
+output circuit appNtk/c7552_1_0_2730_69.4.blif
+time = 51574467 us
+--------------- round 2 ---------------
+seed = 2187047632
+maxLevel = 2147483647
+n770 is replaced by n376 with estimated error 4e-05
+error = 4e-05
+high accuracy error = 4.4e-05
+area = 2710
+delay = 69.4
+#gates = 1108
+output circuit appNtk/c7552_2_4e-05_2710_69.4.blif
+time = 94825329 us
+--------------- round 3 ---------------
+seed = 1885659695
+maxLevel = 2147483647
+n854 is replaced by n687 with estimated error 5e-05
+error = 5e-05
+high accuracy error = 9.5e-05
+area = 2703
+delay = 69.4
+#gates = 1105
+output circuit appNtk/c7552_3_5e-05_2703_69.4.blif
+time = 162085463 us
+--------------- round 4 ---------------
+seed = 1474041256
+maxLevel = 2147483647
+n695 is replaced by zero with estimated error 0.00013
+error = 0.00013
+high accuracy error = 0.000115
+area = 2694
+delay = 69.4
+#gates = 1101
+output circuit appNtk/c7552_4_0.00013_2694_69.4.blif
+time = 225593354 us
+--------------- round 5 ---------------
+seed = 3578592188
+maxLevel = 2147483647
+n827 is replaced by n1372 with inverter with estimated error 8e-05
+error = 8e-05
+high accuracy error = 0.000202
+area = 2684
+delay = 69.4
+#gates = 1098
+output circuit appNtk/c7552_5_8e-05_2684_69.4.blif
+time = 280388224 us
+--------------- round 6 ---------------
+seed = 2516206218
+maxLevel = 2147483647
+n823 is replaced by n821 with estimated error 0.00011
+error = 0.00011
+high accuracy error = 0.000214
+area = 2682
+delay = 69.4
+#gates = 1097
+output circuit appNtk/c7552_6_0.00011_2682_69.4.blif
+time = 325611422 us
+--------------- round 7 ---------------
+seed = 5057501
+maxLevel = 2147483647
+n1169 is replaced by one with estimated error 0.00023
+error = 0.00023
+high accuracy error = 0.00019
+area = 2673
+delay = 69.4
+#gates = 1094
+output circuit appNtk/c7552_7_0.00023_2673_69.4.blif
+time = 393725822 us
+--------------- round 8 ---------------
+seed = 2259612957
+maxLevel = 2147483647
+n821 is replaced by zero with estimated error 0.00021
+error = 0.00021
+high accuracy error = 0.000215
+area = 2670
+delay = 69.4
+#gates = 1093
+output circuit appNtk/c7552_8_0.00021_2670_69.4.blif
+time = 441096091 us
+--------------- round 9 ---------------
+seed = 2733400779
+maxLevel = 2147483647
+n822 is replaced by n405 with estimated error 0.00014
+error = 0.00014
+high accuracy error = 0.000231
+area = 2663
+delay = 69.4
+#gates = 1090
+output circuit appNtk/c7552_9_0.00014_2663_69.4.blif
+time = 499254136 us
+--------------- round 10 ---------------
+seed = 4239377807
+maxLevel = 2147483647
+n1443 is replaced by zero with estimated error 0.00028
+error = 0.00028
+high accuracy error = 0.000216
+area = 2662
+delay = 69.4
+#gates = 1089
+output circuit appNtk/c7552_10_0.00028_2662_69.4.blif
+time = 556272111 us
+--------------- round 11 ---------------
+seed = 2963722654
+maxLevel = 2147483647
+n772 is replaced by one with estimated error 0.00018
+error = 0.00018
+high accuracy error = 0.0002
+area = 2657
+delay = 69.4
+#gates = 1087
+output circuit appNtk/c7552_11_0.00018_2657_69.4.blif
+time = 616423435 us
+--------------- round 12 ---------------
+seed = 2327874456
+maxLevel = 2147483647
+n1391 is replaced by n494 with estimated error 0.00025
+error = 0.00025
+high accuracy error = 0.000217
+area = 2654
+delay = 69.4
+#gates = 1085
+output circuit appNtk/c7552_12_0.00025_2654_69.4.blif
+time = 701021740 us
+--------------- round 13 ---------------
+seed = 14788483
+maxLevel = 2147483647
+n1335 is replaced by n1230 with estimated error 0.00026
+error = 0.00026
+high accuracy error = 0.00022
+area = 2651
+delay = 69.4
+#gates = 1083
+output circuit appNtk/c7552_13_0.00026_2651_69.4.blif
+time = 795712090 us
+--------------- round 14 ---------------
+seed = 3837187272
+maxLevel = 2147483647
+n1136 is replaced by n1144 with estimated error 0.00012
+error = 0.00012
+high accuracy error = 0.000213
+area = 2648
+delay = 69.4
+#gates = 1082
+output circuit appNtk/c7552_14_0.00012_2648_69.4.blif
+time = 877225880 us
+--------------- round 15 ---------------
+seed = 3504863837
+maxLevel = 2147483647
+n1187 is replaced by n593 with estimated error 0.00018
+error = 0.00018
+high accuracy error = 0.000237
+area = 2646
+delay = 69.4
+#gates = 1081
+output circuit appNtk/c7552_15_0.00018_2646_69.4.blif
+time = 969761805 us
+--------------- round 16 ---------------
+seed = 3674345787
+maxLevel = 2147483647
+n1188 is replaced by n1173 with estimated error 0.00018
+error = 0.00018
+high accuracy error = 0.000232
+area = 2644
+delay = 69.4
+#gates = 1080
+output circuit appNtk/c7552_16_0.00018_2644_69.4.blif
+time = 1044383819 us
+--------------- round 17 ---------------
+seed = 2847906179
+maxLevel = 2147483647
+n868 is replaced by zero with estimated error 0.00017
+error = 0.00017
+high accuracy error = 0.000224
+area = 2642
+delay = 69.4
+#gates = 1079
+output circuit appNtk/c7552_17_0.00017_2642_69.4.blif
+time = 1132555897 us
+--------------- round 18 ---------------
+seed = 1463478150
+maxLevel = 2147483647
+n1020 is replaced by n376 with estimated error 0.0001
+error = 0.0001
+high accuracy error = 0.000238
+area = 2640
+delay = 69.4
+#gates = 1078
+output circuit appNtk/c7552_18_0.0001_2640_69.4.blif
+time = 1203163189 us
+--------------- round 19 ---------------
+seed = 52293769
+maxLevel = 2147483647
+n588 is replaced by n418 with estimated error 0.00018
+error = 0.00018
+high accuracy error = 0.000237
+area = 2639
+delay = 65.9
+#gates = 1077
+output circuit appNtk/c7552_19_0.00018_2639_65.9.blif
+time = 1281074048 us
+--------------- round 20 ---------------
+seed = 1954933561
+maxLevel = 2147483647
+n1341 is replaced by n1330 with estimated error 0.00026
+error = 0.00026
+high accuracy error = 0.000209
+area = 2638
+delay = 65.9
+#gates = 1076
+output circuit appNtk/c7552_20_0.00026_2638_65.9.blif
+time = 1358689710 us
+--------------- round 21 ---------------
+seed = 3936848002
+maxLevel = 2147483647
+n820 is replaced by n405 with estimated error 0.00024
+error = 0.00024
+high accuracy error = 0.000316
+area = 2631
+delay = 65.9
+#gates = 1074
+output circuit appNtk/c7552_21_0.00024_2631_65.9.blif
+time = 1432321347 us
+--------------- round 22 ---------------
+seed = 3157333711
+maxLevel = 2147483647
+n828 is replaced by n818 with estimated error 0.00034
+error = 0.00034
+high accuracy error = 0.00043
+area = 2628
+delay = 65.9
+#gates = 1073
+output circuit appNtk/c7552_22_0.00034_2628_65.9.blif
+time = 1525806082 us
+--------------- round 23 ---------------
+seed = 2860554657
+maxLevel = 2147483647
+n872 is replaced by one with estimated error 0.00044
+error = 0.00044
+high accuracy error = 0.000433
+area = 2618
+delay = 65.9
+#gates = 1069
+output circuit appNtk/c7552_23_0.00044_2618_65.9.blif
+time = 1615757676 us
+--------------- round 24 ---------------
+seed = 3934669205
+maxLevel = 2147483647
+n808 is replaced by n803 with estimated error 0.00036
+error = 0.00036
+high accuracy error = 0.000502
+area = 2615
+delay = 65.9
+#gates = 1068
+output circuit appNtk/c7552_24_0.00036_2615_65.9.blif
+time = 1697801341 us
+--------------- round 25 ---------------
+seed = 3891668887
+maxLevel = 2147483647
+n673 is replaced by zero with estimated error 0.00044
+error = 0.00044
+high accuracy error = 0.00048
+area = 2613
+delay = 65.9
+#gates = 1067
+output circuit appNtk/c7552_25_0.00044_2613_65.9.blif
+time = 1786427510 us
+--------------- round 26 ---------------
+seed = 1626258925
+maxLevel = 2147483647
+n1183 is replaced by n593 with estimated error 0.00052
+error = 0.00052
+high accuracy error = 0.000499
+area = 2612
+delay = 65.9
+#gates = 1066
+output circuit appNtk/c7552_26_0.00052_2612_65.9.blif
+time = 1859376419 us
+--------------- round 27 ---------------
+seed = 3276527776
+maxLevel = 2147483647
+n797 is replaced by n332 with estimated error 0.00044
+error = 0.00044
+high accuracy error = 0.000583
+area = 2610
+delay = 65.9
+#gates = 1065
+output circuit appNtk/c7552_27_0.00044_2610_65.9.blif
+time = 1944681398 us
+--------------- round 28 ---------------
+seed = 2731773454
+maxLevel = 2147483647
+n851 is replaced by n648 with estimated error 0.00074
+error = 0.00074
+high accuracy error = 0.000745
+area = 2607
+delay = 65.9
+#gates = 1063
+output circuit appNtk/c7552_28_0.00074_2607_65.9.blif
+time = 2019966072 us
+--------------- round 29 ---------------
+seed = 3625749099
+maxLevel = 2147483647
+n855 is replaced by n681 with estimated error 0.00078
+error = 0.00078
+high accuracy error = 0.000768
+area = 2603
+delay = 65.9
+#gates = 1062
+output circuit appNtk/c7552_29_0.00078_2603_65.9.blif
+time = 2100814482 us
+--------------- round 30 ---------------
+seed = 3415562234
+maxLevel = 2147483647
+n829 is replaced by n1105 with estimated error 0.00078
+error = 0.00078
+high accuracy error = 0.000834
+area = 2599
+delay = 65.9
+#gates = 1061
+output circuit appNtk/c7552_30_0.00078_2599_65.9.blif
+time = 2189247639 us
+--------------- round 31 ---------------
+seed = 1557018042
+maxLevel = 2147483647
+n799 is replaced by n742 with estimated error 0.00095
+error = 0.00095
+high accuracy error = 0.001009
+area = 2594
+delay = 65.9
+#gates = 1059
+output circuit appNtk/c7552_31_0.00095_2594_65.9.blif
+time = 2271773982 us
+--------------- round 32 ---------------
+seed = 425439188
+maxLevel = 2147483647
+n876 is replaced by n791 with estimated error 0.00127
+error = 0.00127
+high accuracy error = 0.0014
+area = 2569
+delay = 65.9
+#gates = 1051
+output circuit appNtk/c7552_32_0.00127_2569_65.9.blif
+time = 2349447474 us
+--------------- round 33 ---------------
+seed = 2889605141
+maxLevel = 2147483647
+n858 is replaced by n674 with estimated error 0.00131
+error = 0.00131
+high accuracy error = 0.001721
+area = 2559
+delay = 65.9
+#gates = 1047
+output circuit appNtk/c7552_33_0.00131_2559_65.9.blif
+time = 2433983527 us
+--------------- round 34 ---------------
+seed = 3213849438
+maxLevel = 2147483647
+n745 is replaced by one with estimated error 0.00211
+error = 0.00211
+high accuracy error = 0.002202
+area = 2549
+delay = 65.9
+#gates = 1043
+output circuit appNtk/c7552_34_0.00211_2549_65.9.blif
+time = 2504629423 us
+--------------- round 35 ---------------
+seed = 575781320
+maxLevel = 2147483647
+n877 is replaced by n789 with estimated error 0.00318
+error = 0.00318
+high accuracy error = 0.003251
+area = 2532
+delay = 65.9
+#gates = 1037
+output circuit appNtk/c7552_35_0.00318_2532_65.9.blif
+time = 2568524674 us
+--------------- round 36 ---------------
+seed = 236713705
+maxLevel = 2147483647
+n833 is replaced by n699 with estimated error 0.0037
+error = 0.0037
+high accuracy error = 0.003749
+area = 2528
+delay = 65.9
+#gates = 1035
+output circuit appNtk/c7552_36_0.0037_2528_65.9.blif
+time = 2647597080 us
+--------------- round 37 ---------------
+seed = 231281215
+maxLevel = 2147483647
+n834 is replaced by n698 with estimated error 0.00426
+error = 0.00426
+high accuracy error = 0.004273
+area = 2524
+delay = 65.9
+#gates = 1034
+output circuit appNtk/c7552_37_0.00426_2524_65.9.blif
+time = 2730045098 us
+--------------- round 38 ---------------
+seed = 379450855
+maxLevel = 2147483647
+n656 is replaced by n1074 with estimated error 0.00658
+error = 0.00658
+high accuracy error = 0.006416
+area = 2516
+delay = 65.9
+#gates = 1031
+output circuit appNtk/c7552_38_0.00658_2516_65.9.blif
+time = 2806480392 us
+--------------- round 39 ---------------
+seed = 3045562744
+maxLevel = 2147483647
+n836 is replaced by n714 with estimated error 0.00805
+error = 0.00805
+high accuracy error = 0.008317
+area = 2509
+delay = 65.9
+#gates = 1028
+output circuit appNtk/c7552_39_0.00805_2509_65.9.blif
+time = 2876576850 us
+--------------- round 40 ---------------
+seed = 3355669353
+maxLevel = 2147483647
+exceed error bound
