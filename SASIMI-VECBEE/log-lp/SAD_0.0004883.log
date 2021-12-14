@@ -1,0 +1,984 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/sasimi-arith/SAD.blif
+abc command print_stats
+[1;37mSAD                           :[0m i/o =   48/   13  lat =    0  nd =   425  edge =    886  area =999.00  delay =44.00  lev = 40
+--------------- round 1 ---------------
+seed = 787239083
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 489
+size of candLACs = 151
+n79 is replaced by n119 with estimated error 0
+error = 0
+high accuracy error = 0.0407765
+area = 995
+delay = 44
+#gates = 426
+output circuit appNtk/SAD_1_0_995_44.blif
+time = 5013732 us
+--------------- round 2 ---------------
+seed = 696579440
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 489
+size of candLACs = 154
+n242 is replaced by n216 with estimated error 0.143816
+error = 0.143816
+high accuracy error = 15.1952
+area = 990
+delay = 43.9
+#gates = 425
+output circuit appNtk/SAD_2_0.143816_990_43.9.blif
+time = 10053856 us
+--------------- round 3 ---------------
+seed = 3466565734
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 489
+size of candLACs = 152
+n144 is replaced by one with estimated error 0.903431
+error = 0.18093
+high accuracy error = 21.2887
+area = 964
+delay = 43.9
+#gates = 414
+output circuit appNtk/SAD_3_0.18093_964_43.9.blif
+time = 15107158 us
+--------------- round 4 ---------------
+seed = 267068767
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 489
+size of candLACs = 141
+n170 is replaced by n209 with inverter with estimated error 0.425467
+error = 0.425467
+high accuracy error = 46.5953
+area = 954
+delay = 43.9
+#gates = 411
+output circuit appNtk/SAD_4_0.425467_954_43.9.blif
+time = 19842463 us
+--------------- round 5 ---------------
+seed = 3691020039
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 490
+size of candLACs = 134
+n185 is replaced by y0[0] with estimated error 0.617019
+error = 0.617019
+high accuracy error = 65.1139
+area = 948
+delay = 43.9
+#gates = 408
+output circuit appNtk/SAD_5_0.617019_948_43.9.blif
+time = 24539312 us
+--------------- round 6 ---------------
+seed = 3407005162
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 490
+size of candLACs = 130
+n186 is replaced by n202 with estimated error 0.79099
+error = 0.79099
+high accuracy error = 80.8699
+area = 941
+delay = 43.9
+#gates = 406
+output circuit appNtk/SAD_6_0.79099_941_43.9.blif
+time = 29205375 us
+--------------- round 7 ---------------
+seed = 1192528931
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 490
+size of candLACs = 129
+n85 is replaced by zero with estimated error 0.783177
+error = 0.777072
+high accuracy error = 83.1986
+area = 940
+delay = 43.9
+#gates = 405
+output circuit appNtk/SAD_7_0.777072_940_43.9.blif
+time = 33827842 us
+--------------- round 8 ---------------
+seed = 359651549
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 490
+size of candLACs = 125
+n171 is replaced by one with estimated error 1.33781
+error = 1.33781
+high accuracy error = 84.1253
+area = 937
+delay = 43.9
+#gates = 404
+output circuit appNtk/SAD_8_1.33781_937_43.9.blif
+time = 38480455 us
+--------------- round 9 ---------------
+seed = 616862992
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 490
+size of candLACs = 126
+n245 is replaced by n251 with estimated error 0.866439
+error = 0.866439
+high accuracy error = 85.8857
+area = 934
+delay = 43.9
+#gates = 403
+output circuit appNtk/SAD_9_0.866439_934_43.9.blif
+time = 43118730 us
+--------------- round 10 ---------------
+seed = 2552725083
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 490
+size of candLACs = 126
+n172 is replaced by n178 with estimated error 0.882066
+error = 0.882066
+high accuracy error = 91.512
+area = 932
+delay = 43.9
+#gates = 402
+output circuit appNtk/SAD_10_0.882066_932_43.9.blif
+time = 47696463 us
+--------------- round 11 ---------------
+seed = 154275297
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 490
+size of candLACs = 124
+n177 is replaced by one with estimated error 0.945916
+error = 0.945916
+high accuracy error = 96.0831
+area = 930
+delay = 43.9
+#gates = 401
+output circuit appNtk/SAD_11_0.945916_930_43.9.blif
+time = 52234100 us
+--------------- round 12 ---------------
+seed = 3212668429
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 490
+size of candLACs = 124
+n202 is replaced by n176 with estimated error 0.964229
+error = 0.964229
+high accuracy error = 99.3732
+area = 928
+delay = 43.9
+#gates = 400
+output circuit appNtk/SAD_12_0.964229_928_43.9.blif
+time = 56785231 us
+--------------- round 13 ---------------
+seed = 452024252
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 490
+size of candLACs = 123
+n178 is replaced by one with estimated error 1.01868
+error = 1.00256
+high accuracy error = 101.006
+area = 925
+delay = 43.9
+#gates = 399
+output circuit appNtk/SAD_13_1.00256_925_43.9.blif
+time = 61277815 us
+--------------- round 14 ---------------
+seed = 889316782
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 490
+size of candLACs = 121
+n180 is replaced by zero with estimated error 0.9801
+error = 0.9801
+high accuracy error = 102.846
+area = 923
+delay = 43.9
+#gates = 398
+output circuit appNtk/SAD_14_0.9801_923_43.9.blif
+time = 65695669 us
+--------------- round 15 ---------------
+seed = 138962091
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 490
+size of candLACs = 121
+n220 is replaced by n218 with inverter with estimated error 0.993041
+error = 0.993041
+high accuracy error = 102.989
+area = 922
+delay = 43.9
+#gates = 398
+output circuit appNtk/SAD_15_0.993041_922_43.9.blif
+time = 70117415 us
+--------------- round 16 ---------------
+seed = 4180984235
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 120
+n83 is replaced by one with estimated error 0.968136
+error = 0.961543
+high accuracy error = 101.94
+area = 920
+delay = 43.9
+#gates = 397
+output circuit appNtk/SAD_16_0.961543_920_43.9.blif
+time = 74539307 us
+--------------- round 17 ---------------
+seed = 2577752723
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 118
+n216 is replaced by n231 with estimated error 1.05152
+error = 1.05152
+high accuracy error = 108.266
+area = 917
+delay = 43.9
+#gates = 396
+output circuit appNtk/SAD_17_1.05152_917_43.9.blif
+time = 78916473 us
+--------------- round 18 ---------------
+seed = 2823815993
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 118
+n88 is replaced by x0[0] with estimated error 1.06666
+error = 1.06666
+high accuracy error = 109.719
+area = 908
+delay = 43.1
+#gates = 393
+output circuit appNtk/SAD_18_1.06666_908_43.1.blif
+time = 83284118 us
+--------------- round 19 ---------------
+seed = 2203027779
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 114
+n120 is replaced by x0[0] with estimated error 1.08094
+error = 1.08094
+high accuracy error = 114.581
+area = 904
+delay = 43.1
+#gates = 391
+output circuit appNtk/SAD_19_1.08094_904_43.1.blif
+time = 87545215 us
+--------------- round 20 ---------------
+seed = 111209178
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 112
+n118 is replaced by n434 with estimated error 1.1244
+error = 1.1244
+high accuracy error = 114.898
+area = 901
+delay = 43.1
+#gates = 389
+output circuit appNtk/SAD_20_1.1244_901_43.1.blif
+time = 91787716 us
+--------------- round 21 ---------------
+seed = 1053994465
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 109
+n231 is replaced by n207 with estimated error 1.2084
+error = 1.2084
+high accuracy error = 122.361
+area = 894
+delay = 43.1
+#gates = 386
+output circuit appNtk/SAD_21_1.2084_894_43.1.blif
+time = 96939811 us
+--------------- round 22 ---------------
+seed = 2597899135
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 107
+n208 is replaced by n213 with estimated error 1.29838
+error = 1.29838
+high accuracy error = 133.75
+area = 887
+delay = 43.1
+#gates = 384
+output circuit appNtk/SAD_22_1.29838_887_43.1.blif
+time = 102004409 us
+--------------- round 23 ---------------
+seed = 3775417458
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 104
+n218 is replaced by n234 with estimated error 1.31718
+error = 1.31718
+high accuracy error = 135.518
+area = 885
+delay = 43.1
+#gates = 383
+output circuit appNtk/SAD_23_1.31718_885_43.1.blif
+time = 107037924 us
+--------------- round 24 ---------------
+seed = 3218023534
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 104
+n176 is replaced by one with estimated error 1.3101
+error = 1.3101
+high accuracy error = 135.928
+area = 883
+delay = 43.1
+#gates = 382
+output circuit appNtk/SAD_24_1.3101_883_43.1.blif
+time = 112041167 us
+--------------- round 25 ---------------
+seed = 1596394437
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 103
+n210 is replaced by one with estimated error 1.30912
+error = 1.2913
+high accuracy error = 132.375
+area = 876
+delay = 43.1
+#gates = 380
+output circuit appNtk/SAD_25_1.2913_876_43.1.blif
+time = 117015608 us
+--------------- round 26 ---------------
+seed = 3697688128
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 99
+n248 is replaced by n241 with estimated error 2.02381
+error = 2.02381
+high accuracy error = 205.065
+area = 853
+delay = 43.1
+#gates = 372
+output circuit appNtk/SAD_26_2.02381_853_43.1.blif
+time = 121948336 us
+--------------- round 27 ---------------
+seed = 693314806
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 90
+n173 is replaced by one with estimated error 2.08082
+error = 1.99194
+high accuracy error = 206.885
+area = 850
+delay = 43.1
+#gates = 371
+output circuit appNtk/SAD_27_1.99194_850_43.1.blif
+time = 126706425 us
+--------------- round 28 ---------------
+seed = 3483684492
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 88
+n213 is replaced by n238 with estimated error 1.91198
+error = 1.91198
+high accuracy error = 195.598
+area = 835
+delay = 43
+#gates = 364
+output circuit appNtk/SAD_28_1.91198_835_43.blif
+time = 131454483 us
+--------------- round 29 ---------------
+seed = 3827774067
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 84
+n195 is replaced by y1[1] with estimated error 2.11977
+error = 2.11977
+high accuracy error = 217.79
+area = 832
+delay = 43
+#gates = 362
+output circuit appNtk/SAD_29_2.11977_832_43.blif
+time = 135933484 us
+--------------- round 30 ---------------
+seed = 2706780032
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 80
+n193 is replaced by n217 with estimated error 2.57478
+error = 2.57478
+high accuracy error = 263.772
+area = 824
+delay = 41.5
+#gates = 357
+output circuit appNtk/SAD_30_2.57478_824_41.5.blif
+time = 140428735 us
+--------------- round 31 ---------------
+seed = 1792501431
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 67
+n232 is replaced by n217 with estimated error 2.53412
+error = 2.53412
+high accuracy error = 258.924
+area = 821
+delay = 41.5
+#gates = 356
+output circuit appNtk/SAD_31_2.53412_821_41.5.blif
+time = 144873849 us
+--------------- round 32 ---------------
+seed = 1864469812
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 60
+n243 is replaced by n198 with estimated error 2.59187
+error = 2.59187
+high accuracy error = 262.262
+area = 818
+delay = 41.5
+#gates = 355
+output circuit appNtk/SAD_32_2.59187_818_41.5.blif
+time = 149279080 us
+--------------- round 33 ---------------
+seed = 3693107635
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 62
+n217 is replaced by n234 with estimated error 2.54975
+error = 2.54975
+high accuracy error = 262.37
+area = 815
+delay = 41.5
+#gates = 354
+output circuit appNtk/SAD_33_2.54975_815_41.5.blif
+time = 153611887 us
+--------------- round 34 ---------------
+seed = 924844330
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 60
+n233 is replaced by n198 with estimated error 2.60127
+error = 2.60127
+high accuracy error = 261.085
+area = 812
+delay = 41.5
+#gates = 352
+output circuit appNtk/SAD_34_2.60127_812_41.5.blif
+time = 157892194 us
+--------------- round 35 ---------------
+seed = 3200972275
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 62
+n237 is replaced by y0[2] with estimated error 2.67367
+error = 2.67367
+high accuracy error = 273.422
+area = 810
+delay = 41.5
+#gates = 351
+output circuit appNtk/SAD_35_2.67367_810_41.5.blif
+time = 162263513 us
+--------------- round 36 ---------------
+seed = 323301594
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 54
+n250 is replaced by n234 with estimated error 3.21255
+error = 3.21255
+high accuracy error = 325.811
+area = 803
+delay = 41.5
+#gates = 349
+output circuit appNtk/SAD_36_3.21255_803_41.5.blif
+time = 166597117 us
+--------------- round 37 ---------------
+seed = 190995665
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 45
+n197 is replaced by y0[1] with estimated error 3.37822
+error = 3.37822
+high accuracy error = 339.193
+area = 801
+delay = 41.5
+#gates = 348
+output circuit appNtk/SAD_37_3.37822_801_41.5.blif
+time = 170898740 us
+--------------- round 38 ---------------
+seed = 2580852499
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 43
+n241 is replaced by n198 with estimated error 3.46991
+error = 3.46991
+high accuracy error = 353.112
+area = 798
+delay = 41.5
+#gates = 347
+output circuit appNtk/SAD_38_3.46991_798_41.5.blif
+time = 175188572 us
+--------------- round 39 ---------------
+seed = 2742284825
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 40
+n252 is replaced by n199 with estimated error 3.68929
+error = 3.68929
+high accuracy error = 369.204
+area = 794
+delay = 41.5
+#gates = 345
+output circuit appNtk/SAD_39_3.68929_794_41.5.blif
+time = 179432268 us
+--------------- round 40 ---------------
+seed = 3246208634
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 35
+n253 is replaced by n275 with estimated error 3.67525
+error = 3.67525
+high accuracy error = 376.529
+area = 792
+delay = 41.5
+#gates = 344
+output circuit appNtk/SAD_40_3.67525_792_41.5.blif
+time = 183643764 us
+--------------- round 41 ---------------
+seed = 3011908349
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 33
+n278 is replaced by n198 with estimated error 4.16494
+error = 4.16494
+high accuracy error = 426.083
+area = 774
+delay = 40.7
+#gates = 336
+output circuit appNtk/SAD_41_4.16494_774_40.7.blif
+time = 187829396 us
+--------------- round 42 ---------------
+seed = 3443897733
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 16
+n229 is replaced by zero with estimated error 4.41338
+error = 4.41338
+high accuracy error = 450.585
+area = 769
+delay = 40.7
+#gates = 334
+output circuit appNtk/SAD_42_4.41338_769_40.7.blif
+time = 191858615 us
+--------------- round 43 ---------------
+seed = 1792422561
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 12
+n281 is replaced by n200 with estimated error 4.49322
+error = 4.49322
+high accuracy error = 445.988
+area = 768
+delay = 40.7
+#gates = 333
+output circuit appNtk/SAD_43_4.49322_768_40.7.blif
+time = 195856354 us
+--------------- round 44 ---------------
+seed = 1078471118
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 11
+n200 is replaced by n490 with estimated error 4.61665
+error = 4.61665
+high accuracy error = 462.096
+area = 767
+delay = 40.7
+#gates = 332
+output circuit appNtk/SAD_44_4.61665_767_40.7.blif
+time = 199825991 us
+--------------- round 45 ---------------
+seed = 4226381009
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 9
+n198 is replaced by one with estimated error 4.79648
+error = 3.93774
+high accuracy error = 397.716
+area = 765
+delay = 40.7
+#gates = 331
+output circuit appNtk/SAD_45_3.93774_765_40.7.blif
+time = 203775889 us
+--------------- round 46 ---------------
+seed = 2612384024
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 19
+n135 is replaced by zero with estimated error 3.94836
+error = 3.94836
+high accuracy error = 399.158
+area = 764
+delay = 40.7
+#gates = 330
+output circuit appNtk/SAD_46_3.94836_764_40.7.blif
+time = 207690947 us
+--------------- round 47 ---------------
+seed = 732377959
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 17
+n91 is replaced by n283 with estimated error 3.92895
+error = 3.92895
+high accuracy error = 402.499
+area = 762
+delay = 40.2
+#gates = 329
+output circuit appNtk/SAD_47_3.92895_762_40.2.blif
+time = 211606545 us
+--------------- round 48 ---------------
+seed = 1444599086
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 491
+size of candLACs = 18
+n280 is replaced by n302 with inverter with estimated error 4.10548
+error = 4.10548
+high accuracy error = 414.912
+area = 756
+delay = 40.2
+#gates = 328
+output circuit appNtk/SAD_48_4.10548_756_40.2.blif
+time = 215525933 us
+--------------- round 49 ---------------
+seed = 2074071094
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 492
+size of candLACs = 15
+n226 is replaced by n81 with estimated error 4.40447
+error = 4.40447
+high accuracy error = 447.945
+area = 753
+delay = 40.2
+#gates = 326
+output circuit appNtk/SAD_49_4.40447_753_40.2.blif
+time = 219425257 us
+--------------- round 50 ---------------
+seed = 569420196
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 492
+size of candLACs = 11
+n225 is replaced by zero with estimated error 4.82444
+error = 4.5185
+high accuracy error = 458.982
+area = 751
+delay = 40.2
+#gates = 325
+output circuit appNtk/SAD_50_4.5185_751_40.2.blif
+time = 223264860 us
+--------------- round 51 ---------------
+seed = 1736066237
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 492
+size of candLACs = 9
+n490 is replaced by n207 with estimated error 4.80027
+error = 4.80027
+high accuracy error = 486.193
+area = 750
+delay = 40.2
+#gates = 324
+output circuit appNtk/SAD_51_4.80027_750_40.2.blif
+time = 227074814 us
+--------------- round 52 ---------------
+seed = 178099158
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 492
+size of candLACs = 1
+n207 is replaced by zero with estimated error 4.67415
+error = 4.67415
+high accuracy error = 424.58
+area = 745
+delay = 40.2
+#gates = 322
+output circuit appNtk/SAD_52_4.67415_745_40.2.blif
+time = 230827237 us
+--------------- round 53 ---------------
+seed = 3421275754
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 492
+size of candLACs = 8
+n491 is replaced by n274 with estimated error 4.69882
+error = 4.69882
+high accuracy error = 425.394
+area = 744
+delay = 40.2
+#gates = 321
+output circuit appNtk/SAD_53_4.69882_744_40.2.blif
+time = 234578363 us
+--------------- round 54 ---------------
+seed = 2550375145
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 489
+size of candLACs = 7
+n275 is replaced by one with estimated error 4.67806
+error = 4.67806
+high accuracy error = 425.689
+area = 743
+delay = 40.2
+#gates = 320
+output circuit appNtk/SAD_54_4.67806_743_40.2.blif
+time = 238312335 us
+--------------- round 55 ---------------
+seed = 2012013946
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 489
+size of candLACs = 10
+n92 is replaced by x0[0] with inverter with estimated error 4.16018
+error = 4.16018
+high accuracy error = 429.978
+area = 742
+delay = 38.6
+#gates = 320
+output circuit appNtk/SAD_55_4.16018_742_38.6.blif
+time = 242039663 us
+--------------- round 56 ---------------
+seed = 1903029348
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 493
+size of candLACs = 8
+n254 is replaced by x1[2] with estimated error 4.53083
+error = 4.53083
+high accuracy error = 463.516
+area = 740
+delay = 38.6
+#gates = 319
+output circuit appNtk/SAD_56_4.53083_740_38.6.blif
+time = 245723622 us
+--------------- round 57 ---------------
+seed = 209689409
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 493
+size of candLACs = 6
+n282 is replaced by one with estimated error 4.54548
+error = 4.54548
+high accuracy error = 463.354
+area = 738
+delay = 38.6
+#gates = 318
+output circuit appNtk/SAD_57_4.54548_738_38.6.blif
+time = 249378573 us
+--------------- round 58 ---------------
+seed = 2012091543
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 493
+size of candLACs = 0
+exceed error bound

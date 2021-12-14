@@ -1,0 +1,812 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/sasimi-arith/MAC.blif
+abc command print_stats
+[1;37mMAC                           :[0m i/o =   32/   17  lat =    0  nd =   560  edge =   1166  area =1372.00  delay =36.60  lev = 33
+--------------- round 1 ---------------
+seed = 1074815603
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 154
+n63 is replaced by n110 with estimated error 0.00956733
+error = 0.00956733
+high accuracy error = 0.948478
+area = 1370
+delay = 36.6
+#gates = 561
+output circuit appNtk/MAC_1_0.00956733_1370_36.6.blif
+time = 5040628 us
+--------------- round 2 ---------------
+seed = 2815087158
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 153
+n83 is replaced by n76 with estimated error 0.0191957
+error = 0.0191957
+high accuracy error = 1.90671
+area = 1368
+delay = 36.6
+#gates = 560
+output circuit appNtk/MAC_2_0.0191957_1368_36.6.blif
+time = 10092420 us
+--------------- round 3 ---------------
+seed = 2485773029
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 149
+n133 is replaced by n204 with estimated error 0.0258486
+error = 0.0258486
+high accuracy error = 2.49958
+area = 1365
+delay = 36.6
+#gates = 559
+output circuit appNtk/MAC_3_0.0258486_1365_36.6.blif
+time = 15267257 us
+--------------- round 4 ---------------
+seed = 4266843507
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 149
+n65 is replaced by n62 with estimated error 0.0313876
+error = 0.0313876
+high accuracy error = 3.21691
+area = 1363
+delay = 36.6
+#gates = 558
+output circuit appNtk/MAC_4_0.0313876_1363_36.6.blif
+time = 20406632 us
+--------------- round 5 ---------------
+seed = 2235586230
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 146
+n79 is replaced by n57 with estimated error 0.0456241
+error = 0.0456241
+high accuracy error = 4.59557
+area = 1359
+delay = 36.6
+#gates = 556
+output circuit appNtk/MAC_5_0.0456241_1359_36.6.blif
+time = 25469544 us
+--------------- round 6 ---------------
+seed = 455094210
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 143
+n60 is replaced by a[1] with estimated error 0.0592656
+error = 0.0592656
+high accuracy error = 6.03902
+area = 1354
+delay = 36.6
+#gates = 553
+output circuit appNtk/MAC_6_0.0592656_1354_36.6.blif
+time = 30537941 us
+--------------- round 7 ---------------
+seed = 3551297574
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 137
+n149 is replaced by n165 with estimated error 0.0686803
+error = 0.0686803
+high accuracy error = 7.13471
+area = 1351
+delay = 36.6
+#gates = 552
+output circuit appNtk/MAC_7_0.0686803_1351_36.6.blif
+time = 35572440 us
+--------------- round 8 ---------------
+seed = 12406281
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 136
+n72 is replaced by n50 with estimated error 0.0863349
+error = 0.0863349
+high accuracy error = 8.47461
+area = 1348
+delay = 36.6
+#gates = 551
+output circuit appNtk/MAC_8_0.0863349_1348_36.6.blif
+time = 40607825 us
+--------------- round 9 ---------------
+seed = 2812486068
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 135
+n94 is replaced by one with estimated error 0.0875861
+error = 0.0846564
+high accuracy error = 8.72758
+area = 1346
+delay = 36.6
+#gates = 550
+output circuit appNtk/MAC_9_0.0846564_1346_36.6.blif
+time = 45637975 us
+--------------- round 10 ---------------
+seed = 1329541669
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 133
+n106 is replaced by n101 with estimated error 0.0924995
+error = 0.0924995
+high accuracy error = 9.2185
+area = 1344
+delay = 36.6
+#gates = 549
+output circuit appNtk/MAC_10_0.0924995_1344_36.6.blif
+time = 50680722 us
+--------------- round 11 ---------------
+seed = 1006860766
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 133
+n81 is replaced by n76 with estimated error 0.110612
+error = 0.110612
+high accuracy error = 11.016
+area = 1337
+delay = 36.6
+#gates = 547
+output circuit appNtk/MAC_11_0.110612_1337_36.6.blif
+time = 55701463 us
+--------------- round 12 ---------------
+seed = 3038620117
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 127
+n64 is replaced by one with estimated error 0.109696
+error = 0.109696
+high accuracy error = 10.9761
+area = 1335
+delay = 36.6
+#gates = 546
+output circuit appNtk/MAC_12_0.109696_1335_36.6.blif
+time = 60756033 us
+--------------- round 13 ---------------
+seed = 414202777
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 128
+n57 is replaced by one with estimated error 0.112321
+error = 0.100938
+high accuracy error = 10.021
+area = 1332
+delay = 36.6
+#gates = 545
+output circuit appNtk/MAC_13_0.100938_1332_36.6.blif
+time = 65795171 us
+--------------- round 14 ---------------
+seed = 2540382
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 126
+n56 is replaced by a[0] with estimated error 0.104661
+error = 0.104661
+high accuracy error = 10.6146
+area = 1327
+delay = 36.6
+#gates = 542
+output circuit appNtk/MAC_14_0.104661_1327_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 70797468 us
+--------------- round 15 ---------------
+seed = 3808885994
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 121
+n104 is replaced by n95 with estimated error 0.116525
+error = 0.116525
+high accuracy error = 11.3715
+area = 1325
+delay = 36.6
+#gates = 541
+output circuit appNtk/MAC_15_0.116525_1325_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 75780720 us
+--------------- round 16 ---------------
+seed = 3280675050
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 120
+n97 is replaced by one with estimated error 0.125108
+error = 0.121537
+high accuracy error = 11.9011
+area = 1319
+delay = 36.6
+#gates = 539
+output circuit appNtk/MAC_16_0.121537_1319_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 80803117 us
+--------------- round 17 ---------------
+seed = 3461820047
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 117
+n163 is replaced by n105 with estimated error 0.120309
+error = 0.120309
+high accuracy error = 11.8357
+area = 1318
+delay = 36.6
+#gates = 538
+output circuit appNtk/MAC_17_0.120309_1318_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 85784854 us
+--------------- round 18 ---------------
+seed = 2962328930
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 118
+n77 is replaced by one with estimated error 0.130349
+error = 0.129937
+high accuracy error = 13.0118
+area = 1314
+delay = 36.6
+#gates = 537
+output circuit appNtk/MAC_18_0.129937_1314_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 90956244 us
+--------------- round 19 ---------------
+seed = 1286629326
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 115
+n101 is replaced by n70 with estimated error 0.130883
+error = 0.130883
+high accuracy error = 13.2822
+area = 1313
+delay = 36.6
+#gates = 536
+output circuit appNtk/MAC_19_0.130883_1313_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 96019900 us
+--------------- round 20 ---------------
+seed = 1478757552
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 114
+n99 is replaced by n67 with estimated error 0.148927
+error = 0.148927
+high accuracy error = 14.7446
+area = 1309
+delay = 36.6
+#gates = 534
+output circuit appNtk/MAC_20_0.148927_1309_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 101038097 us
+--------------- round 21 ---------------
+seed = 1685672403
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 108
+n193 is replaced by n105 with estimated error 0.172197
+error = 0.172197
+high accuracy error = 16.6366
+area = 1303
+delay = 36.6
+#gates = 531
+output circuit appNtk/MAC_21_0.172197_1303_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 106434608 us
+--------------- round 22 ---------------
+seed = 1713414333
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 105
+n67 is replaced by one with estimated error 0.169237
+error = 0.158448
+high accuracy error = 16.4286
+area = 1300
+delay = 36.6
+#gates = 530
+output circuit appNtk/MAC_22_0.158448_1300_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 112618927 us
+--------------- round 23 ---------------
+seed = 2182394651
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 105
+n61 is replaced by a[1] with inverter with estimated error 0.16063
+error = 0.16063
+high accuracy error = 16.4536
+area = 1299
+delay = 36.6
+#gates = 530
+output circuit appNtk/MAC_23_0.16063_1299_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 118962801 us
+--------------- round 24 ---------------
+seed = 764324324
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 613
+size of candLACs = 105
+n88 is replaced by zero with estimated error 0.165361
+error = 0.165361
+high accuracy error = 16.4539
+area = 1298
+delay = 36.6
+#gates = 529
+output circuit appNtk/MAC_24_0.165361_1298_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 124050883 us
+--------------- round 25 ---------------
+seed = 3027755574
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 613
+size of candLACs = 103
+n73 is replaced by zero with estimated error 0.166269
+error = 0.166269
+high accuracy error = 16.493
+area = 1297
+delay = 36.6
+#gates = 528
+output circuit appNtk/MAC_25_0.166269_1297_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 129327332 us
+--------------- round 26 ---------------
+seed = 2017303594
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 613
+size of candLACs = 104
+n95 is replaced by n92 with estimated error 0.185197
+error = 0.185197
+high accuracy error = 18.9338
+area = 1292
+delay = 36.6
+#gates = 526
+output circuit appNtk/MAC_26_0.185197_1292_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 135634201 us
+--------------- round 27 ---------------
+seed = 594777283
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 613
+size of candLACs = 98
+n103 is replaced by n92 with estimated error 0.231394
+error = 0.231394
+high accuracy error = 23.4548
+area = 1283
+delay = 36.6
+#gates = 523
+output circuit appNtk/MAC_27_0.231394_1283_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 142163498 us
+--------------- round 28 ---------------
+seed = 2563300377
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 613
+size of candLACs = 86
+n86 is replaced by n75 with estimated error 0.240808
+error = 0.240808
+high accuracy error = 24.5996
+area = 1270
+delay = 36.6
+#gates = 518
+output circuit appNtk/MAC_28_0.240808_1270_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 147419845 us
+--------------- round 29 ---------------
+seed = 604132162
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 613
+size of candLACs = 80
+n134 is replaced by n145 with estimated error 0.272822
+error = 0.272822
+high accuracy error = 27.6222
+area = 1260
+delay = 36.6
+#gates = 514
+output circuit appNtk/MAC_29_0.272822_1260_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 152420940 us
+--------------- round 30 ---------------
+seed = 4233840327
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 613
+size of candLACs = 72
+n130 is replaced by n204 with estimated error 0.277163
+error = 0.277163
+high accuracy error = 28.0617
+area = 1258
+delay = 36.6
+#gates = 513
+output circuit appNtk/MAC_30_0.277163_1258_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 158170404 us
+--------------- round 31 ---------------
+seed = 854929457
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 613
+size of candLACs = 67
+n71 is replaced by n68 with estimated error 0.298792
+error = 0.298792
+high accuracy error = 29.3936
+area = 1256
+delay = 36.6
+#gates = 512
+output circuit appNtk/MAC_31_0.298792_1256_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 164464309 us
+--------------- round 32 ---------------
+seed = 4140945281
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 613
+size of candLACs = 67
+n154 is replaced by n115 with estimated error 0.312121
+error = 0.312121
+high accuracy error = 31.2973
+area = 1254
+delay = 36.6
+#gates = 511
+output circuit appNtk/MAC_32_0.312121_1254_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 170760381 us
+--------------- round 33 ---------------
+seed = 2093196743
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 613
+size of candLACs = 64
+n117 is replaced by n89 with estimated error 0.394054
+error = 0.394054
+high accuracy error = 39.4914
+area = 1246
+delay = 36.6
+#gates = 508
+output circuit appNtk/MAC_33_0.394054_1246_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 177046584 us
+--------------- round 34 ---------------
+seed = 1899176495
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 613
+size of candLACs = 49
+n612 is replaced by one with estimated error 0.386775
+error = 0.386775
+high accuracy error = 39.7114
+area = 1245
+delay = 36.6
+#gates = 507
+output circuit appNtk/MAC_34_0.386775_1245_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 183267568 us
+--------------- round 35 ---------------
+seed = 2957160040
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 46
+n159 is replaced by n153 with estimated error 0.529888
+error = 0.529888
+high accuracy error = 52.6298
+area = 1223
+delay = 36.6
+#gates = 499
+output circuit appNtk/MAC_35_0.529888_1223_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 190557632 us
+--------------- round 36 ---------------
+seed = 1022945271
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 21
+n239 is replaced by n296 with estimated error 0.558339
+error = 0.558339
+high accuracy error = 55.784
+area = 1220
+delay = 36.6
+#gates = 498
+output circuit appNtk/MAC_36_0.558339_1220_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 197666615 us
+--------------- round 37 ---------------
+seed = 3098391952
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 11
+n152 is replaced by n147 with estimated error 0.6162
+error = 0.6162
+high accuracy error = 60.6676
+area = 1218
+delay = 36.6
+#gates = 497
+output circuit appNtk/MAC_37_0.6162_1218_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 204733317 us
+--------------- round 38 ---------------
+seed = 1010820915
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 6
+n255 is replaced by n155 with estimated error 0.604131
+error = 0.604131
+high accuracy error = 60.6322
+area = 1216
+delay = 36.6
+#gates = 496
+output circuit appNtk/MAC_38_0.604131_1216_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 211895381 us
+--------------- round 39 ---------------
+seed = 2351814930
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 5
+n188 is replaced by n160 with estimated error 0.601659
+error = 0.601659
+high accuracy error = 60.6732
+area = 1214
+delay = 36.6
+#gates = 495
+output circuit appNtk/MAC_39_0.601659_1214_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 219098833 us
+--------------- round 40 ---------------
+seed = 3889985278
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 4
+n105 is replaced by one with estimated error 0.608502
+error = 0.608502
+high accuracy error = 60.7445
+area = 1211
+delay = 36.6
+#gates = 494
+output circuit appNtk/MAC_40_0.608502_1211_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 226331433 us
+--------------- round 41 ---------------
+seed = 3285329099
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 3
+n68 is replaced by one with estimated error 0.593922
+error = 0.593922
+high accuracy error = 60.1199
+area = 1210
+delay = 36.6
+#gates = 493
+output circuit appNtk/MAC_41_0.593922_1210_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 233565820 us
+--------------- round 42 ---------------
+seed = 3921856791
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 612
+size of candLACs = 3
+n91 is replaced by c[1] with inverter with estimated error 0.601292
+error = 0.601292
+high accuracy error = 60.2467
+area = 1209
+delay = 36.6
+#gates = 493
+output circuit appNtk/MAC_42_0.601292_1209_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 240837305 us
+--------------- round 43 ---------------
+seed = 2749764893
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 614
+size of candLACs = 2
+n87 is replaced by n90 with inverter with estimated error 0.598752
+error = 0.598752
+high accuracy error = 60.6354
+area = 1205
+delay = 36.6
+#gates = 493
+output circuit appNtk/MAC_43_0.598752_1205_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 248100896 us
+--------------- round 44 ---------------
+seed = 618951438
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 615
+size of candLACs = 1
+n66 is replaced by n266 with estimated error 0.60851
+error = 0.60851
+high accuracy error = 60.5899
+area = 1200
+delay = 36.6
+#gates = 492
+output circuit appNtk/MAC_44_0.60851_1200_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 255433519 us
+--------------- round 45 ---------------
+seed = 1853408154
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 615
+size of candLACs = 2
+n92 is replaced by one with estimated error 0.609883
+error = 0.609883
+high accuracy error = 62.377
+area = 1197
+delay = 36.6
+#gates = 490
+output circuit appNtk/MAC_45_0.609883_1197_36.6.blif
+Abc_NtkLogicToNetlist() warning: The network is converted to have simple COs.
+time = 262692848 us
+--------------- round 46 ---------------
+seed = 895230375
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 615
+size of candLACs = 0
+exceed error bound

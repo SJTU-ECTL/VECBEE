@@ -23,20 +23,23 @@ def CollectData(fileName):
     return [estErr, accErr, iterNum]
 
 
+plt.rcParams['figure.figsize'] = (6.5, 2.5)
+
 ftSize = 13
-estErr, accErr, iterNum = CollectData('result/maxLevel-1/ER/log/c880_0.05.log')
+estErr, accErr, iterNum = CollectData('result/maxLevel-ER/log-level-1/c880_0.05.log')
 plt.plot(iterNum, estErr, color='#00FF00', marker='o', linestyle='--', fillstyle='none', markersize=10, label='EER of c880')
 plt.plot(iterNum, accErr, color='#00FF00', marker='o', linestyle='-',  fillstyle='full', markersize=10,  label='SER of c880')
-estErr, accErr, iterNum = CollectData('result/maxLevel-1/ER/log/rca32_0.05.log')
+estErr, accErr, iterNum = CollectData('result/maxLevel-ER/log-level-1/rca32_0.05.log')
 plt.plot(iterNum, estErr, color='#FF0000', marker='s', linestyle='--', fillstyle='none', markersize=10, label='EER of RCA32')
 plt.plot(iterNum, accErr, color='#FF0000', marker='s', linestyle='-',  fillstyle='full', markersize=10,  label='SER of RCA32')
-estErr, accErr, iterNum = CollectData('result/maxLevel-1/ER/log/cla32_0.05.log')
+estErr, accErr, iterNum = CollectData('result/maxLevel-ER/log-level-1/cla32_0.05.log')
 plt.plot(iterNum, estErr, color='#0000FF', marker='d', linestyle='--', fillstyle='none', markersize=10, label='EER of CLA32')
 plt.plot(iterNum, accErr, color='#0000FF', marker='d', linestyle='-',  fillstyle='full', markersize=10,  label='SER of CLA32')
 plt.xlabel('Iteration', fontsize=ftSize)
 plt.ylabel('Error rate (%)', fontsize=ftSize)
 plt.xticks(fontsize=ftSize)
 plt.yticks(fontsize=ftSize)
-plt.legend(loc='upper right', bbox_to_anchor=(0.8, 1), fontsize=ftSize)
+plt.legend(loc='upper right', bbox_to_anchor=(0.66, 1), fontsize=11)
+# plt.tight_layout()
 # plt.show()
-plt.savefig('result/figures/EstimateErrorVSAccurateError.png', dpi=300, bbox_inches='tight')
+plt.savefig('result/figures/EstimateErrorVSAccurateError.eps', dpi=1000, bbox_inches='tight')

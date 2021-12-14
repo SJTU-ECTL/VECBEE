@@ -1,0 +1,66 @@
+abc command read data/library/mcnc.genlib
+Entered genlib library with 23 gates from file "data/library/mcnc.genlib".
+abc command read_blif data/sasimi-arith/EUDIST.blif
+abc command print_stats
+[1;37mEUDIST                        :[0m i/o =   32/   16  lat =    0  nd =  1122  edge =   2336  area =2731.00  delay =53.80  lev = 51
+--------------- round 1 ---------------
+seed = 3747505844
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 1173
+size of candLACs = 28
+n274 is replaced by n205 with estimated error 0
+error = 0
+high accuracy error = 0
+area = 2719
+delay = 53.8
+#gates = 1119
+output circuit appNtk/EUDIST_1_0_2719_53.8.blif
+time = 21593088 us
+--------------- round 2 ---------------
+seed = 2380121680
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 1173
+size of candLACs = 21
+n209 is replaced by n207 with estimated error 0.108827
+error = 0.108827
+high accuracy error = 11.4449
+area = 2715
+delay = 53.8
+#gates = 1117
+output circuit appNtk/EUDIST_2_0.108827_2715_53.8.blif
+time = 45305669 us
+--------------- round 3 ---------------
+seed = 1236581551
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 1173
+size of candLACs = 6
+n348 is replaced by n293 with estimated error 0.146365
+error = 0.146365
+high accuracy error = 15.213
+area = 2712
+delay = 53.8
+#gates = 1116
+output circuit appNtk/EUDIST_3_0.146365_2712_53.8.blif
+time = 73787035 us
+--------------- round 4 ---------------
+seed = 1180599316
+maxLevel = 1
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+size of nodeLACs = 1173
+size of candLACs = 0
+exceed error bound

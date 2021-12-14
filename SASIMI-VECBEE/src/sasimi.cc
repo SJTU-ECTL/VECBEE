@@ -34,8 +34,6 @@ void SASIMI_Manager_t::GreedySelection(Abc_Ntk_t * pOriNtk, string outPrefix)
     cntRound = 0;
     while (1) {
         cout << "--------------- round " << ++cntRound << " ---------------" << endl;
-        if (cntRound == 4)
-            break;
         Simulator_t * pAppSmlt = new Simulator_t(pAppNtk, nFrame);
         unsigned seed = static_cast <unsigned> (rd());
         // unsigned seed = 2531465778;
@@ -1026,16 +1024,12 @@ int SASIMI_Manager_t::ApplyBestLAC(Simulator_t & oriSmlt, Simulator_t & appSmlt,
         estiError = (metricType == Metric_t::ER)?
             baseError + candLACs[i].GetDError() / static_cast <double> (nFrame):
             baseError + static_cast <double> (static_cast <bigFlt> (candLACs[i].GetDError()) / static_cast <bigFlt> ((static_cast <bigInt> (1) << Abc_NtkPoNum(pAppNtk)) - 1));
-        if (maxLevel == INT_MAX) {
-            if (abs(error - estiError) > 1e-8)
-                cout << "mismatch error: " << error << ", " << estiError << endl;
-        }
+        if (maxLevel == INT_MAX)
+            DASSERT(abs(error - estiError) < 1e-8);
         if (error <= errorBound)
             break;
     }
     if (pTS == nullptr || pSS == nullptr)
-        return 1;
-    if (error > errorBound)
         return 1;
     if (!isInv) {
         if (Abc_ObjIsNode(pSS) && Abc_NodeIsConst0(pSS))
@@ -1060,7 +1054,6 @@ int SASIMI_Manager_t::ApplyBestLAC(Simulator_t & oriSmlt, Simulator_t & appSmlt,
     cout << "area = " << Ckt_GetArea(pAppNtk) << endl;
     cout << "delay = " << Ckt_GetDelay(pAppNtk) << endl;
     cout << "#gates = " << Abc_NtkNodeNum(pAppNtk) << endl;
-    // SynthAndMap(pAppNtk);
     // if (highAccError > errorBound)
     //     assert(0);
 
