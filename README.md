@@ -11,45 +11,51 @@ For more details, please refer to:
 - [2]: [_An efficient method for multi-level approximate logic synthesis under error rate constraint_](http://umji.sjtu.edu.cn/~wkqian/papers/Wu_Qian_An_Efficient_Method_for_Multi-level_Approximate_Logic_Synthesis_under_Error_Rate_Constraint.pdf)
 
 ## Requirements
-To compile both sub-projects SASIMI and ANS, you need:
-- gcc
-- g++
-- make
+To compile the project, you need:
+- gcc 10.3.0
+- g++ 10.3.0
+- cmake 3.16.3
+- make 4.2.1
+- libboost 1.75.0
 - ctags
-
-To compile the ANS sub-project, you also need:
 - libreadline
-- libboost
+- abc
 
-The ANS sub-project also requires ABC.
+A reference docker environment is also provided here:
+https://hub.docker.com/repository/docker/changmeng/als_min
 
-## SASIMI
-The sub-project SASIMI is very easy to compile and use.
+## Download the project
 ```
-cd SASIMI
-make
-./main < circuit-name > (i.e., ./main c880)
+git clone https://github.com/SJTU-ECTL/VECBEE.git --recursive
 ```
+The `--recursive` option is necessary to download the submodule `abc`.
 
-## ANS
-The sub-project ANS requires ABC.
-Clone `ABC` into `ANS/abc/`.
+## Sub-project: SASIMI-VECBEE
+Generate a executable program:
 ```
-cd ANS
-git clone git@github.com:berkeley-abc/abc.git
-```
-
-Build a static library `libabc.a`.
-```
-cd abc/
-make libabc.a
+cd VECBEE/SASIMI-VECBEE
+mkdir build
+cd build
+cmake ..
+make -j <number_of_cpu_cores>
 cd ..
 ```
 
+A program named `sasimi-vecbee.out` will be generated in the folder `SASIMI-VECBEE`.
+
+Use `./sasimi-vecbee.out -h` to get help.
+
+## Sub-project: ANS-VECBEE
 Generate a executable program:
 ```
-make
+cd VECBEE/ANS-VECBEE
+mkdir build
+cd build
+cmake ..
+make -j <number_of_cpu_cores>
+cd ..
 ```
-It will generate a program named `main`.
 
-Use `./main -h` to get help.
+A program named `ans-vecbee.out` will be generated in the folder `ANS-VECBEE`.
+
+Use `./ans-vecbee.out -h` to get help.
