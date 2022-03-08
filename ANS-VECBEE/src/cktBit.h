@@ -2,7 +2,7 @@
 #define CKT_BIT_H
 
 
-#include <bits/stdc++.h>
+#include "header.h"
 
 
 class Ckt_Bit_Cnt_t

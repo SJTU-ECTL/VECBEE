@@ -1,7 +1,7 @@
 #ifndef CKT_CEC_H
 #define CKT_CEC_H
 
-#include <bits/stdc++.h>
+#include "header.h"
 #include "cktGateNet.h"
 #include "cktSopNet.h"
 #include "abcApi.h"

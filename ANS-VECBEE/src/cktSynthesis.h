@@ -1,7 +1,7 @@
 #ifndef CKT_SYNTHESIS_H
 #define CKT_SYNTHESIS_H
 
-#include <bits/stdc++.h>
+#include "header.h"
 #include "abcApi.h"
 #include "cktSopNet.h"
 #include "cktTiming.h"

@@ -2,7 +2,7 @@
 #define CKT_SOP_H
 
 
-#include <bits/stdc++.h>
+#include "header.h"
 #include "abcApi.h"
 #include "cktBit.h"
 #include "cktSopNet.h"
