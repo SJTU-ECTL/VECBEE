@@ -6,9 +6,11 @@ that is, SASIMI and ANS.
 
 For more details, please refer to:
 
-- [1]: [_Efficient Batch Statistical Error Estimation for Iterative Multi-level Approximate Logic Synthesis_](http://umji.sjtu.edu.cn/~wkqian/papers/Su_Wu_Qian_Efficient_Batch_Statistical_Error_Estimation_for_Iterative_Multi_level_Approximate_Logic_Synthesis.pdf)
+- [1]: [VECBEE: A Versatile Efficiency-Accuracy Configurable Batch Error Estimation Method for Greedy Approximate Logic Synthesis](https://ieeexplore.ieee.org/document/9706238)
 
-- [2]: [_An efficient method for multi-level approximate logic synthesis under error rate constraint_](http://umji.sjtu.edu.cn/~wkqian/papers/Wu_Qian_An_Efficient_Method_for_Multi-level_Approximate_Logic_Synthesis_under_Error_Rate_Constraint.pdf)
+- [2]: [_Efficient Batch Statistical Error Estimation for Iterative Multi-level Approximate Logic Synthesis_](http://umji.sjtu.edu.cn/~wkqian/papers/Su_Wu_Qian_Efficient_Batch_Statistical_Error_Estimation_for_Iterative_Multi_level_Approximate_Logic_Synthesis.pdf)
+
+- [3]: [_An efficient method for multi-level approximate logic synthesis under error rate constraint_](http://umji.sjtu.edu.cn/~wkqian/papers/Wu_Qian_An_Efficient_Method_for_Multi-level_Approximate_Logic_Synthesis_under_Error_Rate_Constraint.pdf)
 
 ## Requirements
 To compile the project, you need:
